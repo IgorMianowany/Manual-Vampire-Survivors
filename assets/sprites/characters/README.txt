@@ -1,4 +1,4 @@
-Player and skeleton sprites are on a 48x48 grid.
+layer and skeleton sprites are on a 48x48 grid.
 Slime is on a 32x32 grid.
 
 Flip right facing sprites to get the left facing sprites.

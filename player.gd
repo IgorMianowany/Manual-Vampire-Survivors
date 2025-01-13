@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed : float = 150
+@export var speed : float = 125
+
 enum directionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : directionEnum = directionEnum.DOWN
 
