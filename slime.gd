@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_cooldown : float = 2
 @export var jump_duration : float = 1
 @export var damage : float = 10
+@export var knockback_power : float = 6
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
 var player_position : Vector2
@@ -20,6 +21,9 @@ const JUMP_VELOCITY = -400.0
 func _physics_process(delta: float) -> void:
 	if not is_jumping:
 		player_position = player.position
+		$Hitbox.monitoring = false
+	else:
+		$Hitbox.monitoring = true
 		
 	jump_timer += delta
 	
@@ -66,8 +70,8 @@ func handle_animation() -> void:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = false
 		elif facing_direction == DirectionEnum.DOWN:
-				$AnimatedSprite2D.play("idle_down")
-				$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("idle_down")
+			$AnimatedSprite2D.flip_h = false
 		elif facing_direction == DirectionEnum.LEFT:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = true
@@ -79,4 +83,4 @@ func handle_animation() -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.take_damage(damage)
+		body.take_damage(damage, position.direction_to(player_position), knockback_power)

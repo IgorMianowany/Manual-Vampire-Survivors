@@ -216,16 +216,16 @@ size = Vector2(12, 7)
 size = Vector2(24, 22)
 
 [node name="Slime" type="CharacterBody2D"]
-collision_layer = 6
 collision_mask = 3
 script = ExtResource("1_ahcej")
+knockback_power = 7.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
 animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.554928
+frame_progress = 0.0928677
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

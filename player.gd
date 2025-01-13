@@ -14,7 +14,6 @@ enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _physics_process(delta: float) -> void:
-	print(delta)
 	if is_invincible:
 		invincibility_timer += delta
 		invincibility_animation_counter += 1
@@ -75,9 +74,11 @@ func handle_animation() -> void:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = true
 			
-func take_damage(damage : float) -> void:
+func take_damage(damage : float, knockback_direction : Vector2, knockback_power : float) -> void:
 	if not is_invincible:
 		PlayerState.health -= damage
 		is_invincible = true
+		print(knockback_direction)
+		velocity = knockback_direction * speed * knockback_power
 		if PlayerState.health <= 0:
 			death.emit()

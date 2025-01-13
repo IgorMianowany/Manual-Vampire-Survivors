@@ -10,3 +10,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$CanvasLayer/Healthbar.value = PlayerState.health
 	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
+	$CanvasLayer/HealthForDebug.text = str(PlayerState.health)
