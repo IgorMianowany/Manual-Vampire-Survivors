@@ -2,11 +2,31 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed : float = 125
+@export var invincibility_time : float = 1
+var invincibility_timer : float = 0
+var is_invincible : bool = false
+var invincibility_animation_frequency = 5
+var invincibility_animation_counter = 0
+
+signal death
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _physics_process(delta: float) -> void:
+	print(delta)
+	if is_invincible:
+		invincibility_timer += delta
+		invincibility_animation_counter += 1
+		if invincibility_animation_counter > invincibility_animation_frequency:
+			$AnimatedSprite2D.visible = not $AnimatedSprite2D.visible
+			invincibility_animation_counter = 0
+		
+	if invincibility_timer > invincibility_time:
+		is_invincible = false
+		$AnimatedSprite2D.visible = true
+		invincibility_timer = 0
+		
 	var direction_left := Input.get_axis("move_left", "move_right")
 	var direction_down := Input.get_axis("move_down", "move_up")
 	
@@ -54,3 +74,10 @@ func handle_animation() -> void:
 		else:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = true
+			
+func take_damage(damage : float) -> void:
+	if not is_invincible:
+		PlayerState.health -= damage
+		is_invincible = true
+		if PlayerState.health <= 0:
+			death.emit()
