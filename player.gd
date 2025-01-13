@@ -3,8 +3,8 @@ extends CharacterBody2D
 
 @export var speed : float = 125
 
-enum directionEnum {UP, DOWN, LEFT, RIGHT}
-var direction : directionEnum = directionEnum.DOWN
+enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
+var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _physics_process(delta: float) -> void:
 	var direction_left := Input.get_axis("move_left", "move_right")
@@ -13,18 +13,18 @@ func _physics_process(delta: float) -> void:
 	if direction_left:
 		velocity.x = direction_left * speed
 		if direction_left == 1:
-			direction = directionEnum.RIGHT
+			direction = DirectionEnum.RIGHT
 		else:
-			direction = directionEnum.LEFT
+			direction = DirectionEnum.LEFT
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	if direction_down:
 		velocity.y = direction_down * speed
 		if direction_down == 1:
-			direction = directionEnum.DOWN
+			direction = DirectionEnum.DOWN
 		else:
-			direction = directionEnum.UP
+			direction = DirectionEnum.UP
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 	
@@ -33,22 +33,22 @@ func _physics_process(delta: float) -> void:
 	
 func handle_animation() -> void:
 	if velocity != Vector2.ZERO:
-		if direction == directionEnum.UP:
+		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("move_up")
-		elif direction == directionEnum.DOWN:
+		elif direction == DirectionEnum.DOWN:
 			$AnimatedSprite2D.play("move_down")
-		elif direction == directionEnum.RIGHT:
+		elif direction == DirectionEnum.RIGHT:
 			$AnimatedSprite2D.play("move_right")
 			$AnimatedSprite2D.flip_h = false
 		else:
 			$AnimatedSprite2D.play("move_right")
 			$AnimatedSprite2D.flip_h = true
 	else:
-		if direction == directionEnum.UP:
+		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("idle_back")
-		elif direction == directionEnum.DOWN:
+		elif direction == DirectionEnum.DOWN:
 			$AnimatedSprite2D.play("idle_front")
-		elif direction == directionEnum.RIGHT:
+		elif direction == DirectionEnum.RIGHT:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = false
 		else:

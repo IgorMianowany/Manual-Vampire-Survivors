@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://11frskx0iaux" path="res://assets/sprites/characters/tiles/slime/tile040.png" id="42_12kr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83fs2"]
+size = Vector2(12, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygys0"]
 animations = [{
@@ -217,6 +218,7 @@ collision_mask = 3
 script = ExtResource("1_ahcej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -224,4 +226,4 @@ position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
 animation = &"move_down"
 autoplay = "idle_down"
-frame_progress = 0.744868
+frame_progress = 0.662616

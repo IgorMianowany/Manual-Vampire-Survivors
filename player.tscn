@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://c7lkfsrbggmbr" path="res://assets/sprites/characters/tiles/tile035.png" id="34_a8cld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
-size = Vector2(20, 12)
+size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_abd2b"]
 animations = [{
@@ -176,12 +176,14 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_0qibv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0.5, 5.5)
 shape = SubResource("RectangleShape2D_ysp0x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
