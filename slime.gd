@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed : float = 0
 @export var jump_cooldown : float = 2
 @export var jump_duration : float = 1
+@export var damage : float = 10
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
 var player_position : Vector2
@@ -74,3 +75,8 @@ func handle_animation() -> void:
 			$AnimatedSprite2D.play("idle_up")
 			$AnimatedSprite2D.flip_h = false
 			
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body is Player:
+		PlayerState.take_damage(damage)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=38 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://86kb56g5u8ud" path="res://assets/sprites/characters/tiles/tile033.png" id="32_gb11j"]
 [ext_resource type="Texture2D" uid="uid://dobiwhwh111v" path="res://assets/sprites/characters/tiles/tile034.png" id="33_vqalr"]
 [ext_resource type="Texture2D" uid="uid://c7lkfsrbggmbr" path="res://assets/sprites/characters/tiles/tile035.png" id="34_a8cld"]
+[ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
 size = Vector2(16, 16)
@@ -195,3 +196,7 @@ speed_scale = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="UI" parent="." instance=ExtResource("35_l3wkv")]
+offset_top = -8.0
+offset_bottom = -8.0

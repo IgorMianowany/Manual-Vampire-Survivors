@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=46 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -42,9 +42,6 @@
 [ext_resource type="Texture2D" uid="uid://cea5x0fpfwxla" path="res://assets/sprites/characters/tiles/slime/tile038.png" id="40_ld3u0"]
 [ext_resource type="Texture2D" uid="uid://bacgv7ah80gd8" path="res://assets/sprites/characters/tiles/slime/tile039.png" id="41_osjod"]
 [ext_resource type="Texture2D" uid="uid://11frskx0iaux" path="res://assets/sprites/characters/tiles/slime/tile040.png" id="42_12kr0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83fs2"]
-size = Vector2(12, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygys0"]
 animations = [{
@@ -212,18 +209,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83fs2"]
+size = Vector2(12, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3gy1"]
+size = Vector2(24, 22)
+
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 6
 collision_mask = 3
 script = ExtResource("1_ahcej")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_ygys0")
+animation = &"idle_down"
+autoplay = "idle_down"
+frame_progress = 0.845151
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
-sprite_frames = SubResource("SpriteFrames_ygys0")
-animation = &"move_down"
-autoplay = "idle_down"
-frame_progress = 0.662616
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_b3gy1")
+debug_color = Color(0.989001, 0, 0.295553, 0.42)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
