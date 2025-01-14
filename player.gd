@@ -3,10 +3,13 @@ extends CharacterBody2D
 
 @export var speed : float = 125
 @export var invincibility_time : float = 1
+@export var attack_time : float = .5
+@export var attack_range : float = 20
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
 var invincibility_animation_counter = 0
+var is_attacking : bool = false
 
 signal death
 
@@ -28,30 +31,46 @@ func _physics_process(delta: float) -> void:
 		
 	var direction_left := Input.get_axis("move_left", "move_right")
 	var direction_down := Input.get_axis("move_down", "move_up")
+	if Input.is_action_pressed("attack"):
+		attack()
 	
 	if direction_left:
 		velocity.x = direction_left * speed
-		if direction_left == 1:
-			direction = DirectionEnum.RIGHT
-		else:
-			direction = DirectionEnum.LEFT
+		if not is_attacking:
+			if direction_left == 1:
+				direction = DirectionEnum.RIGHT
+			else:
+				direction = DirectionEnum.LEFT
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	if direction_down:
 		velocity.y = direction_down * speed
-		if direction_down == 1:
-			direction = DirectionEnum.DOWN
-		else:
-			direction = DirectionEnum.UP
+		if not is_attacking:
+			if direction_down == 1:
+				direction = DirectionEnum.DOWN
+			else:
+				direction = DirectionEnum.UP
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
+	
 	
 	handle_animation()
 	move_and_slide()
 	
 func handle_animation() -> void:
-	if velocity != Vector2.ZERO:
+	if is_attacking:
+		if direction == DirectionEnum.UP:
+			$AnimatedSprite2D.play("attack_up")
+		elif direction == DirectionEnum.DOWN:
+			$AnimatedSprite2D.play("attack_down")
+		elif direction == DirectionEnum.RIGHT:
+			$AnimatedSprite2D.play("attack_right")
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.play("attack_right")
+			$AnimatedSprite2D.flip_h = true
+	elif velocity != Vector2.ZERO:
 		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("move_up")
 		elif direction == DirectionEnum.DOWN:
@@ -78,7 +97,44 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback_power 
 	if not is_invincible:
 		PlayerState.health -= damage
 		is_invincible = true
-		print(knockback_direction)
 		velocity = knockback_direction * speed * knockback_power
 		if PlayerState.health <= 0:
 			death.emit()
+
+func attack() -> void:
+	if not is_attacking:
+		is_attacking = true
+		set_attack_direction()
+		$UtilTimer.start(attack_time)
+		$AttackShapeCast.target_position = $AttackRangePointer.position
+		print($AttackShapeCast.get_collision_count())
+		
+		
+		
+		
+		await($UtilTimer.timeout)
+		is_attacking = false
+	
+func set_attack_direction() -> void:
+	var mouse_direction = position.direction_to(get_global_mouse_position())
+	if mouse_direction.x > .75:
+		direction = DirectionEnum.RIGHT
+	elif mouse_direction.x < -.75:
+		direction = DirectionEnum.LEFT
+	elif mouse_direction.y > 0:
+		direction = DirectionEnum.DOWN
+	else:
+		direction = DirectionEnum.UP
+	rotate_attack_range()
+	
+		
+func rotate_attack_range() -> void:
+	if direction == DirectionEnum.RIGHT:
+		$AttackRangePointer.position = Vector2(attack_range, 0)
+	elif direction == DirectionEnum.LEFT:
+		$AttackRangePointer.position = Vector2(-attack_range, 0)
+	elif direction == DirectionEnum.DOWN:
+		$AttackRangePointer.position = Vector2(0, attack_range)
+	else:
+		$AttackRangePointer.position = Vector2(0, -attack_range)
+	

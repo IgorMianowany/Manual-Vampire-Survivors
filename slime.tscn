@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=48 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -42,6 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://cea5x0fpfwxla" path="res://assets/sprites/characters/tiles/slime/tile038.png" id="40_ld3u0"]
 [ext_resource type="Texture2D" uid="uid://bacgv7ah80gd8" path="res://assets/sprites/characters/tiles/slime/tile039.png" id="41_osjod"]
 [ext_resource type="Texture2D" uid="uid://11frskx0iaux" path="res://assets/sprites/characters/tiles/slime/tile040.png" id="42_12kr0"]
+[ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="43_upppt"]
+[ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="44_k2ewj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygys0"]
 animations = [{
@@ -216,6 +218,7 @@ size = Vector2(12, 7)
 size = Vector2(24, 22)
 
 [node name="Slime" type="CharacterBody2D"]
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
 knockback_power = 7.0
@@ -225,7 +228,8 @@ position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
 animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.0928677
+frame_progress = 0.795576
+speed_scale = 0.85
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -238,5 +242,21 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_b3gy1")
 debug_color = Color(0.989001, 0, 0.295553, 0.42)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 17.0
+offset_bottom = -13.0
+nine_patch_stretch = true
+texture_under = ExtResource("43_upppt")
+texture_progress = ExtResource("44_k2ewj")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
