@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var player : Player
-#@export var speed : float = 75
-@export var speed : float = 0
+@export var speed : float = 75
+#@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = 1
 @export var jump_variation : float = 0.75
@@ -92,3 +92,9 @@ func handle_animation() -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
+
+func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
+	health -= damage
+	velocity = knockback_direction * speed * knockback_power
+	if health <= 0:
+		queue_free()

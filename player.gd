@@ -5,11 +5,14 @@ extends CharacterBody2D
 @export var invincibility_time : float = 1
 @export var attack_time : float = .5
 @export var attack_range : float = 20
+@export var attack_damage : float = 3.5
+@export var knockback_power : float = 2
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
 var invincibility_animation_counter = 0
 var is_attacking : bool = false
+
 
 signal death
 
@@ -105,10 +108,16 @@ func attack() -> void:
 	if not is_attacking:
 		is_attacking = true
 		set_attack_direction()
-		$UtilTimer.start(attack_time)
-		$AttackShapeCast.target_position = $AttackRangePointer.position
-		print($AttackShapeCast.get_collision_count())
 		
+		$UtilTimer.start(.1)
+		await($UtilTimer.timeout)
+		$UtilTimer.start(attack_time)
+		
+
+		$AttackShapeCast.target_position = $AttackRangePointer.position
+		for index in $AttackShapeCast.get_collision_count():
+			var enemy = $AttackShapeCast.get_collider(index)
+			enemy.take_damage(attack_damage, position.direction_to(enemy.position), knockback_power)
 		
 		
 		
