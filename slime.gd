@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var jump_variation : float = 0.75
 @export var direction_variation : float = 15
 @export var damage : float = 10
-@export var knockback_power : float = 6
+@export var knockback_power : float = 1
 @export var max_health : float = 10 
 @onready var health : float = max_health
 @onready var healthbar : TextureProgressBar = $Control/TextureProgressBar 
@@ -18,6 +18,7 @@ var player_position : Vector2
 var is_jumping : bool = false
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var facing_direction : DirectionEnum
+var is_knocked_back : bool = false
 
 @onready var start_pos : Vector2 = position
 
@@ -45,7 +46,8 @@ func _physics_process(delta: float) -> void:
 func jump_toward_player() -> void:
 	if jump_timer < jump_cooldown + jump_duration:
 		is_jumping = true
-		velocity = position.direction_to(player_position) * speed
+		if not is_knocked_back:
+			velocity = position.direction_to(player_position) * speed
 	else:
 		is_jumping = false
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -95,6 +97,9 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= damage
-	velocity = knockback_direction * speed * knockback_power
+	velocity = knockback_direction * knockback * speed
+	is_knocked_back = true
+	await(get_tree().create_timer(1).timeout)
+	is_knocked_back = false
 	if health <= 0:
 		queue_free()

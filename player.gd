@@ -4,14 +4,17 @@ extends CharacterBody2D
 @export var speed : float = 125
 @export var invincibility_time : float = 1
 @export var attack_time : float = .5
-@export var attack_range : float = 20
+@export var attack_range : float = 25
 @export var attack_damage : float = 3.5
-@export var knockback_power : float = 2
+@export var knockback_power : float = 5
+@export var self_knockback_speed : float = 5
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
 var invincibility_animation_counter = 0
 var is_attacking : bool = false
+var is_knocked_back : bool = false
+var knockback_time : float = 0.4
 
 
 signal death
@@ -32,32 +35,12 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.visible = true
 		invincibility_timer = 0
 		
-	var direction_left := Input.get_axis("move_left", "move_right")
-	var direction_down := Input.get_axis("move_down", "move_up")
 	if Input.is_action_pressed("attack"):
 		attack()
 	
-	if direction_left:
-		velocity.x = direction_left * speed
-		if not is_attacking:
-			if direction_left == 1:
-				direction = DirectionEnum.RIGHT
-			else:
-				direction = DirectionEnum.LEFT
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		
-	if direction_down:
-		velocity.y = direction_down * speed
-		if not is_attacking:
-			if direction_down == 1:
-				direction = DirectionEnum.DOWN
-			else:
-				direction = DirectionEnum.UP
-	else:
-		velocity.y = move_toward(velocity.y, 0, speed)
 	
-	
+	if not is_knocked_back:
+		handle_movement()
 	handle_animation()
 	move_and_slide()
 	
@@ -96,11 +79,38 @@ func handle_animation() -> void:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = true
 			
+func handle_movement() -> void:
+	var direction_left := Input.get_axis("move_left", "move_right")
+	var direction_down := Input.get_axis("move_down", "move_up")
+	if direction_left:
+		velocity.x = direction_left * speed
+		if not is_attacking:
+			if direction_left == 1:
+				direction = DirectionEnum.RIGHT
+			else:
+				direction = DirectionEnum.LEFT
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		
+	if direction_down:
+		velocity.y = direction_down * speed
+		if not is_attacking:
+			if direction_down == 1:
+				direction = DirectionEnum.DOWN
+			else:
+				direction = DirectionEnum.UP
+	else:
+		velocity.y = move_toward(velocity.y, 0, speed)
+			
 func take_damage(damage : float, knockback_direction : Vector2, knockback_power : float) -> void:
 	if not is_invincible:
 		PlayerState.health -= damage
 		is_invincible = true
-		velocity = knockback_direction * speed * knockback_power
+		is_knocked_back = true
+		$UtilTimer.start(knockback_time)
+		velocity = knockback_direction * self_knockback_speed * knockback_power
+		await($UtilTimer.timeout)
+		is_knocked_back = false
 		if PlayerState.health <= 0:
 			death.emit()
 
@@ -109,7 +119,7 @@ func attack() -> void:
 		is_attacking = true
 		set_attack_direction()
 		
-		$UtilTimer.start(.1)
+		$UtilTimer.start(.05)
 		await($UtilTimer.timeout)
 		$UtilTimer.start(attack_time)
 		

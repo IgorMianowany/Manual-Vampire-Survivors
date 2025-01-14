@@ -218,10 +218,9 @@ size = Vector2(12, 7)
 size = Vector2(16, 14)
 
 [node name="Slime" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
-knockback_power = 7.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
