@@ -319,7 +319,7 @@ position = Vector2(0, -18)
 [node name="Hitbox" type="Area2D" parent="AttackRangePointer"]
 monitoring = false
 script = ExtResource("50_rxefe")
-damage = 50.0
+damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePointer/Hitbox"]
 position = Vector2(0, 5)

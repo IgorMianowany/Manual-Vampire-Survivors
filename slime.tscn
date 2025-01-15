@@ -210,6 +210,23 @@ animations = [{
 "loop": true,
 "name": &"move_up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_alomy")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_1ygeh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_1ygeh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_alomy")
+}],
+"loop": false,
+"name": &"take_damage",
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83fs2"]
@@ -223,6 +240,8 @@ radius = 11.0
 height = 24.0
 
 [node name="Slime" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
@@ -230,9 +249,10 @@ script = ExtResource("1_ahcej")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
-animation = &"idle_down"
+animation = &"take_damage"
 autoplay = "idle_down"
-frame_progress = 0.795576
+frame = 3
+frame_progress = 1.0
 speed_scale = 0.85
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var player : Player
-#@export var speed : float = 75
-@export var speed : float = 0
+@export var speed : float = 75
+#@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = 1
 @export var jump_variation : float = 0.75
@@ -58,7 +58,7 @@ func handle_animation() -> void:
 	direction = position.direction_to(player.position)
 	if health <= 0:
 		$AnimatedSprite2D.play("die")
-	elif velocity != Vector2.ZERO:
+	elif velocity != Vector2.ZERO and not is_knocked_back:
 		if direction.x > 0  and jump_timer < jump_cooldown + 0.1:
 			if direction.x > direction.y:
 				$AnimatedSprite2D.play("move_right")
@@ -77,7 +77,7 @@ func handle_animation() -> void:
 				$AnimatedSprite2D.play("move_up")
 				$AnimatedSprite2D.flip_h = false
 				facing_direction = DirectionEnum.UP
-	else:
+	elif not is_knocked_back:
 		if facing_direction == DirectionEnum.RIGHT:
 			$AnimatedSprite2D.play("idle_right")
 			$AnimatedSprite2D.flip_h = false
@@ -101,6 +101,7 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback : floa
 	health -= damage
 	velocity = knockback_direction * knockback * speed
 	is_knocked_back = true
+	$AnimatedSprite2D.play("take_damage")
 	await(get_tree().create_timer(1).timeout)
 	is_knocked_back = false
 	if health <= 0:
