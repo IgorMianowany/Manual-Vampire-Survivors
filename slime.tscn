@@ -257,7 +257,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -291,10 +290,11 @@ shape = SubResource("CircleShape2D_g7tg0")
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="KnockbackCollisionShape" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("CircleShape2D_xcpqa")
 debug_color = Color(0, 0.631203, 0.464635, 0.42)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_collision_area_area_entered"]
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

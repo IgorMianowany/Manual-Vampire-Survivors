@@ -49,7 +49,6 @@ func jump_toward_player(variation : float) -> void:
 		is_jumping = false
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
-		print(jump_timer)
 		jump_timer = 0
 
 func handle_animation(variation : float) -> void:
@@ -114,6 +113,7 @@ func flash_white() -> void:
 	await(get_tree().create_timer(.1).timeout)
 	$AnimatedSprite2D.modulate = Color(1,1,1)
 
-
-func _on_collision_area_area_entered(area: Area2D) -> void:
-	print(area.name)
+func _on_collision_area_body_entered(body: Node2D) -> void:
+	if is_knocked_back and body.name != "Player":
+		velocity = Vector2.ZERO
+		take_damage(1, global_position, 0)
