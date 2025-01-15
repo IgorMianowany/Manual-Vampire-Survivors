@@ -97,15 +97,21 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= damage
+	$HitParticles.set_direction(knockback_direction)
+	$HitParticles.emitting = true
 	velocity = knockback_direction * knockback * speed
 	var collision_object = move_and_collide(velocity, true)
 	is_knocked_back = true
 	$AnimatedSprite2D.play("take_damage")
 	flash_white()
-	jump_timer -= 0.5
+	if jump_timer > 0.5:
+		jump_timer -= 0.5
+	
 		
 	await(get_tree().create_timer(1).timeout)
 	is_knocked_back = false
+	$HitParticles.emitting = false
+	
 	if health <= 0:
 		queue_free()
 
@@ -117,4 +123,4 @@ func flash_white() -> void:
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if is_knocked_back and body.name != "Player":
 		velocity = Vector2.ZERO
-		take_damage(1, global_position, 0)
+		take_damage(1, body.global_position.direction_to(global_position), 0)

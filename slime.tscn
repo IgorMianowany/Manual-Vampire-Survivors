@@ -294,6 +294,21 @@ collision_layer = 4
 shape = SubResource("CircleShape2D_xcpqa")
 debug_color = Color(0, 0.631203, 0.464635, 0.42)
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+randomness = 0.55
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 475.44
+scale_amount_max = 3.0
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
