@@ -21,7 +21,8 @@ PlayerState="*res://scripts/player_state.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 

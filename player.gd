@@ -135,7 +135,7 @@ func attack() -> void:
 		is_attacking = false
 	
 func set_attack_direction() -> void:
-	var mouse_direction = position.direction_to(get_global_mouse_position())
+	var mouse_direction = global_position.direction_to(get_global_mouse_position())
 	if mouse_direction.x > .75:
 		direction = DirectionEnum.RIGHT
 	elif mouse_direction.x < -.75:
