@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=56 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -50,7 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://dobiwhwh111v" path="res://assets/sprites/characters/tiles/tile034.png" id="33_vqalr"]
 [ext_resource type="Texture2D" uid="uid://c7lkfsrbggmbr" path="res://assets/sprites/characters/tiles/tile035.png" id="34_a8cld"]
 [ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
-[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="51_1ifgn"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="50_rxefe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
 size = Vector2(14.2857, 7.85714)
@@ -274,12 +274,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6mrx5"]
 radius = 15.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ew5ft"]
+radius = 13.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_0qibv")
+attack_damage = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.42857, 5.35714)
@@ -312,7 +316,11 @@ collision_mask = 4
 [node name="AttackRangePointer" type="Node2D" parent="."]
 position = Vector2(0, -18)
 
-[node name="Mouse" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.0820313, 0.0898438)
-texture = ExtResource("51_1ifgn")
+[node name="Hitbox" type="Area2D" parent="AttackRangePointer"]
+monitoring = false
+script = ExtResource("50_rxefe")
+damage = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePointer/Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_ew5ft")

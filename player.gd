@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		attack()
 	
 	
+	
 	if not is_knocked_back:
 		handle_movement()
 	handle_animation()
@@ -116,11 +117,12 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback_power 
 
 func attack() -> void:
 	if not is_attacking:
-		is_attacking = true
 		set_attack_direction()
+		is_attacking = true
 		
-		$UtilTimer.start(.05)
+		$UtilTimer.start(.15)
 		await($UtilTimer.timeout)
+		$AttackRangePointer/Hitbox/CollisionShape2D.disabled = false
 		$UtilTimer.start(attack_time)
 		
 
@@ -133,6 +135,7 @@ func attack() -> void:
 		
 		await($UtilTimer.timeout)
 		is_attacking = false
+		$AttackRangePointer/Hitbox/CollisionShape2D.disabled = true
 	
 func set_attack_direction() -> void:
 	var mouse_direction = global_position.direction_to(get_global_mouse_position())
@@ -150,10 +153,14 @@ func set_attack_direction() -> void:
 func rotate_attack_range() -> void:
 	if direction == DirectionEnum.RIGHT:
 		$AttackRangePointer.position = Vector2(attack_range, 0)
+		$AttackRangePointer.rotation_degrees = 90
 	elif direction == DirectionEnum.LEFT:
 		$AttackRangePointer.position = Vector2(-attack_range, 0)
+		$AttackRangePointer.rotation_degrees = -90
 	elif direction == DirectionEnum.DOWN:
+		$AttackRangePointer.rotation_degrees = 180
 		$AttackRangePointer.position = Vector2(0, attack_range)
 	else:
 		$AttackRangePointer.position = Vector2(0, -attack_range)
+		$AttackRangePointer.rotation_degrees = 0
 	

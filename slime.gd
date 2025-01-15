@@ -94,7 +94,7 @@ func handle_animation() -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body is Player and is_jumping:
+	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
 func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
