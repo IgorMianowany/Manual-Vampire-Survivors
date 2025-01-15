@@ -949,22 +949,6 @@ position = Vector2(181, 284)
 [node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
 position = Vector2(290, 172)
 player = NodePath("../Player")
-speed = 75.0
-
-[node name="Slime2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(443, 179)
-player = NodePath("../Player")
-speed = 75.0
-
-[node name="Slime3" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(329, 71)
-player = NodePath("../Player")
-speed = 75.0
-
-[node name="Slime4" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(245, 247)
-player = NodePath("../Player")
-speed = 75.0
 
 [node name="Objects" type="TileMapLayer" parent="LayerHolder"]
 z_index = 1

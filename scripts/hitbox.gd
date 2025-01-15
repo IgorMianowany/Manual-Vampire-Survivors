@@ -2,7 +2,7 @@ class_name Hitbox
 extends Area2D
 
 @export var damage : float = 10
-var knockback_power : float = 2
+var knockback_power : float = 1
 
 
 func _init() -> void:

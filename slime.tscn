@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://b7fvxwbqwp17m" path="res://assets/sprites/characters/tiles/slime/tile024.png" id="27_30h0h"]
 [ext_resource type="Texture2D" uid="uid://ckewkqw0wyotf" path="res://assets/sprites/characters/tiles/slime/tile043.png" id="28_10lg1"]
 [ext_resource type="Texture2D" uid="uid://b1x2k87t5r8aw" path="res://assets/sprites/characters/tiles/slime/tile025.png" id="29_704ve"]
-[ext_resource type="Texture2D" uid="uid://fsgiw17c34ns" path="res://assets/sprites/characters/tiles/slime/tile026.png" id="30_8ju2r"]
 [ext_resource type="Texture2D" uid="uid://pqpg535r2i34" path="res://assets/sprites/characters/tiles/slime/tile028.png" id="31_fx3uc"]
 [ext_resource type="Texture2D" uid="uid://btwn8tkjv6np7" path="res://assets/sprites/characters/tiles/slime/tile029.png" id="32_u7owy"]
 [ext_resource type="Texture2D" uid="uid://5r008x3dv0t1" path="res://assets/sprites/characters/tiles/slime/tile030.png" id="33_pxm6g"]
@@ -82,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_nqvqc")
 }],
-"loop": true,
+"loop": false,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -158,13 +157,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("29_704ve")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_8ju2r")
 }],
-"loop": true,
+"loop": false,
 "name": &"move_down",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -180,14 +176,14 @@ animations = [{
 "texture": ExtResource("34_6nnn0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("35_r30mj")
+"texture": ExtResource("36_4uulg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("36_4uulg")
+"texture": ExtResource("35_r30mj")
 }],
-"loop": true,
+"loop": false,
 "name": &"move_right",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,9 +204,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("42_12kr0")
 }],
-"loop": true,
+"loop": false,
 "name": &"move_up",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 0.5,
@@ -240,18 +236,19 @@ height = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7tg0"]
 radius = 11.0454
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xcpqa"]
+radius = 12.0
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
-speed = 75.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
-animation = &"idle_down"
 autoplay = "idle_down"
 speed_scale = 0.85
 
@@ -260,6 +257,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -289,3 +287,14 @@ script = ExtResource("46_qr50n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_g7tg0")
+
+[node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("CircleShape2D_xcpqa")
+debug_color = Color(0, 0.631203, 0.464635, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="area_entered" from="CollisionArea" to="." method="_on_collision_area_area_entered"]

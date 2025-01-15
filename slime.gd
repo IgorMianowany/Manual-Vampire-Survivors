@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 @export var player : Player
-#@export var speed : float = 75
-@export var speed : float = 0
+@export var speed : float = 75
+#@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
-@export var jump_duration : float = 1
-@export var jump_variation : float = 0.75
+@export var jump_duration : float = .9
+@export var jump_variation : float = 0.5
 @export var direction_variation : float = 15
 @export var damage : float = 10
 @export var knockback_power : float = 1
@@ -22,9 +22,6 @@ var is_knocked_back : bool = false
 
 @onready var start_pos : Vector2 = position
 
-const JUMP_VELOCITY = -400.0
-
-
 func _physics_process(delta: float) -> void:
 	healthbar.max_value = max_health
 	healthbar.value = health
@@ -36,15 +33,15 @@ func _physics_process(delta: float) -> void:
 		
 	jump_timer += delta
 	
-	handle_animation()
-	
-	if jump_timer > jump_cooldown + randf_range(-jump_variation, jump_variation):
-		jump_toward_player()
+	var picked_variation = randf_range(0, jump_variation)
+	handle_animation(picked_variation)
+	if jump_timer > jump_cooldown + picked_variation:
+		jump_toward_player(picked_variation)
 	
 	move_and_slide()
 
-func jump_toward_player() -> void:
-	if jump_timer < jump_cooldown + jump_duration:
+func jump_toward_player(variation : float) -> void:
+	if jump_timer < jump_cooldown + jump_duration + variation:
 		is_jumping = true
 		if not is_knocked_back:
 			velocity = position.direction_to(player_position) * speed
@@ -52,14 +49,15 @@ func jump_toward_player() -> void:
 		is_jumping = false
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
+		print(jump_timer)
 		jump_timer = 0
 
-func handle_animation() -> void:
+func handle_animation(variation : float) -> void:
 	direction = position.direction_to(player.position)
 	if health <= 0:
 		$AnimatedSprite2D.play("die")
 	elif velocity != Vector2.ZERO and not is_knocked_back:
-		if direction.x > 0  and jump_timer < jump_cooldown + 0.1:
+		if direction.x > 0  and jump_timer < jump_cooldown + variation:
 			if direction.x > direction.y:
 				$AnimatedSprite2D.play("move_right")
 				$AnimatedSprite2D.flip_h = false
@@ -68,7 +66,7 @@ func handle_animation() -> void:
 				$AnimatedSprite2D.play("move_down")
 				$AnimatedSprite2D.flip_h = false
 				facing_direction = DirectionEnum.DOWN
-		elif jump_timer < jump_cooldown + 0.1:
+		elif jump_timer < jump_cooldown + variation:
 			if direction.x < direction.y:
 				$AnimatedSprite2D.play("move_right")
 				$AnimatedSprite2D.flip_h = true
@@ -100,9 +98,22 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= damage
 	velocity = knockback_direction * knockback * speed
+	var collision_object = move_and_collide(velocity, true)
 	is_knocked_back = true
 	$AnimatedSprite2D.play("take_damage")
+	flash_white()
+	jump_timer -= 0.5
+		
 	await(get_tree().create_timer(1).timeout)
 	is_knocked_back = false
 	if health <= 0:
 		queue_free()
+
+func flash_white() -> void:
+	$AnimatedSprite2D.modulate = Color(10,10,10)
+	await(get_tree().create_timer(.1).timeout)
+	$AnimatedSprite2D.modulate = Color(1,1,1)
+
+
+func _on_collision_area_area_entered(area: Area2D) -> void:
+	print(area.name)

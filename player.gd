@@ -22,6 +22,9 @@ signal death
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
+func _ready() -> void:
+	$AttackRangePointer/Hitbox.damage = attack_damage
+
 func _physics_process(delta: float) -> void:
 	if is_invincible:
 		invincibility_timer += delta
