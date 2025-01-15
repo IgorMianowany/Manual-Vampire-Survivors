@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=58 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://c7lkfsrbggmbr" path="res://assets/sprites/characters/tiles/tile035.png" id="34_a8cld"]
 [ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="50_rxefe"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="52_odxbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
 size = Vector2(14.2857, 7.85714)
@@ -275,7 +276,9 @@ animations = [{
 radius = 15.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ew5ft"]
-radius = 13.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krfh3"]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -319,8 +322,16 @@ position = Vector2(0, -18)
 [node name="Hitbox" type="Area2D" parent="AttackRangePointer"]
 monitoring = false
 script = ExtResource("50_rxefe")
-damage = 1.0
+damage = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePointer/Hitbox"]
-position = Vector2(0, 5)
+position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_ew5ft")
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("52_odxbq")
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_krfh3")
+debug_color = Color(0.993183, 0, 0.241368, 0.42)

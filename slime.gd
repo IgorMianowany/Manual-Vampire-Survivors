@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var player : Player
-@export var speed : float = 75
-#@export var speed : float = 0
+#@export var speed : float = 75
+@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = 1
 @export var jump_variation : float = 0.75
@@ -30,9 +30,9 @@ func _physics_process(delta: float) -> void:
 	healthbar.value = health
 	if not is_jumping:
 		player_position = player.position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
-		$Hitbox.monitoring = false
+		$Hitbox/CollisionShape2D.disabled = true
 	else:
-		$Hitbox.monitoring = true
+		$Hitbox/CollisionShape2D.disabled = false
 		
 	jump_timer += delta
 	
