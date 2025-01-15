@@ -56,7 +56,9 @@ func jump_toward_player() -> void:
 
 func handle_animation() -> void:
 	direction = position.direction_to(player.position)
-	if velocity != Vector2.ZERO:
+	if health <= 0:
+		$AnimatedSprite2D.play("die")
+	elif velocity != Vector2.ZERO:
 		if direction.x > 0  and jump_timer < jump_cooldown + 0.1:
 			if direction.x > direction.y:
 				$AnimatedSprite2D.play("move_right")

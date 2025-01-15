@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var speed : float = 125
 @export var invincibility_time : float = 1
 @export var attack_time : float = .5
-@export var attack_range : float = 25
+@export var attack_range : float = 15
 @export var attack_damage : float = 3.5
-@export var knockback_power : float = 5
+@export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
 var invincibility_timer : float = 0
 var is_invincible : bool = false
