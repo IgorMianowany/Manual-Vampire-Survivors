@@ -52,7 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
-size = Vector2(16, 16)
+size = Vector2(9.28572, 7.85714)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_abd2b"]
 animations = [{
@@ -282,7 +282,7 @@ collision_mask = 7
 script = ExtResource("1_0qibv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 5.5)
+position = Vector2(0.357144, 5.35714)
 shape = SubResource("RectangleShape2D_ysp0x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -302,6 +302,7 @@ offset_bottom = -8.0
 [node name="UtilTimer" type="Timer" parent="."]
 
 [node name="AttackShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_6mrx5")
 target_position = Vector2(0, 15)
 margin = 5.0

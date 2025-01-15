@@ -16,6 +16,7 @@ script = ExtResource("1_asaxx")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Healthbar" type="TextureProgressBar" parent="CanvasLayer"]
+visible = false
 offset_left = 17.0
 offset_top = 28.0
 offset_right = 238.0

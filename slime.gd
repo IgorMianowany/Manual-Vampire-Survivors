@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var player : Player
-@export var speed : float = 75
-#@export var speed : float = 0
+#@export var speed : float = 75
+@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = 1
 @export var jump_variation : float = 0.75
