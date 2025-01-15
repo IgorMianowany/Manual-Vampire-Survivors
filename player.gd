@@ -15,6 +15,7 @@ var invincibility_animation_counter = 0
 var is_attacking : bool = false
 var is_knocked_back : bool = false
 var knockback_time : float = 0.4
+var enemies_inside_hitbox : Array[Slime]
 
 
 signal death
@@ -166,4 +167,3 @@ func rotate_attack_range() -> void:
 	else:
 		$AttackRangePointer.position = Vector2(0, -attack_range)
 		$AttackRangePointer.rotation_degrees = 0
-	

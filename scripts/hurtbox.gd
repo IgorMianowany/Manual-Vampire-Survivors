@@ -13,8 +13,10 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 	if hitbox == null or hitbox.owner == owner:
 		return
 		
-	if not owner.name == "Player" and hitbox.owner.name != "Player":
+	if owner.name != "Player" and hitbox.owner.name != "Player":
 		return
 	
 	if owner.has_method("take_damage"):
 		owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
+		#if owner is Slime:
+			#hitbox.list_of_enemies.append(owner)

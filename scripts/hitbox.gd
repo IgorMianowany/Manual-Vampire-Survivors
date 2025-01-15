@@ -3,6 +3,7 @@ extends Area2D
 
 @export var damage : float = 10
 var knockback_power : float = 1
+#var list_of_enemies : Array[Slime]
 
 
 func _init() -> void:
@@ -13,3 +14,5 @@ func _init() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	#if not list_of_enemies.is_empty():
+		#print(str(list_of_enemies))
