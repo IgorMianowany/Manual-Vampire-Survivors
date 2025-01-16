@@ -6,9 +6,10 @@ extends CharacterBody2D
 @export var attack_time : float = .5
 @export var attack_range : float = 15
 @export var attack_damage : float = 3.5
+@export var attack_cooldown : float = 1
 @export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
-@export var player_class : int = 0
+@export var player_class : int = 1
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
@@ -47,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("attack"):
 		attack()
-		$Weapon.attack()
+		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 	
 	
 	
@@ -174,3 +175,7 @@ func rotate_attack_range() -> void:
 	else:
 		$AttackRangePointer.position = Vector2(0, -attack_range)
 		$AttackRangePointer.rotation_degrees = 0
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	print(body.name)

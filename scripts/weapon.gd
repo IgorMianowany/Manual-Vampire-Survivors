@@ -3,7 +3,7 @@ extends Node2D
 
 @export var weapon_type : WeaponType
 
-var is_attacking
+var is_attacking = false
 var damage : float = 4
 
 
@@ -12,6 +12,17 @@ var damage : float = 4
 func _ready() -> void:
 	pass # Replace with function body.
 
+	
 
-func attack() -> void:
-	weapon_type.attack(damage)
+func attack(position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
+	if not is_attacking:
+		weapon_type.attack(damage, position, direction)
+
+
+
+func _on_bow_attack_started() -> void:
+	is_attacking = true
+
+
+func _on_bow_attack_finished() -> void:
+	is_attacking = false

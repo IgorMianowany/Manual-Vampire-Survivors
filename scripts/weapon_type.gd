@@ -1,6 +1,8 @@
 class_name WeaponType
 extends Node2D
 
+signal attack_started
+signal attack_finished
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,5 +13,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func attack(damage : float) -> void:
+func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	print("default weapon type attack")

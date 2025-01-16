@@ -329,7 +329,7 @@ script = ExtResource("50_rxefe")
 damage = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePointer/Hitbox"]
-position = Vector2(0, 10)
+position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_ew5ft")
 disabled = true
 
@@ -348,3 +348,9 @@ script = ExtResource("54_31diy")
 
 [node name="WeaponType" type="Node2D" parent="Weapon"]
 script = ExtResource("55_2hpdj")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="attack_finished" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_finished"]
+[connection signal="attack_started" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_started"]
+[connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
+[connection signal="attack_started" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_started"]
