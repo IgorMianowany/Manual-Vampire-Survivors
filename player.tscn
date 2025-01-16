@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=61 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -52,6 +52,9 @@
 [ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="50_rxefe"]
 [ext_resource type="Script" path="res://scripts/hurtbox.gd" id="52_odxbq"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="53_b61je"]
+[ext_resource type="Script" path="res://scripts/bow.gd" id="54_31diy"]
+[ext_resource type="Script" path="res://scripts/weapon_type.gd" id="55_2hpdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
 size = Vector2(14.2857, 7.85714)
@@ -336,3 +339,12 @@ script = ExtResource("52_odxbq")
 [node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_krfh3")
 debug_color = Color(0.993183, 0, 0.241368, 0.42)
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("53_b61je")
+
+[node name="Bow" type="Node2D" parent="Weapon"]
+script = ExtResource("54_31diy")
+
+[node name="WeaponType" type="Node2D" parent="Weapon"]
+script = ExtResource("55_2hpdj")

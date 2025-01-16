@@ -1,5 +1,5 @@
-class_name Bow
-extends WeaponType
+class_name WeaponType
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 	pass
 
 func attack(damage : float) -> void:
-	print("Bow attack with damage: " + str(damage))
+	print("default weapon type attack")

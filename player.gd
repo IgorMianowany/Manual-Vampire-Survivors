@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var attack_damage : float = 3.5
 @export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
+@export var player_class : int = 0
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
@@ -25,6 +26,11 @@ var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
 	$AttackRangePointer/Hitbox.damage = attack_damage
+	match player_class:
+		0:
+			$Weapon.weapon_type = $Weapon/WeaponType
+		1:
+			$Weapon.weapon_type = $Weapon/Bow
 
 func _physics_process(delta: float) -> void:
 	if is_invincible:
@@ -41,6 +47,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("attack"):
 		attack()
+		$Weapon.attack()
 	
 	
 	
