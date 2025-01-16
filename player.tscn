@@ -324,6 +324,8 @@ collision_mask = 4
 position = Vector2(0, -25)
 
 [node name="PlayerHitbox" type="Area2D" parent="AttackRangePointer"]
+collision_layer = 16
+collision_mask = 0
 monitoring = false
 script = ExtResource("50_rxefe")
 damage = 3.5
@@ -334,6 +336,8 @@ shape = SubResource("CapsuleShape2D_ew5ft")
 disabled = true
 
 [node name="PlayerHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("52_odxbq")
 
 [node name="HurtboxCollision" type="CollisionShape2D" parent="PlayerHurtbox"]

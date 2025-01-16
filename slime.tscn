@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=52 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -229,15 +229,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83fs2"]
 size = Vector2(12, 7)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_graww"]
-radius = 11.0
-height = 24.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_03ef8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7tg0"]
-radius = 11.0454
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xcpqa"]
 radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j72rr"]
 
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
@@ -245,6 +244,7 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
+speed = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
@@ -255,6 +255,7 @@ speed_scale = 0.85
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
+disabled = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -274,15 +275,17 @@ texture_progress = ExtResource("44_k2ewj")
 
 [node name="SlimeHurtbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 32
+collision_mask = 16
 script = ExtResource("45_4o0r0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHurtbox"]
 position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_graww")
+shape = SubResource("CircleShape2D_03ef8")
 debug_color = Color(0.968809, 0, 0.465463, 0.42)
 
 [node name="SlimeHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("46_qr50n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitbox"]
@@ -290,11 +293,19 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_g7tg0")
 
 [node name="CollisionArea" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 0
 
 [node name="KnockbackCollisionShape" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("CircleShape2D_xcpqa")
 debug_color = Color(0, 0.631203, 0.464635, 0.42)
+
+[node name="ProjectileDestroyArea" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileDestroyArea"]
+shape = SubResource("CircleShape2D_j72rr")
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
 emitting = false

@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		invincibility_timer = 0
 		
 	if Input.is_action_pressed("attack"):
-		attack()
+		#attack()
 		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 	
 	

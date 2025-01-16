@@ -17,13 +17,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
-func _on_impact_detector_body_entered(body: Node2D) -> void:
-	queue_free()
-
-
 func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func _on_arrow_hitbox_area_entered(area: Area2D) -> void:
+
+func _on_arrow_impact_detector_area_entered(area: Area2D) -> void:
 	print(area.name)
+	await(get_tree().create_timer(.01).timeout)
+	queue_free()

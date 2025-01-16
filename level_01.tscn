@@ -947,7 +947,19 @@ tile_set = SubResource("TileSet_ggvl2")
 position = Vector2(181, 284)
 
 [node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(290, 172)
+position = Vector2(254, 162)
+player = NodePath("../Player")
+
+[node name="Slime2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(314, 133)
+player = NodePath("../Player")
+
+[node name="Slime3" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(326, 196)
+player = NodePath("../Player")
+
+[node name="Slime4" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(361, 162)
 player = NodePath("../Player")
 
 [node name="Objects" type="TileMapLayer" parent="LayerHolder"]
