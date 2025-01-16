@@ -2,9 +2,8 @@ class_name Weapon
 extends Node2D
 
 @export var weapon_type : WeaponType
-
+@export var damage : float
 var is_attacking = false
-var damage : float = 4
 
 
 

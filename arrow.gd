@@ -2,7 +2,8 @@ class_name Projectile
 extends Node2D
 
 @export var speed := 300
-@export var lifetime := 1.5
+@export var lifetime := 10
+@export var damage := 1
 var direction := Vector2.ZERO
 
 
@@ -10,6 +11,7 @@ var direction := Vector2.ZERO
 func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
+	$ArrowHitbox.damage = damage
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:

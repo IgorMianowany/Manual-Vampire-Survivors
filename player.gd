@@ -26,7 +26,7 @@ enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
-	$AttackRangePointer/Hitbox.damage = attack_damage
+	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	match player_class:
 		0:
 			$Weapon.weapon_type = $Weapon/WeaponType
@@ -134,7 +134,7 @@ func attack() -> void:
 		
 		$UtilTimer.start(.15)
 		await($UtilTimer.timeout)
-		$AttackRangePointer/Hitbox/CollisionShape2D.disabled = false
+		$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = false
 		$UtilTimer.start(attack_time)
 		
 
@@ -147,7 +147,7 @@ func attack() -> void:
 		
 		await($UtilTimer.timeout)
 		is_attacking = false
-		$AttackRangePointer/Hitbox/CollisionShape2D.disabled = true
+		$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true
 	
 func set_attack_direction() -> void:
 	var mouse_direction = global_position.direction_to(get_global_mouse_position())

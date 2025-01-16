@@ -342,7 +342,6 @@ debug_color = Color(0.993183, 0, 0.241368, 0.42)
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("53_b61je")
-damage = 1.0
 
 [node name="Bow" type="Node2D" parent="Weapon"]
 script = ExtResource("54_31diy")

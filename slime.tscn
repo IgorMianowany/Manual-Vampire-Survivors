@@ -272,20 +272,20 @@ nine_patch_stretch = true
 texture_under = ExtResource("43_upppt")
 texture_progress = ExtResource("44_k2ewj")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="SlimeHurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("45_4o0r0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHurtbox"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_graww")
 debug_color = Color(0.968809, 0, 0.465463, 0.42)
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="SlimeHitbox" type="Area2D" parent="."]
 script = ExtResource("46_qr50n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitbox"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_g7tg0")
 
@@ -310,6 +310,6 @@ initial_velocity_max = 475.44
 scale_amount_max = 3.0
 color = Color(0.392157, 0.701961, 0.729412, 1)
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="area_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

@@ -2,7 +2,6 @@ class_name Bow
 extends WeaponType
 
 @export var attack_speed := .75
-
 var arrow_scene := preload("res://arrow.tscn")
 
 
@@ -22,6 +21,7 @@ func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vecto
 	var projectile := arrow_scene.instantiate()
 	projectile.position = position + direction * 15
 	projectile.direction = direction
+	projectile.damage = damage
 	add_child(projectile)
 	await(get_tree().create_timer(attack_speed).timeout)
 	attack_finished.emit()

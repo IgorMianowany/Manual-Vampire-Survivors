@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 	healthbar.value = health
 	if not is_jumping:
 		player_position = player.position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
-		$Hitbox/CollisionShape2D.disabled = true
+		$SlimeHitbox/CollisionShape2D.disabled = true
 	else:
-		$Hitbox/CollisionShape2D.disabled = false
+		$SlimeHitbox/CollisionShape2D.disabled = false
 		
 	jump_timer += delta
 	
