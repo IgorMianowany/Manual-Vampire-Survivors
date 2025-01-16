@@ -29,7 +29,7 @@ func _ready() -> void:
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	match player_class:
 		0:
-			$Weapon.weapon_type = $Weapon/WeaponType
+			$Weapon.weapon_type = $Weapon/Sword
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
 
@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("attack"):
 		#attack()
+		set_attack_direction()
 		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 	
 	
@@ -58,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func handle_animation() -> void:
-	if is_attacking:
+	if $Weapon.is_attacking:
 		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("attack_up")
 		elif direction == DirectionEnum.DOWN:
@@ -97,7 +98,7 @@ func handle_movement() -> void:
 	var direction_down := Input.get_axis("move_down", "move_up")
 	if direction_left:
 		velocity.x = direction_left * speed
-		if not is_attacking:
+		if not $Weapon.is_attacking:
 			if direction_left == 1:
 				direction = DirectionEnum.RIGHT
 			else:
@@ -107,7 +108,7 @@ func handle_movement() -> void:
 		
 	if direction_down:
 		velocity.y = direction_down * speed
-		if not is_attacking:
+		if not $Weapon.is_attacking:
 			if direction_down == 1:
 				direction = DirectionEnum.DOWN
 			else:
@@ -127,8 +128,30 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback_power 
 		if PlayerState.health <= 0:
 			death.emit()
 
+#func attack() -> void:
+	#if not is_attacking:
+		#set_attack_direction()
+		#is_attacking = true
+		#
+		#$UtilTimer.start(.15)
+		#await($UtilTimer.timeout)
+		#$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = false
+		#$UtilTimer.start(attack_time)
+		#
+#
+		#$AttackShapeCast.target_position = $AttackRangePointer.position
+		#for index in $AttackShapeCast.get_collision_count():
+			#var enemy = $AttackShapeCast.get_collider(index)
+			#enemy.take_damage(attack_damage, position.direction_to(enemy.position), knockback_power)
+		#
+		#
+		#
+		#await($UtilTimer.timeout)
+		#is_attacking = false
+		#$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true
+	
 func attack() -> void:
-	if not is_attacking:
+	if not $Weapon.is_attacking:
 		set_attack_direction()
 		is_attacking = true
 		
@@ -147,8 +170,7 @@ func attack() -> void:
 		
 		await($UtilTimer.timeout)
 		is_attacking = false
-		$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true
-	
+		$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true	
 func set_attack_direction() -> void:
 	var mouse_direction = global_position.direction_to(get_global_mouse_position())
 	if mouse_direction.x > .75:
@@ -175,7 +197,3 @@ func rotate_attack_range() -> void:
 	else:
 		$AttackRangePointer.position = Vector2(0, -attack_range)
 		$AttackRangePointer.rotation_degrees = 0
-
-
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	print(body.name)

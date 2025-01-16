@@ -29,3 +29,11 @@ func _on_bow_attack_started() -> void:
 
 func _on_bow_attack_finished() -> void:
 	is_attacking = false
+
+
+func _on_sword_attack_finished() -> void:
+	is_attacking = false
+
+
+func _on_sword_attack_started() -> void:
+	is_attacking = true
