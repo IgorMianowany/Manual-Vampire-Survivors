@@ -328,7 +328,6 @@ collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("50_rxefe")
-damage = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangePointer/PlayerHitbox"]
 position = Vector2(0, 11)
@@ -347,6 +346,7 @@ debug_color = Color(0.993183, 0, 0.241368, 0.42)
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("53_b61je")
 damage = 5.0
+pierce = 3
 projectiles = 10
 
 [node name="Bow" type="Node2D" parent="Weapon"]

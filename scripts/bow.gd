@@ -22,7 +22,6 @@ func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vecto
 		projectile.position = position + direction * 15
 		projectile.direction = new_direction
 		projectile.damage = damage
-		print(pierce)
 		projectile.pierce = pierce
 		add_child(projectile)
 	await(get_tree().create_timer(attack_speed).timeout)
