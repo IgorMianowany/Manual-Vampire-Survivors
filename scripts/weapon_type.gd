@@ -1,6 +1,9 @@
 class_name WeaponType
 extends Node2D
 
+var pierce : int
+var projectiles : int
+
 signal attack_started
 signal attack_finished
 

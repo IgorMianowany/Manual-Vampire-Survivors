@@ -3,6 +3,8 @@ extends Area2D
 
 @export var damage : float = 10
 var knockback_power : float = 1
+var hits : int = 0
+var max_hits : int = 1
 #var list_of_enemies : Array[Slime]
 
 

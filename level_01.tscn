@@ -947,7 +947,7 @@ tile_set = SubResource("TileSet_ggvl2")
 position = Vector2(181, 284)
 
 [node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(254, 162)
+position = Vector2(305, 266)
 player = NodePath("../Player")
 
 [node name="Slime2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
@@ -955,11 +955,59 @@ position = Vector2(314, 133)
 player = NodePath("../Player")
 
 [node name="Slime3" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
-position = Vector2(326, 196)
+position = Vector2(317, 271)
 player = NodePath("../Player")
 
 [node name="Slime4" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
 position = Vector2(361, 162)
+player = NodePath("../Player")
+
+[node name="Slime5" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(815, 174)
+player = NodePath("../Player")
+
+[node name="Slime6" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(875, 145)
+player = NodePath("../Player")
+
+[node name="Slime7" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(887, 208)
+player = NodePath("../Player")
+
+[node name="Slime8" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(922, 174)
+player = NodePath("../Player")
+
+[node name="Slime9" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(760, 482)
+player = NodePath("../Player")
+
+[node name="Slime10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(820, 453)
+player = NodePath("../Player")
+
+[node name="Slime11" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(832, 516)
+player = NodePath("../Player")
+
+[node name="Slime12" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(867, 482)
+player = NodePath("../Player")
+
+[node name="Slime13" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(135, 567)
+player = NodePath("../Player")
+
+[node name="Slime14" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(195, 538)
+player = NodePath("../Player")
+
+[node name="Slime15" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(207, 601)
+player = NodePath("../Player")
+
+[node name="Slime16" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_kvd7j")]
+position = Vector2(242, 567)
 player = NodePath("../Player")
 
 [node name="Objects" type="TileMapLayer" parent="LayerHolder"]
