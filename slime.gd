@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var max_health : float = 10 
 @onready var health : float = max_health
 @onready var healthbar : TextureProgressBar = $Control/TextureProgressBar 
+var player_direction : Vector2
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
 var player_position : Vector2
@@ -42,15 +43,24 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func jump_toward_player(variation : float) -> void:
+	var new_direction := Vector2.ZERO
 	if jump_timer < jump_cooldown + jump_duration + variation:
 		is_jumping = true
 		if not is_knocked_back:
+			# this is a weird way to check if slime reached it's jump destination before finishing the jump
+			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
+			# this fixes that case
+			new_direction = position.direction_to(player_position)
+			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
+				return
 			velocity = position.direction_to(player_position) * speed
+			
 	else:
 		is_jumping = false
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
 		jump_timer = 0
+	player_direction = new_direction
 
 func handle_animation(variation : float) -> void:
 	direction = position.direction_to(player.position)
