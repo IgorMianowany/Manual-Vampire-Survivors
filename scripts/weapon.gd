@@ -3,7 +3,8 @@ extends Node2D
 
 @export var weapon_type : WeaponType
 @export var damage : float
-@export var pierce : float = 0
+@export var pierce : int = 1
+@export var projectiles : int = 1
 var is_attacking = false
 
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 func attack(position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	if not is_attacking:
 		weapon_type.pierce = pierce
+		weapon_type.projectiles = projectiles
 		weapon_type.attack(damage, position, direction)
 
 

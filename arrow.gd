@@ -2,7 +2,7 @@ class_name Projectile
 extends Node2D
 
 @export var speed := 300
-@export var lifetime := 10
+@export var lifetime := 3
 @export var damage := 1
 @export var pierce : int = 0
 var direction := Vector2.ZERO
