@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var damage : float = 10
 @export var knockback_power : float = 1
 @export var max_health : float = 10 
+@export var exp : int = 1
 @onready var health : float = max_health
 @onready var healthbar : TextureProgressBar = $Control/TextureProgressBar 
 var player_direction : Vector2
@@ -123,6 +124,7 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback : floa
 	$HitParticles.emitting = false
 	
 	if health <= 0:
+		PlayerState.add_exp(exp)
 		queue_free()
 
 func flash_white() -> void:

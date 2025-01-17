@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdslidoesuukt"]
+[gd_scene load_steps=5 format=3 uid="uid://bdslidoesuukt"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_asaxx"]
 [ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="1_remj8"]
 [ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="2_hthmp"]
+[ext_resource type="Texture2D" uid="uid://de53741k1piw3" path="res://assets/sprites/UI/experiencebarProgress.png" id="4_pd1fm"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -16,7 +17,6 @@ script = ExtResource("1_asaxx")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Healthbar" type="TextureProgressBar" parent="CanvasLayer"]
-visible = false
 offset_left = 17.0
 offset_top = 28.0
 offset_right = 238.0
@@ -25,8 +25,24 @@ nine_patch_stretch = true
 texture_under = ExtResource("1_remj8")
 texture_progress = ExtResource("2_hthmp")
 
+[node name="ExperienceBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 17.0
+offset_top = 76.0
+offset_right = 238.0
+offset_bottom = 119.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_remj8")
+texture_progress = ExtResource("4_pd1fm")
+
 [node name="HealthForDebug" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 35.0
 offset_top = 84.0
 offset_right = 75.0
 offset_bottom = 107.0
+
+[node name="Level" type="Label" parent="CanvasLayer"]
+offset_left = 254.0
+offset_top = 87.0
+offset_right = 294.0
+offset_bottom = 110.0

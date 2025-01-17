@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func handle_animation() -> void:
-	if $Weapon.is_attacking:
+	if $Weapon.is_attacking and false:
 		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("attack_up")
 		elif direction == DirectionEnum.DOWN:

@@ -18,11 +18,10 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 	
 	if owner.has_method("take_damage"):
 		if hitbox.owner.name == "Player":
-			if (hitbox.owner as Player).player_class == 0:
-				owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
-		
-			elif hitbox.hits < hitbox.max_hits:
-				hitbox.hits += 1
-				owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
+			owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
+		elif hitbox.owner.name == "Arrow":
+			if hitbox.hits < hitbox.max_hits:
+					hitbox.hits += 1
+					owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
 		#if owner is Slime:
 			#hitbox.list_of_enemies.append(owner)
