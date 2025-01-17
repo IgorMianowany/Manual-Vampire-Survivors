@@ -20,8 +20,6 @@ func attack(position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZER
 		weapon_type.pierce = pierce
 		weapon_type.projectiles = projectiles + PlayerState.level
 		weapon_type.attack(damage, position, direction)
-		projectiles += 1
-
 
 
 func _on_bow_attack_started() -> void:

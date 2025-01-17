@@ -6,6 +6,8 @@ var experience_threshold : int = 10
 var level : int = 0
 @onready var health : float = max_health
 
+var debug_value : int = 0
+
 signal death
 signal level_up
 
