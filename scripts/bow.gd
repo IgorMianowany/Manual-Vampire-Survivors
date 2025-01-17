@@ -12,10 +12,8 @@ func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vecto
 	attack_started.emit()
 	var projectilesArray : Array[PackedScene]
 	for index in projectiles:
-		var existing_direction = direction # Example: 1 unit along the X axis
-		# 15 degrees in radians
-		var angle_in_radians = deg_to_rad((45/projectiles * index))
-		# Rotate the existing direction by 15 degrees
+		var existing_direction = direction
+		var angle_in_radians = deg_to_rad(((index - projectiles/2)*45/projectiles))
 		var new_direction = existing_direction.rotated(angle_in_radians)
 
 		var projectile := arrow_scene.instantiate()
