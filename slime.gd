@@ -1,7 +1,7 @@
 class_name Slime
 extends CharacterBody2D
 
-var player : Player
+@export var player : Player
 @export var speed : float = 75
 #@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
@@ -55,7 +55,6 @@ func jump_toward_player(variation : float) -> void:
 			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
 			# this fixes that case
 			new_direction = position.direction_to(player_position)
-			print(position)
 			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
 				return
 			velocity = position.direction_to(player_position) * speed
