@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var max_health : float = 10 
 @export var exp : int = 1
 @onready var health : float = max_health
-@onready var healthbar : TextureProgressBar = $Control/TextureProgressBar 
+@export var healthbar : TextureProgressBar 
 var player_direction : Vector2
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
@@ -26,8 +26,8 @@ var is_knocked_back : bool = false
 @onready var start_pos : Vector2 = position
 
 func _physics_process(delta: float) -> void:
-	healthbar.max_value = max_health
-	healthbar.value = health
+	$Control/TextureProgressBar.max_value = max_health
+	$Control/TextureProgressBar.value = health
 	if not is_jumping:
 		player_position = player.position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 		$SlimeHitbox/CollisionShape2D.disabled = true
