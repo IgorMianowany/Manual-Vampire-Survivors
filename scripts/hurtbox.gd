@@ -1,6 +1,8 @@
 class_name Hurtbox
 extends Area2D
 
+signal take_damage
+
 func _init() -> void:
 	collision_layer = 0
 	collision_mask = 16

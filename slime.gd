@@ -12,8 +12,9 @@ extends CharacterBody2D
 @export var knockback_power : float = 1
 @export var max_health : float = 10 
 @export var exp : int = 1
-@onready var health : float = max_health
 @export var healthbar : TextureProgressBar 
+@onready var health : float = max_health
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 var player_direction : Vector2
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
@@ -29,6 +30,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	max_health += player.get_elapsed_time()
 	health = max_health
+	
 
 func _physics_process(delta: float) -> void:
 	$Control/TextureProgressBar.max_value = max_health
@@ -113,6 +115,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= damage
+	DamageNumbers.display_number(int(damage), damage_numbers_origin.global_position)
+	
 	$HitParticles.set_direction(knockback_direction)
 	$HitParticles.emitting = true
 	velocity = knockback_direction * knockback * speed

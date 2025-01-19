@@ -321,6 +321,8 @@ initial_velocity_max = 475.44
 scale_amount_max = 3.0
 color = Color(0.392157, 0.701961, 0.729412, 1)
 
-[connection signal="area_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_area_entered"]
+[node name="DamageNumbersOrigin" type="Node2D" parent="."]
+position = Vector2(0, -11)
+
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
