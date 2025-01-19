@@ -27,6 +27,8 @@ var is_knocked_back : bool = false
 
 func _ready() -> void:
 	set_as_top_level(true)
+	max_health += player.get_elapsed_time()
+	health = max_health
 
 func _physics_process(delta: float) -> void:
 	$Control/TextureProgressBar.max_value = max_health

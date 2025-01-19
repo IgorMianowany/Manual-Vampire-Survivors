@@ -953,15 +953,51 @@ tile_map_data = PackedByteArray("AAAAAAEACwAAAAEAAAAAAAIACwAAAAEAAAAAAAMACwAAAAE
 tile_set = SubResource("TileSet_x7ptb")
 
 [node name="EnemySpawn" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(218, 253)
+position = Vector2(308, 81)
 player = NodePath("../Player")
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(332, 347)
+position = Vector2(554, 301)
 player = NodePath("../Player")
 
 [node name="EnemySpawn3" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(374, 234)
+position = Vector2(991, 442)
+player = NodePath("../Player")
+
+[node name="EnemySpawn9" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(1011, 244)
+player = NodePath("../Player")
+
+[node name="EnemySpawn10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(937, 147)
+player = NodePath("../Player")
+
+[node name="EnemySpawn11" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(716, 70)
+player = NodePath("../Player")
+
+[node name="EnemySpawn12" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(444, 46)
+player = NodePath("../Player")
+
+[node name="EnemySpawn4" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(815, 573)
+player = NodePath("../Player")
+
+[node name="EnemySpawn5" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(543, 575)
+player = NodePath("../Player")
+
+[node name="EnemySpawn6" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(372, 567)
+player = NodePath("../Player")
+
+[node name="EnemySpawn7" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(217, 576)
+player = NodePath("../Player")
+
+[node name="EnemySpawn8" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
+position = Vector2(113, 488)
 player = NodePath("../Player")
 
 [node name="UpgradeSelection" parent="LayerHolder" instance=ExtResource("28_6dm4t")]

@@ -29,7 +29,7 @@ func add_exp(exp : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 5
+		experience_threshold += 15
 		level_up.emit()
 		
 func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
