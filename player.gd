@@ -10,7 +10,6 @@ extends CharacterBody2D
 @export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
 @export var player_class : int = 1
-@export var game_timer : Timer
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
@@ -28,6 +27,7 @@ enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
+	PlayerState.level_up.connect(_on_level_up)
 	$GameTimer.wait_time = max_time
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	match player_class:
@@ -56,7 +56,8 @@ func _physics_process(delta: float) -> void:
 		set_attack_direction()
 		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 	
-	
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = not get_tree().paused
 	
 	if not is_knocked_back:
 		handle_movement()
@@ -206,6 +207,8 @@ func rotate_attack_range() -> void:
 func get_elapsed_time() -> int:
 	return int(max_time - $GameTimer.time_left)
 	
-	
-	
+func _on_level_up() -> void:
+	#get_tree().paused = true
+	await(get_tree().create_timer(5).timeout)
+	get_tree().paused = false
 	

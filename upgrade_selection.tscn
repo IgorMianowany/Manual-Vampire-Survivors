@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdpm5njmkbydl"]
+
+[ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="2_54842"]
+[ext_resource type="Script" path="res://upgrade_card.gd" id="3_1bter"]
+[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="4_bi4jo"]
+
+[node name="UpgradeSelection" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhedg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.356863, 0.356863, 0.356863, 0.0980392)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="UpgradeCard" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
+layout_mode = 2
+script = ExtResource("3_1bter")
+icon = ExtResource("4_bi4jo")
+description = "+1 projectile"
+upgrade = 2
+
+[node name="UpgradeCard2" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
+layout_mode = 2
+script = ExtResource("3_1bter")
+icon = ExtResource("4_bi4jo")
+description = "+10% attack speed"
+upgrade = 2
+
+[node name="UpgradeCard3" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
+layout_mode = 2
+script = ExtResource("3_1bter")
+icon = ExtResource("4_bi4jo")
+description = "+10% attack damage"
+upgrade = 2

@@ -18,7 +18,7 @@ func _ready() -> void:
 func attack(position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	if not is_attacking:
 		weapon_type.pierce = pierce
-		weapon_type.projectiles = projectiles + PlayerState.level
+		weapon_type.projectiles = projectiles + PlayerState.level + PlayerState.projectiles
 		weapon_type.attack(damage, position, direction)
 
 
