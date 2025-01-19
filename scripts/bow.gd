@@ -12,8 +12,6 @@ func _process(delta: float) -> void:
 
 func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	attack_started.emit()
-	var projectilesArray : Array[PackedScene]
-	var original_projectiles = projectiles
 	for index in projectiles:
 		var existing_direction = direction
 		# this is done so the arrows are moved based on the center, instead of just 45 degrees down or up

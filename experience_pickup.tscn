@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d10warmae3h16"]
+
+[ext_resource type="Script" path="res://experience_pickup.gd" id="1_hyct5"]
+[ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="1_qjkqi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7l72"]
+radius = 535.023
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2hyb0"]
+radius = 50.0
+
+[node name="ExperiencePickup" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_hyct5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qjkqi")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_c7l72")
+
+[node name="CollisionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionRangeShape" type="CollisionShape2D" parent="CollisionRange"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_2hyb0")
+debug_color = Color(0.824579, 0.00162894, 0.956864, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CollisionRange" to="." method="_on_collision_range_body_entered"]

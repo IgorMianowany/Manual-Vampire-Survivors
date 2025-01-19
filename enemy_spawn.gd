@@ -2,7 +2,7 @@ extends Node2D
 @export var cooldown : float = 5
 @export var min_cooldown : float = 1
 @export var player : Player 
-@export var limit : int = 9999
+@export var limit : int = 12
 
 var slime := preload("res://slime.tscn") 
 var count : int = 0
