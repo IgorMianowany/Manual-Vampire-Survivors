@@ -1,7 +1,7 @@
 class_name Bow
 extends WeaponType
 
-@export var attack_speed := .75
+@export var attack_speed := 2
 @export var spread := 30 # make spread based on projectile number, maybe something like 30 degrees + int division of projectiles * 10, so 10 degrees for every 5 projectiles for example
 var arrow_scene := preload("res://arrow.tscn")
 var rotation_change := 0
@@ -25,9 +25,9 @@ func attack(damage : float, position : Vector2 = Vector2.ZERO, direction : Vecto
 		var projectile := arrow_scene.instantiate()
 		projectile.position = position + direction * 15
 		projectile.direction = new_direction
-		projectile.damage = damage
+		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce
 		add_child(projectile)
-	await(get_tree().create_timer(attack_speed).timeout)
+	await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 	attack_finished.emit()
 	

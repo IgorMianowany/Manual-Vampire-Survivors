@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=4 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="2_54842"]
-[ext_resource type="Script" path="res://upgrade_card.gd" id="3_1bter"]
 [ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="4_bi4jo"]
 
 [node name="UpgradeSelection" type="Control"]
@@ -41,21 +40,17 @@ theme_override_constants/separation = 50
 
 [node name="UpgradeCard" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
 layout_mode = 2
-script = ExtResource("3_1bter")
 icon = ExtResource("4_bi4jo")
 description = "+1 projectile"
 upgrade = 2
 
 [node name="UpgradeCard2" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
 layout_mode = 2
-script = ExtResource("3_1bter")
 icon = ExtResource("4_bi4jo")
-description = "+10% attack speed"
-upgrade = 2
+description = "+100% attack speed"
 
 [node name="UpgradeCard3" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
 layout_mode = 2
-script = ExtResource("3_1bter")
 icon = ExtResource("4_bi4jo")
-description = "+10% attack damage"
-upgrade = 2
+description = "+100% attack damage"
+upgrade = 1

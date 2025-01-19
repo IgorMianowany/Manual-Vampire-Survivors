@@ -8,11 +8,11 @@ func _ready() -> void:
 		node.upgrade_selected.connect(_quit)
 		
 func _input(event):
-	var mouse_position = get_local_mouse_position()
+	# this function is not really working right now because of mouse position shenenigans i'm not
+	# yet equiped to deal with at this time, upgrades selected with button
+	var mouse_position = get_global_mouse_position()
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
 		for node in upgrade_container.get_children():
-			print(node.get_global_rect())
-			print(mouse_position)
 			if node.get_global_rect().has_point(mouse_position):
 				node.apply_upgrade()
 

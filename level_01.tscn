@@ -964,4 +964,4 @@ player = NodePath("../Player")
 position = Vector2(374, 234)
 player = NodePath("../Player")
 
-[node name="UpgradeSelection" parent="." instance=ExtResource("28_6dm4t")]
+[node name="UpgradeSelection" parent="LayerHolder" instance=ExtResource("28_6dm4t")]

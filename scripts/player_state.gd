@@ -5,6 +5,8 @@ var experience : int = 0
 var experience_threshold : int = 10
 var level : int = 0
 var projectiles : int = 0
+var attack_speed : float = 2
+var attack_damage : float = 5
 @onready var health : float = max_health
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES}
@@ -31,6 +33,10 @@ func add_exp(exp : int) -> void:
 		level_up.emit()
 		
 func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
-	if upgrade == UPGRADES.PROJECTILES:
+	if upgrade == UPGRADES.ATTACK_SPEED:
+		attack_speed -= 1
+	elif upgrade == UPGRADES.ATTACK_DAMAGE:
+		attack_damage += 5
+	elif upgrade == UPGRADES.PROJECTILES:
 		projectiles += 1
 		
