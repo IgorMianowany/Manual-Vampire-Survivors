@@ -1,5 +1,6 @@
 extends Control
 var timer : float
+var upgrade_selection := preload("res://upgrade_selection.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,4 +20,5 @@ func _on_level_up() -> void:
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
 	$CanvasLayer/ExperienceBar.max_value = PlayerState.experience_threshold
 	$CanvasLayer/Level.text = str(PlayerState.level)
+	add_child(upgrade_selection.instantiate())
 	

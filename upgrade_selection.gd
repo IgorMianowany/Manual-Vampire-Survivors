@@ -3,6 +3,7 @@ extends Control
 @onready var upgrade_container = $CanvasLayer/HBoxContainer
 
 func _ready() -> void:
+	PlayerState.level_up.connect(_upgrade_selection_visible)
 	get_tree().paused = true
 	for node in upgrade_container.get_children():
 		node.upgrade_selected.connect(_quit)
@@ -19,3 +20,6 @@ func _input(event):
 func _quit():
 	get_tree().paused = false
 	queue_free()
+
+func _upgrade_selection_visible():
+	add_child($CanvasLayer)
