@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
 @export var player_class : int = 1
+@export var game_timer : Timer
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
@@ -18,6 +19,7 @@ var is_attacking : bool = false
 var is_knocked_back : bool = false
 var knockback_time : float = 0.4
 var enemies_inside_hitbox : Array[Slime]
+var max_time = 9999999
 
 
 signal death
@@ -26,6 +28,7 @@ enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
+	$GameTimer.wait_time = max_time
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	match player_class:
 		0:
@@ -34,6 +37,8 @@ func _ready() -> void:
 			$Weapon.weapon_type = $Weapon/Bow
 
 func _physics_process(delta: float) -> void:
+	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
+	get_elapsed_time()
 	if is_invincible:
 		invincibility_timer += delta
 		invincibility_animation_counter += 1
@@ -197,3 +202,10 @@ func rotate_attack_range() -> void:
 	else:
 		$AttackRangePointer.position = Vector2(0, -attack_range)
 		$AttackRangePointer.rotation_degrees = 0
+
+func get_elapsed_time() -> int:
+	return int(max_time - $GameTimer.time_left)
+	
+	
+	
+	

@@ -361,6 +361,11 @@ attack_shape_cast = NodePath("../../AttackShapeCast")
 hitbox = NodePath("../../AttackRangePointer/PlayerHitbox")
 hitboxShape = NodePath("../../AttackRangePointer/PlayerHitbox/CollisionShape2D")
 
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 1e+07
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
 [connection signal="attack_started" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_started"]

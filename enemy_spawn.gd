@@ -1,10 +1,10 @@
 extends Node2D
 @export var cooldown : float = 5
 @export var player : Player 
+@export var limit : int = 9999
 
 var slime := preload("res://slime.tscn") 
 var count : int = 0
-@export var limit : int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$Timer.wait_time = $Timer.wait_time + randf_range(0, 1)
 
 func _on_timer_timeout() -> void:
 	if count < limit:
