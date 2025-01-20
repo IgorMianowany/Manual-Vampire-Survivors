@@ -959,21 +959,21 @@ tile_set = SubResource("TileSet_x7ptb")
 [node name="EnemySpawn" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(248, 280)
-cooldown = 5.0
+cooldown = 0.0
 player = NodePath("../Player")
-limit = 10
+limit = 0
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(554, 301)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 10
+limit = 0
 
 [node name="EnemySpawn3" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(1035, 756)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 10
+limit = 0
 
 [node name="EnemySpawn9" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(1011, 244)
@@ -1035,3 +1035,79 @@ position = Vector2(604, 321)
 [node name="ExperiencePickup" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
 z_index = 6
 position = Vector2(-261, -233)
+
+[node name="ExperiencePickup2" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-234, -180)
+
+[node name="ExperiencePickup3" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-194, -157)
+
+[node name="ExperiencePickup4" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-235, -203)
+
+[node name="ExperiencePickup5" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-251, -197)
+
+[node name="ExperiencePickup6" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-244, -222)
+rotation = 2.46355
+
+[node name="ExperiencePickup7" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-273, -206)
+rotation = 2.46355
+
+[node name="ExperiencePickup8" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-252, -176)
+rotation = 3.35139
+
+[node name="ExperiencePickup9" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-231, -160)
+rotation = 3.35139
+
+[node name="ExperiencePickup10" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-199, -179)
+rotation = 3.35139
+
+[node name="ExperiencePickup11" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-184, -201)
+rotation = 0.951588
+
+[node name="ExperiencePickup12" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-194, -150)
+rotation = 0.951588
+
+[node name="ExperiencePickup13" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-261, -185)
+rotation = 0.951588
+
+[node name="ExperiencePickup14" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-232, -140)
+rotation = 0.951588
+
+[node name="ExperiencePickup15" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-298, -208)
+rotation = 0.951588
+
+[node name="ExperiencePickup16" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-253, -165)
+rotation = 0.951588
+
+[node name="ExperiencePickup17" parent="LayerHolder/PickupsHolder" instance=ExtResource("28_fxiwr")]
+z_index = 6
+position = Vector2(-211, -206)
+rotation = 1.3067
