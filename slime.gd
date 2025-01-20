@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var healthbar : TextureProgressBar 
 @onready var health : float = max_health
 @onready var damage_numbers_origin = $DamageNumbersOrigin
-var experience_pickup := preload("res://experience_pickup.tscn")
+@onready var experience_pickup := preload("res://experience_pickup.tscn").instantiate()
 var player_direction : Vector2
 var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
@@ -134,12 +134,9 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback : floa
 	$HitParticles.emitting = false
 	
 	if health <= 0:
-		#PlayerState.add_exp(exp)
-		var experience_pickup_instance := experience_pickup.instantiate()
-		experience_pickup_instance.reparent(owner)
-		experience_pickup_instance.global_position = global_position
-		print(position)
-		add_child(experience_pickup_instance)
+		get_parent().add_child(experience_pickup)
+		experience_pickup.global_position = global_position
+		
 		queue_free()
 
 func flash_white() -> void:
