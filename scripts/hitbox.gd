@@ -11,10 +11,3 @@ var max_hits : int = 1
 func _init() -> void:
 	collision_layer = 16
 	collision_mask = 0
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	#if not list_of_enemies.is_empty():
-		#print(str(list_of_enemies))

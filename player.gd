@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed : float = 125
+@export var base_speed : float = 125
 @export var invincibility_time : float = 1
 @export var attack_time : float = .5
 @export var attack_range : float = 15
@@ -27,7 +27,6 @@ enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
-	PlayerState.level_up.connect(_on_level_up)
 	$GameTimer.wait_time = max_time
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	match player_class:
@@ -102,59 +101,38 @@ func handle_animation() -> void:
 func handle_movement() -> void:
 	var direction_left := Input.get_axis("move_left", "move_right")
 	var direction_down := Input.get_axis("move_down", "move_up")
+	var final_speed = base_speed + PlayerState.movespeed_bonus
 	if direction_left:
-		velocity.x = direction_left * (speed + PlayerState.movespeed_bonus)
+		velocity.x = direction_left * final_speed
 		if not $Weapon.is_attacking:
 			if direction_left == 1:
 				direction = DirectionEnum.RIGHT
 			else:
 				direction = DirectionEnum.LEFT
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, base_speed)
 		
 	if direction_down:
-		velocity.y = direction_down * speed
+		velocity.y = direction_down * final_speed
 		if not $Weapon.is_attacking:
 			if direction_down == 1:
 				direction = DirectionEnum.DOWN
 			else:
 				direction = DirectionEnum.UP
 	else:
-		velocity.y = move_toward(velocity.y, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, base_speed)
 			
-func take_damage(damage : float, knockback_direction : Vector2, knockback_power : float) -> void:
+func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float) -> void:
 	if not is_invincible:
 		PlayerState.health -= damage
 		is_invincible = true
 		is_knocked_back = true
 		$UtilTimer.start(knockback_time)
-		velocity = knockback_direction * self_knockback_speed * knockback_power
+		velocity = knockback_direction * self_knockback_speed * incoming_knockback_power
 		await($UtilTimer.timeout)
 		is_knocked_back = false
 		if PlayerState.health <= 0:
 			death.emit()
-
-#func attack() -> void:
-	#if not is_attacking:
-		#set_attack_direction()
-		#is_attacking = true
-		#
-		#$UtilTimer.start(.15)
-		#await($UtilTimer.timeout)
-		#$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = false
-		#$UtilTimer.start(attack_time)
-		#
-#
-		#$AttackShapeCast.target_position = $AttackRangePointer.position
-		#for index in $AttackShapeCast.get_collision_count():
-			#var enemy = $AttackShapeCast.get_collider(index)
-			#enemy.take_damage(attack_damage, position.direction_to(enemy.position), knockback_power)
-		#
-		#
-		#
-		#await($UtilTimer.timeout)
-		#is_attacking = false
-		#$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true
 	
 func attack() -> void:
 	if not $Weapon.is_attacking:
@@ -206,9 +184,3 @@ func rotate_attack_range() -> void:
 
 func get_elapsed_time() -> int:
 	return int(max_time - $GameTimer.time_left)
-	
-func _on_level_up() -> void:
-	#get_tree().paused = true
-	await(get_tree().create_timer(5).timeout)
-	get_tree().paused = false
-	

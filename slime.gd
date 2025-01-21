@@ -29,6 +29,7 @@ var is_knocked_back : bool = false
 
 func _ready() -> void:
 	set_as_top_level(true)
+	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health
 	
@@ -114,14 +115,13 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
-func take_damage(damage : float, knockback_direction : Vector2, knockback : float) -> void:
-	health -= damage
-	DamageNumbers.display_number(int(damage), damage_numbers_origin.global_position)
+func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float) -> void:
+	health -= incoming_damage
+	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
 	
 	$HitParticles.set_direction(knockback_direction)
 	$HitParticles.emitting = true
 	velocity = knockback_direction * knockback * speed
-	var collision_object = move_and_collide(velocity, true)
 	is_knocked_back = true
 	$AnimatedSprite2D.play("take_damage")
 	flash_white()

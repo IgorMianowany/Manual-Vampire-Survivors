@@ -13,10 +13,6 @@ func _ready() -> void:
 	$Timer.wait_time = cooldown
 	$Timer.start()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func _on_timer_timeout() -> void:
 	if count < limit:

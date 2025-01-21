@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 10
+var experience_threshold : int = 1
 var level : int = 0
 var projectiles : int = 0
 var attack_speed : float = .5
@@ -15,6 +15,7 @@ enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED}
 var debug_value : int = 0
 
 signal level_up
+signal after_level_up
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
@@ -24,10 +25,10 @@ func add_exp(exp_amount : int) -> void:
 		experience_threshold += 15
 		level_up.emit()
 		
+@warning_ignore("unused_parameter")
 func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	if upgrade == UPGRADES.ATTACK_SPEED:
 		attack_speed -= 0.1 * attack_speed
-		print(attack_speed)
 	elif upgrade == UPGRADES.ATTACK_DAMAGE:
 		attack_damage += 5
 	elif upgrade == UPGRADES.PROJECTILES:
@@ -36,4 +37,7 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		max_health += 100
 	elif upgrade == UPGRADES.MOVESPEED:
 		movespeed_bonus += 1000
+	health = max_health
+	
+	after_level_up.emit()
 		

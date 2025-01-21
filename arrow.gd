@@ -23,6 +23,7 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
+@warning_ignore("unused_parameter")
 func _on_arrow_impact_detector_area_entered(area: Area2D) -> void:
 	if $ArrowHitbox.hits >= $ArrowHitbox.max_hits - 1:
 		queue_free()
