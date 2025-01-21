@@ -117,30 +117,29 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= incoming_damage
-	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
-	
-	$HitParticles.set_direction(knockback_direction)
-	$HitParticles.emitting = true
-	velocity = knockback_direction * knockback * speed
-	is_knocked_back = true
-	$AnimatedSprite2D.play("take_damage")
-	flash_white()
-	if jump_timer > 0.5:
-		jump_timer -= 0.5
-	
+	if health > 0:
+		DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
 		
-	await(get_tree().create_timer(1).timeout)
-	is_knocked_back = false
-	$HitParticles.emitting = false
-	
+		$HitParticles.set_direction(knockback_direction)
+		$HitParticles.emitting = true
+		velocity = knockback_direction * knockback * speed
+		is_knocked_back = true
+		$AnimatedSprite2D.play("take_damage")
+		flash_white()
+		if jump_timer > 0.5:
+			jump_timer -= 0.5
+		await(get_tree().create_timer(5).timeout)
+		is_knocked_back = false
+		$HitParticles.emitting = false
 	if health <= 0:
+		$SlimeHitbox.monitoring = false
 		$SlimeHitbox.monitorable = false
-		$SlimeHurtbox.monitoring = false
-	
+		$SlimeHurtbox.monitoring= false
+		$SlimeHurtbox.monitorable = false
+		await(get_tree().create_timer(1).timeout)
 		experience_pickup.experience_points = exp_amount
 		get_parent().add_child(experience_pickup)
 		experience_pickup.global_position = global_position
-		
 		queue_free()
 
 func flash_white() -> void:

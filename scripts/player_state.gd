@@ -28,7 +28,7 @@ func add_exp(exp_amount : int) -> void:
 @warning_ignore("unused_parameter")
 func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	if upgrade == UPGRADES.ATTACK_SPEED:
-		attack_speed -= 0.1 * attack_speed
+		attack_speed -= 0.5 * attack_speed
 	elif upgrade == UPGRADES.ATTACK_DAMAGE:
 		attack_damage += 5
 	elif upgrade == UPGRADES.PROJECTILES:

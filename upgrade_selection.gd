@@ -1,10 +1,11 @@
 extends Control
 
+@export var upgrades_amount : int = 5
 @onready var upgrade_container = $CanvasLayer/HBoxContainer
 
 func _ready() -> void:
 	var chosen_numbers : Array[int]
-	while chosen_numbers.size() < 3:
+	while chosen_numbers.size() < upgrades_amount:
 		var num = randi_range(0, upgrade_container.get_children().size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)
