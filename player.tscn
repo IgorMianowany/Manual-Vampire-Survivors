@@ -353,6 +353,7 @@ script = ExtResource("55_2hpdj")
 
 [node name="Bow" type="Node2D" parent="Weapon"]
 script = ExtResource("54_31diy")
+attack_speed = 0.5
 
 [node name="Sword" type="Node2D" parent="Weapon" node_paths=PackedStringArray("attack_range_pointer", "attack_shape_cast", "hitbox", "hitboxShape")]
 script = ExtResource("56_3p1v6")

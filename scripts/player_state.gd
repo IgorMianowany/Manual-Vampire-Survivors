@@ -5,7 +5,7 @@ var experience : int = 0
 var experience_threshold : int = 10
 var level : int = 0
 var projectiles : int = 0
-var attack_speed : float = 1
+var attack_speed : float = .5
 var attack_damage : float = 5
 @onready var health : float = max_health
 

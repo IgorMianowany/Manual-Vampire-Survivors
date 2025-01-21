@@ -134,6 +134,9 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback : floa
 	$HitParticles.emitting = false
 	
 	if health <= 0:
+		$SlimeHitbox.monitorable = false
+		$SlimeHurtbox.monitoring = false
+	
 		get_parent().add_child(experience_pickup)
 		experience_pickup.global_position = global_position
 		
