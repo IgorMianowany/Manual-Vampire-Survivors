@@ -7,9 +7,10 @@ var level : int = 0
 var projectiles : int = 0
 var attack_speed : float = .5
 var attack_damage : float = 5
+var movespeed_bonus : float = 0
 @onready var health : float = max_health
 
-enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES}
+enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED}
 
 var debug_value : int = 0
 
@@ -31,4 +32,8 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		attack_damage += 5
 	elif upgrade == UPGRADES.PROJECTILES:
 		projectiles += 1
+	elif upgrade == UPGRADES.HEALTH:
+		max_health += 100
+	elif upgrade == UPGRADES.MOVESPEED:
+		movespeed_bonus += 1000
 		

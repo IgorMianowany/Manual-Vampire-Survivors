@@ -103,7 +103,7 @@ func handle_movement() -> void:
 	var direction_left := Input.get_axis("move_left", "move_right")
 	var direction_down := Input.get_axis("move_down", "move_up")
 	if direction_left:
-		velocity.x = direction_left * speed
+		velocity.x = direction_left * (speed + PlayerState.movespeed_bonus)
 		if not $Weapon.is_attacking:
 			if direction_left == 1:
 				direction = DirectionEnum.RIGHT

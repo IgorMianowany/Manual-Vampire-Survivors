@@ -3,6 +3,16 @@ extends Control
 @onready var upgrade_container = $CanvasLayer/HBoxContainer
 
 func _ready() -> void:
+	var chosen_numbers : Array[int]
+	while chosen_numbers.size() < 3:
+		var num = randi_range(0, upgrade_container.get_children().size()-1)
+		if not chosen_numbers.has(num):
+			chosen_numbers.append(num)
+	print(chosen_numbers)
+	for index in upgrade_container.get_children().size():
+		print(index)
+		if not chosen_numbers.has(index):
+			upgrade_container.get_children()[index].visible = false
 	PlayerState.level_up.connect(_upgrade_selection_visible)
 	get_tree().paused = true
 	for node in upgrade_container.get_children():

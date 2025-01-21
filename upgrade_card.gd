@@ -6,6 +6,7 @@ signal upgrade_selected
 @export var description : String
 @export var upgrade : PlayerState.UPGRADES
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$VBoxContainer/MarginContainer/TextureRect.texture = icon

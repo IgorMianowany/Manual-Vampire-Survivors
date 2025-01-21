@@ -58,12 +58,12 @@ upgrade = 1
 [node name="UpgradeCard4" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
 layout_mode = 2
 icon = ExtResource("4_bi4jo")
-description = "+50 Health"
+description = "+100% attack damage"
 upgrade = 3
 
 [node name="UpgradeCard5" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
 visible = false
 layout_mode = 2
 icon = ExtResource("4_bi4jo")
-description = "+100 Movespeed"
+description = "+100% attack damage"
 upgrade = 4

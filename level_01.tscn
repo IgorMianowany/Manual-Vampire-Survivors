@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dex6rvttf5f6c"]
+[gd_scene load_steps=62 format=4 uid="uid://dex6rvttf5f6c"]
 
 [ext_resource type="Texture2D" uid="uid://bxujpobmruq50" path="res://assets/sprites/tilesets/decor_8x8.png" id="1_krj42"]
 [ext_resource type="Texture2D" uid="uid://cdcqb0khqlr7y" path="res://assets/sprites/tilesets/decor_16x16.png" id="2_wlpnc"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://ryyuju6qndc" path="res://player.tscn" id="26_ij30w"]
 [ext_resource type="PackedScene" uid="uid://bhbi45iw72g6f" path="res://slime.tscn" id="27_bpjw7"]
 [ext_resource type="PackedScene" uid="uid://hkbwrpf7npvo" path="res://enemy_spawn.tscn" id="27_qf16w"]
+[ext_resource type="PackedScene" uid="uid://cdpm5njmkbydl" path="res://upgrade_selection.tscn" id="29_qyh5w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk6b"]
 texture = ExtResource("1_krj42")
@@ -1030,3 +1031,5 @@ limit = 0
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(604, 321)
+
+[node name="UpgradeSelection" parent="LayerHolder" instance=ExtResource("29_qyh5w")]
