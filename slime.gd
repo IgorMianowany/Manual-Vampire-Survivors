@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var damage : float = 10
 @export var knockback_power : float = 1
 @export var max_health : float = 10 
-@export var exp : int = 1
+@export var exp_amount : int = 1
 @export var healthbar : TextureProgressBar 
 @onready var health : float = max_health
 @onready var damage_numbers_origin = $DamageNumbersOrigin
@@ -137,6 +137,7 @@ func take_damage(damage : float, knockback_direction : Vector2, knockback : floa
 		$SlimeHitbox.monitorable = false
 		$SlimeHurtbox.monitoring = false
 	
+		experience_pickup.experience_points = exp_amount
 		get_parent().add_child(experience_pickup)
 		experience_pickup.global_position = global_position
 		

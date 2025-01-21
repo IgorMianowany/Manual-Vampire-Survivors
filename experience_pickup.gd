@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var player : Player
 var speed = 10000
+@export var experience_points = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,5 +24,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_collision_range_body_entered(body: Node2D) -> void:
 	if body is Player:
-		PlayerState.add_exp(1)
+		PlayerState.add_exp(experience_points)
 		queue_free()

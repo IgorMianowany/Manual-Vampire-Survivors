@@ -13,19 +13,10 @@ enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES}
 
 var debug_value : int = 0
 
-signal death
 signal level_up
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
-func add_exp(exp : int) -> void:
-	experience += exp
+func add_exp(exp_amount : int) -> void:
+	experience += exp_amount
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
