@@ -29,11 +29,12 @@ var direction : DirectionEnum = DirectionEnum.DOWN
 func _ready() -> void:
 	$GameTimer.wait_time = max_time
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
-	match player_class:
+	match PlayerState.chosen_class:
 		0:
 			$Weapon.weapon_type = $Weapon/Sword
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
+	PlayerState.after_class_chosen.connect(set_class)
 
 func _physics_process(delta: float) -> void:
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
@@ -184,3 +185,10 @@ func rotate_attack_range() -> void:
 
 func get_elapsed_time() -> int:
 	return int(max_time - $GameTimer.time_left)
+	
+func set_class():
+	match PlayerState.chosen_class:
+		0:
+			$Weapon.weapon_type = $Weapon/Sword
+		1:
+			$Weapon.weapon_type = $Weapon/Bow

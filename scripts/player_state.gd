@@ -8,6 +8,7 @@ var projectiles : int = 0
 var attack_speed : float = .5
 var attack_damage : float = 5
 var movespeed_bonus : float = 0
+var chosen_class : int = 0
 @onready var health : float = max_health
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED}
@@ -16,6 +17,7 @@ var debug_value : int = 0
 
 signal level_up
 signal after_level_up
+signal after_class_chosen
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
@@ -40,4 +42,8 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	health = max_health
 	
 	after_level_up.emit()
-		
+
+func choose_class(class_number : int):
+	chosen_class = class_number
+	after_class_chosen.emit()
+	
