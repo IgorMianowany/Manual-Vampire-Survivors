@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://eqn504t58hxq"]
+
+[ext_resource type="Script" path="res://fireball.gd" id="1_1v1al"]
+[ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="2_qyocl"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_j5806"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p18p1"]
+radius = 45.0
+
+[node name="Fireball" type="Node2D"]
+script = ExtResource("1_1v1al")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("2_qyocl")
+
+[node name="FireballHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_j5806")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireballHitbox"]
+shape = SubResource("CircleShape2D_fkxp7")
+debug_color = Color(1, 0, 0.0588235, 0.419608)
+
+[node name="FireballImpactDetector" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireballImpactDetector"]
+shape = SubResource("CircleShape2D_8vmqc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="FireballExplosionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireballExplosionRadius"]
+shape = SubResource("CircleShape2D_p18p1")
+
+[connection signal="area_entered" from="FireballHitbox" to="." method="_on_fireball_hitbox_area_entered"]
+[connection signal="body_entered" from="FireballHitbox" to="." method="_on_fireball_hitbox_body_entered"]
+[connection signal="area_entered" from="FireballImpactDetector" to="." method="_on_fireball_impact_detector_area_entered"]
+[connection signal="body_entered" from="FireballImpactDetector" to="." method="_on_fireball_impact_detector_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="FireballExplosionRadius" to="." method="_on_fireball_explosion_radius_area_entered"]

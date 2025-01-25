@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func jump_toward_player(variation : float) -> void:
 	var new_direction := Vector2.ZERO
-	if jump_timer < jump_cooldown + jump_duration + variation:
+	if jump_timer < jump_cooldown + jump_duration + variation and health >0 :
 		is_jumping = true
 		if not is_knocked_back:
 			# this is a weird way to check if slime reached it's jump destination before finishing the jump
@@ -128,7 +128,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		flash_white()
 		if jump_timer > 0.5:
 			jump_timer -= 0.5
-		await(get_tree().create_timer(5).timeout)
+		await(get_tree().create_timer(1).timeout)
 		is_knocked_back = false
 		$HitParticles.emitting = false
 	if health <= 0:

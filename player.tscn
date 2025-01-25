@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=63 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -56,6 +56,7 @@
 [ext_resource type="Script" path="res://scripts/bow.gd" id="54_31diy"]
 [ext_resource type="Script" path="res://scripts/weapon_type.gd" id="55_2hpdj"]
 [ext_resource type="Script" path="res://scripts/sword.gd" id="56_3p1v6"]
+[ext_resource type="Script" path="res://scripts/staff.gd" id="57_gw1fk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysp0x"]
 size = Vector2(14.2857, 7.85714)
@@ -362,6 +363,9 @@ attack_shape_cast = NodePath("../../AttackShapeCast")
 hitbox = NodePath("../../AttackRangePointer/PlayerHitbox")
 hitboxShape = NodePath("../../AttackRangePointer/PlayerHitbox/CollisionShape2D")
 
+[node name="Staff" type="Node2D" parent="Weapon"]
+script = ExtResource("57_gw1fk")
+
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 1e+07
 one_shot = true
@@ -379,3 +383,5 @@ offset_bottom = 23.0
 [connection signal="attack_started" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_started"]
 [connection signal="attack_finished" from="Weapon/Sword" to="Weapon" method="_on_sword_attack_finished"]
 [connection signal="attack_started" from="Weapon/Sword" to="Weapon" method="_on_sword_attack_started"]
+[connection signal="attack_finished" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_finished"]
+[connection signal="attack_started" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_started"]

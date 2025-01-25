@@ -1,4 +1,4 @@
-class_name Projectile
+class_name Arrow
 extends Node2D
 
 @export var speed := 300
@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
 	$ArrowHitbox.damage = damage
-	$ArrowHitbox.max_hits = pierce
+	$ArrowHitbox.max_hits = 1
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:

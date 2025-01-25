@@ -36,3 +36,11 @@ func _on_sword_attack_finished() -> void:
 
 func _on_sword_attack_started() -> void:
 	is_attacking = true
+
+
+func _on_staff_attack_finished() -> void:
+	is_attacking = false
+
+
+func _on_staff_attack_started() -> void:
+	is_attacking = true

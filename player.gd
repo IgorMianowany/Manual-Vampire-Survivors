@@ -34,6 +34,8 @@ func _ready() -> void:
 			$Weapon.weapon_type = $Weapon/Sword
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
+		2:
+			$Weapon.weapon_type = $Weapon/Staff
 	PlayerState.after_class_chosen.connect(set_class)
 
 func _physics_process(delta: float) -> void:
@@ -192,3 +194,5 @@ func set_class():
 			$Weapon.weapon_type = $Weapon/Sword
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
+		2:
+			$Weapon.weapon_type = $Weapon/Staff
