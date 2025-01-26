@@ -13,7 +13,8 @@ func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
 	$FireballHitbox.damage = damage
-	$FireballHitbox.max_hits = 1
+	$FireballHitbox.max_hits = 0
+	$FireballExplosionRadius.monitoring = false
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
@@ -35,6 +36,7 @@ func _on_fireball_impact_detector_body_entered(body: Node2D) -> void:
 		animate_explosion()
 	
 func animate_explosion():
+	$FireballExplosionRadius.monitoring = true
 	speed = 0
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
@@ -47,4 +49,5 @@ func animate_explosion():
 
 
 func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	if area.get_parent().has_method("take_damage"):
+		area.get_parent().take_damage(damage, global_position.direction_to(area.global_position), 2)

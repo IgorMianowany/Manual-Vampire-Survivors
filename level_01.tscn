@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://dex6rvttf5f6c"]
+[gd_scene load_steps=62 format=4 uid="uid://dex6rvttf5f6c"]
 
 [ext_resource type="Texture2D" uid="uid://bxujpobmruq50" path="res://assets/sprites/tilesets/decor_8x8.png" id="1_krj42"]
 [ext_resource type="Texture2D" uid="uid://cdcqb0khqlr7y" path="res://assets/sprites/tilesets/decor_16x16.png" id="2_wlpnc"]
@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://bhbi45iw72g6f" path="res://slime.tscn" id="27_bpjw7"]
 [ext_resource type="PackedScene" uid="uid://hkbwrpf7npvo" path="res://enemy_spawn.tscn" id="27_qf16w"]
 [ext_resource type="PackedScene" uid="uid://cp5b3a2qsf42v" path="res://class_selection.tscn" id="29_3k4pw"]
-[ext_resource type="PackedScene" uid="uid://eqn504t58hxq" path="res://fireball.tscn" id="30_0dsos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk6b"]
 texture = ExtResource("1_krj42")
@@ -963,7 +962,7 @@ z_index = 1
 position = Vector2(248, 280)
 cooldown = 0.0
 player = NodePath("../Player")
-limit = 1
+limit = 17
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(554, 301)
@@ -1035,6 +1034,3 @@ limit = 0
 position = Vector2(604, 321)
 
 [node name="ClassSelection" parent="." instance=ExtResource("29_3k4pw")]
-
-[node name="Fireball" parent="." instance=ExtResource("30_0dsos")]
-position = Vector2(212, 280)

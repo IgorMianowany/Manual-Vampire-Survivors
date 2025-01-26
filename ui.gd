@@ -12,6 +12,8 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	$CanvasLayer/Healthbar.value = PlayerState.health
+	$CanvasLayer/ExperienceBar.value = PlayerState.experience
+	
 
 
 func _on_level_up() -> void:
@@ -20,7 +22,6 @@ func _on_level_up() -> void:
 func _after_level_up():
 	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
 	$CanvasLayer/HealthForDebug.text = str(PlayerState.health)
-	$CanvasLayer/ExperienceBar.value = PlayerState.experience
 	$CanvasLayer/ExperienceBar.max_value = PlayerState.experience_threshold
 	$CanvasLayer/Level.text = str(PlayerState.level)
 	

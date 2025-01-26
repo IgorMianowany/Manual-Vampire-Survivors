@@ -21,6 +21,7 @@ signal after_class_chosen
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
+	print(experience_threshold)
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
