@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="1_qjkqi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7l72"]
-radius = 535.023
+radius = 305.164
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hyb0"]
 radius = 50.0
