@@ -48,7 +48,8 @@ func _physics_process(delta: float) -> void:
 	var picked_variation = randf_range(0, jump_variation)
 	handle_animation(picked_variation)
 	if jump_timer > jump_cooldown + picked_variation:
-		jump_toward_player(picked_variation)
+		#jump_toward_player(picked_variation)
+		pass
 	
 	move_and_slide()
 
@@ -117,30 +118,28 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float) -> void:
 	health -= incoming_damage
+	$HitParticles.emitting = true
+	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
+	$HitParticles.set_direction(knockback_direction)
+	
 	if health > 0:
-		DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
-		
-		$HitParticles.set_direction(knockback_direction)
-		$HitParticles.emitting = true
-		velocity = knockback_direction * knockback * speed
 		is_knocked_back = true
+		#velocity = knockback_direction * knockback * speed
 		$AnimatedSprite2D.play("take_damage")
 		flash_white()
-		if jump_timer > 0.5:
-			jump_timer -= 0.5
-		await(get_tree().create_timer(1).timeout)
+		if jump_timer > 0.8:
+			jump_timer -= 0.8
+		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
-		$HitParticles.emitting = false
 	if health <= 0:
-		$SlimeHitbox.monitoring = false
-		$SlimeHitbox.monitorable = false
-		$SlimeHurtbox.monitoring= false
-		$SlimeHurtbox.monitorable = false
+		get_tree().call_group("Areas", "set_disabled", true)
 		await(get_tree().create_timer(1).timeout)
 		experience_pickup.experience_points = exp_amount
 		get_parent().add_child(experience_pickup)
 		experience_pickup.global_position = global_position
 		queue_free()
+	$HitParticles.emitting = false
+	
 
 func flash_white() -> void:
 	$AnimatedSprite2D.modulate = Color(10,10,10)
