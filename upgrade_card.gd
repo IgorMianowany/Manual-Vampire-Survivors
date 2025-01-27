@@ -16,6 +16,7 @@ func _ready() -> void:
 	
 func apply_upgrade():
 	var upgrade_number = int(description.split(" ")[0].replace("+", "").replace("%", ""))
+	print("apply upgrade in UpgradeSelection")
 	PlayerState.add_upgrade(upgrade, upgrade_number)
 	upgrade_selected.emit()
 	

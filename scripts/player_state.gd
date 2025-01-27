@@ -41,8 +41,10 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		movespeed_bonus += 1000
 	else:
 		debug_value += 1
+		
 	health = max_health
-	
+	print("add upgrade in PlayerState")
+
 	after_level_up.emit()
 
 func choose_class(class_number : int):

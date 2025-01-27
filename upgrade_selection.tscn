@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=6 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="2_54842"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
 [ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="4_bi4jo"]
+[ext_resource type="PackedScene" uid="uid://bc5yb1c3hafxq" path="res://items/black_monster_item.tscn" id="5_r7a6m"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -62,11 +63,8 @@ icon = ExtResource("4_bi4jo")
 description = "+50 Health"
 upgrade = 3
 
-[node name="UpgradeCard5" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
-layout_mode = 2
-icon = ExtResource("4_bi4jo")
-description = "+100 Movespeed"
-upgrade = 4
-
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
+layout_mode = 2
+
+[node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
 layout_mode = 2

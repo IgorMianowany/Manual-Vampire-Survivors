@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	var picked_variation = randf_range(0, jump_variation)
 	handle_animation(picked_variation)
 	if jump_timer > jump_cooldown + picked_variation:
-		#jump_toward_player(picked_variation)
+		jump_toward_player(picked_variation)
 		pass
 	
 	move_and_slide()
