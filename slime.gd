@@ -132,7 +132,12 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
 	if health <= 0:
-		get_tree().call_group("Areas", "set_disabled", true)
+		#get_tree().call_group("Areas", "set_collision_layer", 0)
+		#get_tree().call_group("Areas", "set_collision_mask", 0)
+		var areas = get_tree().get_nodes_in_group("Areas")
+		for area in areas:
+			if area.has_method("set_disabled"):
+				area.call_deferred("set_disabled", true)
 		await(get_tree().create_timer(1).timeout)
 		experience_pickup.experience_points = exp_amount
 		get_parent().add_child(experience_pickup)
