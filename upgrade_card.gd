@@ -1,3 +1,4 @@
+class_name UpgradeSelection
 extends Panel
 
 signal upgrade_selected
@@ -5,6 +6,7 @@ signal upgrade_selected
 @export var icon : CompressedTexture2D
 @export var description : String
 @export var upgrade : PlayerState.UPGRADES
+var upgrade_logic 
 
 
 # Called when the node enters the scene tree for the first time.

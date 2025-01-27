@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://5rn0vdft68ba"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_fu1lk"]
+[ext_resource type="Texture2D" uid="uid://duglv6o0lnd44" path="res://assets/sprites/items/PNG_WHITE_MONSTRR.png" id="2_h6d30"]
+[ext_resource type="Script" path="res://items/white_monster_item.gd" id="2_tdynk"]
+
+[node name="Panel" instance=ExtResource("1_fu1lk")]
+script = ExtResource("2_tdynk")
+movespeed_buff = 5.0
+attack_speed_buff = 0.15
+icon = ExtResource("2_h6d30")
+description = "More movespeed and attack speed"
+
+[node name="TextureRect" parent="VBoxContainer/MarginContainer" index="0"]
+texture = ExtResource("2_h6d30")

@@ -1,6 +1,6 @@
 extends Control
 
-@export var upgrades_amount : int = 5
+@export var upgrades_amount : int = 6
 @onready var upgrade_container = $CanvasLayer/HBoxContainer
 
 func _ready() -> void:

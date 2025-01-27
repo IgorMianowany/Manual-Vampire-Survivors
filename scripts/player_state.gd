@@ -11,7 +11,7 @@ var movespeed_bonus : float = 0
 var chosen_class : int = 0
 @onready var health : float = max_health
 
-enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED}
+enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
 
 var debug_value : int = 0
 
@@ -21,11 +21,10 @@ signal after_class_chosen
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
-	print(experience_threshold)
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 15
+		experience_threshold += 0
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -40,6 +39,8 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		max_health += 100
 	elif upgrade == UPGRADES.MOVESPEED:
 		movespeed_bonus += 1000
+	else:
+		debug_value += 1
 	health = max_health
 	
 	after_level_up.emit()
