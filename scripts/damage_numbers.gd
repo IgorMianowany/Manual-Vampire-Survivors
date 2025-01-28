@@ -12,12 +12,11 @@ func display_number(value : int, position : Vector2, is_critical = false):
 		color = "#b22"
 	if value == 0:
 		color = "fff8"
-		
 	number.label_settings.font_color = color
 	number.label_settings.font_size = 10
 	number.label_settings.outline_color = "#000"
 	number.label_settings.outline_size = 1
-	
+
 	call_deferred("add_child", number)
 	
 	await number.resized

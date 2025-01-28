@@ -28,14 +28,8 @@ var direction : DirectionEnum = DirectionEnum.DOWN
 
 func _ready() -> void:
 	$GameTimer.wait_time = max_time
+	#check this bitch
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
-	match PlayerState.chosen_class:
-		0:
-			$Weapon.weapon_type = $Weapon/Sword
-		1:
-			$Weapon.weapon_type = $Weapon/Bow
-		2:
-			$Weapon.weapon_type = $Weapon/Staff
 	PlayerState.after_class_chosen.connect(set_class)
 
 func _physics_process(delta: float) -> void:
@@ -65,10 +59,11 @@ func _physics_process(delta: float) -> void:
 	if not is_knocked_back:
 		handle_movement()
 	handle_animation()
+	handle_weapon_rotation()
 	move_and_slide()
 	
 func handle_animation() -> void:
-	if $Weapon.is_attacking and false:
+	if $Weapon.is_attacking and PlayerState.chosen_class == 0:
 		if direction == DirectionEnum.UP:
 			$AnimatedSprite2D.play("attack_up")
 		elif direction == DirectionEnum.DOWN:
@@ -138,6 +133,7 @@ func take_damage(damage : float, knockback_direction : Vector2, incoming_knockba
 		if PlayerState.health <= 0:
 			death.emit()
 	
+# this is an old attack function
 func attack() -> void:
 	if not $Weapon.is_attacking:
 		set_attack_direction()
@@ -195,5 +191,22 @@ func set_class():
 			$Weapon.weapon_type = $Weapon/Sword
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
+			$Marker2D/WeaponSprite.texture = $Weapon/Bow.weapon_texture
+			$Marker2D/WeaponSprite.scale = Vector2(0.05,0.05)
 		2:
 			$Weapon.weapon_type = $Weapon/Staff
+			$Marker2D/WeaponSprite.texture = $Weapon/Staff.weapon_texture
+			$Marker2D/WeaponSprite.scale = Vector2(0.15,0.15)
+			
+		
+func handle_weapon_rotation():
+	#Get the mouse position relative to the screen
+	var mouse_pos = get_global_mouse_position()
+
+	# Calculate the direction from the sprite to the mouse
+	var direction = (mouse_pos - global_position).normalized()
+	# Calculate the rotation angle based on the direction
+	var angle = direction.angle()
+	# Set the sprite's rotation to the calculated angle
+	#$Marker2D/WeaponSprite.rotation = angle
+	$Marker2D.rotation = angle

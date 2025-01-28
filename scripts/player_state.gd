@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 1
+var experience_threshold : int = 100
 var level : int = 0
 var projectiles : int = 0
 var attack_speed : float = .5

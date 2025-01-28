@@ -3,6 +3,7 @@ extends Node2D
 
 var pierce : int
 var projectiles : int
+@export var weapon_texture : Texture2D
 
 @warning_ignore("unused_signal")
 signal attack_started
