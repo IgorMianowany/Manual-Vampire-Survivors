@@ -9,6 +9,7 @@ var attack_speed : float = .5
 var attack_damage : float = 5
 var movespeed_bonus : float = 0
 var chosen_class : int = 0
+var jim_beam_counter : int = 0
 @onready var health : float = max_health
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}

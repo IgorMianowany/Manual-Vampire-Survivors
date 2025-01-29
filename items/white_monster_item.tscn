@@ -4,12 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://duglv6o0lnd44" path="res://assets/sprites/items/PNG_WHITE_MONSTRR.png" id="2_h6d30"]
 [ext_resource type="Script" path="res://scripts/upgrades/white_monster_item.gd" id="2_tdynk"]
 
-[node name="WhiteMonster" instance=ExtResource("1_fu1lk")]
+[node name="White Monster" instance=ExtResource("1_fu1lk")]
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -426.0
+offset_bottom = -124.0
 script = ExtResource("2_tdynk")
 movespeed_buff = 5.0
 attack_speed_buff = 0.15
 icon = ExtResource("2_h6d30")
 description = "More movespeed and attack speed"
+
+[node name="Name" parent="VBoxContainer/MarginContainer4" index="0"]
+text = "Name 2"
 
 [node name="TextureRect" parent="VBoxContainer/MarginContainer" index="0"]
 texture = ExtResource("2_h6d30")

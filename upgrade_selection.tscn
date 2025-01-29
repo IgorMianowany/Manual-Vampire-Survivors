@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=6 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
-[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="2_54842"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
-[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="4_bi4jo"]
+[ext_resource type="PackedScene" uid="uid://brvcn84beg7jm" path="res://jim_beam_item.tscn" id="5_cjnhx"]
 [ext_resource type="PackedScene" uid="uid://bc5yb1c3hafxq" path="res://items/black_monster_item.tscn" id="5_r7a6m"]
 [ext_resource type="PackedScene" uid="uid://cjhxg55qrxdxt" path="res://hermes_boots.tscn" id="6_020fo"]
 
@@ -25,39 +24,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.356863, 0.356863, 0.356863, 0.0980392)
+color = Color(0.266575, 0.266575, 0.266575, 0.756863)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(50, 50)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -458.0
-offset_top = -243.0
-offset_right = 474.0
-offset_bottom = -43.0
+offset_left = -466.0
+offset_top = -257.0
+offset_right = 466.0
+offset_bottom = 257.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="UpgradeCard0" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_54842")]
-visible = false
-layout_mode = 2
-icon = ExtResource("4_bi4jo")
-description = "+1 projectile"
-upgrade = 2
-
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
 layout_mode = 2
-size_flags_horizontal = 0
 movespeed_buff = 25.0
-
-[node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
-layout_mode = 2
-size_flags_horizontal = 0
+upgrade_name = "default name"
+upgrade = null
 
 [node name="HermesBoots" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_020fo")]
 layout_mode = 2
-size_flags_horizontal = 0
+upgrade_name = "default name"
+
+[node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
+layout_mode = 2
+
+[node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
+layout_mode = 2

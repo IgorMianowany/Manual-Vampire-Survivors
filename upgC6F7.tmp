@@ -22,29 +22,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -211.5
-offset_top = -251.5
-offset_right = 211.5
-offset_bottom = 251.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_b540y")
 script = ExtResource("1_lsqjf")
+description = "default description"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -100.0
-offset_right = 100.0
-offset_bottom = 353.0
+offset_left = -57.0
+offset_right = 57.0
+offset_bottom = 282.0
 grow_horizontal = 2
 alignment = 1
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_constants/margin_top = 10
 
@@ -66,46 +66,28 @@ theme_override_constants/margin_right = 10
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("1_0lckg")
 expand_mode = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 10
 
 [node name="Description" type="Label" parent="VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_vertical = 0
 text = "some test text to see how it looks"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -31.0
-offset_right = 100.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 25
 
-[node name="Button" type="Button" parent="MarginContainer3"]
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
-size_flags_vertical = 8
 text = "Select
 "
 
-[connection signal="pressed" from="MarginContainer3/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/Button" to="." method="_on_button_pressed"]

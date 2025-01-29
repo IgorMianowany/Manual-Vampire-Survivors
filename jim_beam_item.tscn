@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://brvcn84beg7jm"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_4hlt5"]
+[ext_resource type="Texture2D" uid="uid://b7310d5qboao5" path="res://assets/sprites/items/jimbeam.png" id="2_jtbqx"]
+[ext_resource type="Script" path="res://jim_beam_item.gd" id="2_s4x7f"]
+
+[node name="JimBeam" instance=ExtResource("1_4hlt5")]
+script = ExtResource("2_s4x7f")
+damage_multi = 2.0
+max_hp = 50.0
+icon = ExtResource("2_jtbqx")
+description = "Doubles your attack and adds 50 max health, but dont drink too much!"
+upgrade = 5
