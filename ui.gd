@@ -18,11 +18,9 @@ func _process(delta: float) -> void:
 
 
 func _on_level_up() -> void:
-	print("add upgrade selection")
 	add_child(upgrade_selection.instantiate())
 	
 func _after_level_up():
-	print("after level up in UI")
 	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
 	$CanvasLayer/Healthbar.value = PlayerState.health
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
