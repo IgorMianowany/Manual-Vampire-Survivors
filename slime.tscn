@@ -244,6 +244,7 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
+max_health = 11.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

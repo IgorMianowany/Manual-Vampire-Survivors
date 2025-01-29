@@ -124,7 +124,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	
 	if health > 0:
 		is_knocked_back = true
-		#velocity = knockback_direction * knockback * speed
+		velocity = knockback_direction * knockback * speed
 		$AnimatedSprite2D.play("take_damage")
 		flash_white()
 		if jump_timer > 0.8:

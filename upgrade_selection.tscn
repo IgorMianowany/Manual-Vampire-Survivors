@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=7 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
 [ext_resource type="PackedScene" uid="uid://brvcn84beg7jm" path="res://jim_beam_item.tscn" id="5_cjnhx"]
 [ext_resource type="PackedScene" uid="uid://bc5yb1c3hafxq" path="res://items/black_monster_item.tscn" id="5_r7a6m"]
+[ext_resource type="PackedScene" uid="uid://ciho8pk2tuvkh" path="res://hammer_item.tscn" id="6_7yuek"]
 [ext_resource type="PackedScene" uid="uid://cjhxg55qrxdxt" path="res://hermes_boots.tscn" id="6_020fo"]
 
 [node name="UpgradeSelection" type="Control"]
@@ -56,4 +57,7 @@ upgrade_name = "default name"
 layout_mode = 2
 
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
+layout_mode = 2
+
+[node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
 layout_mode = 2

@@ -1022,13 +1022,13 @@ limit = 0
 position = Vector2(217, 576)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 0
+limit = 1
 
 [node name="EnemySpawn8" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(113, 488)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 0
+limit = 2
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(604, 321)

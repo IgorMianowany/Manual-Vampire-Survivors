@@ -18,7 +18,7 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 	attack_shape_cast.target_position = attack_range_pointer.position
 	for index in attack_shape_cast.get_collision_count():
 		var enemy = attack_shape_cast.get_collider(index)
-		enemy.take_damage(attack_damage, attack_position.direction_to(enemy.position), knockback_power)
+		enemy.take_damage(attack_damage, attack_position.direction_to(enemy.position), knockback_power + PlayerState.knockback_bonus)
 		
 	await(get_tree().create_timer(attack_time).timeout)
 	attack_finished.emit()
