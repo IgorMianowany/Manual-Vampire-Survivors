@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 100
+var experience_threshold : int = 1
 var level : int = 0
 var projectiles : int = 0
 var attack_speed : float = .5
@@ -43,7 +43,6 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		debug_value += 1
 		
 	health = max_health
-	print("add upgrade in PlayerState")
 
 	after_level_up.emit()
 

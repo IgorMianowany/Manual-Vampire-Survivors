@@ -33,6 +33,8 @@ func _ready() -> void:
 	PlayerState.after_class_chosen.connect(set_class)
 
 func _physics_process(delta: float) -> void:
+	
+	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
 	get_elapsed_time()

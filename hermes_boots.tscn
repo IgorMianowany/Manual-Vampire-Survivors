@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjhxg55qrxdxt"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_ysd18"]
+[ext_resource type="Script" path="res://hermes_boots.gd" id="2_exv1l"]
+[ext_resource type="Texture2D" uid="uid://dm5ugb6qondav" path="res://assets/sprites/items/hermes_boots.png" id="2_hx5pb"]
+
+[node name="HermesBoots" instance=ExtResource("1_ysd18")]
+script = ExtResource("2_exv1l")
+movespeed_buff = 50.0
+icon = ExtResource("2_hx5pb")
+description = "Adds a lot of movespeed"
+upgrade = 5

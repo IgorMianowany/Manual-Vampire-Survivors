@@ -6,7 +6,7 @@
 
 [node name="BlackMonster" instance=ExtResource("1_g2kd0")]
 script = ExtResource("2_7711p")
-movespeed_buff = 5.0
+movespeed_buff = 25.0
 attack_speed_buff = 0.15
 icon = ExtResource("3_gwbw4")
 description = "Stronger than white monster, but lowers HP"

@@ -1,7 +1,7 @@
 class_name WhiteMonsterLogic
 extends CommonUpgradeLogic
 
-@export var movespeed_buff : float = 5
+@export var movespeed_buff : float = 25
 @export var attack_speed_buff : float = .15
 
 func add_item_effect():
