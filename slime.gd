@@ -29,6 +29,13 @@ var is_knocked_back : bool = false
 
 func _ready() -> void:
 	set_as_top_level(true)
+	var current_parent = get_parent()
+	while(true):
+		if current_parent.name == "LayerHolder":
+			reparent(current_parent)
+			break
+		current_parent = current_parent.get_parent()
+	print($AnimatedSprite2D.z_index)	
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health

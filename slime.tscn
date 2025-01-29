@@ -244,10 +244,14 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
+speed = 0.0
+jump_cooldown = 100000.0
 max_health = 11.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
 autoplay = "idle_down"
@@ -258,6 +262,7 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
 [node name="Control" type="Control" parent="."]
+z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
