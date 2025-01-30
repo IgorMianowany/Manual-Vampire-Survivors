@@ -31,6 +31,7 @@ func _ready() -> void:
 	#check this bitch
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
 	PlayerState.after_class_chosen.connect(set_class)
+	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 
 func _physics_process(delta: float) -> void:
 	
@@ -212,3 +213,10 @@ func handle_weapon_rotation():
 	# Set the sprite's rotation to the calculated angle
 	#$Marker2D/WeaponSprite.rotation = angle
 	$Marker2D.rotation = angle
+	
+func add_palladin_hammer():
+	var hammer = preload("res://palladin_hammer_skill.tscn")
+	var hammer_instance = hammer.instantiate()
+	add_child(hammer_instance)
+	hammer_instance.global_position = global_position
+	

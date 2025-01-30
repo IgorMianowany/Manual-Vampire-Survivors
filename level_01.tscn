@@ -960,7 +960,7 @@ tile_set = SubResource("TileSet_x7ptb")
 [node name="EnemySpawn" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(248, 280)
-cooldown = 0.0
+cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
 
@@ -1022,13 +1022,13 @@ limit = 0
 position = Vector2(217, 576)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 1
+limit = 0
 
 [node name="EnemySpawn8" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(113, 488)
 cooldown = 5.0
 player = NodePath("../Player")
-limit = 2
+limit = 0
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(604, 321)

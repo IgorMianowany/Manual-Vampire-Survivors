@@ -12,6 +12,7 @@ func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
 	
 func _on_area_entered(hitbox : Hitbox) -> void:
+	
 	if hitbox == null or hitbox.owner == owner:
 		return
 	
@@ -28,5 +29,5 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 			if hitbox.hits < hitbox.max_hits:
 					hitbox.hits += 1
 					owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)
-		elif owner.name == "Player":
+		elif owner.name == "Player" or hitbox.get_parent().get_parent().get_parent().name == "Player":
 					owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power)

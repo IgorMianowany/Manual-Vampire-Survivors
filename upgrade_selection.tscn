@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=8 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bc5yb1c3hafxq" path="res://items/black_monster_item.tscn" id="5_r7a6m"]
 [ext_resource type="PackedScene" uid="uid://ciho8pk2tuvkh" path="res://hammer_item.tscn" id="6_7yuek"]
 [ext_resource type="PackedScene" uid="uid://cjhxg55qrxdxt" path="res://hermes_boots.tscn" id="6_020fo"]
+[ext_resource type="PackedScene" uid="uid://8tcv6kxjey6" path="res://palladin_hammer.tscn" id="7_rcvbd"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -44,20 +45,26 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
+visible = false
 layout_mode = 2
 movespeed_buff = 25.0
 upgrade_name = "default name"
 upgrade = null
 
 [node name="HermesBoots" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_020fo")]
+visible = false
 layout_mode = 2
 upgrade_name = "default name"
 
 [node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
+visible = false
 layout_mode = 2
 
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
 layout_mode = 2
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
+layout_mode = 2
+
+[node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
 layout_mode = 2

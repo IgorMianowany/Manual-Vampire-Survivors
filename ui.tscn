@@ -73,3 +73,9 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "60
+"

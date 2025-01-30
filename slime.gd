@@ -35,7 +35,6 @@ func _ready() -> void:
 			reparent(current_parent)
 			break
 		current_parent = current_parent.get_parent()
-	print($AnimatedSprite2D.z_index)	
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health
@@ -141,10 +140,12 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	if health <= 0:
 		#get_tree().call_group("Areas", "set_collision_layer", 0)
 		#get_tree().call_group("Areas", "set_collision_mask", 0)
-		var areas = get_tree().get_nodes_in_group("Areas")
-		for area in areas:
-			if area.has_method("set_disabled"):
-				area.call_deferred("set_disabled", true)
+		#var areas = get_tree().get_nodes_in_group("Areas")
+		#for area in areas:
+			#if area.has_method("set_disabled"):
+				#area.set_deferred("set_disabled", true)
+		#collision_layer = 0
+		#collision_mask = 0
 		await(get_tree().create_timer(1).timeout)
 		experience_pickup.experience_points = exp_amount
 		get_parent().add_child(experience_pickup)

@@ -10,6 +10,7 @@ var attack_damage : float = 5
 var movespeed_bonus : float = 0
 var chosen_class : int = 0
 var jim_beam_counter : int = 0
+var palladin_hammer_counter : int = 0
 var knockback_bonus : float = 0
 @onready var health : float = max_health
 
@@ -20,6 +21,7 @@ var debug_value : int = 0
 signal level_up
 signal after_level_up
 signal after_class_chosen
+signal add_palladin_hammer
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
@@ -51,4 +53,3 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 func choose_class(class_number : int):
 	chosen_class = class_number
 	after_class_chosen.emit()
-	
