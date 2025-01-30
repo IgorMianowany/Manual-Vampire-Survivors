@@ -1,3 +1,4 @@
+class_name PalladinHammerSkill
 extends Node2D
 
 @export var hit_damage : float = 5

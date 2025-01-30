@@ -19,6 +19,7 @@ var is_knocked_back : bool = false
 var knockback_time : float = 0.4
 var enemies_inside_hitbox : Array[Slime]
 var max_time = 9999999
+var hammers : Array[PalladinHammerSkill]
 
 
 signal death
@@ -215,8 +216,13 @@ func handle_weapon_rotation():
 	$Marker2D.rotation = angle
 	
 func add_palladin_hammer():
-	var hammer = preload("res://palladin_hammer_skill.tscn")
-	var hammer_instance = hammer.instantiate()
+	var hammer_scene = preload("res://palladin_hammer_skill.tscn")
+	var hammer_instance = hammer_scene.instantiate()
 	add_child(hammer_instance)
 	hammer_instance.global_position = global_position
+	hammers.append(hammer_instance)
+	var i = 0
+	for hammer in hammers: 
+		hammer.rotation_degrees = (360 / hammers.size()) * i
+		i += 1
 	
