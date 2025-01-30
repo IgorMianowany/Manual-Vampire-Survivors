@@ -224,5 +224,7 @@ func add_palladin_hammer():
 	var i = 0
 	for hammer in hammers: 
 		hammer.rotation_degrees = (360 / hammers.size()) * i
+		hammer.add_speed(PlayerState.palladin_hammer_speed)
+		hammer.set_damage(PlayerState.palladin_hammer_damage)
 		i += 1
 	

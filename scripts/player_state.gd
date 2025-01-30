@@ -11,6 +11,8 @@ var movespeed_bonus : float = 0
 var chosen_class : int = 0
 var jim_beam_counter : int = 0
 var palladin_hammer_counter : int = 0
+var palladin_hammer_damage : float = 0
+var palladin_hammer_speed : float = 0
 var knockback_bonus : float = 0
 @onready var health : float = max_health
 

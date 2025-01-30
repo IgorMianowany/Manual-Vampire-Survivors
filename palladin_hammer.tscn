@@ -7,7 +7,7 @@
 [node name="PalladinHammer" instance=ExtResource("1_urh6l")]
 script = ExtResource("2_1rg34")
 damage = 5.0
-knockback = 5.0
+speed = 0.005
 icon = ExtResource("3_sx5md")
 description = "Adds a rotating palladin hammer around you"
 upgrade = 5
