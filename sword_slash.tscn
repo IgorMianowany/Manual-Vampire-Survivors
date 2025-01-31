@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://vxl6uot483bp"]
+
+[ext_resource type="Script" path="res://sword_slash.gd" id="1_u6abg"]
+[ext_resource type="Texture2D" uid="uid://cmhf57dthbrmr" path="res://assets/sprites/projectiles/sword_slash.png" id="2_u3j4o"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_5mcx2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
+radius = 2.0
+
+[node name="SwordSlash" type="Node2D"]
+script = ExtResource("1_u6abg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(0.05, 0.1)
+texture = ExtResource("2_u3j4o")
+
+[node name="SlashHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_5mcx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashHitbox"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_fkxp7")
+debug_color = Color(1, 0, 0.0588235, 0.419608)
+
+[node name="SlashImpactDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlashImpactDetector"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_8vmqc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="SlashHitbox" to="." method="_on_arrow_hitbox_area_entered"]
+[connection signal="body_entered" from="SlashHitbox" to="." method="_on_arrow_hitbox_body_entered"]
+[connection signal="area_entered" from="SlashImpactDetector" to="." method="_on_arrow_impact_detector_area_entered"]
+[connection signal="body_entered" from="SlashImpactDetector" to="." method="_on_arrow_impact_detector_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

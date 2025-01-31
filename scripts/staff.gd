@@ -2,12 +2,11 @@ class_name Staff
 extends WeaponType
 
 var fireball_scene := preload("res://fireball.tscn")
-var rotation_change := 0
+
 var mana_regen_cooldown : float = 2
 var mana_regen_timer : Timer
 
 @export var attack_speed := 2.0
-@export var spread := 30 # make spread based on projectile number, maybe something like 30 degrees + int division of projectiles * 10, so 10 degrees for every 5 projectiles for example
 @export var mana_cost : float = 1
 
 func _ready() -> void:

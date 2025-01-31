@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b143huq1op1cl"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_a6a58"]
+[ext_resource type="Texture2D" uid="uid://cgxphmbbas2j6" path="res://assets/sprites/items/projectile_upgrade_item.png" id="2_tn84t"]
+
+[node name="ProjectileUpgrade" instance=ExtResource("1_a6a58")]
+icon = ExtResource("2_tn84t")
+description = "Adds +1 projectile to your weapon"
+upgrade = 5

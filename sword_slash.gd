@@ -1,4 +1,4 @@
-class_name Arrow
+class_name SwordSlash
 extends Node2D
 
 @export var speed := 300
@@ -12,9 +12,9 @@ var direction := Vector2.ZERO
 func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
-	$ArrowHitbox.damage = damage
-	$ArrowHitbox.max_hits = 1
-	$ArrowHitbox.is_player_hitbox = true
+	$SlashHitbox.damage = damage
+	$SlashHitbox.max_hits = 1
+	$SlashHitbox.is_player_hitbox = true
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
@@ -25,13 +25,13 @@ func _on_timer_timeout() -> void:
 
 
 @warning_ignore("unused_parameter")
-func _on_arrow_impact_detector_area_entered(area: Area2D) -> void:
+func _on_slash_impact_detector_area_entered(area: Area2D) -> void:
 	print(area.name)
-	if $ArrowHitbox.hits >= $ArrowHitbox.max_hits - 1:
+	if $SlashHitbox.hits >= $SlashHitbox.max_hits - 1:
 		queue_free()
 		
 
 
 
-func _on_arrow_impact_detector_body_entered(body: Node2D) -> void:
+func _on_slash_impact_detector_body_entered(body: Node2D) -> void:
 	print(body.name)
