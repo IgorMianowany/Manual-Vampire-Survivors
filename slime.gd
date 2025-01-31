@@ -24,6 +24,9 @@ var is_jumping : bool = false
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var facing_direction : DirectionEnum
 var is_knocked_back : bool = false
+var is_poisoned : bool = false
+var poison_damage : float = 0
+var poison_ticks_left : float = 0
 
 @onready var start_pos : Vector2 = position
 
@@ -38,6 +41,7 @@ func _ready() -> void:
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health
+	$PoisonTimer.timeout.connect(take_poison_damage)
 	
 
 func _physics_process(delta: float) -> void:
@@ -55,6 +59,9 @@ func _physics_process(delta: float) -> void:
 	handle_animation(picked_variation)
 	if jump_timer > jump_cooldown + picked_variation:
 		jump_toward_player(picked_variation)
+		pass
+	
+	if is_poisoned:
 		pass
 	
 	move_and_slide()
@@ -122,7 +129,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
-func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float) -> void:
+func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_poison_damage : bool = false) -> void:
+	if is_poisoning:
+		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
+		
 	health -= incoming_damage
 	$HitParticles.emitting = true
 	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
@@ -133,7 +143,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		velocity = knockback_direction * knockback * speed
 		$AnimatedSprite2D.play("take_damage")
 		flash_white()
-		if jump_timer > 0.8:
+		if jump_timer > 0.8 and not is_poison_damage:
 			jump_timer -= 0.8
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
@@ -163,3 +173,15 @@ func _on_collision_area_body_entered(body: Node2D) -> void:
 	if is_knocked_back and body.name != "Player":
 		velocity = Vector2.ZERO
 		take_damage(1, body.global_position.direction_to(global_position), 0)
+		
+func start_poison(damage : float, duration : float):
+	$PoisonTimer.start(1)
+	poison_damage = damage
+	poison_ticks_left = duration
+	
+func take_poison_damage():
+	if poison_ticks_left > 0:
+		take_damage(poison_damage, Vector2.ZERO, 0, false, true)
+		poison_ticks_left -= 1
+	else:
+		$PoisonTimer.stop()

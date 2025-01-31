@@ -14,6 +14,7 @@ func _ready() -> void:
 	look_at(position + direction)
 	$ArrowHitbox.damage = damage
 	$ArrowHitbox.max_hits = 1
+	$ArrowHitbox.is_player_hitbox = true
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:

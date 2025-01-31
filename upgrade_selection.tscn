@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=9 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ciho8pk2tuvkh" path="res://hammer_item.tscn" id="6_7yuek"]
 [ext_resource type="PackedScene" uid="uid://cjhxg55qrxdxt" path="res://hermes_boots.tscn" id="6_020fo"]
 [ext_resource type="PackedScene" uid="uid://8tcv6kxjey6" path="res://palladin_hammer.tscn" id="7_rcvbd"]
+[ext_resource type="PackedScene" uid="uid://omx45ixioac0" path="res://poison_vial.tscn" id="8_o8cyp"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -68,4 +69,6 @@ layout_mode = 2
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
 layout_mode = 2
-speed = 0.005
+
+[node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
+layout_mode = 2

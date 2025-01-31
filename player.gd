@@ -31,6 +31,7 @@ func _ready() -> void:
 	$GameTimer.wait_time = max_time
 	#check this bitch
 	$AttackRangePointer/PlayerHitbox.damage = attack_damage
+	$AttackRangePointer/PlayerHitbox.is_player_hitbox = true
 	PlayerState.after_class_chosen.connect(set_class)
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 
@@ -125,7 +126,7 @@ func handle_movement() -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, base_speed)
 			
-func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float) -> void:
+func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, is_poisoning : bool) -> void:
 	if not is_invincible:
 		PlayerState.health -= damage
 		is_invincible = true

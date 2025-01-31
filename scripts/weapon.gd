@@ -19,7 +19,7 @@ func attack(attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vect
 	if not is_attacking:
 		weapon_type.pierce = pierce
 		weapon_type.projectiles = projectiles + PlayerState.projectiles
-		weapon_type.attack(damage, attack_position, direction)
+		weapon_type.attack(damage, attack_position, direction, PlayerState.has_poison_attacks)
 
 
 func _on_bow_attack_started() -> void:

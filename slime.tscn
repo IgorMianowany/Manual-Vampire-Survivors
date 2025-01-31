@@ -245,8 +245,6 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
 speed = 0.0
-jump_cooldown = 100000.0
-max_health = 11.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -328,6 +326,9 @@ color = Color(0.392157, 0.701961, 0.729412, 1)
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(0, -11)
+
+[node name="PoisonTimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

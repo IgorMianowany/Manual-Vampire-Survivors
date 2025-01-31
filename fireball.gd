@@ -14,6 +14,7 @@ func _ready() -> void:
 	look_at(position + direction)
 	$FireballHitbox.damage = damage
 	$FireballHitbox.max_hits = 0
+	$FireballHitbox.is_player_hitbox = true
 	$FireballExplosionRadius.monitoring = false
 	$Timer.start(lifetime)
 
