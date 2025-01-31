@@ -8,7 +8,7 @@ var timer : Timer
 @export var hitbox : Hitbox
 @export var hitboxShape : CollisionShape2D
 
-func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, is_poisoning : bool = false) -> void:
+func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	attack_started.emit()
 	# timeout to account for attack starting with delay, animation specific
 	await(get_tree().create_timer(0.15).timeout)

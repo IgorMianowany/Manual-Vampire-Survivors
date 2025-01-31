@@ -20,7 +20,6 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 		
 	if owner.name.contains("Slime") and hitbox.owner.name.contains("Slime"):
 		return
-	print(PlayerState.has_poison_attacks)
 	if owner.has_method("take_damage"):
 		if hitbox.owner.name == "Player":
 			owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks)

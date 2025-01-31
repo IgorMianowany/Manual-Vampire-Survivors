@@ -26,6 +26,7 @@ var debug_value : int = 0
 signal level_up
 signal after_level_up
 signal after_class_chosen
+@warning_ignore("unused_signal")
 signal add_palladin_hammer
 	
 func add_exp(exp_amount : int) -> void:

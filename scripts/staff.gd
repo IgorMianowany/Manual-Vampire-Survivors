@@ -6,7 +6,7 @@ extends WeaponType
 var fireball_scene := preload("res://fireball.tscn")
 var rotation_change := 0
 
-func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, is_poisoning : bool = false) -> void:
+func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	attack_started.emit()
 	for index in projectiles:
 		var existing_direction = direction

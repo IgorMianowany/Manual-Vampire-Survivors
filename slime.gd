@@ -174,9 +174,11 @@ func _on_collision_area_body_entered(body: Node2D) -> void:
 		velocity = Vector2.ZERO
 		take_damage(1, body.global_position.direction_to(global_position), 0)
 		
-func start_poison(damage : float, duration : float):
-	$PoisonTimer.start(1)
-	poison_damage = damage
+func start_poison(new_damage : float, duration : float):
+	if poison_damage != new_damage:
+		poison_damage = new_damage
+		$PoisonTimer.start(1)
+	
 	poison_ticks_left = duration
 	
 func take_poison_damage():
