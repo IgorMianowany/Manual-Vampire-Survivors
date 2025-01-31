@@ -17,7 +17,10 @@ var has_poison_attacks : bool = false
 var poison_damage : float = 0
 var poison_duration : float = 0
 var knockback_bonus : float = 0
+var max_mana : float = 10
+var mana_regen_blocked : bool = false
 @onready var health : float = max_health
+@onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
 
@@ -28,6 +31,10 @@ signal after_level_up
 signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
+
+func _process(delta: float) -> void:
+	if mana < max_mana and not mana_regen_blocked:
+		mana += 0.05
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount

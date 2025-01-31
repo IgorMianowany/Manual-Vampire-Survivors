@@ -15,6 +15,9 @@ func _process(delta: float) -> void:
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
 	$CanvasLayer/HealthForDebug.text = str(PlayerState.health) + "/" + str(PlayerState.max_health)
 	$CanvasLayer/FPS.text = "FPS: %s" % [Engine.get_frames_per_second()]
+	$CanvasLayer/Manabar.visible = PlayerState.chosen_class == 2
+	$CanvasLayer/Manabar.value = PlayerState.mana
+	$CanvasLayer/Manabar.max_value = PlayerState.max_mana
 	
 	
 
