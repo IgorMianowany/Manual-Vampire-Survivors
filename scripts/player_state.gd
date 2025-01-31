@@ -34,7 +34,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 0
+		experience_threshold += 10
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")

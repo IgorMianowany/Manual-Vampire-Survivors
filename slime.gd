@@ -130,7 +130,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
-func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_poison_damage : bool = false) -> void:
+func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false) -> void:
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
 		
@@ -144,7 +144,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		velocity = knockback_direction * knockback * speed
 		$AnimatedSprite2D.play("take_damage")
 		flash_white()
-		if jump_timer > 0.8 and not is_poison_damage:
+		if jump_timer > 0.8 and not is_poisoning:
 			jump_timer -= 0.8
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
@@ -181,14 +181,13 @@ func start_poison(new_damage : float, duration : float):
 	#otherwise we just extend the existing 
 	#maybe change to > instead of != ?
 	if poison_damage != new_damage:
-		poison_damage = 0
+		poison_damage = new_damage
 		$PoisonTimer.start(1)
-	
 	poison_ticks_left = duration
 	
 func take_poison_damage():
 	if poison_ticks_left > 0:
-		take_damage(poison_damage, Vector2.ZERO, 0, false, true)
+		take_damage(poison_damage, Vector2.ZERO, 0, false)
 		poison_ticks_left -= 1
 	else:
 		is_poisoned = false

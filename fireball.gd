@@ -51,4 +51,4 @@ func animate_explosion():
 
 func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
 	if area.get_parent().has_method("take_damage"):
-		area.get_parent().take_damage(damage, global_position.direction_to(area.global_position), 2)
+		area.get_parent().take_damage(damage, global_position.direction_to(area.global_position), 2, PlayerState.has_poison_attacks)
