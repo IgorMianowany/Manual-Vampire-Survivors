@@ -60,9 +60,10 @@ func _physics_process(delta: float) -> void:
 	if jump_timer > jump_cooldown + picked_variation:
 		jump_toward_player(picked_variation)
 		pass
-	
 	if is_poisoned:
-		pass
+		$AnimatedSprite2D.modulate = "d800da"
+	else:
+		$AnimatedSprite2D.modulate =  "ffffff"
 	
 	move_and_slide()
 
@@ -175,8 +176,12 @@ func _on_collision_area_body_entered(body: Node2D) -> void:
 		take_damage(1, body.global_position.direction_to(global_position), 0)
 		
 func start_poison(new_damage : float, duration : float):
+	is_poisoned = true
+	#if there is new poison effect we overwrite the damage,
+	#otherwise we just extend the existing 
+	#maybe change to > instead of != ?
 	if poison_damage != new_damage:
-		poison_damage = new_damage
+		poison_damage = 0
 		$PoisonTimer.start(1)
 	
 	poison_ticks_left = duration
@@ -186,4 +191,5 @@ func take_poison_damage():
 		take_damage(poison_damage, Vector2.ZERO, 0, false, true)
 		poison_ticks_left -= 1
 	else:
+		is_poisoned = false
 		$PoisonTimer.stop()
