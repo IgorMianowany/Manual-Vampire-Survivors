@@ -66,18 +66,21 @@ layout_mode = 2
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
 visible = false
 layout_mode = 2
+upgrade_name = null
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
 visible = false
 layout_mode = 2
+upgrade_name = null
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
 visible = false
 layout_mode = 2
+upgrade_name = null
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
 layout_mode = 2
+upgrade_name = null
 
 [node name="ProjectileUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
 layout_mode = 2
-upgrade = 2

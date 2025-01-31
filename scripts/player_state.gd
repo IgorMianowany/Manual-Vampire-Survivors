@@ -5,6 +5,7 @@ var experience : int = 0
 var experience_threshold : int = 1
 var level : int = 0
 var projectiles : int = 0
+var pierce : int = 0
 var attack_speed : float = .5
 var attack_damage : float = 5
 var movespeed_bonus : float = 0

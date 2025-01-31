@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
 	$FireballHitbox.damage = damage
-	$FireballHitbox.max_hits = 0
+	$FireballHitbox.max_hits = pierce
 	$FireballHitbox.is_player_hitbox = true
 	$FireballExplosionRadius.monitoring = false
 	$Timer.start(lifetime)
@@ -28,13 +28,14 @@ func _on_timer_timeout() -> void:
 @warning_ignore("unused_parameter")
 func _on_fireball_impact_detector_area_entered(area: Area2D) -> void:
 	if area.name != $FireballImpactDetector.name:
+		print($Fireball)
 		if $FireballHitbox.hits >= $FireballHitbox.max_hits - 1:
 			animate_explosion()
 
 
 func _on_fireball_impact_detector_body_entered(body: Node2D) -> void:
 	if body.name != $FireballImpactDetector.name:
-		animate_explosion()
+		animate_explosion()	
 	
 func animate_explosion():
 	$FireballExplosionRadius.monitoring = true
