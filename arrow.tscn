@@ -30,7 +30,7 @@ shape = SubResource("CircleShape2D_fkxp7")
 debug_color = Color(1, 0, 0.0588235, 0.419608)
 
 [node name="ArrowImpactDetector" type="Area2D" parent="."]
-collision_mask = 7
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArrowImpactDetector"]
 position = Vector2(4, 0)

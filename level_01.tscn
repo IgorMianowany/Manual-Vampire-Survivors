@@ -965,7 +965,7 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(517, 281)
+position = Vector2(286, 281)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
@@ -977,13 +977,13 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn9" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(1011, 244)
+position = Vector2(362, 279)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(937, 147)
+position = Vector2(326, 281)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1

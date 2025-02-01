@@ -18,7 +18,7 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 		projectile.position = attack_position + direction * 15
 		projectile.direction = new_direction
 		projectile.damage = PlayerState.attack_damage
-		projectile.pierce = pierce
+		projectile.pierce = 5  # nic nie daje :(
 		add_child(projectile)
 	await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 	attack_finished.emit()

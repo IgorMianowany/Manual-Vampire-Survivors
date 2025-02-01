@@ -13,8 +13,4 @@ var is_player_hitbox : bool = false
 func _init() -> void:
 	collision_layer = 16
 	collision_mask = 0
-
-func _process(delta: float) -> void:
-	if name == "HammerHitbox":
-		pass
 	
