@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://projectile_upgrade.gd" id="2_ryex7"]
 [ext_resource type="Texture2D" uid="uid://cgxphmbbas2j6" path="res://assets/sprites/items/projectile_upgrade_item.png" id="3_v74sn"]
 
-[node name="ProjectileUpgrade" instance=ExtResource("1_a6a58")]
+[node name="2For1Special" instance=ExtResource("1_a6a58")]
 script = ExtResource("2_ryex7")
 icon = ExtResource("3_v74sn")
 description = "Adds +1 projectile and +1 pierce to your attacks"

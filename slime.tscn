@@ -245,6 +245,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
 speed = 0.0
+max_health = 20.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
