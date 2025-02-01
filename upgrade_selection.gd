@@ -1,18 +1,18 @@
 extends Control
 
-@export var upgrades_amount : int = 3
-@onready var upgrade_container = $CanvasLayer/HBoxContainer
+@export var upgrades_amount : int = 100000
 
 func _ready() -> void:
 	var chosen_numbers : Array[int]
+	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
+	print(upgrades.size())
+	
+	filter_upgrades(upgrades)
 	# just for testing
 	##TODO remove
-	#if upgrades_amount > upgrade_container.get_children().size():
-		#upgrades_amount = upgrade_container.get_children().size()
-	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
-		
-	filter_upgrades(upgrades)
-	
+	if upgrades_amount > upgrades.size():
+		upgrades_amount = upgrades.size()
+
 	while chosen_numbers.size() < upgrades_amount:
 		var num = randi_range(0,upgrades.size()-1)
 		if not chosen_numbers.has(num):
@@ -30,7 +30,7 @@ func _input(event):
 	# yet equiped to deal with at this time, upgrades selected with button
 	var mouse_position = get_global_mouse_position()
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
-		for node in upgrade_container.get_children():
+		for node in $"CanvasLayer/HBoxContainer".get_children():
 			if node.get_global_rect().has_point(mouse_position):
 				node.apply_upgrade()
 
