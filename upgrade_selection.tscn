@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=13 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b143huq1op1cl" path="res://projectile_upgrade.tscn" id="9_jknt2"]
 [ext_resource type="PackedScene" uid="uid://bwacu6b55gvi0" path="res://zweiblader.tscn" id="10_snj1s"]
 [ext_resource type="PackedScene" uid="uid://dsw6xbr8ej3ny" path="res://bubble_shield.tscn" id="11_p5tkp"]
+[ext_resource type="PackedScene" uid="uid://cggjhn5boqpj4" path="res://hourglass.tscn" id="12_wns2d"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -86,6 +87,7 @@ layout_mode = 2
 upgrade_name = null
 
 [node name="Zweiblader" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_snj1s")]
+visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
@@ -93,3 +95,9 @@ layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
 layout_mode = 2
+
+[node name="Hourglass" parent="CanvasLayer/HBoxContainer" instance=ExtResource("12_wns2d")]
+layout_mode = 2
+projectile_slow_multiplier = 10.0
+projectile_lifetime = 10.0
+damage_buff = 10.0

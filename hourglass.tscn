@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cggjhn5boqpj4"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_cbyfc"]
+[ext_resource type="Script" path="res://hourglass.gd" id="2_ffluj"]
+[ext_resource type="Texture2D" uid="uid://bbqp5l6elp8ju" path="res://assets/sprites/items/hourglass.png" id="2_snrla"]
+
+[node name="Hourglass" instance=ExtResource("1_cbyfc")]
+script = ExtResource("2_ffluj")
+projectile_slow_multiplier = 10.0
+projectile_lifetime = 10.0
+damage_buff = 10.0
+icon = ExtResource("2_snrla")
+description = "Slows down your projectiles drastically, but increases damage and lifetime"
+upgrade = 5

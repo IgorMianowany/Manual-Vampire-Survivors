@@ -12,7 +12,6 @@ radius = 2.0
 
 [node name="Projectile" type="Node2D"]
 script = ExtResource("1_fsspm")
-speed = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10

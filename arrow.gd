@@ -1,8 +1,8 @@
 class_name Projectile
 extends Node2D
 
-@export var speed := 5
-@export var lifetime := 3
+@export var speed : float
+@export var lifetime : float
 var damage : float
 var pierce : int
 var direction := Vector2.ZERO
@@ -12,6 +12,8 @@ var direction := Vector2.ZERO
 func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
+	speed = PlayerState.projectile_speed
+	lifetime = PlayerState.projectile_lifetime
 	$ProjectileHitbox.damage = damage
 	$ProjectileHitbox.max_hits = pierce # nic nie daje
 	$ProjectileHitbox.is_player_hitbox = true
