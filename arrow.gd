@@ -3,10 +3,14 @@ extends Node2D
 
 @export var speed : float
 @export var lifetime : float
+@export var max_homing_speed : float = 0.7 
+
 var damage : float
 var pierce : int
 var direction := Vector2.ZERO
-
+var target : CharacterBody2D
+var prev_pos : Vector2
+var current_pos : Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,9 +24,18 @@ func _ready() -> void:
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
+	prev_pos = current_pos
+	current_pos = global_position
+	#print((prev_pos-current_pos).length())
+	if target != null and PlayerState.has_homing_projectiles:
+		direction += (global_position.direction_to(target.global_position)/5)
+	rotation = direction.angle()
+	direction = direction.clamp(Vector2(-max_homing_speed,-max_homing_speed), Vector2(max_homing_speed, max_homing_speed))
 	position += direction * speed * delta
 	if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
 		_on_projectile_death()
+	
+
 
 func _on_timer_timeout() -> void:
 	queue_free()
@@ -53,3 +66,9 @@ func _on_projectile_death():
 	#if body.name != $ArrowImpactDetector.name:
 		#if $ArrowHitbox.hits >= $ArrowHitbox.max_hits - 1:
 			#queue_free()
+
+
+
+func _on_homing_range_body_entered(body: Node2D) -> void:
+	if target == null:
+		target = body
