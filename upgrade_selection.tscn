@@ -23,7 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhedg")
-upgrades_amount = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -52,42 +51,33 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
-visible = false
 layout_mode = 2
 movespeed_buff = 25.0
 upgrade_name = "default name"
 
 [node name="HermesBoots" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_020fo")]
-visible = false
 layout_mode = 2
 upgrade_name = "default name"
 
 [node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
-visible = false
 layout_mode = 2
 
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
-visible = false
 layout_mode = 2
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
-visible = false
 layout_mode = 2
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
-visible = false
 layout_mode = 2
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
-visible = false
 layout_mode = 2
 
 [node name="Zweiblader" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_snj1s")]
-visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
-visible = false
 layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
