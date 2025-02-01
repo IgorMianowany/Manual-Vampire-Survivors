@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsw6xbr8ej3ny"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_7fq4c"]
+[ext_resource type="Texture2D" uid="uid://caqy1dhjq6vow" path="res://assets/sprites/items/maybe_shield-removebg-preview.png" id="2_7t4lw"]
+[ext_resource type="Script" path="res://bubble_shield.gd" id="2_rrxfb"]
+
+[node name="BubbleShield" instance=ExtResource("1_7fq4c")]
+script = ExtResource("2_rrxfb")
+nubmer_of_hits = 1.0
+cooldown = 15.0
+icon = ExtResource("2_7t4lw")
+description = "Blocks single damage instance, needs to recharge after"
+upgrade = 5

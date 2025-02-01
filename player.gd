@@ -20,6 +20,8 @@ var knockback_time : float = 0.4
 var enemies_inside_hitbox : Array[Slime]
 var max_time = 9999999
 var hammers : Array[PalladinHammerSkill]
+var bubble_ready : bool = false
+var bubble_hits : int = 0
 
 
 signal death
@@ -34,6 +36,7 @@ func _ready() -> void:
 	$AttackRangePointer/PlayerHitbox.is_player_hitbox = true
 	PlayerState.after_class_chosen.connect(set_class)
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
+	PlayerState.add_bubble_shield.connect(add_bubble_shield)
 
 func _physics_process(delta: float) -> void:
 	
@@ -60,6 +63,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = not get_tree().paused
+	
+	$BubbleShield.visible = bubble_ready
 	
 	if not is_knocked_back:
 		handle_movement()
@@ -128,15 +133,26 @@ func handle_movement() -> void:
 			
 func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, is_poisoning : bool) -> void:
 	if not is_invincible:
-		PlayerState.health -= damage
-		is_invincible = true
-		is_knocked_back = true
-		$UtilTimer.start(knockback_time)
-		velocity = knockback_direction * self_knockback_speed * incoming_knockback_power
-		await($UtilTimer.timeout)
-		is_knocked_back = false
-		if PlayerState.health <= 0:
-			death.emit()
+		if bubble_ready:
+			bubble_hits += 1
+			if bubble_hits > PlayerState.bubble_shield_max_hits:
+				$BubbleShield.play("pop")
+				await(get_tree().create_timer(.6).timeout)
+				bubble_ready = false
+				bubble_hits = 0
+				await(get_tree().create_timer(PlayerState.bubble_shield_cooldown).timeout)
+				bubble_ready = true
+				$BubbleShield.play("idle")
+		else:
+			PlayerState.health -= damage
+			is_invincible = true
+			is_knocked_back = true
+			$UtilTimer.start(knockback_time)
+			velocity = knockback_direction * self_knockback_speed * incoming_knockback_power
+			await($UtilTimer.timeout)
+			is_knocked_back = false
+			if PlayerState.health <= 0:
+				death.emit()
 	
 # this is an old attack function
 func attack() -> void:
@@ -228,4 +244,7 @@ func add_palladin_hammer():
 		hammer.add_speed(PlayerState.palladin_hammer_speed)
 		hammer.set_damage(PlayerState.palladin_hammer_damage)
 		i += 1
+		
+func add_bubble_shield():
+	bubble_ready = true
 	

@@ -20,6 +20,9 @@ var poison_duration : float = 0
 var knockback_bonus : float = 0
 var max_mana : float = 10
 var mana_regen_blocked : bool = false
+var bubble_shield_cooldown : float
+var bubble_shield_max_hits : float = 0
+var has_bubble_shield_upgrade : bool
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
@@ -32,6 +35,7 @@ signal after_level_up
 signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
+signal add_bubble_shield
 
 func _process(delta: float) -> void:
 	if mana < max_mana and not mana_regen_blocked:
