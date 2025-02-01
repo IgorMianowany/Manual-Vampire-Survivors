@@ -24,3 +24,7 @@ func apply_upgrade():
 
 func _on_button_pressed() -> void:
 	apply_upgrade()
+	
+func available() -> bool:
+	return true
+	

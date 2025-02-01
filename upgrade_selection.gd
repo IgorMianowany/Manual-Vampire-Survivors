@@ -9,6 +9,9 @@ func _ready() -> void:
 	#TODO remove
 	if upgrades_amount > upgrade_container.get_children().size():
 		upgrades_amount = upgrade_container.get_children().size()
+		
+	filter_upgrades()
+	
 	while chosen_numbers.size() < upgrades_amount:
 		var num = randi_range(0, upgrade_container.get_children().size()-1)
 		if not chosen_numbers.has(num):
@@ -36,3 +39,10 @@ func _quit():
 
 func _upgrade_selection_visible():
 	add_child($CanvasLayer)
+	
+func filter_upgrades():
+	for upgrade in $CanvasLayer/HBoxContainer.get_children():
+		if not (upgrade as UpgradeSelection).available():
+			$CanvasLayer/HBoxContainer.call_deferred("remove_child", upgrade)
+
+	

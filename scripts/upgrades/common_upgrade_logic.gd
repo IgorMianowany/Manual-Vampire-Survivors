@@ -30,3 +30,6 @@ func add_spaces_to_camel_case(input_string: String) -> String:
 		result += current_char
 	
 	return result
+
+func available() -> bool:
+	return true

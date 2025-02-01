@@ -56,7 +56,6 @@ visible = false
 layout_mode = 2
 movespeed_buff = 25.0
 upgrade_name = "default name"
-upgrade = null
 
 [node name="HermesBoots" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_020fo")]
 visible = false
@@ -70,22 +69,18 @@ layout_mode = 2
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
 visible = false
 layout_mode = 2
-upgrade_name = null
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
 visible = false
 layout_mode = 2
-upgrade_name = null
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
 visible = false
 layout_mode = 2
-upgrade_name = null
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
 visible = false
 layout_mode = 2
-upgrade_name = null
 
 [node name="Zweiblader" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_snj1s")]
 visible = false
