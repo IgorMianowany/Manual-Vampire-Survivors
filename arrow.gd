@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
 	$ArrowHitbox.damage = damage
-	$ArrowHitbox.max_hits = 3 # nic nie daje
+	$ArrowHitbox.max_hits = pierce # nic nie daje
 	$ArrowHitbox.is_player_hitbox = true
 	$Timer.start(lifetime)
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	look_at(position + direction)
 	$FireballHitbox.damage = damage
-	$FireballHitbox.max_hits = 3
+	$FireballHitbox.max_hits = pierce
 	$FireballHitbox.is_player_hitbox = true
 	$FireballExplosionRadius.monitoring = false
 	$Timer.start(lifetime)
