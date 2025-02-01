@@ -5,3 +5,5 @@
 
 [node name="Arrow" instance=ExtResource("1_3ackl")]
 script = ExtResource("2_q55te")
+speed = null
+lifetime = null

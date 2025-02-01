@@ -3,7 +3,7 @@ extends WeaponType
 var attack_time : float = .5
 var knockback_power : float = 1
 var timer : Timer
-var slash_scene := preload("res://sword_slash.tscn")
+var slash_scene := preload("res://sword_slash_new.tscn")
 var sword_projectiles : int
 @export var attack_range_pointer : Node2D
 @export var attack_shape_cast : ShapeCast2D

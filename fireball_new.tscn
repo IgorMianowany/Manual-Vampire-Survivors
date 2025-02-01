@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://r6t67mqx8k7k"]
+
+[ext_resource type="PackedScene" uid="uid://cftypuru0a5xp" path="res://projectile.tscn" id="1_jpt82"]
+[ext_resource type="Script" path="res://fireball_new.gd" id="2_13l8l"]
+[ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="3_qyfoe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg5on"]
+radius = 45.0
+
+[node name="Fireball" instance=ExtResource("1_jpt82")]
+script = ExtResource("2_13l8l")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("3_qyfoe")
+
+[node name="FireballExplosionRadius" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireballExplosionRadius" index="0"]
+shape = SubResource("CircleShape2D_dg5on")
+
+[connection signal="area_entered" from="FireballExplosionRadius" to="." method="_on_fireball_explosion_radius_area_entered"]

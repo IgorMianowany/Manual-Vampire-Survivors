@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://sehhjrucul86"]
+
+[ext_resource type="PackedScene" uid="uid://cftypuru0a5xp" path="res://projectile.tscn" id="1_jcuip"]
+[ext_resource type="Texture2D" uid="uid://cmhf57dthbrmr" path="res://assets/sprites/projectiles/sword_slash.png" id="2_2w1e1"]
+
+[node name="SwordSlash" instance=ExtResource("1_jcuip")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2w1e1")

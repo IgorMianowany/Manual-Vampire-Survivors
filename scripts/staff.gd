@@ -1,7 +1,7 @@
 class_name Staff
 extends WeaponType
 
-var fireball_scene := preload("res://fireball.tscn")
+var fireball_scene := preload("res://fireball_new.tscn")
 
 var mana_regen_cooldown : float = 2
 var mana_regen_timer : Timer

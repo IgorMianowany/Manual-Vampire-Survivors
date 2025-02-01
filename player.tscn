@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=73 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -66,7 +66,6 @@
 [ext_resource type="Texture2D" uid="uid://beqyip8q472lt" path="res://assets/sprites/bows/bow_01 - Copy.png" id="56_7oyge"]
 [ext_resource type="Script" path="res://scripts/staff.gd" id="57_gw1fk"]
 [ext_resource type="Texture2D" uid="uid://i1okm6c3sylv" path="res://assets/sprites/characters/wand_fire.png" id="58_ojugi"]
-[ext_resource type="Texture2D" uid="uid://d3asuo0wc1qvr" path="res://assets/sprites/items/bubble.png" id="60_cpqph"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6lt3n"]
 animations = [{
@@ -353,13 +352,6 @@ scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_6lt3n")
 animation = &"pop"
 speed_scale = 2.0
-
-[node name="BubbleShield3" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.423529)
-z_index = 2
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("60_cpqph")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.42857, 5.35714)

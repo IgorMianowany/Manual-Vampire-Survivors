@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cftypuru0a5xp"]
+
+[ext_resource type="Script" path="res://arrow.gd" id="1_fsspm"]
+[ext_resource type="Texture2D" uid="uid://c6goqw1al4bow" path="res://assets/sprites/projectiles/arrow.png" id="2_aydl7"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_wdrrb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
+radius = 2.0
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_fsspm")
+speed = 300
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(0.05, 0.1)
+texture = ExtResource("2_aydl7")
+
+[node name="ProjectileHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_wdrrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitbox"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_fkxp7")
+debug_color = Color(1, 0, 0.0588235, 0.419608)
+
+[node name="ProjectileImpactDetector" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileImpactDetector"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_8vmqc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_area_entered"]
+[connection signal="body_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_body_entered"]
+[connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_arrow_impact_detector_area_entered"]
+[connection signal="body_entered" from="ProjectileImpactDetector" to="." method="_on_arrow_impact_detector_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
