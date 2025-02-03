@@ -1,6 +1,6 @@
 extends Node
 
-func display_number(value : int, position : Vector2, is_critical = false):
+func display_number(value : int, position : Vector2, is_critical : bool = false):
 	var number = Label.new()
 	number.global_position = position
 	number.text = str(value)

@@ -130,13 +130,13 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
-func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false) -> void:
+func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false) -> void:
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
 		
 	health -= incoming_damage
 	$HitParticles.emitting = true
-	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position)
+	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
 	$HitParticles.set_direction(knockback_direction)
 	
 	if health > 0:

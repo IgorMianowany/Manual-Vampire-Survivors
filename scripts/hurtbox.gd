@@ -20,12 +20,14 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 		
 	if owner.name.contains("Slime") and hitbox.owner.name.contains("Slime"):
 		return
+		
 	if owner.has_method("take_damage"):
+		var is_crit = hitbox.is_crit()
 		if hitbox.owner.name == "Player":
-			owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks)
+			owner.take_damage(hitbox.damage + hitbox.damage * hitbox.crit_multi * int(is_crit), hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 		elif hitbox.owner.get_parent().get_parent().get_parent().name == "Player":
 			if hitbox.hits < hitbox.max_hits:
 				hitbox.hits += 1
-				owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks)
+				owner.take_damage(hitbox.damage + hitbox.damage * hitbox.crit_multi * int(is_crit), hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 		elif owner.name == "Player" or hitbox.get_parent().get_parent().get_parent().name == "Player":
-					owner.take_damage(hitbox.damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks)
+					owner.take_damage(hitbox.damage + hitbox.damage * hitbox.crit_multi * int(is_crit), hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
