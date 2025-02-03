@@ -131,7 +131,7 @@ func handle_movement() -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, base_speed)
 			
-func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, is_poisoning : bool) -> void:
+func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, is_poisoning : bool, is_crit : bool) -> void:
 	if not is_invincible:
 		if bubble_ready:
 			bubble_hits += 1

@@ -291,6 +291,7 @@ debug_color = Color(0.968809, 0, 0.465463, 0.42)
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("46_qr50n")
+crit_chance = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitbox" groups=["Areas"]]
 position = Vector2(0, -1)
