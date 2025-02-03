@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=17 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b5bosl0vgl62b" path="res://smart_projectiles.tscn" id="13_m6boy"]
 [ext_resource type="PackedScene" uid="uid://csbfw7bpwbv86" path="res://health_upgrade.tscn" id="14_muqqc"]
 [ext_resource type="PackedScene" uid="uid://bab8uktkyauac" path="res://spinach.tscn" id="15_g6ojm"]
+[ext_resource type="PackedScene" uid="uid://djw58l8xi8ty5" path="res://true_strike.tscn" id="16_myvcs"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -88,6 +89,7 @@ visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
+visible = false
 layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
@@ -99,10 +101,15 @@ visible = false
 layout_mode = 2
 
 [node name="SmartProjectiles" parent="CanvasLayer/HBoxContainer" instance=ExtResource("13_m6boy")]
+visible = false
 layout_mode = 2
 
 [node name="HealthUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("14_muqqc")]
+visible = false
 layout_mode = 2
 
 [node name="Spinach" parent="CanvasLayer/HBoxContainer" instance=ExtResource("15_g6ojm")]
+layout_mode = 2
+
+[node name="TrueStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("16_myvcs")]
 layout_mode = 2

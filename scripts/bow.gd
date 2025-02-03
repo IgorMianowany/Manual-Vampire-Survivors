@@ -19,6 +19,7 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 		projectile.direction = new_direction
 		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce
+		print(crit_chance)
 		projectile.crit_chance = crit_chance
 		projectile.crit_multi = crit_multi
 		add_child(projectile)

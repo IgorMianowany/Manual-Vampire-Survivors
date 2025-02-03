@@ -26,6 +26,7 @@ var bubble_shield_cooldown : float
 var bubble_shield_max_hits : float = 0
 var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
+var critical_strike_bonus : float = 0
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
