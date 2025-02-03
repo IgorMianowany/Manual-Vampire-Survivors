@@ -17,7 +17,7 @@ func _ready() -> void:
 	mana_regen_timer.one_shot = true
 
 
-func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
+func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
 	if PlayerState.mana >= mana_cost:
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
@@ -36,6 +36,8 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 			projectile.direction = new_direction
 			projectile.damage = PlayerState.attack_damage
 			projectile.pierce = pierce
+			projectile.crit_chance = crit_chance
+			projectile.crit_multi = crit_multi
 			add_child(projectile)
 		await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 		attack_finished.emit()

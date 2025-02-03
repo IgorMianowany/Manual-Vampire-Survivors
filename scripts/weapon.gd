@@ -4,6 +4,8 @@ extends Node2D
 @export var weapon_type : WeaponType
 @export var damage : float
 @export var pierce : int = 1
+@export var crit_chance : float = 0.1
+@export var crit_multi : float = 1
 @export var projectiles : int = 1
 var is_attacking = false
 
@@ -11,7 +13,8 @@ var is_attacking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Sword.crit_chance = crit_chance
+	$Sword.crit_multi = crit_multi
 
 	
 
@@ -19,7 +22,7 @@ func attack(attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vect
 	if not is_attacking:
 		weapon_type.pierce = pierce + PlayerState.pierce
 		weapon_type.projectiles = projectiles + PlayerState.projectiles
-		weapon_type.attack(damage, attack_position, direction)
+		weapon_type.attack(damage, attack_position, direction, crit_chance, crit_multi)
 
 
 func _on_bow_attack_started() -> void:

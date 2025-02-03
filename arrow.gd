@@ -11,6 +11,8 @@ var direction := Vector2.ZERO
 var target : CharacterBody2D
 var prev_pos : Vector2
 var current_pos : Vector2 = Vector2.ZERO
+var crit_chance : float
+var crit_multi : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +23,8 @@ func _ready() -> void:
 	$ProjectileHitbox.damage = damage
 	$ProjectileHitbox.max_hits = pierce # nic nie daje
 	$ProjectileHitbox.is_player_hitbox = true
+	$ProjectileHitbox.crit_chance = crit_chance
+	$ProjectileHitbox.crit_multi = crit_multi
 	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:

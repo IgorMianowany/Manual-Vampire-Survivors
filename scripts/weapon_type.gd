@@ -13,5 +13,5 @@ signal attack_started
 signal attack_finished
 
 @warning_ignore("unused_parameter")
-func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
+func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
 	print("default weapon type attack")
