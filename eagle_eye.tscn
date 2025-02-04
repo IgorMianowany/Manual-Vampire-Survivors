@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2bt15826q1d0"]
+
+[ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_5ep2m"]
+[ext_resource type="Script" path="res://eagle_eye.gd" id="2_0fqcb"]
+[ext_resource type="Texture2D" uid="uid://ckrv5qr4i5mdw" path="res://assets/sprites/items/eagle_eye.png" id="3_1bk0b"]
+
+[node name="EagleEye" instance=ExtResource("1_5ep2m")]
+script = ExtResource("2_0fqcb")
+view_distance_bonus = 0.2
+critical_chance_bonus = 0.1
+icon = ExtResource("3_1bk0b")
+description = "Increases view distance, adds 10% crit chance"
+upgrade = 5

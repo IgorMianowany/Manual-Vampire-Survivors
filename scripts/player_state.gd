@@ -28,6 +28,7 @@ var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
 var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
+var view_distance_bonus : float = 0
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 

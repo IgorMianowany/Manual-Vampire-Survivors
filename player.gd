@@ -22,6 +22,7 @@ var max_time = 9999999
 var hammers : Array[PalladinHammerSkill]
 var bubble_ready : bool = false
 var bubble_hits : int = 0
+var base_view_distance : float = 3
 
 
 signal death
@@ -39,7 +40,9 @@ func _ready() -> void:
 	PlayerState.add_bubble_shield.connect(add_bubble_shield)
 
 func _physics_process(delta: float) -> void:
-	
+	var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
+	$Camera2D.zoom = zoom_bonus
+	print(zoom_bonus)
 	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
