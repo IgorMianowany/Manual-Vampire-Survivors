@@ -41,14 +41,17 @@ func _upgrade_selection_visible():
 	add_child($CanvasLayer)
 	
 func filter_upgrades(upgrades : Array[Node]):
+	var upgrades_filtered = upgrades.duplicate()
 	for upgrade in upgrades:
 		if not (upgrade as UpgradeSelection).available():
 			#this monstrosity is because for some reason just removing the node
 			#from array is not enough and it's still being shown on screen,
 			#despite not being inside the array, so you cant even click it.
+			upgrades_filtered.erase(upgrade)
 			upgrade.visible = false
-			print(upgrade.name)
-			upgrades.remove_at(upgrades.rfind(upgrade))
+	upgrades = upgrades_filtered
+	
+	
 
 
 	
