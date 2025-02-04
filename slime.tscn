@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=53 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -238,6 +238,9 @@ radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j72rr"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rv8ia"]
+radius = 50.0
+
 [node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
 z_index = 1
 y_sort_enabled = true
@@ -245,7 +248,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
 speed = 0.0
-max_health = 1.0
+max_health = 1000.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -330,6 +333,11 @@ position = Vector2(0, -11)
 
 [node name="PoisonTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_rv8ia")
+target_position = Vector2(0, 0)
+collision_mask = 4
 
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

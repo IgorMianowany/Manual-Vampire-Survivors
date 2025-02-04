@@ -941,7 +941,7 @@ tile_map_data = PackedByteArray("AAAOAAEAAAABAAQAAAAOAAIAAAABAAUAAAAOAAMAAAABAAY
 tile_set = SubResource("TileSet_ew6s5")
 
 [node name="Player" parent="LayerHolder" instance=ExtResource("26_ij30w")]
-position = Vector2(181, 284)
+position = Vector2(-240, 361)
 
 [node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_bpjw7")]
 position = Vector2(240, 284)
@@ -959,7 +959,7 @@ tile_set = SubResource("TileSet_x7ptb")
 
 [node name="EnemySpawn" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
-position = Vector2(248, 280)
+position = Vector2(-178, 311)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
@@ -977,7 +977,7 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn9" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(362, 279)
+position = Vector2(-149, 282)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
@@ -996,7 +996,7 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn14" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(286, 250)
+position = Vector2(-190, 444)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
@@ -1008,14 +1008,14 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn16" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(326, 250)
+position = Vector2(-185, 253)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn17" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
-position = Vector2(250, 220)
+position = Vector2(-142, 340)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
@@ -1027,7 +1027,7 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn19" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(364, 219)
+position = Vector2(-147, 222)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1

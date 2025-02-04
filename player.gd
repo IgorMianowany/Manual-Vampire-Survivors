@@ -45,7 +45,6 @@ func _physics_process(delta: float) -> void:
 	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
-	get_elapsed_time()
 	if is_invincible:
 		invincibility_timer += delta
 		invincibility_animation_counter += 1

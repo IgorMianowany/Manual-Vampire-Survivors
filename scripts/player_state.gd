@@ -28,6 +28,13 @@ var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
 var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
+var has_chain_lightning : bool = true
+var chain_lightning_range : float = 50
+var chain_lightning_damage : float = 0
+var chain_lightning_max_hits : int = 2
+var chain_lightning_current_hits : int = 0
+var chain_lightning_cooldown : float = 3
+var enemies_hit_by_chain_lightning : Array[Slime]
 var view_distance_bonus : float = 0
 @onready var health : float = max_health
 @onready var mana : float = max_mana
@@ -77,3 +84,15 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 func choose_class(class_number : int):
 	chosen_class = class_number
 	after_class_chosen.emit()
+	
+func clear_enemies_chain_lightning():
+	for enemy in enemies_hit_by_chain_lightning:
+		enemy.already_hit_by_chain_lightning = false
+	enemies_hit_by_chain_lightning.clear()
+	has_chain_lightning = false
+	print("cleared enemies")
+	await(get_tree().create_timer(chain_lightning_cooldown).timeout)
+	print("chain lightningr ready again")
+	has_chain_lightning = true
+	
+	

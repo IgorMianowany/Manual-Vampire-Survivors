@@ -27,6 +27,7 @@ var is_knocked_back : bool = false
 var is_poisoned : bool = false
 var poison_damage : float = 0
 var poison_ticks_left : float = 0
+var already_hit_by_chain_lightning : bool = false
 
 @onready var start_pos : Vector2 = position
 
@@ -133,6 +134,27 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false) -> void:
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
+	
+	if PlayerState.has_chain_lightning and not already_hit_by_chain_lightning:
+		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
+		already_hit_by_chain_lightning = true
+		PlayerState.enemies_hit_by_chain_lightning.append(self)
+		# shape cast only finds the closest enemy so no point in iterating over them
+		for index in $ChainLightningShapeCast.get_collision_count():
+			var enemy = $ChainLightningShapeCast.get_collider(index)
+			if enemy != null and not enemy.already_hit_by_chain_lightning:
+				if PlayerState.chain_lightning_current_hits < PlayerState.chain_lightning_max_hits:
+					PlayerState.chain_lightning_current_hits += 1
+					enemy.take_damage(incoming_damage, knockback_direction, 0, false, is_crit)
+					print(PlayerState.chain_lightning_current_hits)
+				else:
+					PlayerState.chain_lightning_current_hits = 0
+					PlayerState.clear_enemies_chain_lightning()
+				pass
+
+		
+		#for index in $ChainLightningShapeCast.get_collision_count():
+			#var enemy = $ChainLightningShapeCast.get_collider(index)
 		
 	health -= incoming_damage
 	$HitParticles.emitting = true
