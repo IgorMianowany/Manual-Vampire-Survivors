@@ -31,6 +31,6 @@ func _on_projectile_death():
 
 func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
 	var is_crit = $ProjectileHitbox.is_crit()
-	var damage = damage + damage * $ProjectileHitbox.crit_multi * int(is_crit)
+	var damage = damage + damage * ($ProjectileHitbox.crit_multi + PlayerState.critical_strike_damage_bonus) * int(is_crit)
 	if area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(damage, global_position.direction_to(area.global_position), 2, PlayerState.has_poison_attacks, is_crit)

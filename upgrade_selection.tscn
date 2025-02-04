@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=18 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://csbfw7bpwbv86" path="res://health_upgrade.tscn" id="14_muqqc"]
 [ext_resource type="PackedScene" uid="uid://bab8uktkyauac" path="res://spinach.tscn" id="15_g6ojm"]
 [ext_resource type="PackedScene" uid="uid://djw58l8xi8ty5" path="res://true_strike.tscn" id="16_myvcs"]
+[ext_resource type="PackedScene" uid="uid://bt2qjgy0mvke5" path="res://infinity_edge.tscn" id="17_4ovjs"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -54,7 +55,6 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
-visible = false
 layout_mode = 2
 movespeed_buff = 25.0
 upgrade_name = "default name"
@@ -112,4 +112,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TrueStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("16_myvcs")]
+layout_mode = 2
+
+[node name="InfinityEdge" parent="CanvasLayer/HBoxContainer" instance=ExtResource("17_4ovjs")]
 layout_mode = 2

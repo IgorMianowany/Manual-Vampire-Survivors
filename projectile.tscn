@@ -50,8 +50,8 @@ shape = SubResource("CircleShape2D_nrt6g")
 
 [connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_area_entered"]
 [connection signal="body_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_body_entered"]
-[connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_arrow_impact_detector_area_entered"]
-[connection signal="body_entered" from="ProjectileImpactDetector" to="." method="_on_arrow_impact_detector_body_entered"]
+[connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_area_entered"]
+[connection signal="body_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HomingRange" to="." method="_on_homing_range_area_entered"]
 [connection signal="body_entered" from="HomingRange" to="." method="_on_homing_range_body_entered"]

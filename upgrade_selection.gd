@@ -5,7 +5,6 @@ extends Control
 func _ready() -> void:
 	var chosen_numbers : Array[int]
 	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
-	print(upgrades.size())
 	
 	filter_upgrades(upgrades)
 	# just for testing
@@ -48,6 +47,7 @@ func filter_upgrades(upgrades : Array[Node]):
 			#from array is not enough and it's still being shown on screen,
 			#despite not being inside the array, so you cant even click it.
 			upgrade.visible = false
+			print(upgrade.name)
 			upgrades.remove_at(upgrades.rfind(upgrade))
 
 
