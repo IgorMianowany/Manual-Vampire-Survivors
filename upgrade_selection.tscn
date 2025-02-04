@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=20 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://djw58l8xi8ty5" path="res://true_strike.tscn" id="16_myvcs"]
 [ext_resource type="PackedScene" uid="uid://bt2qjgy0mvke5" path="res://infinity_edge.tscn" id="17_4ovjs"]
 [ext_resource type="PackedScene" uid="uid://c2bt15826q1d0" path="res://eagle_eye.tscn" id="18_52rs8"]
+[ext_resource type="PackedScene" uid="uid://bcm3licylrk78" path="res://muscular_forearm.tscn" id="19_sclkq"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -115,6 +116,7 @@ visible = false
 layout_mode = 2
 
 [node name="TrueStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("16_myvcs")]
+visible = false
 layout_mode = 2
 
 [node name="InfinityEdge" parent="CanvasLayer/HBoxContainer" instance=ExtResource("17_4ovjs")]
@@ -122,5 +124,6 @@ layout_mode = 2
 
 [node name="EagleEye" parent="CanvasLayer/HBoxContainer" instance=ExtResource("18_52rs8")]
 layout_mode = 2
-view_distance_bonus = 0.2
-critical_chance_bonus = 0.1
+
+[node name="MuscularForearm" parent="CanvasLayer/HBoxContainer" instance=ExtResource("19_sclkq")]
+layout_mode = 2

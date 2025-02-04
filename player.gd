@@ -41,8 +41,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
-	$Camera2D.zoom = zoom_bonus
-	print(zoom_bonus)
+	$Camera2D.zoom = zoom_bonus.clamp(Vector2(1,1), Vector2(5,5))
 	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
