@@ -145,30 +145,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	$HitParticles.set_direction(knockback_direction)
 	
 	if PlayerState.chain_lightning_ready:
-		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
-		# to niżej musi być poza ifem jakoś
-		PlayerState.start_chain_lightning_timer()
-		if not PlayerState.enemies_hit_by_chain_lightning.has(self):
-			if PlayerState.enemies_hit_by_chain_lightning.size() -- 0:
-				PlayerState.first_enemy_hit_name = name
-			PlayerState.enemies_hit_by_chain_lightning.append(self)
-		else:
-			pass
-		for index in $ChainLightningShapeCast.get_collision_count():
-			var enemy = $ChainLightningShapeCast.get_collider(index)
-			if enemy != null and not PlayerState.enemies_hit_by_chain_lightning.has(enemy):
-				if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
-					$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
-					await(get_tree().create_timer(.1).timeout)
-					enemy.take_damage(PlayerState.chain_lightning_damage, knockback_direction, 0, false, is_crit)
-					pass
-				else:
-					PlayerState.chain_lightning_current_hits = 0
-					PlayerState.clear_enemies_chain_lightning()
-			# kiedy nie ma wystarczająco przeciwników tez ma działać
-			pass
-		if PlayerState.first_enemy_hit_name == name:
-			PlayerState.clear_enemies_chain_lightning()
+		handle_chain_lightning_logic()
 			
 	if health > 0:
 		is_knocked_back = true
@@ -223,3 +200,31 @@ func take_poison_damage():
 	else:
 		is_poisoned = false
 		$PoisonTimer.stop()
+		
+func handle_chain_lightning_logic():
+	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
+	# to niżej musi być poza ifem jakoś
+	PlayerState.start_chain_lightning_timer()
+	if not PlayerState.enemies_hit_by_chain_lightning.has(self):
+		if PlayerState.enemies_hit_by_chain_lightning.size() -- 0:
+			PlayerState.first_enemy_hit_name = name
+		PlayerState.enemies_hit_by_chain_lightning.append(self)
+	else:
+				pass
+	for index in $ChainLightningShapeCast.get_collision_count():
+		if index >= $ChainLightningShapeCast.get_collision_count():
+			continue
+		var enemy = $ChainLightningShapeCast.get_collider(index)
+		if enemy != null and not PlayerState.enemies_hit_by_chain_lightning.has(enemy):
+			if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
+				$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
+				await(get_tree().create_timer(.1).timeout)
+				enemy.take_damage(PlayerState.chain_lightning_damage, Vector2.ZERO, 0, false, false)
+				pass
+			else:
+				PlayerState.chain_lightning_current_hits = 0
+				PlayerState.clear_enemies_chain_lightning()
+		# kiedy nie ma wystarczasjąco przeciwników tez ma działać
+		pass
+	if PlayerState.first_enemy_hit_name == name:
+		PlayerState.clear_enemies_chain_lightning()

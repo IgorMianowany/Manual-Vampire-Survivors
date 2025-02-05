@@ -82,6 +82,7 @@ text = "60
 "
 
 [node name="HasChainLightning" type="Label" parent="CanvasLayer"]
+visible = false
 offset_left = 1075.0
 offset_top = 19.0
 offset_right = 1115.0

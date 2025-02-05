@@ -78,7 +78,7 @@ position = Vector2(53, 0)
 scale = Vector2(1, 0.8)
 sprite_frames = SubResource("SpriteFrames_y166o")
 animation = &"animate"
-speed_scale = 5.0
+speed_scale = 4.0
 
 [node name="TestLightning" type="Sprite2D" parent="Lightning"]
 visible = false
