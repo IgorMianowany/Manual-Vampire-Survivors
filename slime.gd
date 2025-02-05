@@ -28,6 +28,7 @@ var is_poisoned : bool = false
 var poison_damage : float = 0
 var poison_ticks_left : float = 0
 var already_hit_by_chain_lightning : bool = false
+var is_first_hit_by_chain_lightning : bool = false
 
 @onready var start_pos : Vector2 = position
 
@@ -143,12 +144,17 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
 	$HitParticles.set_direction(knockback_direction)
 	
-		
-	if PlayerState.chain_lightning_ready and not PlayerState.enemies_hit_by_chain_lightning.has(self):
+	if PlayerState.chain_lightning_ready:
+		print(name)
 		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
-		#already_hit_by_chain_lightning = true
-		PlayerState.enemies_hit_by_chain_lightning.append(self)
-		
+		# to niżej musi być poza ifem jakoś
+		PlayerState.start_chain_lightning_timer()
+		if not PlayerState.enemies_hit_by_chain_lightning.has(self):
+			if PlayerState.enemies_hit_by_chain_lightning.size() -- 0:
+				PlayerState.first_enemy_hit_name = name
+			PlayerState.enemies_hit_by_chain_lightning.append(self)
+		else:
+			pass
 		for index in $ChainLightningShapeCast.get_collision_count():
 			var enemy = $ChainLightningShapeCast.get_collider(index)
 			if enemy != null and not PlayerState.enemies_hit_by_chain_lightning.has(enemy):
@@ -158,13 +164,13 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 					await(get_tree().create_timer(.1).timeout)
 					pass
 				else:
-					#print(PlayerState.chain_lightning_current_hits)
-					#print(PlayerState.chain_lightning_max_hits)
-					#print(PlayerState.enemies_hit_by_chain_lightning.size())
-					#if PlayerState.enemies_hit_by_chain_lightning.size() - 1 == PlayerState.chain_lightning_max_hits:
 					PlayerState.chain_lightning_current_hits = 0
 					PlayerState.clear_enemies_chain_lightning()
+			# kiedy nie ma wystarczająco przeciwników tez ma działać
 			pass
+		if PlayerState.first_enemy_hit_name == name:
+			PlayerState.clear_enemies_chain_lightning()
+		print(name + " " + str(PlayerState.enemies_hit_by_chain_lightning.size()))
 			
 	if health > 0:
 		is_knocked_back = true

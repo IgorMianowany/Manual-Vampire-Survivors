@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Manabar.visible = PlayerState.chosen_class == 2
 	$CanvasLayer/Manabar.value = PlayerState.mana
 	$CanvasLayer/Manabar.max_value = PlayerState.max_mana
-	$CanvasLayer/HasChainLightning.text = str(PlayerState.chain_lightning_ready)
+	$CanvasLayer/HasChainLightning.text = str(PlayerState.enemies_hit_by_chain_lightning.size())
 	
 	
 

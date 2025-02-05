@@ -32,11 +32,13 @@ var has_chain_lightning : bool = false
 var chain_lightning_ready : bool = false
 var chain_lightning_range : float = 50
 var chain_lightning_damage : float = 1
-var chain_lightning_max_hits : int = 1
+var chain_lightning_max_hits : int = 2
 var chain_lightning_current_hits : int = 0
 var chain_lightning_cooldown : float = 1
 var enemies_hit_by_chain_lightning : Array[Slime]
 var view_distance_bonus : float = 0
+var chain_lightning_timer : Timer = Timer.new()
+var first_enemy_hit_name : String
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
@@ -50,6 +52,10 @@ signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
 signal add_bubble_shield
+
+func _ready() -> void:
+	add_child(chain_lightning_timer)
+	chain_lightning_timer.timeout.connect(on_chain_lightning_timer_timeout)
 
 func _process(delta: float) -> void:
 	if mana < max_mana and not mana_regen_blocked:
@@ -101,5 +107,12 @@ func get_chain_lightning():
 	if not has_chain_lightning:
 		has_chain_lightning = true
 		chain_lightning_ready = true
+		
+func start_chain_lightning_timer():
+	#chain_lightning_timer.start(.3)
+	pass
+	
+func on_chain_lightning_timer_timeout():
+	clear_enemies_chain_lightning()
 	
 	

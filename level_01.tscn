@@ -1080,20 +1080,20 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn27" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(282, 404)
+position = Vector2(166, 479)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn28" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(322, 404)
+position = Vector2(206, 479)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn29" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
-position = Vector2(244, 372)
+position = Vector2(128, 447)
 cooldown = 1.0
 player = NodePath("../Player")
 limit = 1

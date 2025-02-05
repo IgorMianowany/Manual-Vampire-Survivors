@@ -75,12 +75,12 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Lightning"]
 position = Vector2(53, 0)
-scale = Vector2(1, 0.4)
+scale = Vector2(1, 0.6)
 sprite_frames = SubResource("SpriteFrames_y166o")
 animation = &"animate"
 speed_scale = 5.0
 
 [node name="TestLightning" type="Sprite2D" parent="Lightning"]
 visible = false
-scale = Vector2(1, 0.4)
+scale = Vector2(1, 0.6)
 texture = ExtResource("2_tc4bj")
