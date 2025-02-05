@@ -145,7 +145,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	$HitParticles.set_direction(knockback_direction)
 	
 	if PlayerState.chain_lightning_ready:
-		print(name)
 		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
 		# to niżej musi być poza ifem jakoś
 		PlayerState.start_chain_lightning_timer()
@@ -159,9 +158,9 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			var enemy = $ChainLightningShapeCast.get_collider(index)
 			if enemy != null and not PlayerState.enemies_hit_by_chain_lightning.has(enemy):
 				if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
-					enemy.take_damage(PlayerState.chain_lightning_damage, knockback_direction, 0, false, is_crit)
 					$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
 					await(get_tree().create_timer(.1).timeout)
+					enemy.take_damage(PlayerState.chain_lightning_damage, knockback_direction, 0, false, is_crit)
 					pass
 				else:
 					PlayerState.chain_lightning_current_hits = 0
@@ -170,7 +169,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			pass
 		if PlayerState.first_enemy_hit_name == name:
 			PlayerState.clear_enemies_chain_lightning()
-		print(name + " " + str(PlayerState.enemies_hit_by_chain_lightning.size()))
 			
 	if health > 0:
 		is_knocked_back = true

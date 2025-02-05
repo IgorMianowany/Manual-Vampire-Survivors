@@ -75,7 +75,7 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Lightning"]
 position = Vector2(53, 0)
-scale = Vector2(1, 0.6)
+scale = Vector2(1, 0.8)
 sprite_frames = SubResource("SpriteFrames_y166o")
 animation = &"animate"
 speed_scale = 5.0

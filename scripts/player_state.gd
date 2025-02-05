@@ -28,10 +28,10 @@ var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
 var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
-var has_chain_lightning : bool = false
-var chain_lightning_ready : bool = false
+var has_chain_lightning : bool = true
+var chain_lightning_ready : bool = true
 var chain_lightning_range : float = 50
-var chain_lightning_damage : float = 1
+var chain_lightning_damage : float = 5
 var chain_lightning_max_hits : int = 2
 var chain_lightning_current_hits : int = 0
 var chain_lightning_cooldown : float = 1
