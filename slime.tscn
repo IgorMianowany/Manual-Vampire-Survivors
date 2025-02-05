@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=54 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="43_upppt"]
 [ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="44_k2ewj"]
 [ext_resource type="Script" path="res://scripts/hurtbox.gd" id="45_4o0r0"]
+[ext_resource type="PackedScene" uid="uid://cebm1aefx438s" path="res://chain_lightning_animation.tscn" id="46_kimln"]
 [ext_resource type="Script" path="res://scripts/hitbox.gd" id="46_qr50n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygys0"]
@@ -248,7 +249,6 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ahcej")
 speed = 0.0
-max_health = 1000.0
 healthbar = NodePath("Control/TextureProgressBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -338,6 +338,8 @@ autostart = true
 shape = SubResource("CircleShape2D_rv8ia")
 target_position = Vector2(0, 0)
 collision_mask = 4
+
+[node name="ChainLightningAnimation" parent="." instance=ExtResource("46_kimln")]
 
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

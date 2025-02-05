@@ -80,3 +80,9 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "60
 "
+
+[node name="HasChainLightning" type="Label" parent="CanvasLayer"]
+offset_left = 1075.0
+offset_top = 19.0
+offset_right = 1115.0
+offset_bottom = 42.0

@@ -31,6 +31,7 @@ var already_hit_by_chain_lightning : bool = false
 
 @onready var start_pos : Vector2 = position
 
+
 func _ready() -> void:
 	set_as_top_level(true)
 	var current_parent = get_parent()
@@ -134,33 +135,36 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false) -> void:
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
-	
-	if PlayerState.has_chain_lightning and not already_hit_by_chain_lightning:
-		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
-		already_hit_by_chain_lightning = true
-		PlayerState.enemies_hit_by_chain_lightning.append(self)
-		# shape cast only finds the closest enemy so no point in iterating over them
-		for index in $ChainLightningShapeCast.get_collision_count():
-			var enemy = $ChainLightningShapeCast.get_collider(index)
-			if enemy != null and not enemy.already_hit_by_chain_lightning:
-				if PlayerState.chain_lightning_current_hits < PlayerState.chain_lightning_max_hits:
-					PlayerState.chain_lightning_current_hits += 1
-					enemy.take_damage(incoming_damage, knockback_direction, 0, false, is_crit)
-					print(PlayerState.chain_lightning_current_hits)
-				else:
-					PlayerState.chain_lightning_current_hits = 0
-					PlayerState.clear_enemies_chain_lightning()
-				pass
-
 		
 		#for index in $ChainLightningShapeCast.get_collision_count():
 			#var enemy = $ChainLightningShapeCast.get_collider(index)
-		
 	health -= incoming_damage
 	$HitParticles.emitting = true
 	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
 	$HitParticles.set_direction(knockback_direction)
 	
+		
+	if PlayerState.chain_lightning_ready and not already_hit_by_chain_lightning:
+		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
+		already_hit_by_chain_lightning = true
+		PlayerState.enemies_hit_by_chain_lightning.append(self)
+		
+		for index in $ChainLightningShapeCast.get_collision_count():
+			var enemy = $ChainLightningShapeCast.get_collider(index)
+			if enemy != null and not PlayerState.enemies_hit_by_chain_lightning.has(enemy):
+				if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
+					enemy.take_damage(PlayerState.chain_lightning_damage, knockback_direction, 0, false, is_crit)
+					$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
+					pass
+				else:
+					#print(PlayerState.chain_lightning_current_hits)
+					#print(PlayerState.chain_lightning_max_hits)
+					#print(PlayerState.enemies_hit_by_chain_lightning.size())
+					#if PlayerState.enemies_hit_by_chain_lightning.size() - 1 == PlayerState.chain_lightning_max_hits:
+					PlayerState.chain_lightning_current_hits = 0
+					PlayerState.clear_enemies_chain_lightning()
+			pass
+			
 	if health > 0:
 		is_knocked_back = true
 		velocity = knockback_direction * knockback * speed

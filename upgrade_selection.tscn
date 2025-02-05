@@ -133,6 +133,3 @@ layout_mode = 2
 
 [node name="ChainLightning" parent="CanvasLayer/HBoxContainer" instance=ExtResource("20_u7g0l")]
 layout_mode = 2
-chain_lightning_damage_bonus = 1.0
-chain_lightning_max_hits_bonus = 1
-chain_lightning_cooldown_decrease = 0.5

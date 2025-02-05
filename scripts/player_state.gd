@@ -28,9 +28,10 @@ var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
 var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
-var has_chain_lightning : bool = true
+var has_chain_lightning : bool = false
+var chain_lightning_ready : bool = false
 var chain_lightning_range : float = 50
-var chain_lightning_damage : float = 0
+var chain_lightning_damage : float = 1
 var chain_lightning_max_hits : int = 2
 var chain_lightning_current_hits : int = 0
 var chain_lightning_cooldown : float = 3
@@ -87,12 +88,16 @@ func choose_class(class_number : int):
 	
 func clear_enemies_chain_lightning():
 	for enemy in enemies_hit_by_chain_lightning:
-		enemy.already_hit_by_chain_lightning = false
+		if enemy != null:
+			enemy.already_hit_by_chain_lightning = false
 	enemies_hit_by_chain_lightning.clear()
-	has_chain_lightning = false
-	print("cleared enemies")
+	chain_lightning_ready = false
 	await(get_tree().create_timer(chain_lightning_cooldown).timeout)
-	print("chain lightningr ready again")
-	has_chain_lightning = true
+	chain_lightning_ready = true
+	
+func get_chain_lightning():
+	if not has_chain_lightning:
+		has_chain_lightning = true
+		chain_lightning_ready = true
 	
 	
