@@ -32,9 +32,9 @@ var has_chain_lightning : bool = false
 var chain_lightning_ready : bool = false
 var chain_lightning_range : float = 50
 var chain_lightning_damage : float = 1
-var chain_lightning_max_hits : int = 2
+var chain_lightning_max_hits : int = 1
 var chain_lightning_current_hits : int = 0
-var chain_lightning_cooldown : float = 3
+var chain_lightning_cooldown : float = 1
 var enemies_hit_by_chain_lightning : Array[Slime]
 var view_distance_bonus : float = 0
 @onready var health : float = max_health
@@ -87,12 +87,14 @@ func choose_class(class_number : int):
 	after_class_chosen.emit()
 	
 func clear_enemies_chain_lightning():
-	for enemy in enemies_hit_by_chain_lightning:
-		if enemy != null:
-			enemy.already_hit_by_chain_lightning = false
-	enemies_hit_by_chain_lightning.clear()
+	if not chain_lightning_ready:
+		return
 	chain_lightning_ready = false
 	await(get_tree().create_timer(chain_lightning_cooldown).timeout)
+	#for enemy in enemies_hit_by_chain_lightning:
+		#if enemy != null:
+			#enemy.already_hit_by_chain_lightning = false
+	enemies_hit_by_chain_lightning.clear()
 	chain_lightning_ready = true
 	
 func get_chain_lightning():

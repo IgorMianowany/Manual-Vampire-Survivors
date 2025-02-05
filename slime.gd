@@ -144,9 +144,9 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	$HitParticles.set_direction(knockback_direction)
 	
 		
-	if PlayerState.chain_lightning_ready and not already_hit_by_chain_lightning:
+	if PlayerState.chain_lightning_ready and not PlayerState.enemies_hit_by_chain_lightning.has(self):
 		$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
-		already_hit_by_chain_lightning = true
+		#already_hit_by_chain_lightning = true
 		PlayerState.enemies_hit_by_chain_lightning.append(self)
 		
 		for index in $ChainLightningShapeCast.get_collision_count():
@@ -155,6 +155,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 				if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
 					enemy.take_damage(PlayerState.chain_lightning_damage, knockback_direction, 0, false, is_crit)
 					$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
+					await(get_tree().create_timer(.1).timeout)
 					pass
 				else:
 					#print(PlayerState.chain_lightning_current_hits)

@@ -7,6 +7,8 @@ extends CommonUpgradeLogic
 func add_item_effect():
 	PlayerState.get_chain_lightning()
 	#PlayerState.chain_lightning_damage += chain_lightning_damage_bonus
-	PlayerState.chain_lightning_damage += 0
-	PlayerState.chain_lightning_max_hits += chain_lightning_max_hits_bonus
-	PlayerState.chain_lightning_cooldown -= chain_lightning_cooldown_decrease
+	PlayerState.chain_lightning_damage += chain_lightning_damage_bonus
+	if(PlayerState.chain_lightning_max_hits < 30):
+		PlayerState.chain_lightning_max_hits += chain_lightning_max_hits_bonus
+	if PlayerState.chain_lightning_cooldown >= 1.5:
+		PlayerState.chain_lightning_cooldown -= chain_lightning_cooldown_decrease
