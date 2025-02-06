@@ -135,5 +135,5 @@ layout_mode = 2
 [node name="ChainLightning" parent="CanvasLayer/HBoxContainer" instance=ExtResource("20_u7g0l")]
 layout_mode = 2
 
-[node name="Dash" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]
+[node name="SwiftStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]
 layout_mode = 2

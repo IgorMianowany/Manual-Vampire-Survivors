@@ -74,15 +74,26 @@ func _physics_process(delta: float) -> void:
 		get_tree().paused = not get_tree().paused
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
+		$PlayerHurtbox.collision_mask = 0
 		is_dashing = true
 		can_dash = false
 		$DashEffect.scale.x = -1 if direction == DirectionEnum.LEFT else 1
-		$DashEffect.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation,0)
 		$DashEffect.emitting = true
-		$PlayerHurtbox.collision_mask = 0
 		$DashHitbox.monitorable = true
 		$DashHitbox.damage = PlayerState.dash_damage
+		$DashEffect.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation,0)
 		var dash_direction = previous_pos.direction_to(current_pos)
+		if dash_direction == Vector2.ZERO:
+			match direction:
+				0:
+					dash_direction = Vector2.UP
+				1:
+					dash_direction = Vector2.DOWN
+				2:
+					dash_direction = Vector2.LEFT
+				3:
+					dash_direction = Vector2.RIGHT
+					
 		velocity = dash_direction * (base_speed + PlayerState.movespeed_bonus) * 8
 		await(get_tree().create_timer(dash_duration).timeout)
 		is_dashing = false

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://dash.gd" id="2_q3e22"]
 [ext_resource type="Texture2D" uid="uid://odcjiso071bi" path="res://assets/sprites/items/dash_icon.png" id="3_xtvpt"]
 
-[node name="Dash" instance=ExtResource("1_rrvgy")]
+[node name="SwiftStrike" instance=ExtResource("1_rrvgy")]
 script = ExtResource("2_q3e22")
 dash_cooldown_reduction = 0.5
 dash_damage_bonus = 5.0
