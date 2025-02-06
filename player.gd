@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = not get_tree().paused
 	
-	if Input.is_action_just_pressed("dash") and can_dash:
+	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
 		is_dashing = true
 		can_dash = false
 		$PlayerHurtbox.collision_mask = 0
