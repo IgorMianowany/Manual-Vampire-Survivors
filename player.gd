@@ -23,6 +23,11 @@ var hammers : Array[PalladinHammerSkill]
 var bubble_ready : bool = false
 var bubble_hits : int = 0
 var base_view_distance : float = 3
+var previous_pos : Vector2
+var current_pos : Vector2 = Vector2.ZERO
+var is_dashing : bool = false
+var dash_duration : float = .1
+var can_dash : bool = true
 
 
 signal death
@@ -38,8 +43,11 @@ func _ready() -> void:
 	PlayerState.after_class_chosen.connect(set_class)
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 	PlayerState.add_bubble_shield.connect(add_bubble_shield)
+	$DashTimer.timeout.connect(reset_can_dash)
 
 func _physics_process(delta: float) -> void:
+	previous_pos = current_pos
+	current_pos = global_position
 	var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
 	$Camera2D.zoom = zoom_bonus.clamp(Vector2(1,1), Vector2(5,5))
 	
@@ -65,10 +73,24 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = not get_tree().paused
 	
+	if Input.is_action_just_pressed("dash") and can_dash:
+		is_dashing = true
+		can_dash = false
+		$PlayerHurtbox.collision_mask = 0
+		var dash_direction = previous_pos.direction_to(current_pos)
+		velocity = dash_direction * (base_speed + PlayerState.movespeed_bonus) * 8
+		await(get_tree().create_timer(dash_duration).timeout)
+		is_dashing = false
+		await(get_tree().create_timer(.5).timeout)
+		$PlayerHurtbox.collision_mask = 16
+		
+		$DashTimer.start(PlayerState.dash_cooldown)
+		
+	
 	$BubbleShield.visible = bubble_ready
 	$Marker2D/ChainLightningReady.visible = PlayerState.chain_lightning_ready
 	
-	if not is_knocked_back:
+	if not is_knocked_back and not is_dashing:
 		handle_movement()
 	handle_animation()
 	handle_weapon_rotation()
@@ -250,4 +272,7 @@ func add_palladin_hammer():
 		
 func add_bubble_shield():
 	bubble_ready = true
+	
+func reset_can_dash():
+	can_dash = true
 	

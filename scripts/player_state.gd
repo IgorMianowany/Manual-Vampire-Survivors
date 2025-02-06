@@ -28,8 +28,8 @@ var has_bubble_shield_upgrade : bool
 var has_homing_projectiles : bool = false
 var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
-var has_chain_lightning : bool = true
-var chain_lightning_ready : bool = true
+var has_chain_lightning : bool = false
+var chain_lightning_ready : bool = false
 var chain_lightning_range : float = 50
 var chain_lightning_damage : float = 5
 var chain_lightning_max_hits : int = 2
@@ -39,6 +39,7 @@ var enemies_hit_by_chain_lightning : Array[Slime]
 var view_distance_bonus : float = 0
 var chain_lightning_timer : Timer = Timer.new()
 var first_enemy_hit_name : String
+var dash_cooldown : float = 1
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 

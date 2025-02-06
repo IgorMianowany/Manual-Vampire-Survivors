@@ -513,6 +513,8 @@ sprite_frames = SubResource("SpriteFrames_8vscl")
 animation = &"chain_lightning_ready"
 autoplay = "chain_lightning_ready"
 
+[node name="DashTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
 [connection signal="attack_started" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_started"]
