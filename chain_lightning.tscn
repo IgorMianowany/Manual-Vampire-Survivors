@@ -8,7 +8,8 @@
 script = ExtResource("2_bw3w4")
 chain_lightning_damage_bonus = 1.0
 chain_lightning_max_hits_bonus = 1
-chain_lightning_cooldown_decrease = 0.5
+chain_lightning_cooldown_decrease = 0.2
+chain_lightning_range_increase = 10.0
 icon = ExtResource("3_y0o0g")
 description = "Adds chain lightning effect to your attacks"
 upgrade = 5

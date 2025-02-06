@@ -66,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().paused = not get_tree().paused
 	
 	$BubbleShield.visible = bubble_ready
+	$Marker2D/ChainLightningReady.visible = PlayerState.chain_lightning_ready
 	
 	if not is_knocked_back:
 		handle_movement()
@@ -245,6 +246,7 @@ func add_palladin_hammer():
 		hammer.add_speed(PlayerState.palladin_hammer_speed)
 		hammer.set_damage(PlayerState.palladin_hammer_damage)
 		i += 1
+	print(hammer_instance.rotation_speed)
 		
 func add_bubble_shield():
 	bubble_ready = true

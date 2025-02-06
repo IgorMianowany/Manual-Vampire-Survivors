@@ -1,10 +1,10 @@
 class_name PalladinHammerSkill
 extends Node2D
 
-@export var rotation_speed : float = 0.02
+@export var rotation_speed : float = 200
 @export var rotation_distance : float = 50
 var starting_rotation : float = 0
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	$Sprite2D.position.y = -rotation_distance
 	rotation = starting_rotation
@@ -20,5 +20,4 @@ func set_damage(damage : float):
 
 func add_speed(speed : float):
 	rotation_speed = speed + 0.02
-	print(rotation_speed)
 	

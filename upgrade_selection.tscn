@@ -81,7 +81,6 @@ visible = false
 layout_mode = 2
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
-visible = false
 layout_mode = 2
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]

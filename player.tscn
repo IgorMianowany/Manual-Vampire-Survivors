@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=87 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -66,6 +66,19 @@
 [ext_resource type="Texture2D" uid="uid://beqyip8q472lt" path="res://assets/sprites/bows/bow_01 - Copy.png" id="56_7oyge"]
 [ext_resource type="Script" path="res://scripts/staff.gd" id="57_gw1fk"]
 [ext_resource type="Texture2D" uid="uid://i1okm6c3sylv" path="res://assets/sprites/characters/wand_fire.png" id="58_ojugi"]
+[ext_resource type="Texture2D" uid="uid://bw5fwf8f4qwjc" path="res://assets/sprites/particles/chainlightning/lightning_v2_1.png" id="67_36msd"]
+[ext_resource type="Texture2D" uid="uid://d1qjeloah7jw6" path="res://assets/sprites/particles/chainlightning/lightning_v2_2.png" id="68_o0f6m"]
+[ext_resource type="Texture2D" uid="uid://byr76s2pcacna" path="res://assets/sprites/particles/chainlightning/lightning_v2_3.png" id="69_0latn"]
+[ext_resource type="Texture2D" uid="uid://smnih7xin388" path="res://assets/sprites/particles/chainlightning/lightning_v2_4.png" id="70_wx8kk"]
+[ext_resource type="Texture2D" uid="uid://cm76oghs33am5" path="res://assets/sprites/particles/chainlightning/lightning_v2_5.png" id="71_oe8vt"]
+[ext_resource type="Texture2D" uid="uid://bg26dd2aqnqdp" path="res://assets/sprites/particles/chainlightning/lightning_v2_6.png" id="72_igqa3"]
+[ext_resource type="Texture2D" uid="uid://57x3ej6e820w" path="res://assets/sprites/particles/chainlightning/lightning_v2_7.png" id="73_7re4n"]
+[ext_resource type="Texture2D" uid="uid://cvnrvmoxxdqmi" path="res://assets/sprites/particles/chainlightning/lightning_v2_8.png" id="74_frv1w"]
+[ext_resource type="Texture2D" uid="uid://ioa8rll46lb7" path="res://assets/sprites/particles/chainlightning/lightning_v2_9.png" id="75_f6q4i"]
+[ext_resource type="Texture2D" uid="uid://bc8t4qip86l67" path="res://assets/sprites/particles/chainlightning/lightning_v2_10.png" id="76_p772l"]
+[ext_resource type="Texture2D" uid="uid://b4r73pkuyslxy" path="res://assets/sprites/particles/chainlightning/lightning_v2_11.png" id="77_b18lj"]
+[ext_resource type="Texture2D" uid="uid://be2teer4yp1pp" path="res://assets/sprites/particles/chainlightning/lightning_v2_12.png" id="78_wq3il"]
+[ext_resource type="Texture2D" uid="uid://djusm71psot4x" path="res://assets/sprites/particles/chainlightning/lightning_v2_13.png" id="79_iqhw1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6lt3n"]
 animations = [{
@@ -339,6 +352,53 @@ height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krfh3"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vscl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("67_36msd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_o0f6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_0latn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_wx8kk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_oe8vt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_igqa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_7re4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_frv1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_f6q4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_p772l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_b18lj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_wq3il")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_iqhw1")
+}],
+"loop": true,
+"name": &"chain_lightning_ready",
+"speed": 12.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
@@ -444,6 +504,14 @@ offset_bottom = 23.0
 [node name="WeaponSprite" type="Sprite2D" parent="Marker2D"]
 z_index = 1
 position = Vector2(10, 0)
+
+[node name="ChainLightningReady" type="AnimatedSprite2D" parent="Marker2D"]
+z_index = 1
+position = Vector2(10, 0)
+scale = Vector2(0.192308, 0.181818)
+sprite_frames = SubResource("SpriteFrames_8vscl")
+animation = &"chain_lightning_ready"
+autoplay = "chain_lightning_ready"
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
