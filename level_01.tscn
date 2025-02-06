@@ -944,9 +944,6 @@ tile_set = SubResource("TileSet_ew6s5")
 [node name="Player" parent="LayerHolder" instance=ExtResource("26_ij30w")]
 position = Vector2(108, 264)
 
-[node name="ExperiencePickup" parent="LayerHolder/Player" instance=ExtResource("16_3exla")]
-position = Vector2(52, 28)
-
 [node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_bpjw7")]
 position = Vector2(240, 284)
 player = NodePath("../Player")
@@ -1081,5 +1078,8 @@ limit = 1
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(604, 321)
+
+[node name="ExperiencePickup" parent="LayerHolder" instance=ExtResource("16_3exla")]
+position = Vector2(162, 347)
 
 [node name="ClassSelection" parent="." instance=ExtResource("29_wgnba")]

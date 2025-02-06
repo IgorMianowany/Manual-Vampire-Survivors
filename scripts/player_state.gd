@@ -40,7 +40,8 @@ var view_distance_bonus : float = 0
 var chain_lightning_timer : Timer = Timer.new()
 var first_enemy_hit_name : String
 var has_dash : bool = false
-var dash_cooldown : float = 1
+var dash_cooldown : float = 5
+var dash_damage_bonus : float = 0
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 

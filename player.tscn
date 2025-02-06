@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=93 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -79,6 +79,48 @@
 [ext_resource type="Texture2D" uid="uid://b4r73pkuyslxy" path="res://assets/sprites/particles/chainlightning/lightning_v2_11.png" id="77_b18lj"]
 [ext_resource type="Texture2D" uid="uid://be2teer4yp1pp" path="res://assets/sprites/particles/chainlightning/lightning_v2_12.png" id="78_wq3il"]
 [ext_resource type="Texture2D" uid="uid://djusm71psot4x" path="res://assets/sprites/particles/chainlightning/lightning_v2_13.png" id="79_iqhw1"]
+
+[sub_resource type="Shader" id="Shader_yifqv"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+
+void vertex() {
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	VERTEX.xy /= vec2(h_frames, v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}	UV /= vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjmr1"]
+shader = SubResource("Shader_yifqv")
+shader_parameter/particles_anim_h_frames = 1
+shader_parameter/particles_anim_v_frames = 1
+shader_parameter/particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_vhwa1"]
+_data = [Vector2(0, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssbcu"]
+curve = SubResource("Curve_vhwa1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y0j88"]
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_ssbcu")
+anim_speed_max = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6lt3n"]
 animations = [{
@@ -399,12 +441,26 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_db2y5"]
+radius = 19.105
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_0qibv")
 attack_range = 25.0
 attack_damage = 0.0
+
+[node name="DashEffect" type="GPUParticles2D" parent="."]
+z_index = 4
+material = SubResource("ShaderMaterial_xjmr1")
+position = Vector2(0, -8)
+emitting = false
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_y0j88")
+texture = ExtResource("25_nwqwc")
+lifetime = 0.3
+fixed_fps = 60
 
 [node name="BubbleShield" type="AnimatedSprite2D" parent="."]
 z_index = 7
@@ -422,7 +478,7 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_abd2b")
-animation = &"attack_up"
+animation = &"move_right"
 autoplay = "idle_front"
 speed_scale = 1.5
 
@@ -514,6 +570,19 @@ animation = &"chain_lightning_ready"
 autoplay = "chain_lightning_ready"
 
 [node name="DashTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+
+[node name="DashHitbox" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+script = ExtResource("50_rxefe")
+damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
+shape = SubResource("CircleShape2D_db2y5")
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]

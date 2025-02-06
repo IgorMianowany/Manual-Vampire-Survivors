@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=22 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c2bt15826q1d0" path="res://eagle_eye.tscn" id="18_52rs8"]
 [ext_resource type="PackedScene" uid="uid://bcm3licylrk78" path="res://muscular_forearm.tscn" id="19_sclkq"]
 [ext_resource type="PackedScene" uid="uid://ctok0pjs8e4xx" path="res://chain_lightning.tscn" id="20_u7g0l"]
+[ext_resource type="PackedScene" uid="uid://bme6pt3ah2wwg" path="res://dash.tscn" id="21_1atrr"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -133,4 +134,7 @@ layout_mode = 2
 
 [node name="ChainLightning" parent="CanvasLayer/HBoxContainer" instance=ExtResource("20_u7g0l")]
 visible = false
+layout_mode = 2
+
+[node name="Dash" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]
 layout_mode = 2
