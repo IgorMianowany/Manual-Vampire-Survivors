@@ -46,7 +46,6 @@ func _ready() -> void:
 	$DashTimer.timeout.connect(reset_can_dash)
 
 func _physics_process(delta: float) -> void:
-	#print(str($AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation,0)))
 	previous_pos = current_pos
 	current_pos = global_position
 	var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
@@ -82,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		$DashEffect.emitting = true
 		$PlayerHurtbox.collision_mask = 0
 		$DashHitbox.monitorable = true
-		$DashHitbox.damage = $DashHitbox.damage + PlayerState.dash_damage_bonus
+		$DashHitbox.damage = PlayerState.dash_damage
 		var dash_direction = previous_pos.direction_to(current_pos)
 		velocity = dash_direction * (base_speed + PlayerState.movespeed_bonus) * 8
 		await(get_tree().create_timer(dash_duration).timeout)

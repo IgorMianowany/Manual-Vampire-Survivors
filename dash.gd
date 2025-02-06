@@ -5,4 +5,8 @@ extends CommonUpgradeLogic
 @export var dash_damage_bonus : float = 5
 
 func add_item_effect():
-	PlayerState.has_dash = true
+	if PlayerState.has_dash:
+		PlayerState.dash_damage += dash_damage_bonus
+		PlayerState.dash_cooldown = clampf(PlayerState.dash_cooldown - dash_cooldown_reduction, 2, PlayerState.dash_cooldown)
+	else:
+		PlayerState.has_dash = true
