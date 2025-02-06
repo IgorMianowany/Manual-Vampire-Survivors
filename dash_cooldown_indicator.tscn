@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnfixv1iiawgj"]
+
+[ext_resource type="PackedScene" uid="uid://ui7nifqra3jp" path="res://single_cooldown_indicator.tscn" id="1_r04rc"]
+[ext_resource type="Script" path="res://dash_cooldown_indicator.gd" id="2_vbg68"]
+
+[node name="DashCooldownIndicator" instance=ExtResource("1_r04rc")]
+script = ExtResource("2_vbg68")

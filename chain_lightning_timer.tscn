@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://b251gyvb5sh2y"]
+
+[ext_resource type="PackedScene" uid="uid://ui7nifqra3jp" path="res://single_cooldown_indicator.tscn" id="1_ojbam"]
+[ext_resource type="Script" path="res://chain_lightning_timer.gd" id="2_vdci7"]
+[ext_resource type="Texture2D" uid="uid://cw5vlkdksg1h4" path="res://assets/sprites/items/chain_lightning.jpg" id="2_w28mo"]
+
+[node name="ChainLightningTimer" instance=ExtResource("1_ojbam")]
+script = ExtResource("2_vdci7")
+texture = ExtResource("2_w28mo")

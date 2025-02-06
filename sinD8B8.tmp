@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://ui7nifqra3jp"]
+
+[ext_resource type="Script" path="res://single_cooldown_indicator.gd" id="1_bvwlh"]
+[ext_resource type="Texture2D" uid="uid://odcjiso071bi" path="res://assets/sprites/items/dash_icon.png" id="1_gpgc5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0wn7p"]
+
+[node name="SingleCooldownIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvwlh")
+texture = ExtResource("1_gpgc5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -25.0
+offset_right = 26.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 30
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+material = SubResource("CanvasItemMaterial_0wn7p")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_gpgc5")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

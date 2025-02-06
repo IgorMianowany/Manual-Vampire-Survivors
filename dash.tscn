@@ -9,5 +9,5 @@ script = ExtResource("2_q3e22")
 dash_cooldown_reduction = 0.5
 dash_damage_bonus = 5.0
 icon = ExtResource("3_xtvpt")
-description = "Allows your character to dash through enemies. Lowers cooldown and increases damage if you already have this ability"
+description = "Allows your character to dash through enemies, damaging them along the way. If you already have this ability increase the damage and decrease the cooldown."
 upgrade = 5

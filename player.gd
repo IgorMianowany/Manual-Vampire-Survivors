@@ -87,12 +87,16 @@ func _physics_process(delta: float) -> void:
 		velocity = dash_direction * (base_speed + PlayerState.movespeed_bonus) * 8
 		await(get_tree().create_timer(dash_duration).timeout)
 		is_dashing = false
+		$DashTimer.start(PlayerState.dash_cooldown)
+		PlayerState.dash_timer.wait_time = PlayerState.dash_cooldown
+		PlayerState.dash_timer.start()
 		$DashEffect.emitting = false
 		$DashHitbox.monitorable = false
+		
 		await(get_tree().create_timer(.5).timeout)
 		$PlayerHurtbox.collision_mask = 16
 		
-		$DashTimer.start(PlayerState.dash_cooldown)
+
 		
 	
 	$BubbleShield.visible = bubble_ready

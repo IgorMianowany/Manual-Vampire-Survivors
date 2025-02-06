@@ -145,6 +145,8 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	$HitParticles.set_direction(knockback_direction)
 	
 	if PlayerState.chain_lightning_ready:
+		if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
+			PlayerState.start_chain_lightning_timer()
 		handle_chain_lightning_logic()
 			
 	if health > 0:
