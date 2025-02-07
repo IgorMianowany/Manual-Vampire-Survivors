@@ -34,7 +34,9 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="ChainLightningTimer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_kr384")]
+visible = false
 layout_mode = 2
 
 [node name="DashCooldownIndicator" parent="CanvasLayer/HBoxContainer" instance=ExtResource("3_h0x1d")]
+visible = false
 layout_mode = 2

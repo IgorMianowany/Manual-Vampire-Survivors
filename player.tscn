@@ -452,6 +452,7 @@ attack_range = 25.0
 attack_damage = 0.0
 
 [node name="DashEffect" type="GPUParticles2D" parent="."]
+visible = false
 z_index = 4
 material = SubResource("ShaderMaterial_xjmr1")
 position = Vector2(0, -8)

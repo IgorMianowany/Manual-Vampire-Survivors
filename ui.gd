@@ -19,8 +19,6 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Manabar.value = PlayerState.mana
 	$CanvasLayer/Manabar.max_value = PlayerState.max_mana
 	$CanvasLayer/HasChainLightning.text = str(PlayerState.enemies_hit_by_chain_lightning.size())
-	
-	
 
 
 func _on_level_up() -> void:
@@ -32,4 +30,7 @@ func _after_level_up():
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
 	$CanvasLayer/ExperienceBar.max_value = PlayerState.experience_threshold
 	$CanvasLayer/Level.text = str(PlayerState.level)
+	
+func toggle_stat_sheet():
+	$CanvasLayer/StatSheet.toggle_stat_sheet()
 	
