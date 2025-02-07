@@ -20,7 +20,7 @@ var has_poison_attacks : bool = false
 var poison_damage : float = 0
 var poison_duration : float = 0
 var knockback_bonus : float = 0
-var max_mana : float = 10
+var max_mana : float = 0
 var mana_regen_blocked : bool = false
 var bubble_shield_cooldown : float
 var bubble_shield_max_hits : float = 0
@@ -30,21 +30,23 @@ var critical_strike_chance_bonus : float = 0
 var critical_strike_damage_bonus : float = 0
 var has_chain_lightning : bool = false
 var chain_lightning_ready : bool = false
-var chain_lightning_range : float = 50
-var chain_lightning_damage : float = 5
-var chain_lightning_max_hits : int = 2
+# base range and all is set in "get_chain_lightning"
+var chain_lightning_range : float = 0
+var chain_lightning_damage : float = 0
+var chain_lightning_max_hits : int = 0
 var chain_lightning_current_hits : int = 0
-var chain_lightning_cooldown : float = 5
+var chain_lightning_cooldown : float = 0
 var enemies_hit_by_chain_lightning : Array[Slime]
 var view_distance_bonus : float = 0
 var chain_lightning_timer : Timer = Timer.new()
 var first_enemy_hit_name : String
 var has_dash : bool = false
-var dash_cooldown : float = 5
-var dash_damage : float = 5
+var dash_cooldown : float = 0
+var dash_damage : float = 0
 var dash_timer : Timer = Timer.new()
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
- "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning"]
+"has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
+"debug_value"]
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
@@ -116,6 +118,9 @@ func get_chain_lightning():
 	if not has_chain_lightning:
 		has_chain_lightning = true
 		chain_lightning_ready = true
+		chain_lightning_range = 50
+		chain_lightning_max_hits = 2
+		chain_lightning_max_hits = 5
 		
 func start_chain_lightning_timer():
 	chain_lightning_timer.wait_time = chain_lightning_cooldown
@@ -134,12 +139,24 @@ func get_first_vbox_stats() -> Array[String]:
 		var propertyName: String = propertyInfo.name
 		if propertyName.contains("timer") or stats_not_displayable.has(propertyName):
 			continue
+		var new_property_name = turn_snake_case_to_name(propertyName)
 		var propertyValue = get(propertyName)
 		if propertyValue == 0:
 			continue
 		if propertyValue != null:
-			stat_array.append(propertyName + ": " + str(propertyValue))
+			stat_array.append(new_property_name + ": " + str(propertyValue))
 	return stat_array
+	
+func turn_snake_case_to_name(string : String) -> String:
+	for index in string.length():
+		if index == 0:
+			string[0] = string[0].to_upper()
+		if string[index] == "_":
+			string[index] = " "
+			string[index + 1] = string[index + 1].to_upper()
+
+	print(string)
+	return string
 		
 	
 	

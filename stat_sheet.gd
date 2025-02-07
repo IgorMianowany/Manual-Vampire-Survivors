@@ -26,7 +26,7 @@ func refresh_stat_sheet():
 		$CanvasLayer/ColorRect/VBoxContainer1.add_child(stat_line)
 		stats_left.erase(stat)
 		counter += 1
-		if counter > 4:
+		if counter > 7:
 			break
 	counter = 0
 	stats_to_display = stats_left.duplicate()
@@ -48,6 +48,8 @@ func refresh_stat_sheet():
 		counter += 1
 		if counter > 10:
 			break
+	counter = 0
+	stats_to_display = stats_left.duplicate()
 	for stat in stats_to_display:
 		var stat_line = stat_line_scene.instantiate()
 		stat_line.set_label(stat)

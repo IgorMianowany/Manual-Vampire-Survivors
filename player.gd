@@ -264,6 +264,7 @@ func set_class():
 			$Weapon.weapon_type = $Weapon/Staff
 			$Marker2D/WeaponSprite.texture = $Weapon/Staff.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.15,0.15)
+			PlayerState.max_mana = 10
 			
 		
 func handle_weapon_rotation():

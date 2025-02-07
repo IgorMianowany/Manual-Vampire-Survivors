@@ -1,6 +1,6 @@
 class_name ChainLightningLogic
 extends CommonUpgradeLogic
-@export var chain_lightning_damage_bonus : float = 1
+@export var chain_lightning_damage_bonus : float = 5
 @export var chain_lightning_max_hits_bonus : int = 1
 @export var chain_lightning_cooldown_decrease : float = .2
 @export var chain_lightning_range_increase : float = 10

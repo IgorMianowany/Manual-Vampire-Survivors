@@ -10,3 +10,5 @@ func add_item_effect():
 		PlayerState.dash_cooldown = clampf(PlayerState.dash_cooldown - dash_cooldown_reduction, 2, PlayerState.dash_cooldown)
 	else:
 		PlayerState.has_dash = true
+		PlayerState.dash_cooldown = 5
+		PlayerState.dash_damage = PlayerState.attack_damage
