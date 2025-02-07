@@ -43,6 +43,8 @@ var has_dash : bool = false
 var dash_cooldown : float = 5
 var dash_damage : float = 5
 var dash_timer : Timer = Timer.new()
+var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
+ "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning"]
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
@@ -131,6 +133,8 @@ func get_first_vbox_stats() -> Array[String]:
 	print(thisScript.get_script_property_list())
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
+		if propertyName.contains("timer") or stats_not_displayable.has(propertyName):
+			continue
 		var propertyValue = get(propertyName)
 		if propertyValue != null:
 			stat_array.append(propertyName + ": " + str(propertyValue))

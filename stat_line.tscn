@@ -12,4 +12,5 @@ script = ExtResource("1_jrleq")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "Jakaś statystyka = 5"
