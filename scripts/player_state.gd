@@ -60,6 +60,8 @@ signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
 signal add_bubble_shield
+signal jim_beam_drank
+signal puke
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -67,6 +69,7 @@ func _ready() -> void:
 	chain_lightning_timer.autostart = false
 	chain_lightning_timer.timeout.connect(on_chain_lightning_timer_timeout)
 	dash_timer.timeout.connect(on_dash_timer_timeout)
+	jim_beam_drank.connect(handle_jim_beam_drank)
 	
 func _physics_process(delta: float) -> void:
 	if mana < max_mana and not mana_regen_blocked:
@@ -154,9 +157,16 @@ func turn_snake_case_to_name(string : String) -> String:
 		if string[index] == "_":
 			string[index] = " "
 			string[index + 1] = string[index + 1].to_upper()
-
-	print(string)
 	return string
+	
+func handle_jim_beam_drank():
+	var chance_to_puke = 0.5 * jim_beam_counter
+	var puke_roll = randf_range(0,1)
+	print(chance_to_puke)
+	print(puke_roll)
+	if puke_roll < chance_to_puke:
+		puke.emit()
+		jim_beam_counter = 0
 		
 	
 	

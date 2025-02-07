@@ -28,6 +28,7 @@ var current_pos : Vector2 = Vector2.ZERO
 var is_dashing : bool = false
 var dash_duration : float = .1
 var can_dash : bool = true
+var puke_texture : CompressedTexture2D = preload("res://assets/sprites/objects/puke.png")
 
 
 signal death
@@ -44,6 +45,7 @@ func _ready() -> void:
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 	PlayerState.add_bubble_shield.connect(add_bubble_shield)
 	$DashTimer.timeout.connect(reset_can_dash)
+	PlayerState.puke.connect(handle_puke)
 
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
@@ -74,13 +76,14 @@ func _physics_process(delta: float) -> void:
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
+		$DashHitbox.monitorable = true
+		$DashHitbox.damage = PlayerState.dash_damage
 		$PlayerHurtbox.collision_mask = 0
 		is_dashing = true
 		can_dash = false
 		$DashEffect.scale.x = -1 if direction == DirectionEnum.LEFT else 1
 		$DashEffect.emitting = true
-		$DashHitbox.monitorable = true
-		$DashHitbox.damage = PlayerState.dash_damage
+
 		$DashEffect.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation,0)
 		var dash_direction = previous_pos.direction_to(current_pos)
 		if dash_direction == Vector2.ZERO:
@@ -298,3 +301,13 @@ func add_bubble_shield():
 func reset_can_dash():
 	can_dash = true
 	
+func handle_puke():
+	var sprite = Sprite2D.new()
+	sprite.texture = puke_texture
+	sprite.global_position = global_position
+	sprite.z_index = 0
+	sprite.scale = Vector2(0.1,0.1)
+	sprite.set_as_top_level(true)
+	add_child(sprite)
+	
+	sprite.reparent(get_parent())

@@ -584,6 +584,7 @@ damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
 shape = SubResource("CircleShape2D_db2y5")
+debug_color = Color(0.936042, 1.89635e-05, 0.633872, 0.42)
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
