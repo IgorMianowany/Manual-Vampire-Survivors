@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 	
 	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = not get_tree().paused
+		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
 		$PlayerHurtbox.collision_mask = 0
@@ -290,7 +290,6 @@ func add_palladin_hammer():
 		hammer.add_speed(PlayerState.palladin_hammer_speed)
 		hammer.set_damage(PlayerState.palladin_hammer_damage)
 		i += 1
-	print(hammer_instance.rotation_speed)
 		
 func add_bubble_shield():
 	bubble_ready = true

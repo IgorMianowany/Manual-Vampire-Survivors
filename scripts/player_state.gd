@@ -63,8 +63,8 @@ func _ready() -> void:
 	chain_lightning_timer.autostart = false
 	chain_lightning_timer.timeout.connect(on_chain_lightning_timer_timeout)
 	dash_timer.timeout.connect(on_dash_timer_timeout)
-
-func _process(delta: float) -> void:
+	
+func _physics_process(delta: float) -> void:
 	if mana < max_mana and not mana_regen_blocked:
 		mana += 0.05
 	

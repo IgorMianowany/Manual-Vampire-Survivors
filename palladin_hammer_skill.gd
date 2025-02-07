@@ -9,8 +9,13 @@ func _ready() -> void:
 	$Sprite2D.position.y = -rotation_distance
 	rotation = starting_rotation
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#rotate(rotation_speed)
+	#if int(rotation_degrees) > 360 + starting_rotation:
+		#rotation_degrees = 0 + starting_rotation
+
+func _physics_process(delta: float) -> void:
 	rotate(rotation_speed)
 	if int(rotation_degrees) > 360 + starting_rotation:
 		rotation_degrees = 0 + starting_rotation
