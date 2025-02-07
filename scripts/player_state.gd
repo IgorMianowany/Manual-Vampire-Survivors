@@ -44,6 +44,7 @@ var has_dash : bool = false
 var dash_cooldown : float = 0
 var dash_damage : float = 0
 var dash_timer : Timer = Timer.new()
+var jim_beam_multi = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value"]
@@ -160,10 +161,12 @@ func turn_snake_case_to_name(string : String) -> String:
 	return string
 	
 func handle_jim_beam_drank():
+	if jim_beam_multi == 0:
+		jim_beam_multi = 1
+	var old_attack_damage = attack_damage / jim_beam_multi
+	jim_beam_multi += 1
 	var chance_to_puke = 0.5 * jim_beam_counter
 	var puke_roll = randf_range(0,1)
-	print(chance_to_puke)
-	print(puke_roll)
 	if puke_roll < chance_to_puke:
 		puke.emit()
 		jim_beam_counter = 0

@@ -6,9 +6,8 @@
 
 [node name="JimBeam" instance=ExtResource("1_4hlt5")]
 script = ExtResource("2_s4x7f")
-damage_multi = null
-max_hp = null
+damage_multi = 2.0
+max_hp = 50.0
 icon = ExtResource("2_jtbqx")
 description = "Doubles your attack and adds 50 max health, but dont drink too much!"
-upgrade_name = null
 upgrade = 5
