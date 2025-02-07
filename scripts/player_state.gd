@@ -130,12 +130,13 @@ func on_dash_timer_timeout():
 func get_first_vbox_stats() -> Array[String]:
 	var thisScript: GDScript = get_script()
 	var stat_array : Array[String]
-	print(thisScript.get_script_property_list())
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
 		if propertyName.contains("timer") or stats_not_displayable.has(propertyName):
 			continue
 		var propertyValue = get(propertyName)
+		if propertyValue == 0:
+			continue
 		if propertyValue != null:
 			stat_array.append(propertyName + ": " + str(propertyValue))
 	return stat_array
