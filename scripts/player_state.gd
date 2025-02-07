@@ -125,4 +125,17 @@ func on_chain_lightning_timer_timeout():
 func on_dash_timer_timeout():
 	dash_timer.stop()
 	
+func get_first_vbox_stats() -> Array[String]:
+	var thisScript: GDScript = get_script()
+	var stat_array : Array[String]
+	print(thisScript.get_script_property_list())
+	for propertyInfo in thisScript.get_script_property_list():
+		var propertyName: String = propertyInfo.name
+		var propertyValue = get(propertyName)
+		if propertyValue != null:
+			stat_array.append(propertyName + ": " + str(propertyValue))
+	return stat_array
+		
+	
+	
 	
