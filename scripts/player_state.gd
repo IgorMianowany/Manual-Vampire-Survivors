@@ -45,6 +45,9 @@ var dash_cooldown : float = 0
 var dash_damage : float = 0
 var dash_timer : Timer = Timer.new()
 var jim_beam_multi = 0
+var lightning_strike_cooldown = 0
+var lightning_strike_damage = 5
+var lightning_strike_range = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value"]
@@ -61,6 +64,7 @@ signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
 signal add_bubble_shield
+signal add_lightning_strike
 signal jim_beam_drank
 signal puke
 
@@ -171,6 +175,14 @@ func handle_jim_beam_drank():
 		puke.emit()
 		jim_beam_counter = 0
 		
+func add_lightning_strike_item():
+	if lightning_strike_cooldown <= 0:
+		lightning_strike_cooldown = 9.5
+		lightning_strike_range = 100
+	if lightning_strike_cooldown < 1:
+		lightning_strike_cooldown = 0.5
+	add_lightning_strike.emit()
+
 	
 	
 	

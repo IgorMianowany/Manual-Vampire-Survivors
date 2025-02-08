@@ -30,7 +30,7 @@ var dash_duration : float = .1
 var can_dash : bool = true
 var puke_texture : CompressedTexture2D = preload("res://assets/sprites/objects/puke.png")
 var lightning_strike_scene = preload("res://lightning_strike.tscn")
-
+var lightning_strike_timer : Timer = Timer.new()
 
 signal death
 
@@ -45,8 +45,12 @@ func _ready() -> void:
 	PlayerState.after_class_chosen.connect(set_class)
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 	PlayerState.add_bubble_shield.connect(add_bubble_shield)
+	PlayerState.add_lightning_strike.connect(add_lightning_strike)
 	$DashTimer.timeout.connect(reset_can_dash)
 	PlayerState.puke.connect(handle_puke)
+	add_child(lightning_strike_timer)
+	lightning_strike_timer.timeout.connect(lightning_strike)
+	lightning_strike_timer.autostart = true
 
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
@@ -75,19 +79,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("pause"):
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
-		
-	if Input.is_action_just_pressed("dash"):
-		$LightningStrikeRange.monitoring = true
-		var enemies = $LightningStrikeRange.get_overlapping_bodies()
-		if enemies.size() > 0:
-			var enemy
-			for enem in enemies:
-				if enem != null and enem.health > 0:
-					enemy = enem
-					break
-			var lightning_strike = lightning_strike_scene.instantiate()
-			lightning_strike.global_position = enemy.global_position
-			add_child(lightning_strike)
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
 		$DashHitbox.monitorable = true
@@ -239,6 +230,7 @@ func attack() -> void:
 		await($UtilTimer.timeout)
 		is_attacking = false
 		$AttackRangePointer/PlayerHitbox/CollisionShape2D.disabled = true	
+
 func set_attack_direction() -> void:
 	var mouse_direction = global_position.direction_to(get_global_mouse_position())
 	if mouse_direction.x > .75:
@@ -251,7 +243,7 @@ func set_attack_direction() -> void:
 		direction = DirectionEnum.UP
 	rotate_attack_range()
 	
-		
+	
 func rotate_attack_range() -> void:
 	if direction == DirectionEnum.RIGHT:
 		$AttackRangePointer.position = Vector2(attack_range, 0)
@@ -282,8 +274,7 @@ func set_class():
 			$Marker2D/WeaponSprite.texture = $Weapon/Staff.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.15,0.15)
 			PlayerState.max_mana = 10
-			
-		
+	
 func handle_weapon_rotation():
 	#Get the mouse position relative to the screen
 	var mouse_pos = get_global_mouse_position()
@@ -325,3 +316,26 @@ func handle_puke():
 	add_child(sprite)
 	
 	sprite.reparent(get_parent())
+
+func lightning_strike():
+	$LightningStrikeRange.monitoring = true
+	$LightningStrikeRange/CollisionShape2D.shape.radius = PlayerState.lightning_strike_range
+	print(PlayerState.lightning_strike_range)
+	var enemies = $LightningStrikeRange.get_overlapping_bodies()
+	var position : Vector2
+	if enemies.size() > 0:
+		var enemy
+		for enem in enemies:
+			if enem != null and enem.health > 0:
+				position = enem.global_position
+				break
+		var lightning_strike = lightning_strike_scene.instantiate()
+		lightning_strike.global_position = position
+		print("dipa")
+		add_child(lightning_strike)
+		
+func add_lightning_strike():
+	lightning_strike()
+	lightning_strike_timer.wait_time = PlayerState.lightning_strike_cooldown
+	lightning_strike_timer.start()
+	
