@@ -82,8 +82,9 @@ func _physics_process(delta: float) -> void:
 		if enemies.size() > 0:
 			var enemy
 			for enem in enemies:
-				enemy = enem
-				break
+				if enem != null and enem.health > 0:
+					enemy = enem
+					break
 			var lightning_strike = lightning_strike_scene.instantiate()
 			lightning_strike.global_position = enemy.global_position
 			add_child(lightning_strike)

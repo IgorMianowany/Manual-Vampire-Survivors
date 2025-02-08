@@ -124,7 +124,7 @@ func get_chain_lightning():
 		chain_lightning_ready = true
 		chain_lightning_range = 50
 		chain_lightning_max_hits = 2
-		chain_lightning_max_hits = 5
+		chain_lightning_cooldown = 5
 		
 func start_chain_lightning_timer():
 	chain_lightning_timer.wait_time = chain_lightning_cooldown
