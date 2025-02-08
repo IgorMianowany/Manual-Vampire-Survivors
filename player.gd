@@ -29,6 +29,7 @@ var is_dashing : bool = false
 var dash_duration : float = .1
 var can_dash : bool = true
 var puke_texture : CompressedTexture2D = preload("res://assets/sprites/objects/puke.png")
+var lightning_strike_scene = preload("res://lightning_strike.tscn")
 
 
 signal death
@@ -74,6 +75,18 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("pause"):
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
+		
+	if Input.is_action_just_pressed("dash"):
+		$LightningStrikeRange.monitoring = true
+		var enemies = $LightningStrikeRange.get_overlapping_bodies()
+		if enemies.size() > 0:
+			var enemy
+			for enem in enemies:
+				enemy = enem
+				break
+			var lightning_strike = lightning_strike_scene.instantiate()
+			lightning_strike.global_position = enemy.global_position
+			add_child(lightning_strike)
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
 		$DashHitbox.monitorable = true

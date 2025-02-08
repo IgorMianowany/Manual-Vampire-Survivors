@@ -33,4 +33,6 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 				hitbox.hits += 1
 				owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 		elif owner.name == "Player" or hitbox.get_parent().get_parent().get_parent().name == "Player":
-				owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
+			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
+		else:
+			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=94 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -444,6 +444,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_db2y5"]
 radius = 19.105
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_klfj0"]
+radius = 134.004
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 3
@@ -585,6 +588,15 @@ damage = 5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
 shape = SubResource("CircleShape2D_db2y5")
 debug_color = Color(0.936042, 1.89635e-05, 0.633872, 0.42)
+
+[node name="LightningStrikeRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightningStrikeRange"]
+shape = SubResource("CircleShape2D_klfj0")
+debug_color = Color(0.349783, 0.483477, 1, 0.42)
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
