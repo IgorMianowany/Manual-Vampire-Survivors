@@ -46,7 +46,7 @@ var dash_damage : float = 0
 var dash_timer : Timer = Timer.new()
 var jim_beam_multi = 0
 var lightning_strike_cooldown = 0
-var lightning_strike_damage = 5
+var lightning_strike_damage = 0
 var lightning_strike_range = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
@@ -85,7 +85,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 0
+		experience_threshold += 5
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -178,6 +178,7 @@ func handle_jim_beam_drank():
 func add_lightning_strike_item():
 	if lightning_strike_cooldown <= 0:
 		lightning_strike_cooldown = 9.5
+		lightning_strike_damage = 5
 		lightning_strike_range = 100
 	if lightning_strike_cooldown < 1:
 		lightning_strike_cooldown = 0.5

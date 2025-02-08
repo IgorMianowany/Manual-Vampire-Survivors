@@ -186,6 +186,7 @@ func flash_white() -> void:
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if is_knocked_back and body.name != "Player":
 		velocity = Vector2.ZERO
+		print("2")
 		take_damage(1, body.global_position.direction_to(global_position), 0)
 		
 func start_poison(new_damage : float, duration : float):

@@ -1,6 +1,6 @@
 extends Control
 
-@export var upgrades_amount : int = 100000
+@export var upgrades_amount : int = 1000
 
 func _ready() -> void:
 	var chosen_numbers : Array[int]

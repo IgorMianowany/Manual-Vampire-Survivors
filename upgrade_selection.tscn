@@ -75,6 +75,7 @@ visible = false
 layout_mode = 2
 
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
+visible = false
 layout_mode = 2
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]

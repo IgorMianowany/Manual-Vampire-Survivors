@@ -320,7 +320,7 @@ func handle_puke():
 func lightning_strike():
 	$LightningStrikeRange.monitoring = true
 	$LightningStrikeRange/CollisionShape2D.shape.radius = PlayerState.lightning_strike_range
-	var enemies = $LightningStrikddddeRange.get_overlapping_bodies()
+	var enemies = $LightningStrikeRange.get_overlapping_bodies()
 	var position : Vector2
 	if enemies.size() > 0:
 		var enemy
