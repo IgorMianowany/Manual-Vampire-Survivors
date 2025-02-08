@@ -5,7 +5,6 @@ extends Control
 func _ready() -> void:
 	var chosen_numbers : Array[int]
 	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
-	
 	filter_upgrades(upgrades)
 	# just for testing
 	##TODO remove
