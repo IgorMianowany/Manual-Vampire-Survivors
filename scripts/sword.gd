@@ -12,7 +12,7 @@ var crit_multi : float
 @export var hitbox : Hitbox
 @export var hitboxShape : CollisionShape2D
 
-func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
+func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance_from_weapon : float = 0, crit_multi_from_weapon : float = 0) -> void:
 	sword_projectiles = projectiles - 1
 	attack_started.emit()
 	# timeout to account for attack starting with delay, animation specific
@@ -20,8 +20,8 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 	hitboxShape.disabled = false
 	
 	attack_shape_cast.target_position = attack_range_pointer.position
-	var is_crit = randf_range(0,1) < crit_chance
-	var damage = attack_damage + attack_damage * crit_multi * int(is_crit)
+	var is_crit = randf_range(0,1) < crit_chance_from_weapon
+	var damage = attack_damage + attack_damage * crit_multi_from_weapon * int(is_crit)
 	for index in attack_shape_cast.get_collision_count():
 		var enemy = attack_shape_cast.get_collider(index)
 		enemy.take_damage(damage, attack_position.direction_to(enemy.position), knockback_power + PlayerState.knockback_bonus, false, is_crit)
@@ -39,8 +39,8 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 		projectile.direction = new_direction
 		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce
-		projectile.crit_chance = crit_chance
-		projectile.crit_multi = crit_multi
+		projectile.crit_chance = crit_chance_from_weapon
+		projectile.crit_multi = crit_multi_from_weapon
 		add_child(projectile)
 		
 	await(get_tree().create_timer(attack_time).timeout)

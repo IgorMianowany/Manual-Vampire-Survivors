@@ -60,82 +60,63 @@ theme_override_constants/separation = 50
 alignment = 1
 
 [node name="WhiteMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("4_7jvy1")]
-visible = false
 layout_mode = 2
 movespeed_buff = 25.0
 upgrade_name = "default name"
 
 [node name="HermesBoots" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_020fo")]
-visible = false
 layout_mode = 2
 upgrade_name = "default name"
 
 [node name="BlackMonster" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_r7a6m")]
-visible = false
 layout_mode = 2
 
 [node name="JimBeam" parent="CanvasLayer/HBoxContainer" instance=ExtResource("5_cjnhx")]
-visible = false
 layout_mode = 2
 
 [node name="Hammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("6_7yuek")]
-visible = false
 layout_mode = 2
 
 [node name="PalladinHammer" parent="CanvasLayer/HBoxContainer" instance=ExtResource("7_rcvbd")]
-visible = false
 layout_mode = 2
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
-visible = false
 layout_mode = 2
 
 [node name="Zweiblader" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_snj1s")]
-visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
-visible = false
 layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
-visible = false
 layout_mode = 2
 
 [node name="Hourglass" parent="CanvasLayer/HBoxContainer" instance=ExtResource("12_wns2d")]
-visible = false
 layout_mode = 2
 
 [node name="SmartProjectiles" parent="CanvasLayer/HBoxContainer" instance=ExtResource("13_m6boy")]
-visible = false
 layout_mode = 2
 
 [node name="HealthUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("14_muqqc")]
-visible = false
 layout_mode = 2
 
 [node name="Spinach" parent="CanvasLayer/HBoxContainer" instance=ExtResource("15_g6ojm")]
-visible = false
 layout_mode = 2
 
 [node name="TrueStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("16_myvcs")]
-visible = false
 layout_mode = 2
 
 [node name="InfinityEdge" parent="CanvasLayer/HBoxContainer" instance=ExtResource("17_4ovjs")]
-visible = false
 layout_mode = 2
 
 [node name="EagleEye" parent="CanvasLayer/HBoxContainer" instance=ExtResource("18_52rs8")]
-visible = false
 layout_mode = 2
 
 [node name="MuscularForearm" parent="CanvasLayer/HBoxContainer" instance=ExtResource("19_sclkq")]
-visible = false
 layout_mode = 2
 
 [node name="ChainLightning" parent="CanvasLayer/HBoxContainer" instance=ExtResource("20_u7g0l")]
-visible = false
 layout_mode = 2
 
 [node name="SwiftStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]

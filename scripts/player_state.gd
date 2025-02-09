@@ -86,7 +86,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 5
+		experience_threshold += 0
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -177,7 +177,7 @@ func handle_jim_beam_drank():
 		jim_beam_counter = 0
 		
 func add_lightning_strike_item():
-	if lightning_strike_cooldown <= 0:
+	if lightning_strike_cooldown == 0:
 		lightning_strike_cooldown = 9.5
 		lightning_strike_damage = 5
 		lightning_strike_range = 100

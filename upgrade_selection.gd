@@ -1,26 +1,28 @@
 extends Control
 
-@export var upgrades_amount : int = 1000
+@export var upgrades_amount : int = 3
 
 func _ready() -> void:
 	var chosen_numbers : Array[int]
 	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
-	filter_upgrades(upgrades)
+	
+	var filtered_upgrades = filter_upgrades(upgrades)
 	# just for testing
 	##TODO remove
-	if upgrades_amount > upgrades.size():
-		upgrades_amount = upgrades.size()
-
+	if upgrades_amount > filtered_upgrades.size():
+		upgrades_amount = filtered_upgrades.size()
+	
+	
 	while chosen_numbers.size() < upgrades_amount:
-		var num = randi_range(0,upgrades.size()-1)
+		var num = randi_range(0,filtered_upgrades.size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)
-	for index in upgrades.size():
+	for index in filtered_upgrades.size():
 		if not chosen_numbers.has(index):
-			upgrades[index].visible = false
+			filtered_upgrades[index].visible = false
 	PlayerState.level_up.connect(_upgrade_selection_visible)
 	get_tree().paused = true
-	for node in upgrades:
+	for node in filtered_upgrades:
 		node.upgrade_selected.connect(_quit)
 		
 func _input(event):
@@ -39,7 +41,7 @@ func _quit():
 func _upgrade_selection_visible():
 	add_child($CanvasLayer)
 	
-func filter_upgrades(upgrades : Array[Node]):
+func filter_upgrades(upgrades : Array[Node]) -> Array[Node]:
 	var upgrades_filtered = upgrades.duplicate()
 	for upgrade in upgrades:
 		if not (upgrade as UpgradeSelection).available():
@@ -47,7 +49,8 @@ func filter_upgrades(upgrades : Array[Node]):
 			# for some reason removed upgrades are still visible, and there is no way to access them
 			# after removal so we just hide them here
 			upgrade.visible = false
-	upgrades = upgrades_filtered
+	return upgrades_filtered
+	
 	
 	
 
