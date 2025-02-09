@@ -322,6 +322,8 @@ func lightning_strike():
 	$LightningStrikeRange/CollisionShape2D.shape.radius = PlayerState.lightning_strike_range
 	var enemies = $LightningStrikeRange.get_overlapping_bodies()
 	var position : Vector2
+	print(enemies.size())
+	
 	if enemies.size() > 0:
 		var enemy
 		for enem in enemies:
@@ -331,7 +333,6 @@ func lightning_strike():
 		var lightning_strike = lightning_strike_scene.instantiate()
 		lightning_strike.global_position = position
 		add_child(lightning_strike)
-		print("dupa")
 		
 func add_lightning_strike():
 	lightning_strike()
