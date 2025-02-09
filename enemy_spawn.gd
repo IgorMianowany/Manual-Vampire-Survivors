@@ -15,11 +15,12 @@ func _ready() -> void:
 
 	
 func _on_timer_timeout() -> void:
-	if count < limit:
+	if count < limit and PlayerState.slime_count < 100:
 		var slime_instance = slime.instantiate()
 		slime_instance.player = player
 		slime_instance.global_position = global_position
 		add_child(slime_instance)
 		count += 1
+		PlayerState.slime_count += 1
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)

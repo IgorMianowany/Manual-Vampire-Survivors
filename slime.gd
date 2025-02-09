@@ -29,6 +29,7 @@ var poison_damage : float = 0
 var poison_ticks_left : float = 0
 var already_hit_by_chain_lightning : bool = false
 var is_first_hit_by_chain_lightning : bool = false
+var variation : float
 
 @onready var start_pos : Vector2 = position
 
@@ -45,6 +46,8 @@ func _ready() -> void:
 	max_health += player.get_elapsed_time() / 10
 	health = max_health
 	$PoisonTimer.timeout.connect(take_poison_damage)
+	variation = randf_range(0, jump_variation)
+	
 	
 
 func _physics_process(delta: float) -> void:
@@ -58,10 +61,9 @@ func _physics_process(delta: float) -> void:
 		
 	jump_timer += delta
 	
-	var picked_variation = randf_range(0, jump_variation)
-	handle_animation(picked_variation)
-	if jump_timer > jump_cooldown + picked_variation:
-		jump_toward_player(picked_variation)
+	if jump_timer > jump_cooldown + variation:
+		handle_animation(variation)
+		jump_toward_player(variation)
 		pass
 	if is_poisoned:
 		$AnimatedSprite2D.modulate = "d800da"
@@ -174,6 +176,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		#experience_pickup_instance.reparent(get_parent())
 		
 		experience_pickup_instance.global_position = global_position
+		PlayerState.slime_count -= 1
 		queue_free()
 	$HitParticles.emitting = false
 	
@@ -186,7 +189,6 @@ func flash_white() -> void:
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if is_knocked_back and body.name != "Player":
 		velocity = Vector2.ZERO
-		print("2")
 		take_damage(1, body.global_position.direction_to(global_position), 0)
 		
 func start_poison(new_damage : float, duration : float):

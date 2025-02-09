@@ -48,6 +48,7 @@ var jim_beam_multi = 0
 var lightning_strike_cooldown = 0
 var lightning_strike_damage = 0
 var lightning_strike_range = 0
+var slime_count = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value"]

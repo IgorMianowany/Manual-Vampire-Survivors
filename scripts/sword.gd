@@ -24,7 +24,6 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 	var damage = attack_damage + attack_damage * crit_multi * int(is_crit)
 	for index in attack_shape_cast.get_collision_count():
 		var enemy = attack_shape_cast.get_collider(index)
-		print("1")
 		enemy.take_damage(damage, attack_position.direction_to(enemy.position), knockback_power + PlayerState.knockback_bonus, false, is_crit)
 	#if sword_projectiles > 0:
 	for index in sword_projectiles:
