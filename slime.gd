@@ -32,6 +32,7 @@ var is_first_hit_by_chain_lightning : bool = false
 var variation : float
 
 @onready var start_pos : Vector2 = position
+@onready var healthbar_new = $Control/Healthbar
 
 
 func _ready() -> void:
@@ -47,6 +48,7 @@ func _ready() -> void:
 	health = max_health
 	$PoisonTimer.timeout.connect(take_poison_damage)
 	variation = randf_range(0, jump_variation)
+	healthbar_new.init_health(health)
 	
 	
 
@@ -142,6 +144,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		#for index in $ChainLightningShapeCast.get_collision_count():
 			#var enemy = $ChainLightningShapeCast.get_collider(index)
 	health -= incoming_damage
+	healthbar_new.health = health
 	$HitParticles.emitting = true
 	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
 	$HitParticles.set_direction(knockback_direction)
