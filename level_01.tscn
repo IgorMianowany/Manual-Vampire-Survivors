@@ -1035,19 +1035,19 @@ limit = 0
 position = Vector2(604, 318)
 
 [node name="ExperiencePickup" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1507, 337)
+position = Vector2(143, 355)
 
 [node name="ExperiencePickup2" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1504, 403)
+position = Vector2(140, 421)
 
 [node name="ExperiencePickup3" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1507, 477)
+position = Vector2(143, 495)
 
 [node name="ExperiencePickup4" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1506, 558)
+position = Vector2(142, 576)
 
 [node name="ExperiencePickup5" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1582, 565)
+position = Vector2(218, 583)
 
 [node name="ExperiencePickup6" parent="LayerHolder" instance=ExtResource("16_3exla")]
 position = Vector2(1684, 571)
@@ -1068,13 +1068,13 @@ position = Vector2(2049, 582)
 position = Vector2(1627, 253)
 
 [node name="ExperiencePickup12" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1624, 319)
+position = Vector2(260, 337)
 
 [node name="ExperiencePickup13" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1627, 393)
+position = Vector2(263, 411)
 
 [node name="ExperiencePickup14" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1626, 474)
+position = Vector2(262, 492)
 
 [node name="ExperiencePickup15" parent="LayerHolder" instance=ExtResource("16_3exla")]
 position = Vector2(1702, 481)

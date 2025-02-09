@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=24 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ctok0pjs8e4xx" path="res://chain_lightning.tscn" id="20_u7g0l"]
 [ext_resource type="PackedScene" uid="uid://bme6pt3ah2wwg" path="res://dash.tscn" id="21_1atrr"]
 [ext_resource type="PackedScene" uid="uid://cp5fd1fug2enj" path="res://lightning_strike_item.tscn" id="22_rf1q6"]
+[ext_resource type="PackedScene" uid="uid://cpnmmqybrna2w" path="res://add_upgrade_option.tscn" id="23_x8p2a"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -123,4 +124,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="LightningInABottle" parent="CanvasLayer/HBoxContainer" instance=ExtResource("22_rf1q6")]
+layout_mode = 2
+
+[node name="AddUpgradeOption" parent="CanvasLayer/HBoxContainer" instance=ExtResource("23_x8p2a")]
 layout_mode = 2

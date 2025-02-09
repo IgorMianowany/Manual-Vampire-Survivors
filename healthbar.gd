@@ -26,8 +26,6 @@ func _set_health(new_health):
 
 func init_health(_health):
 	health = _health
-	print(_health)
-	print(health)
 	
 	max_value = _health
 	value = _health

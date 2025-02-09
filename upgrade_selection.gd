@@ -1,22 +1,21 @@
 extends Control
 
-@export var upgrades_amount : int = 3
-
 func _ready() -> void:
 	var chosen_numbers : Array[int]
 	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
-	
 	var filtered_upgrades = filter_upgrades(upgrades)
+	
 	# just for testing
 	##TODO remove
-	if upgrades_amount > filtered_upgrades.size():
-		upgrades_amount = filtered_upgrades.size()
+	#if PlayerState.upgrades_amount > filtered_upgrades.size():
+		#PlayerState.upgrades_amount = filtered_upgrades.size()
 	
-	
-	while chosen_numbers.size() < upgrades_amount:
+	while chosen_numbers.size() < PlayerState.upgrades_amount:
 		var num = randi_range(0,filtered_upgrades.size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)
+	chosen_numbers.remove_at(2)
+	chosen_numbers.append(21)
 	for index in filtered_upgrades.size():
 		if not chosen_numbers.has(index):
 			filtered_upgrades[index].visible = false
