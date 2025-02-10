@@ -7,14 +7,16 @@ extends ProgressBar
 var health = 0 : set = _set_health
 var subtract_damage : bool = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if subtract_damage and damage_bar.value > health:
 		for index in range(30):
 			damage_bar.value -= .1
 	
 
-func _set_health(new_health):
-	var prev_health = health if health > 0 else max_value
+func _set_health(new_health : float):
+	var prev_health = health
+	if prev_health == 0:
+		prev_health = max_value
 	health = min(max_value, new_health)
 	value = health
 	

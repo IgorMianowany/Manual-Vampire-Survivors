@@ -8,7 +8,7 @@ extends Control
 func _ready() -> void:
 	$VBoxContainer/MarginContainer/TextureRect.texture = texture
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$VBoxContainer/MarginContainer/GrayedOut.scale.y = -(current_cooldown / max_cooldown)
 	$VBoxContainer/MarginContainer/GrayedOut.position.y = 50
 	var cooldown_visible = current_cooldown > 0

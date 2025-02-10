@@ -185,7 +185,7 @@ func handle_movement() -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, base_speed)
 			
-func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, is_poisoning : bool, is_crit : bool) -> void:
+func take_damage(damage : float, knockback_direction : Vector2, incoming_knockback_power : float, _is_poisoning : bool, _is_crit : bool) -> void:
 	if not is_invincible:
 		if bubble_ready:
 			bubble_hits += 1
@@ -280,9 +280,9 @@ func handle_weapon_rotation():
 	var mouse_pos = get_global_mouse_position()
 
 	# Calculate the direction from the sprite to the mouse
-	var direction = (mouse_pos - global_position).normalized()
+	var weapon_direction = (mouse_pos - global_position).normalized()
 	# Calculate the rotation angle based on the direction
-	var angle = direction.angle()
+	var angle = weapon_direction.angle()
 	# Set the sprite's rotation to the calculated angle
 	#$Marker2D/WeaponSprite.rotation = angle
 	$Marker2D.rotation = angle
@@ -295,6 +295,7 @@ func add_palladin_hammer():
 	hammers.append(hammer_instance)
 	var i = 0
 	for hammer in hammers: 
+		@warning_ignore("integer_division")
 		hammer.rotation_degrees = (360 / hammers.size()) * i
 		hammer.add_speed(PlayerState.palladin_hammer_speed)
 		hammer.set_damage(PlayerState.palladin_hammer_damage)
@@ -321,17 +322,16 @@ func lightning_strike():
 	$LightningStrikeRange.monitoring = true
 	$LightningStrikeRange/CollisionShape2D.shape.radius = PlayerState.lightning_strike_range
 	var enemies = $LightningStrikeRange.get_overlapping_bodies()
-	var position : Vector2
+	var lightning_strike_position : Vector2
 	
 	if enemies.size() > 0:
-		var enemy
 		for enem in enemies:
 			if enem != null and enem.health > 0:
-				position = enem.global_position
+				lightning_strike_position = enem.global_position
 				break
-		var lightning_strike = lightning_strike_scene.instantiate()
-		lightning_strike.global_position = position
-		add_child(lightning_strike)
+		var lightning_strike_instance = lightning_strike_scene.instantiate()
+		lightning_strike_instance.global_position = lightning_strike_position
+		add_child(lightning_strike_instance)
 		
 func add_lightning_strike():
 	lightning_strike()

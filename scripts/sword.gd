@@ -30,6 +30,7 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 		var existing_direction = direction
 		# this is done so the arrows are moved based on the center, instead of just 45 degrees down or up
 		if sword_projectiles > 1:
+			@warning_ignore("integer_division")
 			rotation_change = ((-spread/2) + ((spread/(sword_projectiles-1)) * index))
 		var angle_in_radians = deg_to_rad(rotation_change)
 		var new_direction = existing_direction.rotated(angle_in_radians)

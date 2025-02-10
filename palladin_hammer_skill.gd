@@ -15,7 +15,7 @@ func _ready() -> void:
 	#if int(rotation_degrees) > 360 + starting_rotation:
 		#rotation_degrees = 0 + starting_rotation
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	rotate(rotation_speed)
 	if int(rotation_degrees) > 360 + starting_rotation:
 		rotation_degrees = 0 + starting_rotation

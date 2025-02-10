@@ -74,9 +74,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func jump_toward_player(variation : float) -> void:
+func jump_toward_player(_jump_variation : float) -> void:
 	var new_direction := Vector2.ZERO
-	if jump_timer < jump_cooldown + jump_duration + variation and health >0 :
+	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health >0 :
 		is_jumping = true
 		if not is_knocked_back:
 			# this is a weird way to check if slime reached it's jump destination before finishing the jump
@@ -94,12 +94,12 @@ func jump_toward_player(variation : float) -> void:
 		jump_timer = 0
 	player_direction = new_direction
 
-func handle_animation(variation : float) -> void:
+func handle_animation(animation_variation : float) -> void:
 	direction = position.direction_to(player.position)
 	if health <= 0:
 		$AnimatedSprite2D.play("die")
 	elif velocity != Vector2.ZERO and not is_knocked_back:
-		if direction.x > 0  and jump_timer < jump_cooldown + variation:
+		if direction.x > 0  and jump_timer < jump_cooldown + animation_variation:
 			if direction.x > direction.y:
 				$AnimatedSprite2D.play("move_right")
 				$AnimatedSprite2D.flip_h = false
@@ -108,7 +108,7 @@ func handle_animation(variation : float) -> void:
 				$AnimatedSprite2D.play("move_down")
 				$AnimatedSprite2D.flip_h = false
 				facing_direction = DirectionEnum.DOWN
-		elif jump_timer < jump_cooldown + variation:
+		elif jump_timer < jump_cooldown + animation_variation:
 			if direction.x < direction.y:
 				$AnimatedSprite2D.play("move_right")
 				$AnimatedSprite2D.flip_h = true

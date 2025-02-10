@@ -65,6 +65,7 @@ signal after_level_up
 signal after_class_chosen
 @warning_ignore("unused_signal")
 signal add_palladin_hammer
+@warning_ignore("unused_signal")
 signal add_bubble_shield
 signal add_lightning_strike
 signal jim_beam_drank
@@ -78,7 +79,7 @@ func _ready() -> void:
 	dash_timer.timeout.connect(on_dash_timer_timeout)
 	jim_beam_drank.connect(handle_jim_beam_drank)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if mana < max_mana and not mana_regen_blocked:
 		mana += 0.05
 	
@@ -171,6 +172,7 @@ func handle_jim_beam_drank():
 		jim_beam_multi = 1
 	var old_attack_damage = attack_damage / jim_beam_multi
 	jim_beam_multi += 1
+	attack_damage = old_attack_damage * jim_beam_multi
 	var chance_to_puke = 0.1 * jim_beam_counter
 	var puke_roll = randf_range(0,1)
 	if puke_roll < chance_to_puke:

@@ -6,7 +6,7 @@ var stat_line_scene := preload("res://stat_line.tscn")
 func _ready() -> void:
 	refresh_stat_sheet()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("check_stats"):
 		toggle_stat_sheet()
 
