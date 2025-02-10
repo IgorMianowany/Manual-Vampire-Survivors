@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://dex6rvttf5f6c"]
+[gd_scene load_steps=62 format=4 uid="uid://dex6rvttf5f6c"]
 
 [ext_resource type="Texture2D" uid="uid://bxujpobmruq50" path="res://assets/sprites/tilesets/decor_8x8.png" id="1_krj42"]
 [ext_resource type="Texture2D" uid="uid://cdcqb0khqlr7y" path="res://assets/sprites/tilesets/decor_16x16.png" id="2_wlpnc"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://70xhux380lab" path="res://assets/sprites/objects/rock_in_water_04.png" id="24_yox24"]
 [ext_resource type="Texture2D" uid="uid://b4itxlq6q8pxn" path="res://assets/sprites/objects/rock_in_water_05.png" id="25_8nyiq"]
 [ext_resource type="PackedScene" uid="uid://ryyuju6qndc" path="res://player.tscn" id="26_ij30w"]
-[ext_resource type="PackedScene" uid="uid://bhbi45iw72g6f" path="res://slime.tscn" id="27_bpjw7"]
 [ext_resource type="PackedScene" uid="uid://hkbwrpf7npvo" path="res://enemy_spawn.tscn" id="27_qf16w"]
 [ext_resource type="PackedScene" uid="uid://cp5b3a2qsf42v" path="res://class_selection.tscn" id="29_wgnba"]
 
@@ -944,10 +943,6 @@ tile_set = SubResource("TileSet_ew6s5")
 [node name="Player" parent="LayerHolder" instance=ExtResource("26_ij30w")]
 position = Vector2(108, 264)
 
-[node name="Slime" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_bpjw7")]
-position = Vector2(240, 284)
-player = NodePath("../Player")
-
 [node name="Decor" type="TileMapLayer" parent="LayerHolder"]
 tile_map_data = PackedByteArray("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AAA8AAIAAAACAAAAAAA8AAMAAAAAAAAAAAA6AAwAAAADAAAAAAA6AA0AAAACAAAAAAA6AA4AAAADAAAAAAA3AAsAAAABAAAAAAA9AAkAAAACAAAAAAA+AAkAAAAAAAAAAABBAAUAAAAAAAAAAABBAAQAAAACAAAAAABAAA0AAAAAAAAAAABAAA4AAAACAAAAAAA/ABkAAAACAAAAAABCABQAAAACAAAAAAA7ABsAAAAAAAAAAAAtABoAAAADAAAAAAAuABoAAAAAAAAAAAAuACIAAAAAAAAAAAA1ACAAAAAAAAAAAAAxACMAAAACAAAAAAAwACQAAAACAAAAAAAwACUAAAAAAAAAAAAuACUAAAABAAAAAAAtACUAAAABAAAAAAAsACQAAAABAAAAAAAoACIAAAACAAAAAAAoACEAAAAAAAAAAAAsABwAAAACAAAAAAAtABwAAAACAAAAAAAuABsAAAABAAAAAAAtABsAAAADAAAAAAAsABsAAAACAAAAAAArABsAAAABAAAAAAAnABwAAAAAAAAAAAAhACMAAAABAAAAAAAfACQAAAADAAAAAAAeACQAAAACAAAAAAAdACQAAAABAAAAAAAbAB8AAAADAAAAAAAbAB4AAAACAAAAAAAZAB0AAAACAAAAAAAYAB0AAAABAAAAAAAXAB0AAAAAAAAAAAAUACIAAAABAAAAAAATACMAAAAAAAAAAAASACMAAAADAAAAAAASACQAAAADAAAAAAARACQAAAAAAAAAAAAQACQAAAADAAAAAAALACMAAAABAAAAAAAGABcAAAAAAAAAAAAJABoAAAAAAAAAAAAJABsAAAABAAAAAAAIABsAAAAAAAAAAAAFABwAAAABAAAAAAADABkAAAACAAAAAAAEABkAAAAAAAAAAAACAB4AAAACAAAAAAACAB0AAAAAAAAAAAACABwAAAABAAAAAAACABkAAAABAAAAAAAEABAAAAAAAAAAAAAGAA4AAAACAAAAAAAGAA0AAAACAAAAAAAFAA0AAAADAAAAAAADAA0AAAACAAAAAAAHAAkAAAACAAAAAAAMAAgAAAACAAAAAAAVAAgAAAAAAAAAAAAVAAQAAAADAAAAAAAaAAMAAAABAAAAAAAeAAIAAAABAAAAAAAXAAIAAAABAAAAAAATABIAAAAAAAAAAAATAA8AAAACAAAAAAAUAA8AAAABAAAAAAAXAA4AAAABAAAAAAAVAAwAAAABAAAAAAAVAAsAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_ggvl2")
@@ -960,74 +955,73 @@ tile_set = SubResource("TileSet_x7ptb")
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(326, 94)
-cooldown = 3.0
 player = NodePath("../Player")
-limit = 5
+limit = 0
 
 [node name="EnemySpawn10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(399, 388)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn13" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(694, 251)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn15" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(775, 177)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn18" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(288, 221)
+cooldown = 5.0
 player = NodePath("../Player")
-limit = 1
+limit = 0
 
 [node name="EnemySpawn20" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(447, 194)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn21" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(482, 601)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn22" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(277, 441)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn23" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(247, 283)
-cooldown = 15.0
 player = NodePath("../Player")
-limit = 0
+limit = 5
 
 [node name="EnemySpawn24" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(370, 312)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn25" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(132, 542)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
 [node name="EnemySpawn26" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(625, 510)
-cooldown = 15.0
+cooldown = 5.0
 player = NodePath("../Player")
 limit = 0
 
@@ -1035,123 +1029,123 @@ limit = 0
 position = Vector2(604, 318)
 
 [node name="ExperiencePickup" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(143, 355)
+position = Vector2(1284, 276)
 
 [node name="ExperiencePickup2" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(140, 421)
+position = Vector2(1281, 342)
 
 [node name="ExperiencePickup3" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(143, 495)
+position = Vector2(1284, 416)
 
 [node name="ExperiencePickup4" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(142, 576)
+position = Vector2(1283, 497)
 
 [node name="ExperiencePickup5" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(218, 583)
+position = Vector2(1359, 504)
 
 [node name="ExperiencePickup6" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1684, 571)
+position = Vector2(2825, 492)
 
 [node name="ExperiencePickup7" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1777, 569)
+position = Vector2(2918, 490)
 
 [node name="ExperiencePickup8" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1867, 569)
+position = Vector2(3008, 490)
 
 [node name="ExperiencePickup9" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1947, 571)
+position = Vector2(3088, 492)
 
 [node name="ExperiencePickup10" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2049, 582)
+position = Vector2(3190, 503)
 
 [node name="ExperiencePickup11" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1627, 253)
+position = Vector2(2768, 174)
 
 [node name="ExperiencePickup12" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(260, 337)
+position = Vector2(1401, 258)
 
 [node name="ExperiencePickup13" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(263, 411)
+position = Vector2(1404, 332)
 
 [node name="ExperiencePickup14" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(262, 492)
+position = Vector2(1403, 413)
 
 [node name="ExperiencePickup15" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1702, 481)
+position = Vector2(2843, 402)
 
 [node name="ExperiencePickup16" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1804, 487)
+position = Vector2(2945, 408)
 
 [node name="ExperiencePickup17" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1897, 485)
+position = Vector2(3038, 406)
 
 [node name="ExperiencePickup18" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1987, 485)
+position = Vector2(3128, 406)
 
 [node name="ExperiencePickup19" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2067, 487)
+position = Vector2(3208, 408)
 
 [node name="ExperiencePickup20" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2169, 498)
+position = Vector2(3310, 419)
 
 [node name="ExperiencePickup21" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1733, 170)
+position = Vector2(2874, 91)
 
 [node name="ExperiencePickup22" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1730, 236)
+position = Vector2(2871, 157)
 
 [node name="ExperiencePickup23" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1733, 310)
+position = Vector2(2874, 231)
 
 [node name="ExperiencePickup24" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1732, 391)
+position = Vector2(2873, 312)
 
 [node name="ExperiencePickup25" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1808, 398)
+position = Vector2(2949, 319)
 
 [node name="ExperiencePickup26" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1910, 404)
+position = Vector2(3051, 325)
 
 [node name="ExperiencePickup27" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2003, 402)
+position = Vector2(3144, 323)
 
 [node name="ExperiencePickup28" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2093, 402)
+position = Vector2(3234, 323)
 
 [node name="ExperiencePickup29" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2173, 404)
+position = Vector2(3314, 325)
 
 [node name="ExperiencePickup30" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2275, 415)
+position = Vector2(3416, 336)
 
 [node name="ExperiencePickup31" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1851, 89)
+position = Vector2(2992, 10)
 
 [node name="ExperiencePickup32" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1848, 155)
+position = Vector2(2989, 76)
 
 [node name="ExperiencePickup33" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1851, 229)
+position = Vector2(2992, 150)
 
 [node name="ExperiencePickup34" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1850, 310)
+position = Vector2(2991, 231)
 
 [node name="ExperiencePickup35" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1926, 317)
+position = Vector2(3067, 238)
 
 [node name="ExperiencePickup36" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2028, 323)
+position = Vector2(3169, 244)
 
 [node name="ExperiencePickup37" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2121, 321)
+position = Vector2(3262, 242)
 
 [node name="ExperiencePickup38" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2211, 321)
+position = Vector2(3352, 242)
 
 [node name="ExperiencePickup39" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2291, 323)
+position = Vector2(3432, 244)
 
 [node name="ExperiencePickup40" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2393, 334)
+position = Vector2(3534, 255)
 
 [node name="ClassSelection" parent="." instance=ExtResource("29_wgnba")]

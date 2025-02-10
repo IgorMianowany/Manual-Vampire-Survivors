@@ -48,7 +48,7 @@ func _ready() -> void:
 	health = max_health
 	$PoisonTimer.timeout.connect(take_poison_damage)
 	variation = randf_range(0, jump_variation)
-	healthbar_new.init_health(health)
+	healthbar_new.init_health(max_health)
 	
 	
 
@@ -230,7 +230,8 @@ func handle_chain_lightning_logic():
 			if PlayerState.enemies_hit_by_chain_lightning.size() <= PlayerState.chain_lightning_max_hits and PlayerState.chain_lightning_ready:
 				$ChainLightningAnimation.animate_chain_lightning(global_position, enemy.global_position)
 				await(get_tree().create_timer(.1).timeout)
-				enemy.take_damage(PlayerState.chain_lightning_damage, Vector2.ZERO, 0, false, false)
+				if is_instance_valid(enemy):
+					enemy.take_damage(PlayerState.chain_lightning_damage, Vector2.ZERO, 0, false, false)
 				pass
 			else:
 				PlayerState.chain_lightning_current_hits = 0

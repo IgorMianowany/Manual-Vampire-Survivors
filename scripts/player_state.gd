@@ -87,7 +87,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 0
+		experience_threshold += 2
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -171,7 +171,7 @@ func handle_jim_beam_drank():
 		jim_beam_multi = 1
 	var old_attack_damage = attack_damage / jim_beam_multi
 	jim_beam_multi += 1
-	var chance_to_puke = 0.5 * jim_beam_counter
+	var chance_to_puke = 0.1 * jim_beam_counter
 	var puke_roll = randf_range(0,1)
 	if puke_roll < chance_to_puke:
 		puke.emit()

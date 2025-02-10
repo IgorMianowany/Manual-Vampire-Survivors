@@ -259,7 +259,7 @@ func rotate_attack_range() -> void:
 		$AttackRangePointer.rotation_degrees = 0
 
 func get_elapsed_time() -> int:
-	return int(max_time - $GameTimer.time_left)
+	return int(max_time - $GameTimer.time_left + 1)
 	
 func set_class():
 	match PlayerState.chosen_class:

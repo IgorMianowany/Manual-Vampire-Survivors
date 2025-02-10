@@ -15,7 +15,7 @@ func _ready() -> void:
 
 	
 func _on_timer_timeout() -> void:
-	if count < limit and PlayerState.slime_count < 100:
+	if count < limit and PlayerState.slime_count < 50:
 		var slime_instance = slime.instantiate()
 		slime_instance.player = player
 		slime_instance.global_position = global_position

@@ -14,10 +14,10 @@ func _process(delta: float) -> void:
 	
 
 func _set_health(new_health):
-	var prev_health = health
+	var prev_health = health if health > 0 else max_value
 	health = min(max_value, new_health)
 	value = health
-
+	
 	if health < prev_health:
 		timer.start()
 		subtract_damage = false
@@ -31,6 +31,7 @@ func init_health(_health):
 	value = _health
 	damage_bar.max_value = _health
 	damage_bar.value = _health
+
 
 
 func _on_timer_timeout() -> void:
