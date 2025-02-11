@@ -24,7 +24,7 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 	if name.contains("Slime") and hitbox.name.contains("Slime"):
 		return
 	
-	if owner == "Player" and hitbox.owner.name.contains("Summon"):
+	if owner.name == "Player" and hitbox.owner.name.contains("Summon"):
 		return
 		
 	# remember that taking damage from fireball logic is in fireball_new script for some reason
