@@ -1,13 +1,16 @@
+class_name KnifeSummon
 extends CharacterBody2D
 
 var target : Slime 
 var direction : Vector2
-var speed : float = 100
+var speed : float = 150
 var player : Player 
 var direction_variation : Vector2
 var distance : float
 @onready var timer : Timer = $Timer
+var reacharge : bool = false
 
+signal reached_target
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,23 +23,34 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	if target != null:
-		speed = clamp(global_position.distance_squared_to(target.global_position), 50, 200)
+	if reacharge:
+		speed = 0
+	else:
+		speed = 150
 	velocity = speed * direction * direction_variation
 	move_and_slide()
 
 
 func _on_timer_timeout() -> void:
+	await(get_tree().create_timer(.5).timeout)
 	target = null
 	var enemies = $TargetRange.get_overlapping_bodies()
-	print(enemies.size())
 	for enemy in enemies:
 		target = enemy
 		break
 	if target == null or global_position.distance_to(player.global_position) > 200:
-		direction_variation = Vector2(randf_range(0.75, 1.25), randf_range(0.75, 1.25)	)
+		direction_variation = Vector2(randf_range(0.75, 1.25), randf_range(0.75, 1.25))
 		direction = global_position.direction_to(player.global_position)
 	else:
 		direction_variation = Vector2.ONE
 		direction = global_position.direction_to(target.global_position)
+	reacharge = false
 	look_at(position + direction)
+
+
+func _on_reached_target() -> void:
+	await(get_tree().create_timer(.5).timeout)
+	if not reacharge:
+		reacharge = true
+	
+	

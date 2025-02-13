@@ -43,3 +43,5 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 
 		else:
 			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
+			if hitbox.owner.name == "KnifeSummon":
+				(hitbox.owner as KnifeSummon).reached_target.emit()
