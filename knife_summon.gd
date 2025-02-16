@@ -18,7 +18,7 @@ func _ready() -> void:
 	timer.autostart = true
 	player = owner
 	set_as_top_level(true)
-	global_position = player.global_position + Vector2(15,0)
+	#global_position = player.global_position + Vector2(15,0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +38,7 @@ func _on_timer_timeout() -> void:
 	for enemy in enemies:
 		target = enemy
 		break
-	if target == null or global_position.distance_to(player.global_position) > 200:
+	if target == null or global_position.distance_to(player.global_position) > 100:
 		direction_variation = Vector2(randf_range(0.75, 1.25), randf_range(0.75, 1.25))
 		direction = global_position.direction_to(player.global_position)
 	else:

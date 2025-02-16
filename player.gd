@@ -31,6 +31,7 @@ var can_dash : bool = true
 var puke_texture : CompressedTexture2D = preload("res://assets/sprites/objects/puke.png")
 var lightning_strike_scene = preload("res://lightning_strike.tscn")
 var lightning_strike_timer : Timer = Timer.new()
+var knife_summon_scene = preload("res://knife_summon.tscn")
 
 signal death
 
@@ -51,6 +52,7 @@ func _ready() -> void:
 	add_child(lightning_strike_timer)
 	lightning_strike_timer.timeout.connect(lightning_strike)
 	lightning_strike_timer.autostart = true
+	PlayerState.add_knife.connect(handle_knife_spawn)
 
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
@@ -338,3 +340,8 @@ func add_lightning_strike():
 	lightning_strike_timer.wait_time = PlayerState.lightning_strike_cooldown
 	lightning_strike_timer.start()
 	
+func handle_knife_spawn():
+	var knife_instance = knife_summon_scene.instantiate()
+	add_child(knife_instance)
+	knife_instance.global_position = global_position + Vector2(15,0)
+	knife_instance.player = self

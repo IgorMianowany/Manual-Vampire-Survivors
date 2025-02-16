@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 100
+var experience_threshold : int = 1
 var level : int = 0
 var projectiles : int = 0
 var projectile_speed : float = 300
@@ -49,6 +49,7 @@ var lightning_strike_cooldown = 0
 var lightning_strike_damage = 0
 var lightning_strike_range = 0
 var slime_count = 0
+var has_knife : bool = false
 @onready var upgrades_amount : int = 3000
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
@@ -70,6 +71,7 @@ signal add_bubble_shield
 signal add_lightning_strike
 signal jim_beam_drank
 signal puke
+signal add_knife
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -152,6 +154,8 @@ func get_first_vbox_stats() -> Array[String]:
 			continue
 		var new_property_name = turn_snake_case_to_name(propertyName)
 		var propertyValue = get(propertyName)
+		if not propertyValue:
+			continue
 		if propertyValue == 0:
 			continue
 		if propertyValue != null:
