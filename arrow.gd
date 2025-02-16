@@ -34,11 +34,12 @@ func _physics_process(delta: float) -> void:
 	if target != null and PlayerState.has_homing_projectiles:
 		direction += (global_position.direction_to(target.global_position)/5)
 		#max_homing_speed -= (100 - min(100, global_position.distance_to(target.global_position)))/100
-	rotation = direction.angle()
+		rotation = direction.angle()
 	direction = direction.clamp(Vector2(-max_homing_speed,-max_homing_speed), Vector2(max_homing_speed, max_homing_speed))
 	position += direction * speed * delta
-	if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
-		_on_projectile_death()
+	#TODO ogarnąć zcy to ma sens
+	#if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
+		#_on_projectile_death()
 	
 
 
@@ -64,7 +65,7 @@ func _on_projectile_death():
 	#if area.name != $ArrowImpactDetector.name:
 		#if $ArrowHitbox.hits >= $ArrowHitbox.max_hits - 1:
 			#queue_free()
-#
+
 #
 #func _on_arrow_hitbox_body_entered(body: Node2D) -> void:
 	#print(body.name)

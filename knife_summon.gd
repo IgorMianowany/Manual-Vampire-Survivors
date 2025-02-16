@@ -10,6 +10,7 @@ var distance : float
 @onready var timer : Timer = $Timer
 var reacharge : bool = false
 
+@warning_ignore("unused_signal")
 signal reached_target
 
 # Called when the node enters the scene tree for the first time.

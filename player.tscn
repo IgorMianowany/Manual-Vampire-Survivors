@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=96 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -67,7 +67,9 @@
 [ext_resource type="Script" path="res://scripts/staff.gd" id="57_gw1fk"]
 [ext_resource type="Texture2D" uid="uid://i1okm6c3sylv" path="res://assets/sprites/characters/wand_fire.png" id="58_ojugi"]
 [ext_resource type="Texture2D" uid="uid://bw5fwf8f4qwjc" path="res://assets/sprites/particles/chainlightning/lightning_v2_1.png" id="67_36msd"]
+[ext_resource type="Script" path="res://shuriken.gd" id="67_oftbl"]
 [ext_resource type="Texture2D" uid="uid://d1qjeloah7jw6" path="res://assets/sprites/particles/chainlightning/lightning_v2_2.png" id="68_o0f6m"]
+[ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="68_uihbl"]
 [ext_resource type="Texture2D" uid="uid://byr76s2pcacna" path="res://assets/sprites/particles/chainlightning/lightning_v2_3.png" id="69_0latn"]
 [ext_resource type="Texture2D" uid="uid://smnih7xin388" path="res://assets/sprites/particles/chainlightning/lightning_v2_4.png" id="70_wx8kk"]
 [ext_resource type="Texture2D" uid="uid://cm76oghs33am5" path="res://assets/sprites/particles/chainlightning/lightning_v2_5.png" id="71_oe8vt"]
@@ -549,6 +551,10 @@ hitboxShape = NodePath("../../AttackRangePointer/PlayerHitbox/CollisionShape2D")
 script = ExtResource("57_gw1fk")
 weapon_texture = ExtResource("58_ojugi")
 
+[node name="Shuriken" type="Node2D" parent="Weapon"]
+script = ExtResource("67_oftbl")
+weapon_texture = ExtResource("68_uihbl")
+
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 1e+07
 one_shot = true
@@ -607,3 +613,5 @@ debug_color = Color(0.349783, 0.483477, 1, 0.42)
 [connection signal="attack_started" from="Weapon/Sword" to="Weapon" method="_on_sword_attack_started"]
 [connection signal="attack_finished" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_finished"]
 [connection signal="attack_started" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_started"]
+[connection signal="attack_finished" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_finished"]
+[connection signal="attack_started" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_started"]

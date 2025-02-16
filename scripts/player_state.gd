@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 1
+var experience_threshold : int = 100
 var level : int = 0
 var projectiles : int = 0
 var projectile_speed : float = 300
@@ -71,6 +71,7 @@ signal add_bubble_shield
 signal add_lightning_strike
 signal jim_beam_drank
 signal puke
+@warning_ignore("unused_signal")
 signal add_knife
 
 func _ready() -> void:
