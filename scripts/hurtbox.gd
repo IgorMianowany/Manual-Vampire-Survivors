@@ -37,8 +37,7 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 		elif hitbox.owner.get_parent().get_parent().get_parent().name == "Player":
 			if hitbox.hits < hitbox.max_hits:
 				hitbox.hits += 1
-				print(hitbox.name)
-				if hitbox.owner.name == "Shuriken":
+				if hitbox.hitbox_name == "ShurikenHitbox":
 					hitbox.owner.life -= 1
 					hitbox.hits -= 1
 					hitbox.owner.hit.emit()

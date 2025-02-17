@@ -1,14 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1gumcm1jx8cd"]
+[gd_scene load_steps=7 format=3 uid="uid://d1gumcm1jx8cd"]
 
-[ext_resource type="PackedScene" uid="uid://cftypuru0a5xp" path="res://projectile.tscn" id="1_fiqwi"]
 [ext_resource type="Script" path="res://shuriken_projectile.gd" id="2_xhjku"]
 [ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="3_q7cmo"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_uju6r"]
 
-[node name="Shuriken" instance=ExtResource("1_fiqwi")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrt6g"]
+radius = 109.165
+
+[node name="Shuriken" type="Node2D"]
 script = ExtResource("2_xhjku")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
 scale = Vector2(0.023, 0.022)
 texture = ExtResource("3_q7cmo")
 
+[node name="ProjectileHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_uju6r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitbox"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_fkxp7")
+debug_color = Color(1, 0, 0.0588235, 0.419608)
+
+[node name="ProjectileImpactDetector" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileImpactDetector"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_8vmqc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="HomingRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingRange"]
+shape = SubResource("CircleShape2D_nrt6g")
+
 [connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_projectile_hitbox_area_entered"]
+[connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_area_entered"]
+[connection signal="body_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_body_entered"]
+[connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_area_entered"]
+[connection signal="body_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HomingRange" to="." method="_on_homing_range_area_entered"]
+[connection signal="body_entered" from="HomingRange" to="." method="_on_homing_range_body_entered"]

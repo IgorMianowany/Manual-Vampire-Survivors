@@ -7,6 +7,7 @@ signal hit
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hit.connect(_on_projectile_death)
+	$ProjectileHitbox.hitbox_name = "ShurikenHitbox"
 	super()
 
 
