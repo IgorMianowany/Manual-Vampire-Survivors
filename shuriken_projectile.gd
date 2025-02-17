@@ -28,6 +28,8 @@ func _on_projectile_death():
 	if next_direction != null:
 		enemies_hit.append(next_direction.name)
 		direction = global_position.direction_to(next_direction.global_position)
+	else:
+		direction = direction.rotated(randf_range(180, 360))
 	
 	if life <= 0:
 		super()
