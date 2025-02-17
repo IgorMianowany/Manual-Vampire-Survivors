@@ -10,3 +10,5 @@ script = ExtResource("2_xhjku")
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.023, 0.022)
 texture = ExtResource("3_q7cmo")
+
+[connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_projectile_hitbox_area_entered"]

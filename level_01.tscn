@@ -965,7 +965,7 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(399, 388)
+position = Vector2(368, 253)
 player = NodePath("../Player")
 limit = 1
 
@@ -981,12 +981,12 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn18" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(288, 221)
+position = Vector2(289, 249)
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn20" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(447, 194)
+position = Vector2(421, 223)
 player = NodePath("../Player")
 limit = 1
 
@@ -1001,12 +1001,12 @@ player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn24" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(370, 312)
+position = Vector2(324, 287)
 player = NodePath("../Player")
 limit = 1
 
 [node name="EnemySpawn25" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
-position = Vector2(132, 542)
+position = Vector2(96, 578)
 player = NodePath("../Player")
 limit = 1
 

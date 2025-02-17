@@ -1,7 +1,7 @@
 class_name ShurikenProjectile
 extends Projectile
-var life = 3
-@onready var enemies_hit : Array[Slime] = []
+var life = 10
+@onready var enemies_hit : Array[String] = []
 signal hit
 
 # Called when the node enters the scene tree for the first time.
@@ -21,11 +21,18 @@ func _on_projectile_death():
 	var min_distance : float = 1000000
 	var next_direction
 	for enemy in enemies:
-		if global_position.distance_to(enemy.global_position) < min_distance and global_position.distance_to(enemy.global_position) > 10:
+		if global_position.distance_to(enemy.global_position) < min_distance and global_position.distance_to(enemy.global_position) > 10 and not enemies_hit.has(enemy.name):
 			next_direction = enemy
 			min_distance = global_position.distance_to(enemy.global_position)
 	if next_direction != null:
+		enemies_hit.append(next_direction.name)
 		direction = global_position.direction_to(next_direction.global_position)
 	
 	if life <= 0:
 		super()
+
+#
+#func _on_projectile_impact_detector_area_entered(area: Area2D) -> void:
+	#if area.name != $ProjectileImpactDetector.name:
+		#if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits - 1:
+			#_on_projectile_death()
