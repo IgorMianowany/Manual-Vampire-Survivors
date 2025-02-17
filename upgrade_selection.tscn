@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cdpm5njmkbydl"]
+[gd_scene load_steps=26 format=3 uid="uid://cdpm5njmkbydl"]
 
 [ext_resource type="Script" path="res://upgrade_selection.gd" id="1_uhedg"]
 [ext_resource type="PackedScene" uid="uid://5rn0vdft68ba" path="res://items/white_monster_item.tscn" id="4_7jvy1"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://cp5fd1fug2enj" path="res://lightning_strike_item.tscn" id="22_rf1q6"]
 [ext_resource type="PackedScene" uid="uid://cpnmmqybrna2w" path="res://add_upgrade_option.tscn" id="23_x8p2a"]
 [ext_resource type="PackedScene" uid="uid://djylqchrb2fuf" path="res://knife_summon_item.tscn" id="24_tfne5"]
+[ext_resource type="PackedScene" uid="uid://bod83p7o1wdlk" path="res://ninja_star.tscn" id="25_kv7uf"]
 
 [node name="UpgradeSelection" type="Control"]
 process_mode = 3
@@ -97,7 +98,6 @@ visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
-visible = false
 layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
@@ -148,7 +148,11 @@ visible = false
 layout_mode = 2
 
 [node name="AddUpgradeOption" parent="CanvasLayer/HBoxContainer" instance=ExtResource("23_x8p2a")]
+visible = false
 layout_mode = 2
 
 [node name="KnifeSummonItem" parent="CanvasLayer/HBoxContainer" instance=ExtResource("24_tfne5")]
+layout_mode = 2
+
+[node name="NinjaStar" parent="CanvasLayer/HBoxContainer" instance=ExtResource("25_kv7uf")]
 layout_mode = 2

@@ -1,6 +1,7 @@
 class_name ShurikenProjectile
 extends Projectile
-var life = 10
+#TODO zobaczyć czy to dobrze działa z hits/ max_hits
+var life = 8
 @onready var enemies_hit : Array[String] = []
 signal hit
 
@@ -33,9 +34,3 @@ func _on_projectile_death():
 	
 	if life <= 0:
 		super()
-
-#
-#func _on_projectile_impact_detector_area_entered(area: Area2D) -> void:
-	#if area.name != $ProjectileImpactDetector.name:
-		#if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits - 1:
-			#_on_projectile_death()

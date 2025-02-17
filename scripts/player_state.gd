@@ -2,7 +2,7 @@ extends Node
 
 var max_health : float = 100
 var experience : int = 0
-var experience_threshold : int = 100
+var experience_threshold : int = 1
 var level : int = 0
 var projectiles : int = 0
 var projectile_speed : float = 300
@@ -91,7 +91,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 2
+		experience_threshold += 0
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")

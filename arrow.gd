@@ -38,8 +38,8 @@ func _physics_process(delta: float) -> void:
 	direction = direction.clamp(Vector2(-max_homing_speed,-max_homing_speed), Vector2(max_homing_speed, max_homing_speed))
 	position += direction * speed * delta
 	#TODO ogarnąć zcy to ma sens
-	#if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
-		#_on_projectile_death()
+	if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
+		_on_projectile_death()
 	
 
 
