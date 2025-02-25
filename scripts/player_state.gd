@@ -190,6 +190,7 @@ func add_lightning_strike_item():
 		lightning_strike_range = 100
 	if lightning_strike_cooldown < 1:
 		lightning_strike_cooldown = 0.5
+		
 	add_lightning_strike.emit()
 
 	
