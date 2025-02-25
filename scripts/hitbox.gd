@@ -10,7 +10,6 @@ var max_hits : int = 10000000
 var is_poisoning : bool 
 var is_player_hitbox : bool = false
 var hitbox_name : String = "Hitbox"
-#var list_of_enemies : Array[Slime]
 
 
 func _init() -> void:
