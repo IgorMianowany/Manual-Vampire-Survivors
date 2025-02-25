@@ -110,7 +110,6 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		debug_value += 1
 		
 	health = max_health
-
 	after_level_up.emit()
 
 func choose_class(class_number : int):
