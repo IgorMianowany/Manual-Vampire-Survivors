@@ -13,16 +13,12 @@ var reacharge : bool = false
 @warning_ignore("unused_signal")
 signal reached_target
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.wait_time = 1
 	timer.autostart = true
 	player = owner
 	set_as_top_level(true)
-	#global_position = player.global_position + Vector2(15,0)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if reacharge:
 		speed = 0
@@ -30,7 +26,6 @@ func _physics_process(_delta: float) -> void:
 		speed = 150
 	velocity = speed * direction * direction_variation
 	move_and_slide()
-
 
 func _on_timer_timeout() -> void:
 	await(get_tree().create_timer(.5).timeout)
@@ -48,10 +43,7 @@ func _on_timer_timeout() -> void:
 	reacharge = false
 	look_at(position + direction)
 
-
 func _on_reached_target() -> void:
 	await(get_tree().create_timer(.5).timeout)
 	if not reacharge:
 		reacharge = true
-	
-	
