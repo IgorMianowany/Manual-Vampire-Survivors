@@ -60,18 +60,29 @@ theme_override_constants/separation = 25
 [node name="StatUpgradePanel" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
 size_flags_horizontal = 4
+upgrade_type = 3
+upgrade_name = "Max health"
+cost = 15
 
 [node name="StatUpgradePanel2" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
 size_flags_horizontal = 4
+upgrade_type = 1
+upgrade_name = "Attack damage"
+cost = 30
 
 [node name="StatUpgradePanel3" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
 size_flags_horizontal = 4
+upgrade_name = "Attack speed"
+cost = 15
 
 [node name="StatUpgradePanel4" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
 size_flags_horizontal = 4
+upgrade_type = 4
+upgrade_name = "Movement speed"
+cost = 20
 
 [node name="StatUpgradePanel5" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
