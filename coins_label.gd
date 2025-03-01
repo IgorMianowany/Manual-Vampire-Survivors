@@ -7,4 +7,4 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	$HBoxContainer/Label.text = str(PlayerState.coins_base)
+	$HBoxContainer/MarginContainer/Label.text = str(PlayerState.coins_base)

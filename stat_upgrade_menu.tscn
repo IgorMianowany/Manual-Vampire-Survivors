@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2jelq72u3wqa"]
+[gd_scene load_steps=4 format=3 uid="uid://b2jelq72u3wqa"]
 
 [ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_m7xg2"]
 [ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="2_xx6f4"]
+[ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="3_rk67d"]
 
 [node name="StatUpgradeMenu" type="Control"]
 layout_mode = 3
@@ -138,5 +139,21 @@ custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
 text = "Back
 "
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_bottom = 71.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="CoinsLabel" parent="CanvasLayer/MarginContainer3" instance=ExtResource("3_rk67d")]
+layout_mode = 2
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]
