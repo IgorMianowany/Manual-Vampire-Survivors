@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dthnbia6roe4m"]
+
+[node name="StartButton" type="Button"]
+custom_minimum_size = Vector2(300, 80)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 50
+text = "text
+"
