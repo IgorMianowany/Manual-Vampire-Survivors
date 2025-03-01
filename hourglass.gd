@@ -6,6 +6,6 @@ extends CommonUpgradeLogic
 @export var damage_buff : float = 10
 
 func add_item_effect():
-	PlayerState.projectile_speed = PlayerState.projectile_speed * (1/projectile_slow_multiplier)
+	PlayerState.set_projectile_speed(-(PlayerState.get_projectile_speed() * (1 - 1/projectile_slow_multiplier)))
 	PlayerState.projectile_lifetime = projectile_lifetime
-	PlayerState.attack_damage += damage_buff
+	PlayerState.set_attack_damage(damage_buff)

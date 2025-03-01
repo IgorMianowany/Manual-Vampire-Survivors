@@ -5,10 +5,14 @@ var max_health_bonus : float = 0
 var max_health_base : float = 10
 var max_health : get = get_max_health
 var experience : int = 0
-var experience_threshold : int = 1
+var experience_threshold : get = get_experience_threshold
+var experience_threshold_base : int = 1
+var experience_threshold_bonus : int = 0
 var level : int = 0
 var projectiles : int = 0
-var projectile_speed : float = 300
+var projectile_speed : get = get_projectile_speed
+var projectile_speed_bonus : float = 0
+var projectile_speed_base : float = 300
 var projectile_lifetime : float = 3
 var pierce : int = 0
 var attack_speed_base : float = 1
@@ -61,7 +65,9 @@ var has_knife : bool = false
 var max_projectile_speed : float = 4
 var final_score : int = 0
 var health_bonus_per_jim_beam = 50
-@onready var upgrades_amount : int = 3000
+var upgrades_amount : get = get_upgrades_amount
+var upgrades_amount_base : int = 3
+var upgrades_amount_bonus : int = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam"]
@@ -70,7 +76,7 @@ var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_na
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
 
 var debug_value : int = 0
-
+	
 signal level_up
 signal after_level_up
 signal after_class_chosen
@@ -83,6 +89,7 @@ signal jim_beam_drank
 signal puke
 @warning_ignore("unused_signal")
 signal add_knife
+@warning_ignore("unused_signal")
 signal player_death
 
 func get_max_health() -> float:
@@ -113,6 +120,21 @@ func get_movement_speed() -> float:
 	
 func get_attack_speed() -> float:
 	return attack_speed_base - attack_speed_bonus
+	
+func get_projectile_speed() -> float:
+	return projectile_speed_base + projectile_speed_bonus
+
+func set_projectile_speed(new_value):
+	projectile_speed_bonus += new_value
+	
+func get_experience_threshold() -> int:
+	return experience_threshold_base + experience_threshold_bonus
+	
+func get_upgrades_amount() -> int:
+	return upgrades_amount_base + upgrades_amount_bonus
+	
+func set_upgrades_amount(new_value):
+	upgrades_amount_bonus = clampi(new_value, 1, 4)
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -131,7 +153,7 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold += 0
+		experience_threshold_bonus += 0
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -230,15 +252,19 @@ func add_lightning_strike_item():
 		
 	add_lightning_strike.emit()
 	
+	
 func reset_bonus_stats():
 	var thisScript: GDScript = get_script()
-	var stat_array : Array[String]
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
-		if propertyName.contains("timer") or propertyName.contains("base"):
+		if propertyName.contains("timer") or propertyName.contains("base") or propertyName == "stats_not_displayable":
 			continue
 		var propertyValue = get(propertyName)
-		if typeof(propertyValue) == TYPE_BOOL:
+		if propertyName == "chosen_class":
+			set(propertyName, -1)
+		elif typeof(propertyValue) == TYPE_BOOL:
 			set(propertyName, false)
 		elif typeof(propertyValue) == TYPE_FLOAT or typeof(propertyValue) == TYPE_INT:
 			set(propertyName, 0)
+		elif typeof(propertyValue) == TYPE_ARRAY:
+			set(propertyName, [])

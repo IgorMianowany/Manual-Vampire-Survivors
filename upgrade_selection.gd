@@ -8,7 +8,7 @@ func _ready() -> void:
 	# just for testing
 	##TODO remove
 	if PlayerState.upgrades_amount > filtered_upgrades.size():
-		PlayerState.upgrades_amount = filtered_upgrades.size()
+		PlayerState.set_upgrades_amount(filtered_upgrades.size()) 
 	
 	while chosen_numbers.size() < PlayerState.upgrades_amount:
 		var num = randi_range(0,filtered_upgrades.size()-1)
