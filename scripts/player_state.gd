@@ -1,6 +1,6 @@
 extends Node
 
-var max_health : float = 100
+var max_health : float = 10
 var experience : int = 0
 var experience_threshold : int = 1
 var level : int = 0
@@ -10,6 +10,7 @@ var projectile_lifetime : float = 3
 var pierce : int = 0
 var attack_speed : float = .5
 var attack_damage : float = 5
+var attack_damage_bonus : float = 0
 var movespeed_bonus : float = 0
 var chosen_class : int = -1
 var jim_beam_counter : int = 0
@@ -51,10 +52,11 @@ var lightning_strike_range = 0
 var slime_count = 0
 var has_knife : bool = false
 var max_projectile_speed : float = 4
+var final_score : int = 0
 @onready var upgrades_amount : int = 3000
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed"]
+"debug_value", "max_projectile_speed", "final_score"]
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 
@@ -74,6 +76,7 @@ signal jim_beam_drank
 signal puke
 @warning_ignore("unused_signal")
 signal add_knife
+signal player_death
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -180,14 +183,13 @@ func handle_jim_beam_drank():
 	if puke_roll < chance_to_puke:
 		puke.emit()
 		jim_beam_counter = 0
-		return
 	
 	var old_attack_damage = attack_damage / jim_beam_multi
+	var old_health = max_health - (jim_beam_multi * 50)
+	
 	jim_beam_multi += 1
 	attack_damage = old_attack_damage * jim_beam_multi
-	
 
-		
 func add_lightning_strike_item():
 	if lightning_strike_cooldown == 0:
 		lightning_strike_cooldown = 9.5
@@ -197,7 +199,6 @@ func add_lightning_strike_item():
 		lightning_strike_cooldown = 0.5
 		
 	add_lightning_strike.emit()
-
 	
 	
 	

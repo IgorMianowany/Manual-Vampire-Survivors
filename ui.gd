@@ -1,11 +1,15 @@
 extends Control
 var timer : float
 var upgrade_selection := preload("res://upgrade_selection.tscn")
+var main_menu := preload("res://start_menu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerState.level_up.connect(_on_level_up)
 	PlayerState.after_level_up.connect(_after_level_up)
+	PlayerState.player_death.connect(_on_player_death)
+	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
+	$CanvasLayer/OnDeathControls.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,3 +39,11 @@ func _after_level_up():
 func toggle_stat_sheet():
 	$CanvasLayer/StatSheet.toggle_stat_sheet()
 	
+func _on_player_death():
+	$CanvasLayer/OnDeathControls/VBoxContainer/MarginContainer/FinalScoreText.text += str(PlayerState.final_score)
+	$CanvasLayer/OnDeathControls.visible = true
+	
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://start_menu.tscn")

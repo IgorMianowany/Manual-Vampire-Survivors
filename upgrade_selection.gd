@@ -49,9 +49,3 @@ func filter_upgrades(upgrades : Array[Node]) -> Array[Node]:
 			# after removal so we just hide them here
 			upgrade.visible = false
 	return upgrades_filtered
-	
-	
-	
-
-
-	

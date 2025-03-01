@@ -33,8 +33,6 @@ var lightning_strike_scene = preload("res://lightning_strike.tscn")
 var lightning_strike_timer : Timer = Timer.new()
 var knife_summon_scene = preload("res://knife_summon.tscn")
 
-signal death
-
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
 
@@ -53,6 +51,7 @@ func _ready() -> void:
 	lightning_strike_timer.timeout.connect(lightning_strike)
 	lightning_strike_timer.autostart = true
 	PlayerState.add_knife.connect(handle_knife_spawn)
+	PlayerState.health = PlayerState.max_health
 
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
@@ -62,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
+	if PlayerState.health <= 0:
+		return
 	if is_invincible:
 		invincibility_timer += delta
 		invincibility_animation_counter += 1
@@ -208,7 +209,9 @@ func take_damage(damage : float, knockback_direction : Vector2, incoming_knockba
 			await($UtilTimer.timeout)
 			is_knocked_back = false
 			if PlayerState.health <= 0:
-				death.emit()
+				$AnimatedSprite2D.play("death")
+				PlayerState.final_score = get_elapsed_time()
+				PlayerState.player_death.emit()
 	
 # this is an old attack function
 func attack() -> void:

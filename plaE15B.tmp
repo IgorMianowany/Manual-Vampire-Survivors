@@ -241,7 +241,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_l87u2")
 }],
-"loop": false,
+"loop": true,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -484,10 +484,8 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_abd2b")
-animation = &"death"
+animation = &"move_right"
 autoplay = "idle_front"
-frame = 2
-frame_progress = 1.0
 speed_scale = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]

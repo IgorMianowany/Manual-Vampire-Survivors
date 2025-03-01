@@ -113,7 +113,6 @@ visible = false
 layout_mode = 2
 
 [node name="HealthUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("14_muqqc")]
-visible = false
 layout_mode = 2
 
 [node name="Spinach" parent="CanvasLayer/HBoxContainer" instance=ExtResource("15_g6ojm")]
@@ -141,7 +140,6 @@ visible = false
 layout_mode = 2
 
 [node name="SwiftStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]
-visible = false
 layout_mode = 2
 
 [node name="LightningInABottle" parent="CanvasLayer/HBoxContainer" instance=ExtResource("22_rf1q6")]
@@ -153,7 +151,9 @@ visible = false
 layout_mode = 2
 
 [node name="KnifeSummonItem" parent="CanvasLayer/HBoxContainer" instance=ExtResource("24_tfne5")]
+visible = false
 layout_mode = 2
 
 [node name="NinjaStar" parent="CanvasLayer/HBoxContainer" instance=ExtResource("25_kv7uf")]
+visible = false
 layout_mode = 2
