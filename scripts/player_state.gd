@@ -14,7 +14,8 @@ var pierce : int = 0
 var attack_speed_base : float = 1
 var attack_speed : get = get_attack_speed
 var attack_speed_bonus : float = 0
-var attack_damage : float = 5
+var attack_damage : float : get = get_attack_damage
+var attack_damage_base : float = 5
 var attack_damage_bonus : float = 0
 var movespeed_bonus : float = 0
 var movespeed_base : float = 100
@@ -97,11 +98,16 @@ func get_current_health() -> float:
 	
 func heal(heal_amount):
 	health = clampf(health + heal_amount, 1, max_health)
-	
 
 func get_attack_damage() -> float:
-	return attack_damage
+	return (attack_damage_base + attack_damage_bonus) * get_jim_beam_attack_bonus()
 	
+func get_jim_beam_attack_bonus() -> float:
+	return pow(2, jim_beam_counter)
+
+func set_attack_damage(new_value):
+	attack_damage_bonus += new_value
+
 func get_movement_speed() -> float:
 	return movespeed_base + movespeed_bonus
 	
@@ -224,4 +230,15 @@ func add_lightning_strike_item():
 		
 	add_lightning_strike.emit()
 	
-	
+func reset_bonus_stats():
+	var thisScript: GDScript = get_script()
+	var stat_array : Array[String]
+	for propertyInfo in thisScript.get_script_property_list():
+		var propertyName: String = propertyInfo.name
+		if propertyName.contains("timer") or propertyName.contains("base"):
+			continue
+		var propertyValue = get(propertyName)
+		if typeof(propertyValue) == TYPE_BOOL:
+			propertyValue = false
+		elif typeof(propertyValue) == TYPE_FLOAT or typeof(propertyValue) == TYPE_INT:
+			propertyValue = 0

@@ -8,4 +8,5 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_start_button_pressed() -> void:
+	PlayerState.reset_bonus_stats()
 	get_tree().change_scene_to_file("res://level_01.tscn")

@@ -6,4 +6,7 @@ extends CommonUpgradeLogic
 
 func add_item_effect():
 	PlayerState.attack_speed += PlayerState.attack_speed * attack_speed_debuff
-	PlayerState.attack_damage = PlayerState.attack_damage * damage_buff
+	if PlayerState.attack_damage_bonus == 0:
+		PlayerState.set_attack_damage(PlayerState.attack_damage_base)
+	else:
+		PlayerState.set_attack_damage(PlayerState.attack_damage_bonus) 
