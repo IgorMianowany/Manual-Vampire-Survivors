@@ -180,6 +180,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		
 		experience_pickup_instance.global_position = global_position
 		PlayerState.slime_count -= 1
+		PlayerState.coins_base += 1
 		queue_free()
 	$HitParticles.emitting = false
 	
