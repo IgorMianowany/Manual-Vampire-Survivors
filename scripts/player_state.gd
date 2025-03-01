@@ -1,7 +1,9 @@
 extends Node
 
-var max_health : float = 10 
-var base_max_health : float = 10
+@onready var health : float = max_health : get = get_current_health
+var max_health_bonus : float = 0	
+var max_health_base : float = 10
+var max_health : get = get_max_health
 var experience : int = 0
 var experience_threshold : int = 1
 var level : int = 0
@@ -9,10 +11,14 @@ var projectiles : int = 0
 var projectile_speed : float = 300
 var projectile_lifetime : float = 3
 var pierce : int = 0
-var attack_speed : float = .5
+var attack_speed_base : float = 1
+var attack_speed : get = get_attack_speed
+var attack_speed_bonus : float = 0
 var attack_damage : float = 5
 var attack_damage_bonus : float = 0
 var movespeed_bonus : float = 0
+var movespeed_base : float = 100
+var movespeed : get = get_movement_speed
 var chosen_class : int = -1
 var jim_beam_counter : int = 0
 var palladin_hammer_counter : int = 0
@@ -46,7 +52,6 @@ var has_dash : bool = false
 var dash_cooldown : float = 0
 var dash_damage : float = 0
 var dash_timer : Timer = Timer.new()
-var jim_beam_multi = 0
 var lightning_strike_cooldown = 0
 var lightning_strike_damage = 0
 var lightning_strike_range = 0
@@ -54,11 +59,11 @@ var slime_count = 0
 var has_knife : bool = false
 var max_projectile_speed : float = 4
 var final_score : int = 0
+var health_bonus_per_jim_beam = 50
 @onready var upgrades_amount : int = 3000
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score"]
-@onready var health : float = max_health
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam"]
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
@@ -80,16 +85,28 @@ signal add_knife
 signal player_death
 
 func get_max_health() -> float:
-	return max_health
+	return max_health_base + max_health_bonus + jim_beam_counter * health_bonus_per_jim_beam
+
+func set_max_health(new_value):
+	var health_percantage = health / max_health
+	max_health_bonus += new_value
+	health = int(max_health * health_percantage)
+
+func get_current_health() -> float:
+	return clampf(health, health, max_health)
+	
+func heal(heal_amount):
+	health = clampf(health + heal_amount, 1, max_health)
+	
 
 func get_attack_damage() -> float:
 	return attack_damage
 	
 func get_movement_speed() -> float:
-	return movespeed_bonus
+	return movespeed_base + movespeed_bonus
 	
 func get_attack_speed() -> float:
-	return attack_speed
+	return attack_speed_base - attack_speed_bonus
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -167,13 +184,13 @@ func get_first_vbox_stats() -> Array[String]:
 	var stat_array : Array[String]
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
-		if propertyName.contains("timer") or stats_not_displayable.has(propertyName):
+		if propertyName.contains("timer") or propertyName.contains("bonus") or propertyName.contains("base") or stats_not_displayable.has(propertyName):
 			continue
 		var new_property_name = turn_snake_case_to_name(propertyName)
 		var propertyValue = get(propertyName)
 		if not propertyValue:
 			continue
-		if propertyValue == 0:
+		if propertyValue == 0 and propertyName != "health":
 			continue
 		if propertyValue != null:
 			stat_array.append(new_property_name + ": " + str(propertyValue))
@@ -189,19 +206,13 @@ func turn_snake_case_to_name(string : String) -> String:
 	return string
 	
 func handle_jim_beam_drank():
-	if jim_beam_multi == 0:
-		jim_beam_multi = 1
 	var chance_to_puke = 0.1 * jim_beam_counter
 	var puke_roll = randf_range(0,1)
 	if puke_roll < chance_to_puke:
 		puke.emit()
 		jim_beam_counter = 0
-	
-	var old_attack_damage = attack_damage / jim_beam_multi
-	var old_health = max_health - (jim_beam_multi * 50)
-	
-	jim_beam_multi += 1
-	attack_damage = old_attack_damage * jim_beam_multi
+		return
+	heal(health_bonus_per_jim_beam)
 
 func add_lightning_strike_item():
 	if lightning_strike_cooldown == 0:
