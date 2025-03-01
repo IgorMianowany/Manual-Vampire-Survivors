@@ -66,8 +66,8 @@ var max_projectile_speed : float = 4
 var final_score : int = 0
 var health_bonus_per_jim_beam = 50
 var upgrades_amount : get = get_upgrades_amount
-var upgrades_amount_base : int = 3
-var upgrades_amount_bonus : int = 0
+var upgrades_amount_base : int = 0
+var upgrades_amount_bonus : int = 30000
 var coins_base : int = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
@@ -135,7 +135,7 @@ func get_upgrades_amount() -> int:
 	return upgrades_amount_base + upgrades_amount_bonus
 	
 func set_upgrades_amount(new_value):
-	upgrades_amount_bonus = clampi(new_value, 1, 4)
+	upgrades_amount_bonus = clampi(new_value, 1, 3000)
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
