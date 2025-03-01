@@ -20,6 +20,8 @@ func _ready() -> void:
 
 func attack(attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO) -> void:
 	if not is_attacking:
+		# reset max projectile speed so it can be overwritten
+		PlayerState.max_projectile_speed = 4
 		weapon_type.pierce = pierce + PlayerState.pierce
 		weapon_type.projectiles = projectiles + PlayerState.projectiles
 		weapon_type.attack(damage, attack_position, direction, crit_chance + PlayerState.critical_strike_chance_bonus, crit_multi)

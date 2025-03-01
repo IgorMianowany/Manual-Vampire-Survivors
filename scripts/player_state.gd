@@ -50,10 +50,11 @@ var lightning_strike_damage = 0
 var lightning_strike_range = 0
 var slime_count = 0
 var has_knife : bool = false
+var max_projectile_speed : float = 4
 @onready var upgrades_amount : int = 3000
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value"]
+"debug_value", "max_projectile_speed"]
 @onready var health : float = max_health
 @onready var mana : float = max_mana
 

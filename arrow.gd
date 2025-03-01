@@ -6,6 +6,7 @@ extends Node2D
 @export var max_homing_speed : float = 0.7 
 
 var damage : float
+var max_speed : float = 4
 var pierce : int
 var direction := Vector2.ZERO
 var target : CharacterBody2D
@@ -13,6 +14,8 @@ var prev_pos : Vector2
 var current_pos : Vector2 = Vector2.ZERO
 var crit_chance : float
 var crit_multi : float
+var current_speed : float
+var velocity : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,13 +33,25 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	prev_pos = current_pos
 	current_pos = global_position
-	#print((prev_pos-current_pos).length())
+	current_speed = (prev_pos - current_pos).length()
+	if current_speed < PlayerState.max_projectile_speed:
+		PlayerState.max_projectile_speed = current_speed
+	
+	#if current_speed != (prev_pos-current_pos).length():
+		#current_speed = (prev_pos-current_pos).length()
+		#print(current_speed)
+	
 	if target != null and PlayerState.has_homing_projectiles:
 		direction += (global_position.direction_to(target.global_position)/5)
 		#max_homing_speed -= (100 - min(100, global_position.distance_to(target.global_position)))/100
 		rotation = direction.angle()
 	direction = direction.clamp(Vector2(-max_homing_speed,-max_homing_speed), Vector2(max_homing_speed, max_homing_speed))
-	position += direction * speed * delta
+	velocity = direction * speed * delta
+	if velocity.length() > PlayerState.max_projectile_speed:
+		velocity = velocity.normalized() * PlayerState.max_projectile_speed
+	position += velocity
+	#if current_speed > max_speed:
+		#position = position.normalized() * max_speed
 	#TODO ogarnąć zcy to ma sens
 	if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
 		_on_projectile_death()
