@@ -7,7 +7,7 @@ func _ready() -> void:
 	refresh_stat_sheet()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("check_stats"):
+	if Input.is_action_just_pressed("check_stats") and PlayerState.chosen_class > -1:
 		toggle_stat_sheet()
 
 func toggle_stat_sheet():

@@ -11,7 +11,7 @@ var pierce : int = 0
 var attack_speed : float = .5
 var attack_damage : float = 5
 var movespeed_bonus : float = 0
-var chosen_class : int = 0
+var chosen_class : int = -1
 var jim_beam_counter : int = 0
 var palladin_hammer_counter : int = 0
 var palladin_hammer_damage : float = 0
@@ -110,7 +110,7 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	else:
 		debug_value += 1
 		
-	health = max_health
+	#health = max_health
 	after_level_up.emit()
 
 func choose_class(class_number : int):
@@ -175,14 +175,18 @@ func turn_snake_case_to_name(string : String) -> String:
 func handle_jim_beam_drank():
 	if jim_beam_multi == 0:
 		jim_beam_multi = 1
-	var old_attack_damage = attack_damage / jim_beam_multi
-	jim_beam_multi += 1
-	attack_damage = old_attack_damage * jim_beam_multi
 	var chance_to_puke = 0.1 * jim_beam_counter
 	var puke_roll = randf_range(0,1)
 	if puke_roll < chance_to_puke:
 		puke.emit()
 		jim_beam_counter = 0
+		return
+	
+	var old_attack_damage = attack_damage / jim_beam_multi
+	jim_beam_multi += 1
+	attack_damage = old_attack_damage * jim_beam_multi
+	
+
 		
 func add_lightning_strike_item():
 	if lightning_strike_cooldown == 0:
