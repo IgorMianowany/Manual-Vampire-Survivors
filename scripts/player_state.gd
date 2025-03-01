@@ -239,6 +239,6 @@ func reset_bonus_stats():
 			continue
 		var propertyValue = get(propertyName)
 		if typeof(propertyValue) == TYPE_BOOL:
-			propertyValue = false
+			set(propertyName, false)
 		elif typeof(propertyValue) == TYPE_FLOAT or typeof(propertyValue) == TYPE_INT:
-			propertyValue = 0
+			set(propertyName, 0)
