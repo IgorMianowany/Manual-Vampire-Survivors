@@ -1,7 +1,8 @@
 extends Node
 
-var max_health : float = 10 
-var base_max_health : float = 10
+var bonus_health : float = 0
+var base_health : float = 10
+var max_health : get = get_max_health
 var experience : int = 0
 var experience_threshold : int = 1
 var level : int = 0
@@ -58,7 +59,7 @@ var final_score : int = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score"]
-@onready var health : float = max_health
+@onready var health : float = base_health
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
@@ -80,7 +81,16 @@ signal add_knife
 signal player_death
 
 func get_max_health() -> float:
-	return max_health
+	return base_health + bonus_health
+
+func set_max_health(new_value : float):
+	bonus_health += new_value
+	
+func get_current_health() -> float:
+	return health
+	
+func set_current_health(new_value : float):
+	health = new_value
 
 func get_attack_damage() -> float:
 	return attack_damage
@@ -91,6 +101,18 @@ func get_movement_speed() -> float:
 func get_attack_speed() -> float:
 	return attack_speed
 
+func get_max_mana() -> float:
+	return max_mana
+	
+func get_experience() -> float:
+	return experience
+
+func set_experience(new_value):
+	experience = new_value
+	
+func add_experience(new_value):
+	experience += new_value
+	
 func _ready() -> void:
 	add_child(chain_lightning_timer)
 	add_child(dash_timer)
@@ -104,10 +126,10 @@ func _physics_process(_delta: float) -> void:
 		mana += 0.05
 	
 func add_exp(exp_amount : int) -> void:
-	experience += exp_amount
-	if experience >= experience_threshold:
+	add_experience(exp_amount)
+	if get_experience() >= experience_threshold:
 		level += 1
-		experience = experience % experience_threshold
+		set_experience(experience % experience_threshold)
 		experience_threshold += 0
 		level_up.emit()
 		
@@ -120,13 +142,12 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	elif upgrade == UPGRADES.PROJECTILES:
 		projectiles += 1
 	elif upgrade == UPGRADES.HEALTH:
-		max_health += 100
+		pass
 	elif upgrade == UPGRADES.MOVESPEED:
 		movespeed_bonus += 1000
 	else:
 		debug_value += 1
 		
-	#health = max_health
 	after_level_up.emit()
 
 func choose_class(class_number : int):
@@ -198,7 +219,7 @@ func handle_jim_beam_drank():
 		jim_beam_counter = 0
 	
 	var old_attack_damage = attack_damage / jim_beam_multi
-	var old_health = max_health - (jim_beam_multi * 50)
+	var old_health = base_health - (jim_beam_multi * 50)
 	
 	jim_beam_multi += 1
 	attack_damage = old_attack_damage * jim_beam_multi

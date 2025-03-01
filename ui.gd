@@ -8,7 +8,7 @@ func _ready() -> void:
 	PlayerState.level_up.connect(_on_level_up)
 	PlayerState.after_level_up.connect(_after_level_up)
 	PlayerState.player_death.connect(_on_player_death)
-	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
+	$CanvasLayer/Healthbar.max_value = PlayerState.get_max_health()
 	$CanvasLayer/OnDeathControls.visible = false
 
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$CanvasLayer/Healthbar.value = PlayerState.health
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
-	$CanvasLayer/HealthForDebug.text = str(PlayerState.health) + "/" + str(PlayerState.max_health)
+	$CanvasLayer/HealthForDebug.text = str(PlayerState.get_current_health()) + "/" + str(PlayerState.get_max_health())
 	$CanvasLayer/FPS.text = "FPS: %s" % [Engine.get_frames_per_second()]
 	$CanvasLayer/Manabar.visible = PlayerState.chosen_class == 2
 	$CanvasLayer/Manabar.value = PlayerState.mana
@@ -30,9 +30,9 @@ func _on_level_up() -> void:
 	add_child(upgrade_selection.instantiate())
 	
 func _after_level_up():
-	$CanvasLayer/Healthbar.max_value = PlayerState.max_health
-	$CanvasLayer/Healthbar.value = PlayerState.health
-	$CanvasLayer/ExperienceBar.value = PlayerState.experience
+	$CanvasLayer/Healthbar.max_value = PlayerState.get_max_health()
+	$CanvasLayer/Healthbar.value = PlayerState.get_current_health()
+	$CanvasLayer/ExperienceBar.value = PlayerState.get_experience()
 	$CanvasLayer/ExperienceBar.max_value = PlayerState.experience_threshold
 	$CanvasLayer/Level.text = str(PlayerState.level)
 	

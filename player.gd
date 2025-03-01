@@ -51,7 +51,7 @@ func _ready() -> void:
 	lightning_strike_timer.timeout.connect(lightning_strike)
 	lightning_strike_timer.autostart = true
 	PlayerState.add_knife.connect(handle_knife_spawn)
-	PlayerState.health = PlayerState.max_health
+	PlayerState.health = PlayerState.get_max_health()
 
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	$Camera2D.zoom = zoom_bonus.clamp(Vector2(1,1), Vector2(5,5))
 	
 	$UI/CanvasLayer/Timer.text = str(get_elapsed_time())
-	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
+	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.get_max_health())
 	if PlayerState.health <= 0:
 		return
 	if is_invincible:
