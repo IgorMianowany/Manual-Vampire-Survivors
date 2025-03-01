@@ -1,6 +1,7 @@
 extends Node
 
-var max_health : float = 10
+var max_health : float = 10 
+var base_max_health : float = 10
 var experience : int = 0
 var experience_threshold : int = 1
 var level : int = 0
@@ -77,6 +78,18 @@ signal puke
 @warning_ignore("unused_signal")
 signal add_knife
 signal player_death
+
+func get_max_health() -> float:
+	return max_health
+
+func get_attack_damage() -> float:
+	return attack_damage
+	
+func get_movement_speed() -> float:
+	return movespeed_bonus
+	
+func get_attack_speed() -> float:
+	return attack_speed
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -199,6 +212,5 @@ func add_lightning_strike_item():
 		lightning_strike_cooldown = 0.5
 		
 	add_lightning_strike.emit()
-	
 	
 	

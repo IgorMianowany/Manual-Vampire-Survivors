@@ -109,7 +109,6 @@ visible = false
 layout_mode = 2
 
 [node name="SmartProjectiles" parent="CanvasLayer/HBoxContainer" instance=ExtResource("13_m6boy")]
-visible = false
 layout_mode = 2
 
 [node name="HealthUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("14_muqqc")]
