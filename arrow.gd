@@ -34,14 +34,14 @@ func _physics_process(delta: float) -> void:
 	prev_pos = current_pos
 	current_pos = global_position
 	current_speed = (prev_pos - current_pos).length()
-	if current_speed < PlayerState.max_projectile_speed:
+	if not PlayerState.has_homing_projectiles and current_speed < PlayerState.max_projectile_speed:
 		PlayerState.max_projectile_speed = current_speed
 	
 	#if current_speed != (prev_pos-current_pos).length():
 		#current_speed = (prev_pos-current_pos).length()
 		#print(current_speed)
 	
-	if target != null and PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.2:
+	if target != null and PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.1:
 		direction += (global_position.direction_to(target.global_position)/5)
 		#max_homing_speed -= (100 - min(100, global_position.distance_to(target.global_position)))/100
 		rotation = direction.angle()

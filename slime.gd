@@ -12,7 +12,8 @@ extends CharacterBody2D
 @export var knockback_power : float = 1
 @export var max_health : float = 10 
 @export var exp_amount : int = 1
-@export var healthbar : TextureProgressBar 
+@export var healthbar : TextureProgressBar
+@export var money : int = 100 
 @onready var health : float = max_health
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @onready var experience_pickup := preload("res://experience_pickup.tscn")
@@ -180,7 +181,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		
 		experience_pickup_instance.global_position = global_position
 		PlayerState.slime_count -= 1
-		PlayerState.coins_base += 1
+		PlayerState.coins_base += money
 		queue_free()
 	$HitParticles.emitting = false
 	

@@ -4,6 +4,7 @@ extends Control
 @onready var class_container = $CanvasLayer/HBoxContainer
 
 func _ready() -> void:
+	$CanvasLayer/HBoxContainer/Ninja.visible = PlayerState.ninja_unlocked_base
 	get_tree().paused = true
 	for node in class_container.get_children():
 		node.class_selected.connect(_quit)

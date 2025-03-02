@@ -5,5 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cw5vlkdksg1h4" path="res://assets/sprites/items/chain_lightning.jpg" id="2_w28mo"]
 
 [node name="ChainLightningTimer" instance=ExtResource("1_ojbam")]
+visible = false
 script = ExtResource("2_vdci7")
 texture = ExtResource("2_w28mo")

@@ -61,3 +61,10 @@ script = ExtResource("3_22nrg")
 icon = ExtResource("5_r8pnt")
 description = "Mage"
 class_number = 2
+
+[node name="Ninja" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_nswkl")]
+layout_mode = 2
+script = ExtResource("3_22nrg")
+icon = ExtResource("5_r8pnt")
+description = "Mage"
+class_number = 2

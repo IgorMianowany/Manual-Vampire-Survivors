@@ -6,7 +6,7 @@ var max_health_base : float = 10
 var max_health : get = get_max_health
 var experience : int = 0
 var experience_threshold : get = get_experience_threshold
-var experience_threshold_base : int = 1
+var experience_threshold_base : int = 5
 var experience_threshold_bonus : int = 0
 var level : int = 0
 var projectiles : int = 0
@@ -66,9 +66,10 @@ var max_projectile_speed : float = 4
 var final_score : int = 0
 var health_bonus_per_jim_beam = 50
 var upgrades_amount : get = get_upgrades_amount
-var upgrades_amount_base : int = 0
-var upgrades_amount_bonus : int = 30000
+var upgrades_amount_base : int = 3
+var upgrades_amount_bonus : int = 0
 var coins_base : int = 100
+var ninja_unlocked_base : bool = false
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam"]
@@ -135,7 +136,7 @@ func get_upgrades_amount() -> int:
 	return upgrades_amount_base + upgrades_amount_bonus
 	
 func set_upgrades_amount(new_value):
-	upgrades_amount_bonus = clampi(new_value, 1, 3000)
+	upgrades_amount_bonus = clampi(new_value, 1, 4)
 
 func _ready() -> void:
 	add_child(chain_lightning_timer)
@@ -154,7 +155,8 @@ func add_exp(exp_amount : int) -> void:
 	if experience >= experience_threshold:
 		level += 1
 		experience = experience % experience_threshold
-		experience_threshold_bonus += 0
+		#experience_threshold_bonus += 0
+		calculate_experience_threshold()
 		level_up.emit()
 		
 @warning_ignore("unused_parameter")
@@ -242,10 +244,10 @@ func handle_jim_beam_drank():
 	heal(health_bonus_per_jim_beam)
 
 func add_lightning_strike_item():
-	if lightning_strike_cooldown == 0:
-		lightning_strike_cooldown = 9.5
-		lightning_strike_damage = 5
-		lightning_strike_range = 100
+	#if lightning_strike_cooldown == 0:
+		#lightning_strike_cooldown = 9.5
+		#lightning_strike_damage = 5
+		#lightning_strike_range = 100
 	if lightning_strike_cooldown < 1:
 		lightning_strike_cooldown = 0.5
 		
@@ -267,3 +269,6 @@ func reset_bonus_stats():
 			set(propertyName, 0)
 		elif typeof(propertyValue) == TYPE_ARRAY:
 			set(propertyName, [])
+
+func calculate_experience_threshold():
+	experience_threshold_bonus = experience_threshold_base * 2 * level

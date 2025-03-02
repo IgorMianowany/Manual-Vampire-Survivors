@@ -1,7 +1,5 @@
 extends SingleCooldownIndicator
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not PlayerState.chain_lightning_ready:
 		max_cooldown = PlayerState.chain_lightning_cooldown
