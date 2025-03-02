@@ -1,6 +1,5 @@
-[gd_scene load_steps=28 format=4 uid="uid://clbnghp7k61ql"]
+[gd_scene load_steps=27 format=4 uid="uid://clbnghp7k61ql"]
 
-[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="2_8gp4s"]
 [ext_resource type="Script" path="res://ninja_upgrade_panel.gd" id="2_ux501"]
 [ext_resource type="Texture2D" uid="uid://cbpsr8r5u1pd" path="res://assets/sprites/UI/GUI.png" id="3_5qlce"]
 [ext_resource type="Texture2D" uid="uid://jafqtmv03pu3" path="res://assets/sprites/UI/GUI - Copy.png" id="4_73a8u"]
@@ -1900,7 +1899,6 @@ theme_override_constants/margin_bottom = 10
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(30, 100)
 layout_mode = 2
-texture = ExtResource("2_8gp4s")
 expand_mode = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
