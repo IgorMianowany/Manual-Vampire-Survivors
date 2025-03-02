@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp5b3a2qsf42v"]
+[gd_scene load_steps=8 format=3 uid="uid://cp5b3a2qsf42v"]
 
 [ext_resource type="Script" path="res://class_selection.gd" id="1_2yygo"]
 [ext_resource type="PackedScene" uid="uid://dnp8qdml8cw8g" path="res://class_card.tscn" id="2_nswkl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c6goqw1al4bow" path="res://assets/sprites/projectiles/arrow.png" id="4_fw6v2"]
 [ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="4_p7dw6"]
 [ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="5_r8pnt"]
+[ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="7_6llrb"]
 
 [node name="ClassSelection" type="Control"]
 process_mode = 3
@@ -65,6 +66,6 @@ class_number = 2
 [node name="Ninja" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_nswkl")]
 layout_mode = 2
 script = ExtResource("3_22nrg")
-icon = ExtResource("5_r8pnt")
-description = "Mage"
-class_number = 2
+icon = ExtResource("7_6llrb")
+description = "Ninja"
+class_number = 3

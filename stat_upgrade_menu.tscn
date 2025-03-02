@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2jelq72u3wqa"]
+[gd_scene load_steps=5 format=3 uid="uid://b2jelq72u3wqa"]
 
 [ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_m7xg2"]
 [ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="2_xx6f4"]
+[ext_resource type="PackedScene" uid="uid://clbnghp7k61ql" path="res://ninja_upgrade_panel.tscn" id="3_fufx1"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="3_rk67d"]
 
 [node name="StatUpgradeMenu" type="Control"]
@@ -114,12 +115,8 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NinjaClassUnlock" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_xx6f4")]
+[node name="NinjaUpgradePanel" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("3_fufx1")]
 layout_mode = 2
-size_flags_horizontal = 4
-upgrade_type = 5
-upgrade_name = "Ninja class"
-cost = 500
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3

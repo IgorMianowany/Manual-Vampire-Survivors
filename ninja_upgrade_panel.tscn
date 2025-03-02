@@ -1,10 +1,10 @@
-[gd_scene load_steps=29 format=4 uid="uid://crgvkbnr5oul"]
+[gd_scene load_steps=28 format=4 uid="uid://clbnghp7k61ql"]
 
-[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="1_cooen"]
-[ext_resource type="Script" path="res://stat_upgrade_panel.gd" id="1_p38oj"]
-[ext_resource type="Texture2D" uid="uid://cbpsr8r5u1pd" path="res://assets/sprites/UI/GUI.png" id="3_v0frj"]
-[ext_resource type="Texture2D" uid="uid://jafqtmv03pu3" path="res://assets/sprites/UI/GUI - Copy.png" id="4_uy5q2"]
-[ext_resource type="Texture2D" uid="uid://chwsukwp2kvd6" path="res://assets/sprites/items/coin.png" id="4_yjphd"]
+[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="2_8gp4s"]
+[ext_resource type="Script" path="res://ninja_upgrade_panel.gd" id="2_ux501"]
+[ext_resource type="Texture2D" uid="uid://cbpsr8r5u1pd" path="res://assets/sprites/UI/GUI.png" id="3_5qlce"]
+[ext_resource type="Texture2D" uid="uid://jafqtmv03pu3" path="res://assets/sprites/UI/GUI - Copy.png" id="4_73a8u"]
+[ext_resource type="Texture2D" uid="uid://chwsukwp2kvd6" path="res://assets/sprites/items/coin.png" id="5_y3dki"]
 
 [sub_resource type="Image" id="Image_weotw"]
 data = {
@@ -1828,9 +1828,6 @@ Button/styles/hover = SubResource("StyleBoxFlat_4ilrl")
 Button/styles/normal = SubResource("StyleBoxFlat_1neip")
 Button/styles/pressed = SubResource("StyleBoxFlat_2br3j")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jwww5"]
-modulate_color = Color(0, 0.5016, 0.236608, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uno6s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i7vk"]
@@ -1838,19 +1835,19 @@ modulate_color = Color(0, 0.5016, 0.236608, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ff2fq"]
 content_margin_left = 35.0
 content_margin_right = 20.0
-texture = ExtResource("3_v0frj")
+texture = ExtResource("3_5qlce")
 region_rect = Rect2(145, 113, 46, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ybr1y"]
 content_margin_left = 35.0
 content_margin_right = 20.0
-texture = ExtResource("4_uy5q2")
+texture = ExtResource("4_73a8u")
 region_rect = Rect2(113, 81, 30, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5juri"]
 content_margin_left = 35.0
 content_margin_right = 20.0
-texture = ExtResource("4_uy5q2")
+texture = ExtResource("4_73a8u")
 region_rect = Rect2(80, 81, 30, 14)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ieyu"]
@@ -1858,10 +1855,10 @@ region_rect = Rect2(80, 81, 30, 14)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwahi"]
 content_margin_left = 35.0
 content_margin_right = 20.0
-texture = ExtResource("3_v0frj")
+texture = ExtResource("3_5qlce")
 region_rect = Rect2(113, 98, 30, 13)
 
-[node name="StatUpgradePanel" type="Panel"]
+[node name="NinjaUpgradePanel" type="Panel"]
 custom_minimum_size = Vector2(150, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -1870,7 +1867,10 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_p38oj")
+script = ExtResource("2_ux501")
+upgrade_type = 5
+upgrade_name = "Ninja class"
+cost = 500
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -1900,21 +1900,12 @@ theme_override_constants/margin_bottom = 10
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(30, 100)
 layout_mode = 2
-texture = ExtResource("1_cooen")
+texture = ExtResource("2_8gp4s")
 expand_mode = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 10
-
-[node name="Button3" type="Button" parent="VBoxContainer/MarginContainer3"]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme = SubResource("Theme_oq585")
-theme_override_styles/normal = SubResource("StyleBoxTexture_jwww5")
-text = "Upgrade"
 
 [node name="Button" type="Button" parent="VBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(100, 30)
@@ -1934,9 +1925,8 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_kwahi")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ybr1y")
 text = "25
 "
-icon = ExtResource("4_yjphd")
+icon = ExtResource("5_y3dki")
 icon_alignment = 2
 expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer3/Button3" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer3/Button" to="." method="_on_button_pressed"]
