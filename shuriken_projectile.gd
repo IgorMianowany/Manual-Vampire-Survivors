@@ -7,6 +7,7 @@ signal hit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_as_top_level(true)
 	hit.connect(_on_projectile_death)
 	$ProjectileHitbox.hitbox_name = "ShurikenHitbox"
 	super()
@@ -23,7 +24,7 @@ func _on_projectile_death():
 	var min_distance : float = 1000000
 	var next_direction
 	for enemy in enemies:
-		if global_position.distance_to(enemy.global_position) < min_distance and global_position.distance_to(enemy.global_position) > 10 and not enemies_hit.has(enemy.name):
+		if global_position.distance_to(enemy.global_position) < min_distance and global_position.distance_to(enemy.global_position) > 10 and not enemies_hit.has(enemy.name) and enemy.health > 0:
 			next_direction = enemy
 			min_distance = global_position.distance_to(enemy.global_position)
 	if next_direction != null:

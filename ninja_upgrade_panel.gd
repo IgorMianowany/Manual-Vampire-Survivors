@@ -14,7 +14,6 @@ func _on_button_pressed() -> void:
 	# accessing style boxes from code is hard, this is easier
 	$VBoxContainer/MarginContainer3/Button.text = "Owned    "
 	$VBoxContainer/MarginContainer3/Button.icon = null
-	$VBoxContainer/MarginContainer3/Button.disabled
 	checkAvailability()
 
 func checkAvailability():
