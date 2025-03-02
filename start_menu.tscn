@@ -52,7 +52,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="OptionButton" parent="CanvasLayer/VBoxContainer/MarginContainer2" instance=ExtResource("1_kkds2")]
+[node name="UpgradesButton" parent="CanvasLayer/VBoxContainer/MarginContainer2" instance=ExtResource("1_kkds2")]
 layout_mode = 2
 text = "Upgrades
 "
@@ -68,5 +68,5 @@ text = "Quit
 "
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer2/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer2/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/MarginContainer3/QuitButton" to="." method="_on_quit_button_pressed"]
