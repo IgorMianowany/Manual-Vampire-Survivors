@@ -63,6 +63,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		$SlimeHitbox/CollisionShape2D.disabled = false
 		
+	#if is_knocked_back:
+		#$AnimatedSprite2D.modulate
+	
 	jump_timer += delta
 	
 	if jump_timer > jump_cooldown + variation:
@@ -144,6 +147,8 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
 		
+	var tween : Tween = create_tween()
+	tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
 		#for index in $ChainLightningShapeCast.get_collision_count():
 			#var enemy = $ChainLightningShapeCast.get_collider(index)
 	if health > 0:
@@ -160,7 +165,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			
 	if health > 0:
 		is_knocked_back = true
-		velocity = knockback_direction * knockback * speed
+		velocity = knockback_direction * (knockback * .8) * speed
 		$AnimatedSprite2D.play("take_damage")
 		flash_white()
 		if jump_timer > 0.8 and not is_poisoning:

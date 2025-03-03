@@ -70,6 +70,7 @@ var upgrades_amount_base : int = 3
 var upgrades_amount_bonus : int = 0
 var coins_base : int = 600
 var ninja_unlocked_base : bool = false
+var game_time : float = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam"]
@@ -137,7 +138,10 @@ func get_upgrades_amount() -> int:
 	
 func set_upgrades_amount(new_value):
 	upgrades_amount_bonus = clampi(new_value, 1, 4)
-
+	
+func get_game_time() -> int:
+	return int(game_time)
+	
 func _ready() -> void:
 	add_child(chain_lightning_timer)
 	add_child(dash_timer)
@@ -147,6 +151,7 @@ func _ready() -> void:
 	jim_beam_drank.connect(handle_jim_beam_drank)
 	
 func _physics_process(_delta: float) -> void:
+	game_time += _delta
 	if mana < max_mana and not mana_regen_blocked:
 		mana += 0.05
 	

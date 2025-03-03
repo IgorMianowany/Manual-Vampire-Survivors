@@ -15,6 +15,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
+	$CanvasLayer/Timer.text = str(int(PlayerState.game_time))
 	$CanvasLayer/Healthbar.value = PlayerState.health
 	$CanvasLayer/ExperienceBar.value = PlayerState.experience
 	$CanvasLayer/ExperienceBar.max_value = PlayerState.experience_threshold
