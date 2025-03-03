@@ -13,8 +13,9 @@ var hitbox_name : String = "Hitbox"
 
 
 func _init() -> void:
-	collision_layer = 16
-	collision_mask = 0
+	#collision_layer = 16
+	#collision_mask = 0
+	pass
 
 func is_crit() -> bool:
 	return randf_range(0,1) < crit_chance

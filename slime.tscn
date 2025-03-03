@@ -304,8 +304,8 @@ shape = SubResource("CircleShape2D_03ef8")
 debug_color = Color(0.968809, 0, 0.465463, 0.42)
 
 [node name="SlimeHitbox" type="Area2D" parent="." groups=["Areas"]]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 32
+collision_mask = 32
 script = ExtResource("46_qr50n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitbox" groups=["Areas"]]

@@ -1,8 +1,8 @@
 extends Node
 
 @onready var health : float = max_health : get = get_current_health
-var max_health_bonus : float = 0	
-var max_health_base : float = 100
+var max_health_bonus : float = 0
+var max_health_base : float = 100000
 var max_health : get = get_max_health
 var experience : int = 0
 var experience_threshold : get = get_experience_threshold

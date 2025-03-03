@@ -70,6 +70,7 @@ func _physics_process(delta: float) -> void:
 			invincibility_animation_counter = 0
 		
 	if invincibility_timer > invincibility_time:
+		$PlayerHurtbox.global_position = global_position
 		is_invincible = false
 		$AnimatedSprite2D.visible = true
 		invincibility_timer = 0
@@ -203,6 +204,7 @@ func take_damage(damage : float, knockback_direction : Vector2, incoming_knockba
 				bubble_ready = true
 				$BubbleShield.play("idle")
 		else:
+			$PlayerHurtbox.global_position = Vector2(10, 10)
 			PlayerState.health -= damage
 			is_invincible = true
 			is_knocked_back = true

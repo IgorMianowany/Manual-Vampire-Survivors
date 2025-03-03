@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	#$Control/TextureProgressBar.max_value = max_health
 	#$Control/TextureProgressBar.value = health
 	if not is_jumping:
-		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 		$SlimeHitbox/CollisionShape2D.disabled = true
 	else:
 		$SlimeHitbox/CollisionShape2D.disabled = false
@@ -70,6 +69,7 @@ func _physics_process(delta: float) -> void:
 	
 	if jump_timer > jump_cooldown + variation and not is_jumping:
 		#handle_animation(variation)
+		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 		jump_toward_player(variation)
 		
 	if is_poisoned:
