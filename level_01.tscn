@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://dex6rvttf5f6c"]
+[gd_scene load_steps=61 format=4 uid="uid://dex6rvttf5f6c"]
 
 [ext_resource type="Texture2D" uid="uid://bxujpobmruq50" path="res://assets/sprites/tilesets/decor_8x8.png" id="1_krj42"]
 [ext_resource type="Texture2D" uid="uid://cdcqb0khqlr7y" path="res://assets/sprites/tilesets/decor_16x16.png" id="2_wlpnc"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://q0arkn5xep31" path="res://assets/sprites/tilesets/water4.png" id="13_684qn"]
 [ext_resource type="Texture2D" uid="uid://8ykj5eg3duxj" path="res://assets/sprites/tilesets/water5.png" id="14_vl521"]
 [ext_resource type="Texture2D" uid="uid://b5hoo5664rsgt" path="res://assets/sprites/objects/chest_01.png" id="15_vm62b"]
-[ext_resource type="PackedScene" uid="uid://d10warmae3h16" path="res://experience_pickup.tscn" id="16_3exla"]
 [ext_resource type="Texture2D" uid="uid://bnu6oxw1ck4l7" path="res://assets/sprites/objects/chest_02.png" id="16_mb3pr"]
 [ext_resource type="Texture2D" uid="uid://cw44dpqd543sj" path="res://assets/sprites/objects/rock_in_water_06.png" id="17_enf4l"]
 [ext_resource type="Texture2D" uid="uid://p4ik5bwaaiq4" path="res://assets/sprites/objects/objects.png" id="18_ut24w"]
@@ -1029,125 +1028,5 @@ limit = 100
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(604, 318)
-
-[node name="ExperiencePickup" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1284, 276)
-
-[node name="ExperiencePickup2" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1281, 342)
-
-[node name="ExperiencePickup3" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1284, 416)
-
-[node name="ExperiencePickup4" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1283, 497)
-
-[node name="ExperiencePickup5" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1359, 504)
-
-[node name="ExperiencePickup6" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2825, 492)
-
-[node name="ExperiencePickup7" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2918, 490)
-
-[node name="ExperiencePickup8" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3008, 490)
-
-[node name="ExperiencePickup9" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3088, 492)
-
-[node name="ExperiencePickup10" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3190, 503)
-
-[node name="ExperiencePickup11" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2768, 174)
-
-[node name="ExperiencePickup12" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1401, 258)
-
-[node name="ExperiencePickup13" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1404, 332)
-
-[node name="ExperiencePickup14" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(1403, 413)
-
-[node name="ExperiencePickup15" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2843, 402)
-
-[node name="ExperiencePickup16" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2945, 408)
-
-[node name="ExperiencePickup17" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3038, 406)
-
-[node name="ExperiencePickup18" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3128, 406)
-
-[node name="ExperiencePickup19" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3208, 408)
-
-[node name="ExperiencePickup20" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3310, 419)
-
-[node name="ExperiencePickup21" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2874, 91)
-
-[node name="ExperiencePickup22" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2871, 157)
-
-[node name="ExperiencePickup23" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2874, 231)
-
-[node name="ExperiencePickup24" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2873, 312)
-
-[node name="ExperiencePickup25" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2949, 319)
-
-[node name="ExperiencePickup26" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3051, 325)
-
-[node name="ExperiencePickup27" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3144, 323)
-
-[node name="ExperiencePickup28" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3234, 323)
-
-[node name="ExperiencePickup29" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3314, 325)
-
-[node name="ExperiencePickup30" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3416, 336)
-
-[node name="ExperiencePickup31" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2992, 10)
-
-[node name="ExperiencePickup32" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2989, 76)
-
-[node name="ExperiencePickup33" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2992, 150)
-
-[node name="ExperiencePickup34" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(2991, 231)
-
-[node name="ExperiencePickup35" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3067, 238)
-
-[node name="ExperiencePickup36" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3169, 244)
-
-[node name="ExperiencePickup37" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3262, 242)
-
-[node name="ExperiencePickup38" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3352, 242)
-
-[node name="ExperiencePickup39" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3432, 244)
-
-[node name="ExperiencePickup40" parent="LayerHolder" instance=ExtResource("16_3exla")]
-position = Vector2(3534, 255)
 
 [node name="ClassSelection" parent="." instance=ExtResource("29_wgnba")]

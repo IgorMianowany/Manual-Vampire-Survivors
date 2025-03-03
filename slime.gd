@@ -55,21 +55,9 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	#$Control/TextureProgressBar.max_value = max_health
-	#$Control/TextureProgressBar.value = health
-	if not is_jumping:
-		$SlimeHitbox/CollisionShape2D.disabled = true
-	else:
-		$SlimeHitbox/CollisionShape2D.disabled = false
-		
-	#if is_knocked_back:
-		#$AnimatedSprite2D.modulate
-	
 	jump_timer += delta
 	
 	if jump_timer > jump_cooldown + variation and not is_jumping:
-		#handle_animation(variation)
-		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 		jump_toward_player(variation)
 		
 	if is_poisoned:
@@ -84,6 +72,9 @@ func jump_toward_player(_jump_variation : float) -> void:
 	var new_direction := Vector2.ZERO
 	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health > 0:
 		is_jumping = true
+		$SlimeHitbox/CollisionShape2D.disabled = false
+		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
+
 		if not is_knocked_back:
 			# this is a weird way to check if slime reached it's jump destination before finishing the jump
 			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
@@ -98,6 +89,7 @@ func jump_toward_player(_jump_variation : float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
 		jump_timer = 0
+		$SlimeHitbox/CollisionShape2D.disabled = true
 	player_direction = new_direction
 
 func handle_animation(animation_variation : float) -> void:
