@@ -146,16 +146,17 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		
 		#for index in $ChainLightningShapeCast.get_collision_count():
 			#var enemy = $ChainLightningShapeCast.get_collider(index)
-	health -= incoming_damage
-	healthbar_new.health = health
-	$HitParticles.emitting = true
-	DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
-	$HitParticles.set_direction(knockback_direction)
-	
-	if PlayerState.chain_lightning_ready:
-		if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
-			PlayerState.start_chain_lightning_timer()
-		handle_chain_lightning_logic()
+	if health > 0:
+		health -= incoming_damage
+		healthbar_new.health = health
+		$HitParticles.emitting = true
+		DamageNumbers.display_number(int(incoming_damage), damage_numbers_origin.global_position, is_crit)
+		$HitParticles.set_direction(knockback_direction)
+		
+		if PlayerState.chain_lightning_ready:
+			if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
+				PlayerState.start_chain_lightning_timer()
+			handle_chain_lightning_logic()
 			
 	if health > 0:
 		is_knocked_back = true
@@ -167,19 +168,22 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
 	if health <= 0:
-		#get_tree().call_group("Areas", "set_collision_layer", 0)
-		#get_tree().call_group("Areas", "set_collision_mask", 0)
-		#var areas = get_tree().get_nodes_in_group("Areas")
-		#for area in areas:
-			#if area.has_method("set_disabled"):
-				#area.set_deferred("set_disabled", true)
-		#collision_layer = 0
-		#collision_mask = 0
+		#$ProjectileDestroyArea.set_deferred("monitorable", false)
+		$AnimatedSprite2D.play("die")
+		#await(get_tree().create_timer(1).timeout)
+		
+		# this is done so all the colliders are not in a way after entity death, as 
+		# set_deferred can be wonky when working with a lot of entites of the same type
+		for property in get_children():
+			if property is Timer:
+				continue
+			if property is AnimatedSprite2D:
+				continue	
+			property.global_position = Vector2.ZERO
 		await(get_tree().create_timer(1).timeout)
 		var experience_pickup_instance = experience_pickup.instantiate()
 		experience_pickup_instance.experience_points = exp_amount
 		get_parent().add_child(experience_pickup_instance)
-		#experience_pickup_instance.reparent(get_parent())
 		
 		experience_pickup_instance.global_position = global_position
 		PlayerState.slime_count -= 1

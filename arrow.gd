@@ -53,8 +53,8 @@ func _physics_process(delta: float) -> void:
 	#if current_speed > max_speed:
 		#position = position.normalized() * max_speed
 	#TODO ogarnąć zcy to ma sens
-	if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
-		_on_projectile_death()
+	#if $ProjectileHitbox.hits >= $ProjectileHitbox.max_hits:
+		#_on_projectile_death()
 	
 
 
@@ -69,7 +69,7 @@ func _on_projectile_impact_detector_area_entered(area: Area2D) -> void:
 			_on_projectile_death()
 
 func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
-	if body.name != $ProjectileImpactDetector.name:
+	if body.name != $ProjectileImpactDetector.name and body.name != "Slime":
 		_on_projectile_death()
 
 func _on_projectile_death():
