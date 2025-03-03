@@ -13,7 +13,7 @@ func _ready() -> void:
 	$Timer.start()
 
 func _on_timer_timeout() -> void:
-	if count < limit and PlayerState.slime_count < 50:
+	if count < limit and PlayerState.slime_count < clampi(100 + PlayerState.game_time, 50, 89):
 		var slime_instance = slime.instantiate()
 		slime_instance.player = player
 		slime_instance.global_position = global_position

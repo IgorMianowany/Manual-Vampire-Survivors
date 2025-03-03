@@ -9,6 +9,9 @@ func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
 
 func _on_area_entered(hitbox : Hitbox) -> void:
+	PlayerState.debug_value += 1
+
+	print(PlayerState.debug_value)
 	if hitbox == null or hitbox.owner == owner:
 		return
 	
