@@ -51,22 +51,12 @@ func _ready() -> void:
 	$PoisonTimer.timeout.connect(take_poison_damage)
 	variation = randf_range(0, jump_variation)
 	healthbar_new.init_health(max_health)
-	
-	
 
 func _physics_process(delta: float) -> void:
 	jump_timer += delta
-	print($AnimatedSprite2D.modulate)
 	if jump_timer > jump_cooldown + variation and not is_jumping:
 		jump_toward_player(variation)
-
-	#if is_poisoned:
-		#$AnimatedSprite2D.modulate = "d800da"
-	#else:
-		#$AnimatedSprite2D.modulate =  "ffffff"
-	
-	#handle_animation(variation)
-	move_and_slide()
+	#move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
 	var new_direction := Vector2.ZERO
