@@ -87,3 +87,7 @@ level_up={
 2d_physics/layer_5="PlayerHitboxHurtbox"
 2d_physics/layer_6="EnemyHitboxHurtbox"
 2d_physics/layer_7="Pickup"
+
+[physics]
+
+2d/run_on_separate_thread=true

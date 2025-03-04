@@ -90,7 +90,6 @@ visible = false
 layout_mode = 2
 
 [node name="PoisonVial" parent="CanvasLayer/HBoxContainer" instance=ExtResource("8_o8cyp")]
-visible = false
 layout_mode = 2
 
 [node name="Zweiblader" parent="CanvasLayer/HBoxContainer" instance=ExtResource("10_snj1s")]
@@ -113,6 +112,7 @@ visible = false
 layout_mode = 2
 
 [node name="HealthUpgrade" parent="CanvasLayer/HBoxContainer" instance=ExtResource("14_muqqc")]
+visible = false
 layout_mode = 2
 
 [node name="Spinach" parent="CanvasLayer/HBoxContainer" instance=ExtResource("15_g6ojm")]

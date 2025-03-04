@@ -8,7 +8,7 @@ func _ready() -> void:
 	visible = true
 	collision_mask = 8
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_instance_valid(player):
 		velocity = (speed - global_position.distance_to(player.global_position)*10) * global_position.direction_to(player.global_position) * delta
 	move_and_slide()

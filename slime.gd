@@ -56,14 +56,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	jump_timer += delta
-	
+	print($AnimatedSprite2D.modulate)
 	if jump_timer > jump_cooldown + variation and not is_jumping:
 		jump_toward_player(variation)
-		
-	if is_poisoned:
-		$AnimatedSprite2D.modulate = "d800da"
-	else:
-		$AnimatedSprite2D.modulate =  "ffffff"
+
+	#if is_poisoned:
+		#$AnimatedSprite2D.modulate = "d800da"
+	#else:
+		#$AnimatedSprite2D.modulate =  "ffffff"
 	
 	#handle_animation(variation)
 	move_and_slide()
@@ -135,14 +135,13 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body is Player and is_jumping and health > 0:
 		body.take_damage(damage, position.direction_to(player_position), knockback_power)
 
-func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false) -> void:
+func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false) -> void:	
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
-		
-	# flash white when hit
+	
 	var tween : Tween = create_tween()
 	tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
-
+	
 	if health > 0:
 		health -= incoming_damage
 		healthbar_new.health = health
@@ -154,12 +153,12 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
 				PlayerState.start_chain_lightning_timer()
 			handle_chain_lightning_logic()
-			
+
+		
 	if health > 0:
 		is_knocked_back = true
 		velocity = knockback_direction * (knockback * .8) * speed
 		$AnimatedSprite2D.play("take_damage")
-		flash_white()
 		if jump_timer > 0.8 and not is_poisoning:
 			jump_timer -= 0.8
 		await(get_tree().create_timer(.8).timeout)
@@ -187,12 +186,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		PlayerState.coins_base += money
 		queue_free()
 	$HitParticles.emitting = false
-	
-
-func flash_white() -> void:
-	$AnimatedSprite2D.modulate = Color(10,10,10)
-	await(get_tree().create_timer(.1).timeout)
-	$AnimatedSprite2D.modulate = Color(1,1,1)
 
 func _on_collision_area_body_entered(body: Node2D) -> void:
 	if is_knocked_back and body.name != "Player":
@@ -201,6 +194,7 @@ func _on_collision_area_body_entered(body: Node2D) -> void:
 		
 func start_poison(new_damage : float, duration : float):
 	is_poisoned = true
+	$AnimatedSprite2D.modulate = "d800da"
 	#if there is new poison effect we overwrite the damage,
 	#otherwise we just extend the existing 
 	#maybe change to > instead of != ?
@@ -215,6 +209,7 @@ func take_poison_damage():
 		poison_ticks_left -= 1
 	else:
 		is_poisoned = false
+		$AnimatedSprite2D.modulate = "ffffff"
 		$PoisonTimer.stop()
 		
 func handle_chain_lightning_logic():
