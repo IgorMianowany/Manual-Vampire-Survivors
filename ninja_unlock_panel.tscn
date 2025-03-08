@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd3r30i53j4lp"]
+
+[ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="1_at4cv"]
+[ext_resource type="Script" path="res://ninja_upgrade_panel.gd" id="1_vx2cl"]
+
+[node name="NinjaUnlockPanel" instance=ExtResource("1_at4cv")]
+script = ExtResource("1_vx2cl")

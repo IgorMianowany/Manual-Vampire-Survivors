@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_m7xg2"]
 [ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="2_xx6f4"]
-[ext_resource type="PackedScene" uid="uid://clbnghp7k61ql" path="res://ninja_upgrade_panel.tscn" id="3_fufx1"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="3_rk67d"]
+[ext_resource type="PackedScene" uid="uid://dd3r30i53j4lp" path="res://ninja_unlock_panel.tscn" id="3_sskg6"]
 
 [node name="StatUpgradeMenu" type="Control"]
 layout_mode = 3
@@ -103,6 +103,10 @@ theme_override_constants/separation = 25
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="StatUpgradePanel4" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_xx6f4")]
+layout_mode = 2
+size_flags_horizontal = 4
+
 [node name="StatUpgradePanel2" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_xx6f4")]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -111,12 +115,10 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="StatUpgradePanel4" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_xx6f4")]
+[node name="NinjaUnlockPanel" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("3_sskg6")]
 layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="NinjaUpgradePanel" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("3_fufx1")]
-layout_mode = 2
+upgrade_type = 5
+upgrade_name = "Ninja class"
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 3
