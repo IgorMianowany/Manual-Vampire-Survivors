@@ -1,0 +1,158 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsp82fkivpl2n"]
+
+[ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_emo8t"]
+[ext_resource type="PackedScene" uid="uid://cg7u50mxj0hfa" path="res://test.tscn" id="2_qj7cl"]
+[ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="4_hxctn"]
+
+[node name="StatUpgradeMenuTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emo8t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.5
+offset_right = 115.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 25
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Upgrades
+"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -100.0
+offset_right = 425.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.00627504
+size_flags_horizontal = 4
+theme_override_constants/separation = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+layout_mode = 2
+text = "1"
+cost = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.00157677
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/MarginContainer2"]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "Back
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_bottom = 71.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="CoinsLabel" parent="CanvasLayer/MarginContainer3" instance=ExtResource("4_hxctn")]
+layout_mode = 2
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]

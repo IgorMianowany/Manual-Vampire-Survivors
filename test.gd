@@ -8,7 +8,7 @@ var texture : Texture2D = preload("res://icon.svg")
 func _ready() -> void:
 	$VBoxContainer/MarginContainer2/TextureRect.texture = texture
 	$VBoxContainer/MarginContainer/Label.text = text
-	$VBoxContainer/MarginContainer3/Button.text = cost
+	$VBoxContainer/MarginContainer3/Button.text = str(cost)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

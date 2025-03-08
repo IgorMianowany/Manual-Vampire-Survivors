@@ -98,7 +98,6 @@ visible = false
 layout_mode = 2
 
 [node name="2For1Special" parent="CanvasLayer/HBoxContainer" instance=ExtResource("9_jknt2")]
-visible = false
 layout_mode = 2
 
 [node name="BubbleShield" parent="CanvasLayer/HBoxContainer" instance=ExtResource("11_p5tkp")]
