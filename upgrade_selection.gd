@@ -6,7 +6,7 @@ func _ready() -> void:
 	var filtered_upgrades = filter_upgrades(upgrades)
 	
 	# just for testing
-	##TODO remove
+	#TODO remove
 	#if PlayerState.upgrades_amount > filtered_upgrades.size():
 		#PlayerState.set_upgrades_amount(filtered_upgrades.size()) 
 		
@@ -15,8 +15,7 @@ func _ready() -> void:
 		var num = randi_range(0,filtered_upgrades.size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)
-	#chosen_numbers.remove_at(2)
-	#chosen_numbers.append(21)
+
 	for index in filtered_upgrades.size():
 		if not chosen_numbers.has(index):
 			filtered_upgrades[index].visible = false
