@@ -257,7 +257,7 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ygys0")
-animation = &"move_down"
+animation = &"die"
 autoplay = "idle_down"
 speed_scale = 0.85
 

@@ -166,14 +166,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			if property is AnimatedSprite2D:
 				continue	
 			property.global_position = Vector2.ZERO
-		await(get_tree().create_timer(1).timeout)
-		var experience_pickup_instance = experience_pickup.instantiate()
-		experience_pickup_instance.experience_points = exp_amount
-		get_parent().add_child(experience_pickup_instance)
-		
-		experience_pickup_instance.global_position = global_position
-		PlayerState.coins_base += money
-		reset_enemy()
 	$HitParticles.emitting = false
 
 func _on_collision_area_body_entered(body: Node2D) -> void:
@@ -233,6 +225,11 @@ func handle_chain_lightning_logic():
 	
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "die":
+		var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
+		experience_pickup_new.global_position = global_position
+		PlayerState.coins_base += money
+		reset_enemy()
 	is_jumping = false
 	$AnimatedSprite2D.play("idle_down")
 
@@ -243,7 +240,6 @@ func reset_enemy():
 	PlayerState.enemy_bench.append(self)
 	
 func spawn_enemy(spawn_position : Vector2):
-	PlayerState.enemy_bench.erase(self)
 	PlayerState.active_enemies_count += 1
 	speed = 75
 	@warning_ignore("integer_division")

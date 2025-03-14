@@ -22,7 +22,6 @@ func _on_timer_timeout() -> void:
 		count += 1
 		PlayerState.active_enemies_count += 1
 		PlayerState.slime_spawned += 1
-		print(PlayerState.slime_spawned)
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)

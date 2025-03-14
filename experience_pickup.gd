@@ -1,3 +1,4 @@
+class_name ExperiencePickup
 extends CharacterBody2D
 
 var player : Player
@@ -21,4 +22,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_collision_range_body_entered(body: Node2D) -> void:
 	if body is Player:
 		PlayerState.add_exp(experience_points)
-		queue_free()
+		global_position = get_parent().global_position
+		PlayerState.experience_pickup_bench.append(self)

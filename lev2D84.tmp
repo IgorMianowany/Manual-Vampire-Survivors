@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dex6rvttf5f6c"]
+[gd_scene load_steps=62 format=4 uid="uid://dex6rvttf5f6c"]
 
 [ext_resource type="Texture2D" uid="uid://bxujpobmruq50" path="res://assets/sprites/tilesets/decor_8x8.png" id="1_krj42"]
 [ext_resource type="Texture2D" uid="uid://cdcqb0khqlr7y" path="res://assets/sprites/tilesets/decor_16x16.png" id="2_wlpnc"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://b4itxlq6q8pxn" path="res://assets/sprites/objects/rock_in_water_05.png" id="25_8nyiq"]
 [ext_resource type="PackedScene" uid="uid://ryyuju6qndc" path="res://player.tscn" id="26_ij30w"]
 [ext_resource type="PackedScene" uid="uid://hkbwrpf7npvo" path="res://enemy_spawn.tscn" id="27_qf16w"]
+[ext_resource type="Script" path="res://pickups_holder.gd" id="28_22pec"]
 [ext_resource type="PackedScene" uid="uid://cp5b3a2qsf42v" path="res://class_selection.tscn" id="29_wgnba"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk6b"]
@@ -958,6 +959,7 @@ tile_set = SubResource("TileSet_x7ptb")
 [node name="EnemySpawn23" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(247, 283)
+cooldown = 1.0
 player = NodePath("../Player")
 limit = 1000
 
@@ -965,70 +967,71 @@ limit = 1000
 position = Vector2(326, 94)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn10" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(368, 253)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn13" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 z_index = 1
 position = Vector2(694, 251)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn15" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(775, 177)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn18" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(289, 249)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn20" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(421, 223)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn21" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(482, 601)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn22" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(277, 441)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn24" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(324, 287)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn25" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(96, 578)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="EnemySpawn26" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(625, 510)
 cooldown = 1.0
 player = NodePath("../Player")
-limit = 1000
+limit = 100
 
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(2617, 355)
+script = ExtResource("28_22pec")
 
 [node name="ClassSelection" parent="." instance=ExtResource("29_wgnba")]

@@ -74,9 +74,11 @@ var coins_base : int = 600
 var ninja_unlocked_base : bool = false
 var game_time : float = 0
 var enemy_bench : Array[Slime] = []
+var experience_pickup := preload("res://experience_pickup.tscn")
+var experience_pickup_bench : Array[ExperiencePickup] = []
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemies"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench"]
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
@@ -152,10 +154,16 @@ func _ready() -> void:
 	chain_lightning_timer.timeout.connect(on_chain_lightning_timer_timeout)
 	dash_timer.timeout.connect(on_dash_timer_timeout)
 	jim_beam_drank.connect(handle_jim_beam_drank)
+	for count in range(0, 100):
+		var experience_pickup_instance = experience_pickup.instantiate()
+		experience_pickup_instance.experience_points = 1
+		get_parent().get_child(2).get_child(0).find_child("PickupsHolder").add_child(experience_pickup_instance)
+		experience_pickup_bench.append(experience_pickup_instance)
+		experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
+	
 	
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
-	#print(active_enemies_count)
 	if mana < max_mana and not mana_regen_blocked:
 		mana += 0.05
 	
