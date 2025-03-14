@@ -61,6 +61,8 @@ var lightning_strike_cooldown = 0
 var lightning_strike_damage = 0
 var lightning_strike_range = 0
 var slime_count = 0
+var active_enemies_count = 0
+var slime_spawned = 0
 var has_knife : bool = false
 var max_projectile_speed : float = 4
 var final_score : int = 0
@@ -71,9 +73,10 @@ var upgrades_amount_bonus : int = 0
 var coins_base : int = 600
 var ninja_unlocked_base : bool = false
 var game_time : float = 0
+var enemy_bench : Array[Slime] = []
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemies"]
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
@@ -152,6 +155,7 @@ func _ready() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
+	#print(active_enemies_count)
 	if mana < max_mana and not mana_regen_blocked:
 		mana += 0.05
 	

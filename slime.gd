@@ -38,13 +38,14 @@ var variation : float
 
 func _ready() -> void:
 	set_as_top_level(true)
+	reparent(get_parent().get_parent().find_child("EnemyHolder"))
 	PlayerState.slime_count += 1
-	var current_parent = get_parent()
-	while(true):
-		if current_parent.name == "LayerHolder":
-			reparent(current_parent)
-			break
-		current_parent = current_parent.get_parent()
+	#var current_parent = get_parent()
+	#while(true):
+		#if current_parent.name == "LayerHolder":
+			#reparent(current_parent)
+			#break
+		#current_parent = current_parent.get_parent()
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health
@@ -56,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	jump_timer += delta
 	if jump_timer > jump_cooldown + variation and not is_jumping:
 		jump_toward_player(variation)
-	#move_and_slide()
+	move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
 	var new_direction := Vector2.ZERO
@@ -74,7 +75,6 @@ func jump_toward_player(_jump_variation : float) -> void:
 			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
 				return
 			velocity = position.direction_to(player_position) * speed
-			
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
@@ -172,9 +172,8 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		get_parent().add_child(experience_pickup_instance)
 		
 		experience_pickup_instance.global_position = global_position
-		PlayerState.slime_count -= 1
 		PlayerState.coins_base += money
-		queue_free()
+		reset_enemy()
 	$HitParticles.emitting = false
 
 func _on_collision_area_body_entered(body: Node2D) -> void:
@@ -236,3 +235,22 @@ func handle_chain_lightning_logic():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_jumping = false
 	$AnimatedSprite2D.play("idle_down")
+
+func reset_enemy():
+	PlayerState.active_enemies_count -= 1
+	speed = 0
+	global_position = Vector2(-1000,1000)
+	PlayerState.enemy_bench.append(self)
+	
+func spawn_enemy(spawn_position : Vector2):
+	PlayerState.enemy_bench.erase(self)
+	PlayerState.active_enemies_count += 1
+	speed = 75
+	@warning_ignore("integer_division")
+	max_health += player.get_elapsed_time() / 10
+	health = max_health
+	global_position = spawn_position
+	for property in get_children():
+		if property is Timer:
+			continue
+		property.global_position = global_position
