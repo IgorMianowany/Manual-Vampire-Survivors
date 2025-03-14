@@ -1031,4 +1031,6 @@ limit = 1000
 [node name="PickupsHolder" type="Node2D" parent="LayerHolder"]
 position = Vector2(2617, 355)
 
+[node name="ProjectileHolder" type="Node2D" parent="LayerHolder"]
+
 [node name="ClassSelection" parent="." instance=ExtResource("29_wgnba")]

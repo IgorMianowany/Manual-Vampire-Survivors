@@ -15,14 +15,17 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 		var angle_in_radians = deg_to_rad(rotation_change)
 		var new_direction = existing_direction.rotated(angle_in_radians)
 
-		var projectile := arrow_scene.instantiate()
+		#var projectile := arrow_scene.instantiate()
+		var projectile = PlayerState.projectile_bench.pop_front()
+		projectile.reparent(self)
 		projectile.position = attack_position + direction * 15
 		projectile.direction = new_direction
 		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce
 		projectile.crit_chance = crit_chance
 		projectile.crit_multi = crit_multi
-		add_child(projectile)
+		projectile._reusable_ready()
+		#add_child(projectile)
 	await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 	attack_finished.emit()
 	

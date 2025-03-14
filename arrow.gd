@@ -19,16 +19,8 @@ var velocity : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#_reusable_ready()
 	set_as_top_level(true)
-	look_at(position + direction)
-	speed = PlayerState.projectile_speed
-	lifetime = PlayerState.projectile_lifetime
-	$ProjectileHitbox.damage = damage
-	$ProjectileHitbox.max_hits = pierce # nic nie daje
-	$ProjectileHitbox.is_player_hitbox = true
-	$ProjectileHitbox.crit_chance = crit_chance
-	$ProjectileHitbox.crit_multi = crit_multi
-	$Timer.start(lifetime)
 
 func _physics_process(delta: float) -> void:
 	prev_pos = current_pos
@@ -59,7 +51,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	queue_free()
+	_on_projectile_death()
 
 
 @warning_ignore("unused_parameter")
@@ -73,8 +65,10 @@ func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
 		_on_projectile_death()
 
 func _on_projectile_death():
-	queue_free()
-
+	print(get_parent().get_parent().get_parent().get_parent().find_child("ProjectileHolder"))
+	reparent(get_parent().get_parent().get_parent().get_parent().find_child("ProjectileHolder"))
+	PlayerState.projectile_bench.append(self)
+	global_position = Vector2(1000,-1000)
 #func _on_arrow_hitbox_area_entered(area: Area2D) -> void:
 	#print(area.name)
 	#if area.name != $ArrowImpactDetector.name:
@@ -93,3 +87,14 @@ func _on_projectile_death():
 func _on_homing_range_body_entered(body: Node2D) -> void:
 	if target == null:
 		target = body
+		
+func _reusable_ready():
+	look_at(position + direction)
+	speed = PlayerState.projectile_speed
+	lifetime = PlayerState.projectile_lifetime
+	$ProjectileHitbox.damage = damage
+	$ProjectileHitbox.max_hits = pierce # nic nie daje
+	$ProjectileHitbox.is_player_hitbox = true
+	$ProjectileHitbox.crit_chance = crit_chance
+	$ProjectileHitbox.crit_multi = crit_multi
+	$Timer.start(lifetime)

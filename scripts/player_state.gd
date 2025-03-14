@@ -76,6 +76,7 @@ var game_time : float = 0
 var enemy_bench : Array[Slime] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
+var projectile_bench : Array[Projectile] = []
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench"]
@@ -195,6 +196,12 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 func choose_class(class_number : int):
 	chosen_class = class_number
 	after_class_chosen.emit()
+	var arrow_scene := preload("res://arrow.tscn")
+	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
+	for i in range(0,100):
+		var projectile := arrow_scene.instantiate()
+		projectile_node.add_child(projectile)
+		projectile_bench.append(projectile)
 	
 func clear_enemies_chain_lightning():
 	if not chain_lightning_ready:
@@ -230,7 +237,7 @@ func get_first_vbox_stats() -> Array[String]:
 	var stat_array : Array[String]
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
-		if propertyName.contains("timer") or propertyName.contains("bonus") or propertyName.contains("base") or stats_not_displayable.has(propertyName):
+		if propertyName.contains("timer") or propertyName.contains("bonus") or propertyName.contains("base") or propertyName.contains("bench") or stats_not_displayable.has(propertyName):
 			continue
 		var new_property_name = turn_snake_case_to_name(propertyName)
 		var propertyValue = get(propertyName)
