@@ -16,6 +16,7 @@ var crit_chance : float
 var crit_multi : float
 var current_speed : float
 var velocity : Vector2
+var active : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +24,8 @@ func _ready() -> void:
 	set_as_top_level(true)
 
 func _physics_process(delta: float) -> void:
+	if not active:
+		return
 	prev_pos = current_pos
 	current_pos = global_position
 	current_speed = (prev_pos - current_pos).length()
@@ -65,8 +68,7 @@ func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
 		_on_projectile_death()
 
 func _on_projectile_death():
-	print(get_parent().get_parent().get_parent().get_parent().find_child("ProjectileHolder"))
-	reparent(get_parent().get_parent().get_parent().get_parent().find_child("ProjectileHolder"))
+	active = false
 	PlayerState.projectile_bench.append(self)
 	global_position = Vector2(1000,-1000)
 #func _on_arrow_hitbox_area_entered(area: Area2D) -> void:
@@ -92,6 +94,7 @@ func _reusable_ready():
 	look_at(position + direction)
 	speed = PlayerState.projectile_speed
 	lifetime = PlayerState.projectile_lifetime
+	$ProjectileHitbox.hits = 0
 	$ProjectileHitbox.damage = damage
 	$ProjectileHitbox.max_hits = pierce # nic nie daje
 	$ProjectileHitbox.is_player_hitbox = true
