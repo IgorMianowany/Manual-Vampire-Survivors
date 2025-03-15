@@ -92,6 +92,7 @@ func _on_homing_range_body_entered(body: Node2D) -> void:
 		
 func _reusable_ready():
 	look_at(position + direction)
+	target = null
 	speed = PlayerState.projectile_speed
 	lifetime = PlayerState.projectile_lifetime
 	$ProjectileHitbox.hits = 0
