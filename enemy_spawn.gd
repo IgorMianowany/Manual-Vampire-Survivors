@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
-	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, 100, 100):
+	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, 300, 300) and false:
 		var slime_instance = slime.instantiate()
 		slime_instance.player = player
 		slime_instance.global_position = global_position
@@ -25,7 +25,7 @@ func _on_timer_timeout() -> void:
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)
-	elif count < limit and PlayerState.active_enemies_count < 100:
+	elif count < limit and PlayerState.active_enemies_count < 300:
 		if PlayerState.enemy_bench.size() > 0:
 			var pooled_slime = PlayerState.enemy_bench.pop_front()
 			pooled_slime.spawn_enemy(global_position)

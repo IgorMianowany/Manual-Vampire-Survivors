@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		#current_speed = (prev_pos-current_pos).length()
 		#print(current_speed)
 	
-	if target != null and PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.1:
+	if target != null and (target as Slime).health > 0 and PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.1:
 		direction += (global_position.direction_to(target.global_position)/5)
 		#max_homing_speed -= (100 - min(100, global_position.distance_to(target.global_position)))/100
 		rotation = direction.angle()

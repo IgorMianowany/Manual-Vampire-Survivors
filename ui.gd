@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Manabar.visible = PlayerState.chosen_class == 2
 	$CanvasLayer/Manabar.value = PlayerState.mana
 	$CanvasLayer/Manabar.max_value = PlayerState.max_mana
-	$CanvasLayer/HasChainLightning.text = str(PlayerState.slime_count)
-	$CanvasLayer/Level.text = str(PlayerState.slime_count)
+	$CanvasLayer/HasChainLightning.text = str(PlayerState.active_enemies_count)
+	$CanvasLayer/Level.text = str(PlayerState.active_enemies_count)
 
 
 func _on_level_up() -> void:

@@ -56,8 +56,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	previous_pos = current_pos
 	current_pos = global_position
-	var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
-	$Camera2D.zoom = zoom_bonus.clamp(Vector2(1,1), Vector2(5,5))
+	#var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)
+	#$Camera2D.zoom = zoom_bonus.clamp(Vector2(1,1), Vector2(5,5))
 	
 	$UI/CanvasLayer/HealthForDebug.text = str(PlayerState.max_health)
 	if PlayerState.health <= 0:
@@ -121,8 +121,10 @@ func _physics_process(delta: float) -> void:
 		$PlayerHurtbox.collision_mask = 16
 		
 
-		
-	
+	if Input.is_action_just_pressed("zoom_in"):
+		$Camera2D.zoom += Vector2(.1,.1)
+	if Input.is_action_just_pressed("zoom_out"):
+		$Camera2D.zoom -= Vector2(.1,.1)
 	$BubbleShield.visible = bubble_ready
 	$Marker2D/ChainLightningReady.visible = PlayerState.chain_lightning_ready
 	

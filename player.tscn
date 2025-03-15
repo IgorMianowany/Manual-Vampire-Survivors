@@ -491,7 +491,7 @@ frame_progress = 1.0
 speed_scale = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(0.1, 0.1)
 process_callback = 0
 
 [node name="UI" parent="." instance=ExtResource("35_l3wkv")]

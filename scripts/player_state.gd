@@ -73,13 +73,14 @@ var upgrades_amount_bonus : int = 0
 var coins_base : int = 600
 var ninja_unlocked_base : bool = false
 var game_time : float = 0
+var slime_scene := preload("res://slime.tscn")
 var enemy_bench : Array[Slime] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
 var projectile_bench : Array[Projectile] = []
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene"]
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
@@ -161,7 +162,11 @@ func _ready() -> void:
 		get_parent().get_child(2).get_child(0).find_child("PickupsHolder").add_child(experience_pickup_instance)
 		experience_pickup_bench.append(experience_pickup_instance)
 		experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
-	
+	for slime in range(0,100):
+		var slime_instance = slime_scene.instantiate()
+		get_parent().get_child(2).get_child(0).find_child("EnemyHolder").add_child(slime_instance)
+		slime_instance.global_position = Vector2.ZERO
+		enemy_bench.append(slime_instance)
 	
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
@@ -198,7 +203,7 @@ func choose_class(class_number : int):
 	after_class_chosen.emit()
 	var arrow_scene := preload("res://arrow.tscn")
 	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
-	for i in range(0,100):
+	for i in range(0,200):
 		var projectile := arrow_scene.instantiate()
 		projectile_node.add_child(projectile)
 		projectile_bench.append(projectile)

@@ -31,6 +31,7 @@ var poison_ticks_left : float = 0
 var already_hit_by_chain_lightning : bool = false
 var is_first_hit_by_chain_lightning : bool = false
 var variation : float
+var active : bool = false
 
 @onready var start_pos : Vector2 = position
 @onready var healthbar_new = $Control/Healthbar
@@ -38,7 +39,6 @@ var variation : float
 
 func _ready() -> void:
 	set_as_top_level(true)
-	reparent(get_parent().get_parent().find_child("EnemyHolder"))
 	PlayerState.slime_count += 1
 	#var current_parent = get_parent()
 	#while(true):
@@ -46,14 +46,17 @@ func _ready() -> void:
 			#reparent(current_parent)
 			#break
 		#current_parent = current_parent.get_parent()
-	@warning_ignore("integer_division")
-	max_health += player.get_elapsed_time() / 10
+	#@warning_ignore("integer_division")
+	#max_health += player.get_elapsed_time() / 10
+	player = get_parent().player
 	health = max_health
 	$PoisonTimer.timeout.connect(take_poison_damage)
 	variation = randf_range(0, jump_variation)
 	healthbar_new.init_health(max_health)
 
 func _physics_process(delta: float) -> void:
+	if not active:
+		return
 	jump_timer += delta
 	if jump_timer > jump_cooldown + variation and not is_jumping:
 		jump_toward_player(variation)
@@ -231,6 +234,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
 		experience_pickup_new.global_position = global_position
 		experience_pickup_new.player = null
+		experience_pickup_new.active = true
+		experience_pickup_new.speed = 10000
+		#PlayerState.active_enemies_count -= 2
 		PlayerState.coins_base += money
 		reset_enemy()
 	is_jumping = false
@@ -238,13 +244,16 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func reset_enemy():
 	PlayerState.active_enemies_count -= 1
+	active = false
 	speed = 0
 	global_position = Vector2(-1000,1000)
 	PlayerState.enemy_bench.append(self)
 	
 func spawn_enemy(spawn_position : Vector2):
+	active = true
 	PlayerState.active_enemies_count += 1
 	speed = 75
+	
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
 	health = max_health

@@ -26,12 +26,8 @@ func _on_timer_timeout() -> void:
 
 @warning_ignore("unused_parameter")
 func _on_slash_impact_detector_area_entered(area: Area2D) -> void:
-	print(area.name)
 	if $SlashHitbox.hits >= $SlashHitbox.max_hits - 1:
 		queue_free()
-		
-
-
 
 func _on_slash_impact_detector_body_entered(body: Node2D) -> void:
 	print(body.name)
