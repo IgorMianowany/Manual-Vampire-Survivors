@@ -9,6 +9,8 @@ var active : bool = false
 func _ready() -> void:
 	visible = true
 	collision_mask = 8
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	$CollisionRange/CollisionRangeShape.set_deferred("disabled", true)
 	
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -17,10 +19,16 @@ func _physics_process(delta: float) -> void:
 		velocity = (speed - global_position.distance_to(player.global_position)*10) * global_position.direction_to(player.global_position) * delta
 	move_and_slide()
 
+func turn_on_collision():
+	#$Area2D/CollisionShape2D.disabled = false
+	#$CollisionRange/CollisionRangeShape.disabled = false
+	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+	$CollisionRange/CollisionRangeShape.set_deferred("disabled", false)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player = body
+		$Area2D/CollisionShape2D.set_deferred("disabled", true)
 
 func _on_collision_range_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -30,4 +38,6 @@ func _on_collision_range_body_entered(body: Node2D) -> void:
 		active = false
 		speed = 0
 		velocity = Vector2.ZERO
+		$CollisionRange/CollisionRangeShape.set_deferred("disabled", true)
 		PlayerState.experience_pickup_bench.append(self)
+		

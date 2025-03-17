@@ -87,6 +87,7 @@ func _physics_process(delta: float) -> void:
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
+		$DashHitbox/CollisionShape2D.disabled = false
 		$DashHitbox.monitorable = true
 		$DashHitbox.damage = PlayerState.dash_damage
 		$PlayerHurtbox.collision_mask = 0
@@ -116,6 +117,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.dash_timer.start()
 		$DashEffect.emitting = false
 		$DashHitbox.monitorable = false
+		$DashHitbox/CollisionShape2D.disabled = true
 		
 		await(get_tree().create_timer(.5).timeout)
 		$PlayerHurtbox.collision_mask = 16
@@ -334,6 +336,7 @@ func handle_puke():
 	sprite.reparent(get_parent())
 
 func lightning_strike():
+	$LightningStrikeRange/CollisionShape2D.disabled = false
 	$LightningStrikeRange.monitoring = true
 	$LightningStrikeRange/CollisionShape2D.shape.radius = PlayerState.lightning_strike_range
 	var enemies = $LightningStrikeRange.get_overlapping_bodies()
@@ -347,6 +350,7 @@ func lightning_strike():
 		var lightning_strike_instance = lightning_strike_scene.instantiate()
 		lightning_strike_instance.global_position = lightning_strike_position
 		add_child(lightning_strike_instance)
+	$LightningStrikeRange/CollisionShape2D.disabled = true
 		
 func add_lightning_strike():
 	lightning_strike()

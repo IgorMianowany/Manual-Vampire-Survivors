@@ -7,4 +7,5 @@
 script = ExtResource("2_q55te")
 
 [node name="ProjectileImpactDetector" parent="." index="2"]
+collision_layer = 0
 collision_mask = 7

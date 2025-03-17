@@ -244,6 +244,7 @@ radius = 12.0
 radius = 50.0
 
 [node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+process_mode = 1
 z_index = 1
 y_sort_enabled = true
 collision_layer = 4
@@ -296,6 +297,7 @@ value = 0.0
 [node name="SlimeHurtbox" type="Area2D" parent="." groups=["Areas"]]
 collision_layer = 0
 collision_mask = 16
+monitorable = false
 script = ExtResource("45_4o0r0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHurtbox" groups=["Areas"]]
@@ -305,7 +307,8 @@ debug_color = Color(0.968809, 0, 0.465463, 0.42)
 
 [node name="SlimeHitbox" type="Area2D" parent="." groups=["Areas"]]
 collision_layer = 32
-collision_mask = 32
+collision_mask = 0
+monitoring = false
 script = ExtResource("46_qr50n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeHitbox" groups=["Areas"]]

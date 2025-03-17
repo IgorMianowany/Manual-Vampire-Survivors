@@ -28,6 +28,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_c7l72")
+disabled = true
 
 [node name="CollisionRange" type="Area2D" parent="."]
 collision_layer = 0
@@ -35,10 +36,12 @@ collision_mask = 8
 
 [node name="CollisionRangeShape" type="CollisionShape2D" parent="CollisionRange"]
 shape = SubResource("CircleShape2D_2hyb0")
+disabled = true
 debug_color = Color(0.824579, 0.00162894, 0.956864, 0.42)
 
 [node name="CollisionToShutUpGodot" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ln3ea")
+disabled = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CollisionRange" to="." method="_on_collision_range_body_entered"]

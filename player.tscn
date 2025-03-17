@@ -491,7 +491,7 @@ frame_progress = 1.0
 speed_scale = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(3, 3)
 process_callback = 0
 
 [node name="UI" parent="." instance=ExtResource("35_l3wkv")]
@@ -595,15 +595,18 @@ damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
 shape = SubResource("CircleShape2D_db2y5")
+disabled = true
 debug_color = Color(0.936042, 1.89635e-05, 0.633872, 0.42)
 
 [node name="LightningStrikeRange" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightningStrikeRange"]
 shape = SubResource("CircleShape2D_klfj0")
+disabled = true
 debug_color = Color(0.349783, 0.483477, 1, 0.42)
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]

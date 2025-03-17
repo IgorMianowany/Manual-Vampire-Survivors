@@ -3,6 +3,7 @@ extends Node2D
 @export var min_cooldown : float = 1
 @export var player : Player 
 @export var limit : int = 12
+var upperLimit : int = 100
 
 var slime := preload("res://slime.tscn") 
 var count : int = 0
@@ -14,8 +15,10 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
-	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, 300, 300) and false:
+	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
 		var slime_instance = slime.instantiate()
+		print("instantiate slime")
+		slime_instance.active = true
 		slime_instance.player = player
 		slime_instance.global_position = global_position
 		add_child(slime_instance)
@@ -25,8 +28,9 @@ func _on_timer_timeout() -> void:
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)
-	elif count < limit and PlayerState.active_enemies_count < 300:
+	elif count < limit and PlayerState.active_enemies_count < upperLimit:
 		if PlayerState.enemy_bench.size() > 0:
 			var pooled_slime = PlayerState.enemy_bench.pop_front()
 			pooled_slime.spawn_enemy(global_position)
+			pooled_slime.active = true
 			count += 1
