@@ -204,7 +204,7 @@ func handle_chain_lightning_logic():
 	await(get_tree().create_timer(.1).timeout)
 	
 	
-	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range + 100
+	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
 	# to niżej musi być poza ifem jakoś
 	PlayerState.start_chain_lightning_timer()
 	if not PlayerState.enemies_hit_by_chain_lightning.has(self):
