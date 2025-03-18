@@ -22,6 +22,7 @@ var active : bool = false
 func _ready() -> void:
 	#_reusable_ready()
 	set_as_top_level(true)
+	set_process(false)
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 			#max_homing_speed -= (100 - min(100, global_position.distance_to(target.global_position)))/100
 			rotation = direction.angle()
 		elif target != null and (target as Slime).health <= 0:
-			target == null
+			target = null
 			$HomingRange/CollisionShape2D.set_deferred("disabled", false)
 	#if target != null and (target as Slime).health > 0 and PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.1:
 		#direction += (global_position.direction_to(target.global_position)/5)
@@ -78,6 +79,7 @@ func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
 		_on_projectile_death()
 
 func _on_projectile_death():
+	set_process(false)
 	active = false
 	PlayerState.projectile_bench.append(self)
 	global_position = Vector2(1000,-1000)
@@ -104,6 +106,7 @@ func _on_homing_range_body_entered(body: Node2D) -> void:
 		
 func _reusable_ready():
 	look_at(position + direction)
+	set_process(true)
 	target = null
 	speed = PlayerState.projectile_speed
 	lifetime = PlayerState.projectile_lifetime

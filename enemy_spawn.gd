@@ -17,7 +17,6 @@ func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
 		var slime_instance = slime.instantiate()
-		print("instantiate slime")
 		slime_instance.active = true
 		slime_instance.player = player
 		slime_instance.global_position = global_position
