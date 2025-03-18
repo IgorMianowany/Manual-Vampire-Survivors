@@ -136,7 +136,6 @@ visible = false
 layout_mode = 2
 
 [node name="ChainLightning" parent="CanvasLayer/HBoxContainer" instance=ExtResource("20_u7g0l")]
-visible = false
 layout_mode = 2
 
 [node name="SwiftStrike" parent="CanvasLayer/HBoxContainer" instance=ExtResource("21_1atrr")]

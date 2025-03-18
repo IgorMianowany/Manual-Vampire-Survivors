@@ -197,6 +197,8 @@ func take_poison_damage():
 		$PoisonTimer.stop()
 		
 func handle_chain_lightning_logic():
+	$ChainLightningAnimation.set_process(true)
+	$ChainLightningShapeCast.set_deferred("enabled", true)
 	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
 	# to niżej musi być poza ifem jakoś
 	PlayerState.start_chain_lightning_timer()
@@ -205,7 +207,7 @@ func handle_chain_lightning_logic():
 			PlayerState.first_enemy_hit_name = name
 		PlayerState.enemies_hit_by_chain_lightning.append(self)
 	else:
-				pass
+		pass
 	for index in $ChainLightningShapeCast.get_collision_count():
 		if index >= $ChainLightningShapeCast.get_collision_count():
 			continue
@@ -224,7 +226,8 @@ func handle_chain_lightning_logic():
 		pass
 	if PlayerState.first_enemy_hit_name == name:
 		PlayerState.clear_enemies_chain_lightning()
-		
+	$ChainLightningAnimation.set_process(false)
+	$ChainLightningShapeCast.set_deferred("enabled", false)
 	
 
 func _on_animated_sprite_2d_animation_finished() -> void:
