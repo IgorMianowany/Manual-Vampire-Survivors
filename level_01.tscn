@@ -963,7 +963,7 @@ z_index = 1
 position = Vector2(247, 283)
 cooldown = 3.0
 player = NodePath("../Player")
-limit = 10
+limit = 100
 
 [node name="EnemySpawn2" parent="LayerHolder" node_paths=PackedStringArray("player") instance=ExtResource("27_qf16w")]
 position = Vector2(326, 94)

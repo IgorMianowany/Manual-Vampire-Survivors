@@ -198,12 +198,17 @@ func take_poison_damage():
 		
 func handle_chain_lightning_logic():
 	$ChainLightningAnimation.set_process(true)
-	$ChainLightningShapeCast.set_deferred("enabled", true)
-	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range
+	$ChainLightningShapeCast.enabled = true
+	$ChainLightningAnimation.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	await(get_tree().create_timer(.1).timeout)
+	
+	
+	$ChainLightningShapeCast.shape.radius = PlayerState.chain_lightning_range + 100
 	# to niżej musi być poza ifem jakoś
 	PlayerState.start_chain_lightning_timer()
 	if not PlayerState.enemies_hit_by_chain_lightning.has(self):
-		if PlayerState.enemies_hit_by_chain_lightning.size() -- 0:
+		if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
 			PlayerState.first_enemy_hit_name = name
 		PlayerState.enemies_hit_by_chain_lightning.append(self)
 	else:
