@@ -20,7 +20,6 @@ func scale_to_fit_points(point_a : Vector2, point_b : Vector2):
 	
 	# Calculate the scaling factor to fit the sprite between the two points
 	var scale_factor = distance / sprite_width
-	print(scale_factor)
 	scale_factor = clampf(scale_factor, scale_factor, .75)
 	
 	# Scale the sprite

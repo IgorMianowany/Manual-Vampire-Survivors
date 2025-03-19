@@ -156,20 +156,20 @@ func _ready() -> void:
 	chain_lightning_timer.timeout.connect(on_chain_lightning_timer_timeout)
 	dash_timer.timeout.connect(on_dash_timer_timeout)
 	jim_beam_drank.connect(handle_jim_beam_drank)
-	var pickup_holder_node := get_parent().get_child(2).get_child(0).find_child("PickupsHolder")
-	for count in range(0, 100):
-		var experience_pickup_instance = experience_pickup.instantiate()
-		experience_pickup_instance.experience_points = 1
-		pickup_holder_node.add_child(experience_pickup_instance)
-		experience_pickup_bench.append(experience_pickup_instance)
-		experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
+	#var pickup_holder_node := get_parent().get_child(2).get_child(0).find_child("PickupsHolder")
+	#for count in range(0, 100):
+		#var experience_pickup_instance = experience_pickup.instantiate()
+		#experience_pickup_instance.experience_points = 1
+		#pickup_holder_node.add_child(experience_pickup_instance)
+		#experience_pickup_bench.append(experience_pickup_instance)
+		#experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
 	#var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
 	#for slime in range(0,100):
 		#var slime_instance = slime_scene.instantiate()
 		#enemy_holder_node.add_child(slime_instance)
 		#slime_instance.global_position = Vector2.ZERO
 		#enemy_bench.append(slime_instance)
-	
+		
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
 	if mana < max_mana and not mana_regen_blocked:
