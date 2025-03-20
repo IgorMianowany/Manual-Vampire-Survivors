@@ -240,11 +240,12 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		if PlayerState.experience_pickup_bench.size() == 0:
 			return
 		var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
-		experience_pickup_new.turn_on_collision()
-		experience_pickup_new.global_position = global_position
-		experience_pickup_new.player = null
-		experience_pickup_new.active = true
-		experience_pickup_new.speed = 10000
+		experience_pickup_new.reset(global_position)
+		#experience_pickup_new.turn_on_collision()
+		#experience_pickup_new.global_position = global_position
+		#experience_pickup_new.player = null
+		#experience_pickup_new.active = true
+		#experience_pickup_new.speed = 10000
 		#PlayerState.active_enemies_count -= 2
 		PlayerState.coins_base += money
 		reset_enemy()

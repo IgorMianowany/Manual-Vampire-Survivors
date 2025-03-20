@@ -41,3 +41,11 @@ func _on_collision_range_body_entered(body: Node2D) -> void:
 		$CollisionRange/CollisionRangeShape.set_deferred("disabled", true)
 		PlayerState.experience_pickup_bench.append(self)
 		
+func reset(_global_position : Vector2):
+	global_position = _global_position
+	await(get_tree().create_timer(.5).timeout)
+	turn_on_collision()
+	player = null
+	active = true
+	speed = 10000
+		
