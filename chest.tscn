@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://chest.gd" id="2_y2oc7"]
 
 [node name="Chest" type="Sprite2D"]
+z_index = 2
 y_sort_enabled = true
 texture = ExtResource("1_807kp")
+centered = false
 hframes = 5
 region_enabled = true
 region_rect = Rect2(0.941666, 722, 318.629, 21)
