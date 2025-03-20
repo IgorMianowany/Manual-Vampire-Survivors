@@ -32,6 +32,7 @@ var puke_texture : CompressedTexture2D = preload("res://assets/sprites/objects/p
 var lightning_strike_scene = preload("res://lightning_strike.tscn")
 var lightning_strike_timer : Timer = Timer.new()
 var knife_summon_scene = preload("res://knife_summon.tscn")
+var current_interactable : Interactable = null
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
@@ -130,6 +131,11 @@ func _physics_process(delta: float) -> void:
 		$Camera2D.zoom -= Vector2(.1,.1)
 	$BubbleShield.visible = bubble_ready
 	$Marker2D/ChainLightningReady.visible = PlayerState.chain_lightning_ready
+	
+	if Input.is_action_just_pressed("interact"):
+		if current_interactable == null:
+			return
+		current_interactable.interact()
 	
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
@@ -364,3 +370,10 @@ func handle_knife_spawn():
 	add_child(knife_instance)
 	knife_instance.global_position = global_position + Vector2(15,0)
 	knife_instance.player = self
+
+func _on_interact_range_area_entered(area: Area2D) -> void:
+	current_interactable = area
+
+func _on_interact_range_area_exited(area: Area2D) -> void:
+	if current_interactable == area:
+		current_interactable = null

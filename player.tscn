@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=97 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -449,7 +449,11 @@ radius = 19.105
 [sub_resource type="CircleShape2D" id="CircleShape2D_klfj0"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhoyc"]
+radius = 25.0
+
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_0qibv")
@@ -609,6 +613,13 @@ shape = SubResource("CircleShape2D_klfj0")
 disabled = true
 debug_color = Color(0.349783, 0.483477, 1, 0.42)
 
+[node name="InteractRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
+shape = SubResource("CircleShape2D_dhoyc")
+
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
 [connection signal="attack_started" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_started"]
@@ -620,3 +631,5 @@ debug_color = Color(0.349783, 0.483477, 1, 0.42)
 [connection signal="attack_started" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_started"]
 [connection signal="attack_finished" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_finished"]
 [connection signal="attack_started" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_started"]
+[connection signal="area_entered" from="InteractRange" to="." method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="InteractRange" to="." method="_on_interact_range_area_exited"]

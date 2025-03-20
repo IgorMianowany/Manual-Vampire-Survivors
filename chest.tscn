@@ -1,14 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c38bps3dotoxm"]
+[gd_scene load_steps=4 format=3 uid="uid://c38bps3dotoxm"]
 
 [ext_resource type="Texture2D" uid="uid://bwet7yxt3xd0" path="res://assets/sprites/items/Destructible Objects Sprite Sheet.png" id="1_807kp"]
 [ext_resource type="Script" path="res://chest.gd" id="2_y2oc7"]
 
-[node name="Chest" type="Sprite2D"]
-z_index = 2
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkt80"]
+
+[node name="Chest" type="Area2D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("2_y2oc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_pkt80")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 texture = ExtResource("1_807kp")
-centered = false
 hframes = 5
 region_enabled = true
 region_rect = Rect2(0.941666, 722, 318.629, 21)
-script = ExtResource("2_y2oc7")
