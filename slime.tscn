@@ -1,6 +1,6 @@
 [gd_scene load_steps=55 format=3 uid="uid://bhbi45iw72g6f"]
 
-[ext_resource type="Script" path="res://slime.gd" id="1_ahcej"]
+[ext_resource type="Script" uid="uid://bceappluso7yp" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
 [ext_resource type="Texture2D" uid="uid://dfxp75g4gmcup" path="res://assets/sprites/characters/tiles/slime/tile078.png" id="3_m8fdy"]
 [ext_resource type="Texture2D" uid="uid://cr8tplhw3l753" path="res://assets/sprites/characters/tiles/slime/tile079.png" id="4_24j5w"]
@@ -44,9 +44,9 @@
 [ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="43_upppt"]
 [ext_resource type="PackedScene" uid="uid://cupoiia1ecpch" path="res://healthbar.tscn" id="44_b5m0d"]
 [ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="44_k2ewj"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="45_4o0r0"]
+[ext_resource type="Script" uid="uid://calvmjgqc5a6q" path="res://scripts/hurtbox.gd" id="45_4o0r0"]
 [ext_resource type="PackedScene" uid="uid://cebm1aefx438s" path="res://chain_lightning_animation.tscn" id="46_kimln"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="46_qr50n"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="46_qr50n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygys0"]
 animations = [{

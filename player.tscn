@@ -1,6 +1,6 @@
 [gd_scene load_steps=97 format=3 uid="uid://ryyuju6qndc"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_0qibv"]
+[ext_resource type="Script" uid="uid://br0imqlcdd70p" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
 [ext_resource type="Texture2D" uid="uid://cofxtvcvtrcpl" path="res://assets/sprites/objects/bubble_pop_one/bubble_pop_frame_01.png" id="2_2hw6j"]
 [ext_resource type="Texture2D" uid="uid://cl37gerx0kg2u" path="res://assets/sprites/characters/tiles/tile012.png" id="2_4iaei"]
@@ -57,17 +57,17 @@
 [ext_resource type="Texture2D" uid="uid://dobiwhwh111v" path="res://assets/sprites/characters/tiles/tile034.png" id="33_vqalr"]
 [ext_resource type="Texture2D" uid="uid://c7lkfsrbggmbr" path="res://assets/sprites/characters/tiles/tile035.png" id="34_a8cld"]
 [ext_resource type="PackedScene" uid="uid://bdslidoesuukt" path="res://ui.tscn" id="35_l3wkv"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="50_rxefe"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="52_odxbq"]
-[ext_resource type="Script" path="res://scripts/weapon.gd" id="53_b61je"]
-[ext_resource type="Script" path="res://scripts/bow.gd" id="54_31diy"]
-[ext_resource type="Script" path="res://scripts/weapon_type.gd" id="55_2hpdj"]
-[ext_resource type="Script" path="res://scripts/sword.gd" id="56_3p1v6"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="50_rxefe"]
+[ext_resource type="Script" uid="uid://calvmjgqc5a6q" path="res://scripts/hurtbox.gd" id="52_odxbq"]
+[ext_resource type="Script" uid="uid://b0eok11312syq" path="res://scripts/weapon.gd" id="53_b61je"]
+[ext_resource type="Script" uid="uid://skxlqdfaqwbv" path="res://scripts/bow.gd" id="54_31diy"]
+[ext_resource type="Script" uid="uid://cv5obs380r0x3" path="res://scripts/weapon_type.gd" id="55_2hpdj"]
+[ext_resource type="Script" uid="uid://dlyv7he730sx0" path="res://scripts/sword.gd" id="56_3p1v6"]
 [ext_resource type="Texture2D" uid="uid://beqyip8q472lt" path="res://assets/sprites/bows/bow_01 - Copy.png" id="56_7oyge"]
-[ext_resource type="Script" path="res://scripts/staff.gd" id="57_gw1fk"]
+[ext_resource type="Script" uid="uid://2jesh5aoaqo5" path="res://scripts/staff.gd" id="57_gw1fk"]
 [ext_resource type="Texture2D" uid="uid://i1okm6c3sylv" path="res://assets/sprites/characters/wand_fire.png" id="58_ojugi"]
 [ext_resource type="Texture2D" uid="uid://bw5fwf8f4qwjc" path="res://assets/sprites/particles/chainlightning/lightning_v2_1.png" id="67_36msd"]
-[ext_resource type="Script" path="res://shuriken.gd" id="67_oftbl"]
+[ext_resource type="Script" uid="uid://duo62xlrobto3" path="res://shuriken.gd" id="67_oftbl"]
 [ext_resource type="Texture2D" uid="uid://d1qjeloah7jw6" path="res://assets/sprites/particles/chainlightning/lightning_v2_2.png" id="68_o0f6m"]
 [ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="68_uihbl"]
 [ext_resource type="Texture2D" uid="uid://byr76s2pcacna" path="res://assets/sprites/particles/chainlightning/lightning_v2_3.png" id="69_0latn"]
@@ -467,10 +467,10 @@ material = SubResource("ShaderMaterial_xjmr1")
 position = Vector2(0, -8)
 emitting = false
 amount = 60
-process_material = SubResource("ParticleProcessMaterial_y0j88")
 texture = ExtResource("25_nwqwc")
 lifetime = 0.3
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_y0j88")
 
 [node name="BubbleShield" type="AnimatedSprite2D" parent="."]
 z_index = 7

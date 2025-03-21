@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0oqlqk0us6bx"]
 
-[ext_resource type="Script" path="res://stat_line.gd" id="1_jrleq"]
+[ext_resource type="Script" uid="uid://xcjoogx5fqq0" path="res://stat_line.gd" id="1_jrleq"]
 
 [node name="MarginContainer" type="MarginContainer"]
 clip_contents = true

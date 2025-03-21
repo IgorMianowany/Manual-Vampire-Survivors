@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cp5b3a2qsf42v"]
 
-[ext_resource type="Script" path="res://class_selection.gd" id="1_2yygo"]
+[ext_resource type="Script" uid="uid://d2lnii27x821d" path="res://class_selection.gd" id="1_2yygo"]
 [ext_resource type="PackedScene" uid="uid://dnp8qdml8cw8g" path="res://class_card.tscn" id="2_nswkl"]
-[ext_resource type="Script" path="res://class_card.gd" id="3_22nrg"]
+[ext_resource type="Script" uid="uid://c3yeqkpjf2hnu" path="res://class_card.gd" id="3_22nrg"]
 [ext_resource type="Texture2D" uid="uid://c6goqw1al4bow" path="res://assets/sprites/projectiles/arrow.png" id="4_fw6v2"]
 [ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="4_p7dw6"]
 [ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="5_r8pnt"]

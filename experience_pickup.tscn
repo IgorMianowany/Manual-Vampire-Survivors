@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d10warmae3h16"]
 
-[ext_resource type="Script" path="res://experience_pickup.gd" id="1_hyct5"]
+[ext_resource type="Script" uid="uid://bfkttj4jpsbrp" path="res://experience_pickup.gd" id="1_hyct5"]
 [ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="1_qjkqi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7l72"]

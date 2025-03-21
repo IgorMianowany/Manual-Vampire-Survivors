@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://btilloet1cty1"]
 
-[ext_resource type="Script" path="res://lightning_strike.gd" id="1_4oem4"]
+[ext_resource type="Script" uid="uid://brs2vum4fku7m" path="res://lightning_strike.gd" id="1_4oem4"]
 [ext_resource type="Texture2D" uid="uid://ddqip1xhqsbyx" path="res://assets/sprites/particles/lightning_strike/lightning000.png" id="1_mog71"]
 [ext_resource type="Texture2D" uid="uid://cegjlnlbq0dfg" path="res://assets/sprites/particles/lightning_strike/lightning001.png" id="2_faeg7"]
 [ext_resource type="Texture2D" uid="uid://budjx2sj87nei" path="res://assets/sprites/particles/lightning_strike/lightning002.png" id="3_3d0to"]
 [ext_resource type="Texture2D" uid="uid://dfyc487hybfr3" path="res://assets/sprites/particles/lightning_strike/lightning003.png" id="4_sduj0"]
 [ext_resource type="Texture2D" uid="uid://dqs3pivkg25gh" path="res://assets/sprites/particles/lightning_strike/lightning004.png" id="5_nkvky"]
 [ext_resource type="Texture2D" uid="uid://d38vbv4st56sm" path="res://assets/sprites/particles/lightning_strike/lightning005.png" id="6_jdkkr"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="7_lje1j"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="7_lje1j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6frar"]
 animations = [{

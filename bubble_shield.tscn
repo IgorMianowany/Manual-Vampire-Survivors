@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_7fq4c"]
 [ext_resource type="Texture2D" uid="uid://caqy1dhjq6vow" path="res://assets/sprites/items/maybe_shield-removebg-preview.png" id="2_7t4lw"]
-[ext_resource type="Script" path="res://bubble_shield.gd" id="2_rrxfb"]
+[ext_resource type="Script" uid="uid://f1u3epsco2vd" path="res://bubble_shield.gd" id="2_rrxfb"]
 
 [node name="BubbleShield" instance=ExtResource("1_7fq4c")]
 script = ExtResource("2_rrxfb")

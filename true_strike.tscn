@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://djw58l8xi8ty5"]
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_v4i4l"]
-[ext_resource type="Script" path="res://true_strike.gd" id="2_tovu1"]
+[ext_resource type="Script" uid="uid://dccftkklouibq" path="res://true_strike.gd" id="2_tovu1"]
 [ext_resource type="Texture2D" uid="uid://cqayvteks6w0y" path="res://assets/sprites/items/true_strike.webp" id="3_oca1p"]
 
 [node name="TrueStrike" instance=ExtResource("1_v4i4l")]

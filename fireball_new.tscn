@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://r6t67mqx8k7k"]
 
 [ext_resource type="PackedScene" uid="uid://cftypuru0a5xp" path="res://projectile.tscn" id="1_jpt82"]
-[ext_resource type="Script" path="res://fireball_new.gd" id="2_13l8l"]
+[ext_resource type="Script" uid="uid://brepvsrn8m3y0" path="res://fireball_new.gd" id="2_13l8l"]
 [ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="3_qyfoe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dg5on"]

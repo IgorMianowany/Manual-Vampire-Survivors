@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhybws6isov8o"]
 
-[ext_resource type="Script" path="res://skills_cooldown.gd" id="1_alwkg"]
+[ext_resource type="Script" uid="uid://bd26o54po6f2" path="res://skills_cooldown.gd" id="1_alwkg"]
 [ext_resource type="PackedScene" uid="uid://b251gyvb5sh2y" path="res://chain_lightning_timer.tscn" id="2_kr384"]
 [ext_resource type="PackedScene" uid="uid://dnfixv1iiawgj" path="res://dash_cooldown_indicator.tscn" id="3_h0x1d"]
 [ext_resource type="PackedScene" uid="uid://cvy8wcfnoy5lf" path="res://lightning_strike_cooldown.tscn" id="4_rexif"]

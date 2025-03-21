@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2jelq72u3wqa"]
 
-[ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_m7xg2"]
+[ext_resource type="Script" uid="uid://dl8er0dks1atr" path="res://stat_upgrade_menu.gd" id="1_m7xg2"]
 [ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="2_xx6f4"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="3_rk67d"]
 [ext_resource type="PackedScene" uid="uid://dd3r30i53j4lp" path="res://ninja_unlock_panel.tscn" id="3_sskg6"]

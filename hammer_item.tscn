@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_6rhx2"]
 [ext_resource type="Texture2D" uid="uid://cdms2j7cvac57" path="res://assets/sprites/items/hammeriguess.png" id="2_doqsi"]
-[ext_resource type="Script" path="res://hammer_item.gd" id="2_euf8t"]
+[ext_resource type="Script" uid="uid://dvmq3wk017ux5" path="res://hammer_item.gd" id="2_euf8t"]
 
 [node name="Hammer" instance=ExtResource("1_6rhx2")]
 script = ExtResource("2_euf8t")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d1gumcm1jx8cd"]
 
-[ext_resource type="Script" path="res://shuriken_projectile.gd" id="2_xhjku"]
+[ext_resource type="Script" uid="uid://fr4cp2khsi64" path="res://shuriken_projectile.gd" id="2_xhjku"]
 [ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="3_q7cmo"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_uju6r"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_uju6r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
 radius = 2.0

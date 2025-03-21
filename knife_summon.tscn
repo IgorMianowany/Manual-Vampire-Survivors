@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdtrscgohqq3x"]
 
-[ext_resource type="Script" path="res://knife_summon.gd" id="1_7qi58"]
+[ext_resource type="Script" uid="uid://e448ji2vvork" path="res://knife_summon.gd" id="1_7qi58"]
 [ext_resource type="Texture2D" uid="uid://dgck4alsky6yr" path="res://assets/sprites/items/knife.png" id="1_evgaw"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="2_oxbtd"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="2_oxbtd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h3m5q"]
 radius = 30.0

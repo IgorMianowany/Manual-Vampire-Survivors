@@ -1,8 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsp82fkivpl2n"]
+[gd_scene load_steps=13 format=3 uid="uid://bsp82fkivpl2n"]
 
-[ext_resource type="Script" path="res://stat_upgrade_menu.gd" id="1_emo8t"]
-[ext_resource type="PackedScene" uid="uid://cg7u50mxj0hfa" path="res://test.tscn" id="2_qj7cl"]
+[ext_resource type="Script" uid="uid://dl8er0dks1atr" path="res://stat_upgrade_menu.gd" id="1_emo8t"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="4_hxctn"]
+
+[sub_resource type="Resource" id="Resource_6s7t6"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_dtyyb"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_0yuoc"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_4yr7b"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_nyh8i"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_th5qc"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_nb0cr"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_o7c7c"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_8kpfl"]
+metadata/__load_path__ = "res://test.tscn"
+
+[sub_resource type="Resource" id="Resource_pvpcs"]
+metadata/__load_path__ = "res://test.tscn"
 
 [node name="StatUpgradeMenuTest" type="Control"]
 layout_mode = 3
@@ -58,27 +87,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 
-[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
@@ -92,27 +121,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 
-[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test2" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test3" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test4" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1
 
-[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("2_qj7cl")]
+[node name="Test5" parent="CanvasLayer/VBoxContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 text = "1"
 cost = 1

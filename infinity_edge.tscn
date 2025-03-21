@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt2qjgy0mvke5"]
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_0cj6p"]
-[ext_resource type="Script" path="res://infinity_edge.gd" id="2_iwmk0"]
+[ext_resource type="Script" uid="uid://box3oxarfkxhv" path="res://infinity_edge.gd" id="2_iwmk0"]
 [ext_resource type="Texture2D" uid="uid://c01xrh7hqfrp0" path="res://assets/sprites/items/infinity_edge.webp" id="3_7xoaa"]
 
 [node name="InfinityEdge" instance=ExtResource("1_0cj6p")]

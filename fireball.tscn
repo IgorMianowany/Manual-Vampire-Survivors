@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://eqn504t58hxq"]
 
-[ext_resource type="Script" path="res://fireball.gd" id="1_1v1al"]
+[ext_resource type="Script" uid="uid://74xuax3hp5ot" path="res://fireball.gd" id="1_1v1al"]
 [ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="2_qyocl"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_j5806"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_j5806"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
 radius = 2.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtukdveeqlpv4"]
 
 [ext_resource type="Texture2D" uid="uid://chwsukwp2kvd6" path="res://assets/sprites/items/coin.png" id="1_jgkf5"]
-[ext_resource type="Script" path="res://coins_label.gd" id="1_tcwpq"]
+[ext_resource type="Script" uid="uid://banrb5286wvg0" path="res://coins_label.gd" id="1_tcwpq"]
 
 [node name="CoinsLabel" type="Control"]
 layout_mode = 3

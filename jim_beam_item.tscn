@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_4hlt5"]
 [ext_resource type="Texture2D" uid="uid://b7310d5qboao5" path="res://assets/sprites/items/jimbeam.png" id="2_jtbqx"]
-[ext_resource type="Script" path="res://jim_beam_item.gd" id="2_s4x7f"]
+[ext_resource type="Script" uid="uid://exd671boh114" path="res://jim_beam_item.gd" id="2_s4x7f"]
 
 [node name="JimBeam" instance=ExtResource("1_4hlt5")]
 script = ExtResource("2_s4x7f")

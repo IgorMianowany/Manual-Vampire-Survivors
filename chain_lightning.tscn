@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctok0pjs8e4xx"]
 
 [ext_resource type="PackedScene" uid="uid://dn1pvji8ik3sw" path="res://upgrade_card.tscn" id="1_pk24a"]
-[ext_resource type="Script" path="res://chain_lightning.gd" id="2_bw3w4"]
+[ext_resource type="Script" uid="uid://yqa7xra61566" path="res://chain_lightning.gd" id="2_bw3w4"]
 [ext_resource type="Texture2D" uid="uid://cw5vlkdksg1h4" path="res://assets/sprites/items/chain_lightning.jpg" id="3_y0o0g"]
 
 [node name="ChainLightning" instance=ExtResource("1_pk24a")]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhomn5de0pfwb"]
 
-[ext_resource type="Script" path="res://arrow.gd" id="1_v1onj"]
+[ext_resource type="Script" uid="uid://djx1haigj6ew" path="res://arrow.gd" id="1_v1onj"]
 [ext_resource type="Texture2D" uid="uid://c6goqw1al4bow" path="res://assets/sprites/projectiles/arrow.png" id="2_eqbhm"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_anu0k"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_anu0k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
 radius = 2.0

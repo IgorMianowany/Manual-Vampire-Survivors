@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ensii0gfcrym"]
 
-[ext_resource type="Script" path="res://palladin_hammer_skill.gd" id="1_4tek7"]
+[ext_resource type="Script" uid="uid://g3b4boffwunl" path="res://palladin_hammer_skill.gd" id="1_4tek7"]
 [ext_resource type="Texture2D" uid="uid://c1hed8iauwhtl" path="res://assets/sprites/items/hammer-removebg-preview.png" id="2_spk2u"]
-[ext_resource type="Script" path="res://scripts/hitbox.gd" id="3_bi02i"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_bi02i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57oih"]
 radius = 214.709

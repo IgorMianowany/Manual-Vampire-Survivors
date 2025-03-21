@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crgvkbnr5oul"]
 
-[ext_resource type="Script" path="res://stat_upgrade_panel.gd" id="1_p38oj"]
+[ext_resource type="Script" uid="uid://bc01xxhyvklvk" path="res://stat_upgrade_panel.gd" id="1_p38oj"]
 [ext_resource type="PackedScene" uid="uid://h3tgcy56p006" path="res://upgrade_panel_button.tscn" id="2_ha68d"]
 
 [node name="StatUpgradePanel" type="Panel"]

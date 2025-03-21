@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ui7nifqra3jp"]
 
-[ext_resource type="Script" path="res://single_cooldown_indicator.gd" id="1_bvwlh"]
+[ext_resource type="Script" uid="uid://b7pv0fmokam02" path="res://single_cooldown_indicator.gd" id="1_bvwlh"]
 [ext_resource type="Texture2D" uid="uid://odcjiso071bi" path="res://assets/sprites/items/dash_icon.png" id="1_gpgc5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0wn7p"]

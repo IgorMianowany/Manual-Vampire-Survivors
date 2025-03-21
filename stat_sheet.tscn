@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bm5ln50kqbehs"]
 
-[ext_resource type="Script" path="res://stat_sheet.gd" id="1_2ttov"]
+[ext_resource type="Script" uid="uid://4ju44qreok2b" path="res://stat_sheet.gd" id="1_2ttov"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="2_e01mb"]
 
 [node name="StatSheet" type="Control"]
