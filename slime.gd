@@ -168,6 +168,8 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 				continue
 			if property is AnimatedSprite2D:
 				continue	
+			if property is Control:
+				continue
 			property.global_position = Vector2.ZERO
 	$HitParticles.emitting = false
 

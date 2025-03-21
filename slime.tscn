@@ -266,7 +266,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
@@ -286,10 +285,11 @@ texture_progress = ExtResource("44_k2ewj")
 
 [node name="Healthbar" parent="Control" instance=ExtResource("44_b5m0d")]
 layout_mode = 0
-offset_left = -21.0
-offset_top = -21.0
-offset_right = 21.0
-offset_bottom = -18.0
+offset_left = -10.0
+offset_top = 7.0
+offset_right = 32.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
 max_value = 0.0
 value = 0.0
 

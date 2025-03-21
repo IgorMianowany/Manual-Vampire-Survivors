@@ -45,7 +45,8 @@ func _on_player_death():
 	$CanvasLayer/OnDeathControls/VBoxContainer/MarginContainer/FinalScoreText.text += str(PlayerState.final_score)
 	$CanvasLayer/OnDeathControls.visible = true
 	
-
-
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://start_menu.tscn")
+	
+func toggle_interact_visibility(_visible : bool):
+	$CanvasLayer/Interact.visible = _visible
