@@ -15,5 +15,8 @@ func open():
 			for index in range(0,10):
 				var experience_pickup = PlayerState.experience_pickup_bench.pop_front()
 				experience_pickup.reset(global_position + Vector2(randf_range(-5, 5),randf_range(-10,10)))
+				
+func toggle_interact_outline(_value : bool):
+	($Sprite2D.material as ShaderMaterial).set_shader_parameter("width", int(_value))
 
 	

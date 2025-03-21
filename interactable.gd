@@ -9,3 +9,6 @@ func interact():
 		#return
 	#interacted = true
 	print("default interact")
+	
+func toggle_interact_outline(_value : bool):
+	pass

@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://c38bps3dotoxm"]
+[gd_scene load_steps=7 format=3 uid="uid://c38bps3dotoxm"]
 
 [ext_resource type="Texture2D" uid="uid://bwet7yxt3xd0" path="res://assets/sprites/items/Destructible Objects Sprite Sheet.png" id="1_807kp"]
+[ext_resource type="Shader" path="res://chest.gdshader" id="2_subs0"]
 [ext_resource type="Script" path="res://chest.gd" id="2_y2oc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkt80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lqr1"]
+resource_local_to_scene = true
+shader = ExtResource("2_subs0")
+shader_parameter/color = Color(1, 1, 0.160784, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 1
+shader_parameter/inside = true
+shader_parameter/add_margins = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlrdt"]
 size = Vector2(19, 14)
@@ -20,6 +30,7 @@ shape = SubResource("CircleShape2D_pkt80")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_6lqr1")
 texture = ExtResource("1_807kp")
 hframes = 5
 region_enabled = true
