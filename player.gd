@@ -136,6 +136,7 @@ func _physics_process(delta: float) -> void:
 		if current_interactable == null:
 			return
 		current_interactable.interact()
+		$UI.toggle_interact_visibility(false)
 	
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
@@ -372,8 +373,13 @@ func handle_knife_spawn():
 	knife_instance.player = self
 
 func _on_interact_range_area_entered(area: Area2D) -> void:
+	if (area as Interactable).interacted:
+		return
 	current_interactable = area
+	$UI.toggle_interact_visibility(true)
+	
 
 func _on_interact_range_area_exited(area: Area2D) -> void:
 	if current_interactable == area:
 		current_interactable = null
+		$UI.toggle_interact_visibility(false)
