@@ -204,11 +204,18 @@ func choose_class(class_number : int):
 	chosen_class = class_number
 	after_class_chosen.emit()
 	var arrow_scene := preload("res://arrow.tscn")
+	var fireball_scene := preload("res://fireball_new.tscn")
 	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
-	for i in range(0,200):
-		var projectile := arrow_scene.instantiate()
-		projectile_node.add_child(projectile)
-		projectile_bench.append(projectile)
+	if class_number == 1:
+		for i in range(0,200):
+			var projectile := arrow_scene.instantiate()
+			projectile_node.add_child(projectile)
+			projectile_bench.append(projectile)
+	if class_number == 2:
+		for i in range(0,200):
+			var projectile := fireball_scene.instantiate()
+			projectile_node.add_child(projectile)
+			projectile_bench.append(projectile)
 	
 func clear_enemies_chain_lightning():
 	if not chain_lightning_ready:

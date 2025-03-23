@@ -22,11 +22,12 @@ func animate_explosion():
 		$Sprite2D, "scale", Vector2(2, 5), .2
 	)
 	await tween.finished
-	queue_free()
-
+	$Sprite2D.scale = Vector2(1,1)
+	
 
 func _on_projectile_death():
-	animate_explosion()
+	await animate_explosion()
+	super()
 
 
 func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
@@ -34,3 +35,6 @@ func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
 	var new_damage = damage + damage * ($ProjectileHitbox.crit_multi + PlayerState.critical_strike_damage_bonus) * int(is_crit)
 	if area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(new_damage, global_position.direction_to(area.global_position), 2, PlayerState.has_poison_attacks, is_crit)
+		
+func _reusable_ready():
+	super()

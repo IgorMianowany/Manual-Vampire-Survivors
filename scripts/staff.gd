@@ -21,7 +21,7 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 	if PlayerState.mana >= mana_cost:
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
-		PlayerState.mana -= mana_cost
+		#PlayerState.mana -= mana_cost
 		attack_started.emit()
 		for index in projectiles:
 			var existing_direction = direction
@@ -32,14 +32,17 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 			var angle_in_radians = deg_to_rad(rotation_change)
 			var new_direction = existing_direction.rotated(angle_in_radians)
 
-			var projectile := fireball_scene.instantiate()
+			var projectile = PlayerState.projectile_bench.pop_front()
+			projectile.reparent(self)
+			projectile.active = true
 			projectile.position = attack_position + direction * 15
 			projectile.direction = new_direction
 			projectile.damage = PlayerState.attack_damage
 			projectile.pierce = pierce
 			projectile.crit_chance = crit_chance
 			projectile.crit_multi = crit_multi
-			add_child(projectile)
+			projectile._reusable_ready()
+			#add_child(projectile)
 		await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 		attack_finished.emit()
 

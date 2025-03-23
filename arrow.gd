@@ -30,8 +30,9 @@ func _physics_process(delta: float) -> void:
 	prev_pos = current_pos
 	current_pos = global_position
 	current_speed = (prev_pos - current_pos).length()
-	if not PlayerState.has_homing_projectiles and current_speed < PlayerState.max_projectile_speed:
+	if not PlayerState.has_homing_projectiles and current_speed < PlayerState.max_projectile_speed and current_speed != 0:
 		PlayerState.max_projectile_speed = current_speed
+		
 	
 	#if current_speed != (prev_pos-current_pos).length():
 		#current_speed = (prev_pos-current_pos).length()
@@ -66,7 +67,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	_on_projectile_death()
-
 
 @warning_ignore("unused_parameter")
 func _on_projectile_impact_detector_area_entered(area: Area2D) -> void:
