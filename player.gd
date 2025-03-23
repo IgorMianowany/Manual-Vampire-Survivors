@@ -141,22 +141,13 @@ func _physics_process(delta: float) -> void:
 		$UI.toggle_interact_visibility(false)
 		(current_interactable as Interactable).toggle_interact_outline(false)
 	
-	#if $InteractRange.get_overlapping_areas().size() > 0:
-		#for area in $InteractRange.get_overlapping_areas():
-			#if not (area as Interactable).interacted:
-				#current_interact_distance = global_position.distance_to(area.global_position)
-				#if current_interact_distance < min_interact_distance:
-					#current_interactable = area
-					#min_interact_distance = current_interact_distance
-		#if current_interactable != null and not current_interactable.interacted:
-			#current_interactable.current_interactable = true
-			##(current_interactable as Interactable).toggle_interact_outline(true)
-			
-	min_interact_distance = 100
-	current_interact_distance = 0
-				
-				
-		
+	if $InteractRange.get_overlapping_areas().size() > 0:
+		current_interact_distance = global_position.distance_to(current_interactable.global_position)
+		for area in $InteractRange.get_overlapping_areas():
+			if global_position.distance_to(area.global_position) < current_interact_distance:
+				current_interactable.toggle_interact_outline(false)
+				current_interactable = area
+				current_interactable.toggle_interact_outline(true)
 	
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
@@ -393,6 +384,8 @@ func handle_knife_spawn():
 	knife_instance.player = self
 
 func _on_interact_range_area_entered(area: Area2D) -> void:
+	if current_interactable != null:
+		return
 	current_interactable = area
 	current_interact_distance = global_position.distance_to(area.global_position)
 	(area as Interactable).toggle_interact_outline(true)
@@ -400,6 +393,7 @@ func _on_interact_range_area_entered(area: Area2D) -> void:
 	
 
 func _on_interact_range_area_exited(area: Area2D) -> void:
+	(area as Interactable).toggle_interact_outline(false)
 	if current_interactable == area:
 		(current_interactable as Interactable).toggle_interact_outline(false)
 		current_interactable = null
