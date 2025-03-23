@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
-	if PlayerState.mana >= mana_cost:
+	if PlayerState.mana >= level:
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
 		#PlayerState.mana -= mana_cost
@@ -45,6 +45,9 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 			#add_child(projectile)
 		await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 		attack_finished.emit()
+		
+func temp_meteor_attack():
+	pass
 
 func start_mana_regen():
 	PlayerState.mana_regen_blocked = false

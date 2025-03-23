@@ -22,7 +22,7 @@ func animate_explosion():
 		$Sprite2D, "scale", Vector2(2, 5), .2
 	)
 	await tween.finished
-	$Sprite2D.scale = Vector2(1,1)
+	$Sprite2D.scale = Vector2(.3,.5)
 	
 
 func _on_projectile_death():

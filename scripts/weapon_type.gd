@@ -4,6 +4,7 @@ extends Node2D
 var pierce : int
 var projectiles : int
 var rotation_change := 0
+var level : int = 1
 @export var spread := 30 # make spread based on projectile number, maybe something like 30 degrees + int division of projectiles * 10, so 10 degrees for every 5 projectiles for example
 @export var weapon_texture : Texture2D
 
