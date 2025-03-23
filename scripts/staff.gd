@@ -19,30 +19,36 @@ func _ready() -> void:
 
 func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
 	if PlayerState.mana >= level:
+		attack_started.emit()
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
-		#PlayerState.mana -= mana_cost
-		attack_started.emit()
-		for index in projectiles:
-			var existing_direction = direction
-			# this is done so the arrows are moved based on the center, instead of just 45 degrees down or up
-			if projectiles > 1:
-				@warning_ignore("integer_division")
-				rotation_change = ((-spread/2) + ((spread/(projectiles-1)) * index))
-			var angle_in_radians = deg_to_rad(rotation_change)
-			var new_direction = existing_direction.rotated(angle_in_radians)
+		PlayerState.mana -= level * 0
+		if level == 1:
+			var meteor := preload("res://meteor_strike.tscn")
+			var meteor_instance = meteor.instantiate()
+			meteor_instance.global_position = get_global_mouse_position()
+			add_child(meteor_instance)
+		else:
+			for index in projectiles:
+				var existing_direction = direction
+				# this is done so the arrows are moved based on the center, instead of just 45 degrees down or up
+				if projectiles > 1:
+					@warning_ignore("integer_division")
+					rotation_change = ((-spread/2) + ((spread/(projectiles-1)) * index))
+				var angle_in_radians = deg_to_rad(rotation_change)
+				var new_direction = existing_direction.rotated(angle_in_radians)
 
-			var projectile = PlayerState.projectile_bench.pop_front()
-			projectile.reparent(self)
-			projectile.active = true
-			projectile.position = attack_position + direction * 15
-			projectile.direction = new_direction
-			projectile.damage = PlayerState.attack_damage
-			projectile.pierce = pierce
-			projectile.crit_chance = crit_chance
-			projectile.crit_multi = crit_multi
-			projectile._reusable_ready()
-			#add_child(projectile)
+				var projectile = PlayerState.projectile_bench.pop_front()
+				projectile.reparent(self)
+				projectile.active = true
+				projectile.position = attack_position + direction * 15
+				projectile.direction = new_direction
+				projectile.damage = PlayerState.attack_damage
+				projectile.pierce = pierce
+				projectile.crit_chance = crit_chance
+				projectile.crit_multi = crit_multi
+				projectile._reusable_ready()
+				#add_child(projectile)
 		await(get_tree().create_timer(PlayerState.attack_speed).timeout)
 		attack_finished.emit()
 		
