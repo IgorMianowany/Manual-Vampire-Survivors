@@ -1,14 +1,8 @@
 class_name Interactable
 extends Area2D
 
-var interacted : bool = false
-
-
 func interact():
-	#if interacted:
-		#return
-	#interacted = true
-	print("default interact")
+	monitorable = false
 	
 func toggle_interact_outline(_value : bool):
-	pass
+	($Sprite2D.material as ShaderMaterial).set_shader_parameter("width", int(_value))

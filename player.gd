@@ -33,6 +33,8 @@ var lightning_strike_scene = preload("res://lightning_strike.tscn")
 var lightning_strike_timer : Timer = Timer.new()
 var knife_summon_scene = preload("res://knife_summon.tscn")
 var current_interactable : Interactable = null
+var min_interact_distance : float = 100
+var current_interact_distance : float = 100
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
@@ -138,6 +140,23 @@ func _physics_process(delta: float) -> void:
 		current_interactable.interact()
 		$UI.toggle_interact_visibility(false)
 		(current_interactable as Interactable).toggle_interact_outline(false)
+	
+	#if $InteractRange.get_overlapping_areas().size() > 0:
+		#for area in $InteractRange.get_overlapping_areas():
+			#if not (area as Interactable).interacted:
+				#current_interact_distance = global_position.distance_to(area.global_position)
+				#if current_interact_distance < min_interact_distance:
+					#current_interactable = area
+					#min_interact_distance = current_interact_distance
+		#if current_interactable != null and not current_interactable.interacted:
+			#current_interactable.current_interactable = true
+			##(current_interactable as Interactable).toggle_interact_outline(true)
+			
+	min_interact_distance = 100
+	current_interact_distance = 0
+				
+				
+		
 	
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
@@ -374,9 +393,8 @@ func handle_knife_spawn():
 	knife_instance.player = self
 
 func _on_interact_range_area_entered(area: Area2D) -> void:
-	if (area as Interactable).interacted or current_interactable != null:
-		return
 	current_interactable = area
+	current_interact_distance = global_position.distance_to(area.global_position)
 	(area as Interactable).toggle_interact_outline(true)
 	$UI.toggle_interact_visibility(true)
 	
@@ -386,3 +404,10 @@ func _on_interact_range_area_exited(area: Area2D) -> void:
 		(current_interactable as Interactable).toggle_interact_outline(false)
 		current_interactable = null
 		$UI.toggle_interact_visibility(false)
+		var other_interactables = $InteractRange.get_overlapping_areas()
+		if other_interactables.size() > 0:
+			current_interactable = other_interactables[0]
+			(current_interactable as Interactable).toggle_interact_outline(true)
+			$UI.toggle_interact_visibility(true)
+			
+	
