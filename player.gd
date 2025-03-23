@@ -148,7 +148,7 @@ func _physics_process(delta: float) -> void:
 				current_interactable.toggle_interact_outline(false)
 				current_interactable = area
 				current_interactable.toggle_interact_outline(true)
-	
+
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
 	handle_animation()
