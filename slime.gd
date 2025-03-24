@@ -132,10 +132,9 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 	if is_poisoning:
 		start_poison(PlayerState.poison_damage, PlayerState.poison_duration)
 	
-	var tween : Tween = create_tween()
-	tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
-	
 	if health > 0:
+		var tween : Tween = create_tween()
+		tween.tween_property($AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
 		health -= incoming_damage
 		healthbar_new.health = health
 		$HitParticles.emitting = true
@@ -146,8 +145,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
 				PlayerState.start_chain_lightning_timer()
 			handle_chain_lightning_logic()
-
-		
 	if health > 0:
 		is_knocked_back = true
 		velocity = knockback_direction * (knockback * .8) * speed
