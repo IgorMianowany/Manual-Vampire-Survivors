@@ -113,94 +113,94 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("2_m0bp3")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("3_078uc")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("4_tkatq")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("5_3lgev")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("6_cnd25")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("7_5y2bc")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("8_lkalb")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("9_eb0re")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("10_0yovh")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("11_ajn1r")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("12_x3sfw")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("13_ja0xf")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("14_ppgys")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("15_n6lny")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("16_qmws5")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("17_yjfki")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("18_blojp")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("19_874xd")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("20_38bpk")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("21_xfy5h")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("22_ud4bp")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("23_ji080")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("24_elqea")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("25_wiv15")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("26_0reut")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("27_5d0nl")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("28_l7p1f")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("29_iat5w")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("30_todtp")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": ExtResource("31_tqprm")
 }],
 "loop": false,
@@ -447,10 +447,8 @@ z_index = 4
 rotation = 1.5708
 scale = Vector2(0.3, 0.268248)
 sprite_frames = SubResource("SpriteFrames_x3sfw")
-animation = &"meteor_strike"
+animation = &"explosion"
 autoplay = "meteor_strike"
-frame = 21
-frame_progress = 0.308684
 flip_v = true
 
 [node name="Hitbox" type="Area2D" parent="."]

@@ -89,6 +89,9 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("pause"):
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60
+		
+	if Input.is_action_just_pressed("death"):
+		take_damage(99999999, Vector2.ZERO, 0, false, false)
 	
 	if Input.is_action_just_pressed("dash") and PlayerState.has_dash and can_dash:
 		$DashHitbox/CollisionShape2D.disabled = false
@@ -298,20 +301,24 @@ func set_class():
 	match PlayerState.chosen_class:
 		0:
 			$Weapon.weapon_type = $Weapon/Sword
+			PlayerState.class_level = PlayerState.sword_level_base
 		1:
 			$Weapon.weapon_type = $Weapon/Bow
 			$Marker2D/WeaponSprite.texture = $Weapon/Bow.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.05,0.05)
+			PlayerState.class_level = PlayerState.bow_level_base
 		2:
 			$Weapon.weapon_type = $Weapon/Staff
 			$Marker2D/WeaponSprite.texture = $Weapon/Staff.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.15,0.15)
-			PlayerState.max_mana = 10
+			PlayerState.max_mana = 10 * PlayerState.staff_level_base
+			PlayerState.class_level = PlayerState.staff_level_base
 		3:
 			$Weapon.weapon_type = $Weapon/Shuriken
 			$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
-	
+			PlayerState.class_level = PlayerState.staff_level_base
+
 func handle_weapon_rotation():
 	#Get the mouse position relative to the screen
 	var mouse_pos = get_global_mouse_position()

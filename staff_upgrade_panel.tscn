@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://wx451cp813gs"]
+
+[ext_resource type="PackedScene" uid="uid://crgvkbnr5oul" path="res://stat_upgrade_panel.tscn" id="1_o7s2x"]
+[ext_resource type="Script" uid="uid://cnb8vcso8ftrl" path="res://staff_upgrade.gd" id="2_28yal"]
+
+[node name="StaffUpgradePanel" instance=ExtResource("1_o7s2x")]
+script = ExtResource("2_28yal")
+upgrade_type = 5
+upgrade_name = "Mage level"
+cost = 100

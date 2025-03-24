@@ -15,6 +15,7 @@ var is_attacking = false
 func _ready() -> void:
 	$Sword.crit_chance = crit_chance
 	$Sword.crit_multi = crit_multi
+	is_attacking = false
 
 	
 

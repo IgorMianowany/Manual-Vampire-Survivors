@@ -160,10 +160,10 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		active = false
 		#$ProjectileDestroyArea.set_deferred("monitorable", false)
 		$AnimatedSprite2D.play("die")
-		#await(get_tree().create_timer(1).timeout)
+		await(get_tree().create_timer(1).timeout)
 		
-		# this is done so all the colliders are not in a way after entity death, as 
-		# set_deferred can be wonky when working with a lot of entites of the same type
+		 #this is done so all the colliders are not in a way after entity death, as 
+		 #set_deferred can be wonky when working with a lot of entites of the same type
 		for property in get_children():
 			if property is Timer:
 				continue
@@ -243,6 +243,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		if PlayerState.experience_pickup_bench.size() == 0:
 			return
 		var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
+		$Control.global_position = global_position
 		experience_pickup_new.reset(global_position)
 		#experience_pickup_new.turn_on_collision()
 		#experience_pickup_new.global_position = global_position
@@ -257,7 +258,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func reset_enemy():
 	PlayerState.active_enemies_count -= 1
-	active = false
 	speed = 0
 	global_position = Vector2(-1000,1000)
 	PlayerState.enemy_bench.append(self)
@@ -266,6 +266,7 @@ func spawn_enemy(spawn_position : Vector2):
 	active = true
 	PlayerState.active_enemies_count += 1
 	speed = 75
+	healthbar_new.init_health(max_health)
 	
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10

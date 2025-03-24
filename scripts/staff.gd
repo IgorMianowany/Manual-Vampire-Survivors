@@ -18,12 +18,12 @@ func _ready() -> void:
 
 
 func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance : float = 0, crit_multi : float = 0) -> void:
-	if PlayerState.mana >= level:
+	if PlayerState.mana >= PlayerState.staff_level_base:
 		attack_started.emit()
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
-		PlayerState.mana -= level * 0
-		if level == 1:
+		PlayerState.mana -= PlayerState.staff_level_base * 0
+		if PlayerState.staff_level_base > 9:
 			var meteor := preload("res://meteor_strike.tscn")
 			var meteor_instance = meteor.instantiate()
 			meteor_instance.global_position = get_global_mouse_position()

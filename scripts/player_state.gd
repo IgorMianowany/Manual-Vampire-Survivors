@@ -6,7 +6,7 @@ var max_health_base : float = 100000
 var max_health : get = get_max_health
 var experience : int = 0
 var experience_threshold : get = get_experience_threshold
-var experience_threshold_base : int = 5
+var experience_threshold_base : int = 10000
 var experience_threshold_bonus : int = 0
 var level : int = 0
 var projectiles : int = 0
@@ -78,6 +78,10 @@ var enemy_bench : Array[Slime] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
 var projectile_bench : Array[Projectile] = []
+var sword_level_base : int = 1
+var staff_level_base : int = 1
+var bow_level_base : int = 1
+var class_level : int = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene"]
@@ -306,7 +310,11 @@ func reset_bonus_stats():
 		elif typeof(propertyValue) == TYPE_FLOAT or typeof(propertyValue) == TYPE_INT:
 			set(propertyName, 0)
 		elif typeof(propertyValue) == TYPE_ARRAY:
+			print(propertyName)
 			set(propertyName, [])
+	projectile_bench = []
+	experience_pickup_bench = []
+	enemy_bench = []
 
 func calculate_experience_threshold():
 	experience_threshold_bonus = experience_threshold_base * 2 * level
