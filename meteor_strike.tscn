@@ -103,7 +103,7 @@
 [ext_resource type="Texture2D" uid="uid://b0fwxrfeum7u0" path="res://assets/sprites/explosions/Effect_Explosion2/30fps/Frames/Effect_Explosion2_1/Effect_Explosion2_1_029.png" id="61_v242r"]
 [ext_resource type="Texture2D" uid="uid://b2mvkbo3prlad" path="res://assets/sprites/explosions/2/Blast.png" id="62_2htug"]
 [ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="104_7husq"]
-[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="104_i1vlp"]
+[ext_resource type="Texture2D" uid="uid://byuc5kuryrb8r" path="res://assets/Sprite-0003.png" id="104_i1vlp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3sfw"]
 animations = [{
@@ -437,20 +437,21 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajn1r"]
-radius = 58.76
+radius = 60.0
 
 [node name="MeteorStrike" type="Area2D"]
 script = ExtResource("1_6gs66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 4
-position = Vector2(18, -119)
 rotation = 1.5708
 scale = Vector2(0.3, 0.268248)
 sprite_frames = SubResource("SpriteFrames_x3sfw")
 animation = &"meteor_strike"
 autoplay = "meteor_strike"
-frame_progress = 0.0426748
+frame = 21
+frame_progress = 0.308684
+flip_v = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
@@ -465,7 +466,6 @@ position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_ajn1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.28125, 0.28125)
 texture = ExtResource("104_i1vlp")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
