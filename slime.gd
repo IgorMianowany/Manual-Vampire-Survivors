@@ -157,6 +157,7 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
 	if health <= 0:
+		active = false
 		#$ProjectileDestroyArea.set_deferred("monitorable", false)
 		$AnimatedSprite2D.play("die")
 		#await(get_tree().create_timer(1).timeout)

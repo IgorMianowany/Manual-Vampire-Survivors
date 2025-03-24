@@ -102,8 +102,8 @@
 [ext_resource type="Texture2D" uid="uid://5bvakh62umb" path="res://assets/sprites/explosions/Effect_Explosion2/30fps/Frames/Effect_Explosion2_1/Effect_Explosion2_1_028.png" id="60_dtnmb"]
 [ext_resource type="Texture2D" uid="uid://b0fwxrfeum7u0" path="res://assets/sprites/explosions/Effect_Explosion2/30fps/Frames/Effect_Explosion2_1/Effect_Explosion2_1_029.png" id="61_v242r"]
 [ext_resource type="Texture2D" uid="uid://b2mvkbo3prlad" path="res://assets/sprites/explosions/2/Blast.png" id="62_2htug"]
-[ext_resource type="Texture2D" uid="uid://b07dwvauol1h3" path="res://assets/sprites/explosions/2/explosion (1).png" id="103_12bwh"]
 [ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="104_7husq"]
+[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="104_i1vlp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3sfw"]
 animations = [{
@@ -444,20 +444,13 @@ script = ExtResource("1_6gs66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 4
-position = Vector2(13, -120)
+position = Vector2(18, -119)
 rotation = 1.5708
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.3, 0.268248)
 sprite_frames = SubResource("SpriteFrames_x3sfw")
-animation = &"explosion"
+animation = &"meteor_strike"
 autoplay = "meteor_strike"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("103_12bwh")
-hframes = 3
-vframes = 3
-region_enabled = true
-region_rect = Rect2(0, 0, 96, 96)
+frame_progress = 0.0426748
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 16
@@ -470,5 +463,9 @@ metadata/_custom_type_script = "uid://p8h3fxevo1ct"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_ajn1r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("104_i1vlp")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
