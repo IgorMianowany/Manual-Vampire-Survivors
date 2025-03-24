@@ -154,11 +154,6 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 		await(get_tree().create_timer(.8).timeout)
 		is_knocked_back = false
 	if health <= 0:
-		active = false
-		#$ProjectileDestroyArea.set_deferred("monitorable", false)
-		$AnimatedSprite2D.play("die")
-		await(get_tree().create_timer(1).timeout)
-		
 		 #this is done so all the colliders are not in a way after entity death, as 
 		 #set_deferred can be wonky when working with a lot of entites of the same type
 		for property in get_children():
@@ -169,6 +164,11 @@ func take_damage(incoming_damage : float, knockback_direction : Vector2, knockba
 			if property is Control:
 				continue
 			property.global_position = Vector2.ZERO
+		active = false
+		#$ProjectileDestroyArea.set_deferred("monitorable", false)
+		$AnimatedSprite2D.play("die")
+		await(get_tree().create_timer(1).timeout)
+
 	$HitParticles.emitting = false
 
 func _on_collision_area_body_entered(body: Node2D) -> void:
