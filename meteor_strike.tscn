@@ -440,6 +440,8 @@ animations = [{
 radius = 60.0
 
 [node name="MeteorStrike" type="Area2D"]
+monitoring = false
+monitorable = false
 script = ExtResource("1_6gs66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

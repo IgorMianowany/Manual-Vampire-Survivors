@@ -216,10 +216,11 @@ func choose_class(class_number : int):
 			projectile_node.add_child(projectile)
 			projectile_bench.append(projectile)
 	if class_number == 2:
-		for i in range(0,200):
-			var projectile := fireball_scene.instantiate()
-			projectile_node.add_child(projectile)
-			projectile_bench.append(projectile)
+		if class_level < 9:
+			for i in range(0,200):
+				var projectile := fireball_scene.instantiate()
+				projectile_node.add_child(projectile)
+				projectile_bench.append(projectile)
 	
 func clear_enemies_chain_lightning():
 	if not chain_lightning_ready:
