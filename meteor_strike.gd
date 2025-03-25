@@ -6,6 +6,8 @@ var land_position_x : float = 0
 var start_position_x : float
 var travel_distance : float = 300
 var reached_x : bool = false
+var crit_chance : float = 0.1
+var crit_damage : float = 1
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -15,6 +17,9 @@ func _ready() -> void:
 	$AnimatedSprite2D.global_position.x += randf_range(-150,150)
 	start_position_x = $AnimatedSprite2D.global_position.x
 	$AnimatedSprite2D.look_at(Vector2(land_position_x, land_position_y))
+	$Hitbox.is_player_hitbox = true
+	$Hitbox.crit_chance = crit_chance + PlayerState.critical_strike_chance_bonus
+	$Hitbox.crit_multi = crit_damage + PlayerState.critical_strike_damage_bonus
 
 func _process(delta: float) -> void:
 	if $AnimatedSprite2D.position.y >= -100:

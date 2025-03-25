@@ -249,6 +249,7 @@ physics_interpolation_mode = 2
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_ahcej")
 healthbar = NodePath("Control/TextureProgressBar")
 

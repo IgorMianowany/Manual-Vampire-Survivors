@@ -39,7 +39,7 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 					hitbox.owner.life -= 1
 					hitbox.hits -= 1
 					hitbox.owner.hit.emit()
-				owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
+				owner.take_damage(damage, (hitbox.owner as Projectile).direction, hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 		elif owner.name == "Player" or hitbox.get_parent().get_parent().get_parent().name == "Player":
 			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 

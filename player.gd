@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 		
 	if Input.is_action_just_pressed("level_up"):
-		PlayerState.add_exp(1)
+		PlayerState.add_exp(PlayerState.experience_threshold)
 		
 	if Input.is_action_just_pressed("pause"):
 		Engine.max_fps = 30 if Engine.max_fps == 60 else 60

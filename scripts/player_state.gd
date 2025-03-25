@@ -82,6 +82,8 @@ var sword_level_base : int = 1
 var staff_level_base : int = 1
 var bow_level_base : int = 1
 var class_level : int = 0
+var mana_regen_base : float = 0.05
+var mana_regen_bonus : float = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene"]
@@ -177,7 +179,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
 	if mana < max_mana and not mana_regen_blocked:
-		mana += 0.05
+		mana += mana_regen_base * staff_level_base
 	
 func add_exp(exp_amount : int) -> void:
 	experience += exp_amount
@@ -216,7 +218,7 @@ func choose_class(class_number : int):
 			projectile_node.add_child(projectile)
 			projectile_bench.append(projectile)
 	if class_number == 2:
-		if class_level < 9:
+		if class_level < 10:
 			for i in range(0,200):
 				var projectile := fireball_scene.instantiate()
 				projectile_node.add_child(projectile)
@@ -265,7 +267,7 @@ func get_first_vbox_stats() -> Array[String]:
 		if propertyValue == 0 and propertyName != "health":
 			continue
 		if propertyValue != null:
-			stat_array.append(new_property_name + ": " + str(propertyValue))
+			stat_array.append(new_property_name + ": " + str(int(propertyValue)))
 	return stat_array
 	
 func turn_snake_case_to_name(string : String) -> String:
