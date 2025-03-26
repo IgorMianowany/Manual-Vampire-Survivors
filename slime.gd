@@ -67,7 +67,8 @@ func _physics_process(delta: float) -> void:
 	elif is_pulled:
 		if pull_source != null:
 			direction = global_position.direction_to(pull_source.global_position)
-			velocity = direction * (speed/2)
+			var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
+			velocity = direction * new_speed
 	move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
