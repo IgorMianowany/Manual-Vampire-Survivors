@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmn0irgusvnwg"]
+
+[ext_resource type="Script" uid="uid://bgd6wwpi0mt0y" path="res://black_hole.gd" id="2_245s3"]
+[ext_resource type="Texture2D" uid="uid://bms6aysf4mt3k" path="res://assets/sprites/projectiles/black_hole_2.png" id="3_bimi8"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_yi0fy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
+radius = 58.89
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrt6g"]
+radius = 109.165
+
+[node name="BlackHoleProjectile" type="Node2D"]
+script = ExtResource("2_245s3")
+speed = 50.0
+lifetime = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_bimi8")
+
+[node name="ProjectileHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_yi0fy")
+damage = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileHitbox"]
+shape = SubResource("CircleShape2D_fkxp7")
+debug_color = Color(1, 0, 0.0588235, 0.419608)
+
+[node name="ProjectileImpactDetector" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProjectileImpactDetector"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_8vmqc")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="HomingRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomingRange"]
+shape = SubResource("CircleShape2D_nrt6g")
+
+[node name="GravitationPullRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravitationPullRange"]
+shape = SubResource("CircleShape2D_nrt6g")
+
+[connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_area_entered"]
+[connection signal="body_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_body_entered"]
+[connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_area_entered"]
+[connection signal="body_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HomingRange" to="." method="_on_homing_range_area_entered"]
+[connection signal="body_entered" from="HomingRange" to="." method="_on_homing_range_body_entered"]
+[connection signal="area_entered" from="GravitationPullRange" to="." method="_on_gravitation_pull_range_area_entered"]
+[connection signal="area_exited" from="GravitationPullRange" to="." method="_on_gravitation_pull_range_area_exited"]

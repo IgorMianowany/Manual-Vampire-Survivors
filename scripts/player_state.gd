@@ -313,7 +313,6 @@ func reset_bonus_stats():
 		elif typeof(propertyValue) == TYPE_FLOAT or typeof(propertyValue) == TYPE_INT:
 			set(propertyName, 0)
 		elif typeof(propertyValue) == TYPE_ARRAY:
-			print(propertyName)
 			set(propertyName, [])
 	projectile_bench = []
 	experience_pickup_bench = []

@@ -23,6 +23,8 @@ func _ready() -> void:
 	#_reusable_ready()
 	set_as_top_level(true)
 	set_process(false)
+	$Timer.wait_time = lifetime
+	$Timer.autostart = true
 
 func _physics_process(delta: float) -> void:
 	if not active:

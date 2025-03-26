@@ -32,6 +32,8 @@ var already_hit_by_chain_lightning : bool = false
 var is_first_hit_by_chain_lightning : bool = false
 var variation : float
 var active : bool = false
+var is_pulled : bool = false
+var pull_source : Node2D = null
 @export var test_name : String
 
 @onready var start_pos : Vector2 = position
@@ -60,8 +62,12 @@ func _physics_process(delta: float) -> void:
 	if not active:
 		return
 	jump_timer += delta
-	if jump_timer > jump_cooldown + variation and not is_jumping:
+	if jump_timer > jump_cooldown + variation and not is_jumping and not is_pulled:
 		jump_toward_player(variation)
+	elif is_pulled:
+		if pull_source != null:
+			direction = global_position.direction_to(pull_source.global_position)
+			velocity = direction * (speed/2)
 	move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
@@ -261,6 +267,10 @@ func reset_enemy():
 	PlayerState.active_enemies_count -= 1
 	speed = 0
 	global_position = Vector2(-1000,1000)
+	for property in get_children():
+		if property is Timer:
+			continue
+		property.global_position = global_position
 	PlayerState.enemy_bench.append(self)
 	
 func spawn_enemy(spawn_position : Vector2):
