@@ -294,6 +294,14 @@ scale = Vector2(0.5, 0.5)
 max_value = 0.0
 value = 0.0
 
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -34.0
+offset_right = 21.0
+offset_bottom = -11.0
+text = "cos"
+
 [node name="SlimeHurtbox" type="Area2D" parent="." groups=["Areas"]]
 collision_layer = 0
 collision_mask = 16

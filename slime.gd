@@ -32,6 +32,7 @@ var already_hit_by_chain_lightning : bool = false
 var is_first_hit_by_chain_lightning : bool = false
 var variation : float
 var active : bool = false
+@export var test_name : String
 
 @onready var start_pos : Vector2 = position
 @onready var healthbar_new = $Control/Healthbar
@@ -40,6 +41,8 @@ var active : bool = false
 func _ready() -> void:
 	set_as_top_level(true)
 	PlayerState.slime_count += 1
+	test_name = str(PlayerState.slime_count)
+	$Control/Label.text = test_name
 	#var current_parent = get_parent()
 	#while(true):
 		#if current_parent.name == "LayerHolder":
@@ -264,6 +267,8 @@ func spawn_enemy(spawn_position : Vector2):
 	PlayerState.active_enemies_count += 1
 	speed = 75
 	healthbar_new.init_health(max_health)
+	$Control/Label.text = test_name
+
 	
 	@warning_ignore("integer_division")
 	max_health += player.get_elapsed_time() / 10
