@@ -41,8 +41,6 @@ var active : bool = false
 func _ready() -> void:
 	set_as_top_level(true)
 	PlayerState.slime_count += 1
-	test_name = str(PlayerState.slime_count)
-	$Control/Label.text = test_name
 	#var current_parent = get_parent()
 	#while(true):
 		#if current_parent.name == "LayerHolder":
@@ -58,6 +56,7 @@ func _ready() -> void:
 	healthbar_new.init_health(max_health)
 
 func _physics_process(delta: float) -> void:
+	$Control/Label.text = test_name
 	if not active:
 		return
 	jump_timer += delta
@@ -81,6 +80,8 @@ func jump_toward_player(_jump_variation : float) -> void:
 			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
 				return
 			velocity = position.direction_to(player_position) * speed
+		else:
+			is_jumping = false
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)

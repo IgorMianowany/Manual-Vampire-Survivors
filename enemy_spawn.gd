@@ -4,6 +4,7 @@ extends Node2D
 @export var player : Player 
 @export var limit : int = 12
 var upperLimit : int = 12
+var regex : RegEx
 
 var slime := preload("res://slime.tscn") 
 var count : int = 0
@@ -17,13 +18,14 @@ func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
 		var slime_instance = slime.instantiate()
+		count += 1
+		PlayerState.slime_spawned += 1
+		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
 		slime_instance.active = true
 		slime_instance.player = player
 		slime_instance.global_position = global_position
 		add_child(slime_instance)
-		count += 1
 		PlayerState.active_enemies_count += 1
-		PlayerState.slime_spawned += 1
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)
