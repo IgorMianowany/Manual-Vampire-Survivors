@@ -15,7 +15,7 @@ var crit_multi : float
 func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance_from_weapon : float = 0, crit_multi_from_weapon : float = 0) -> void:
 	var black_hole_scene := preload("res://black_hole_projectile.tscn")
 	var black_hole = black_hole_scene.instantiate()
-	black_hole.global_position = global_position
+	black_hole.position = attack_position + direction * 15
 	black_hole.direction = global_position.direction_to(get_global_mouse_position())
 	add_child(black_hole)
 	

@@ -59,6 +59,10 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravitationPullRange"]
 shape = SubResource("CircleShape2D_nrt6g")
 
+[node name="RecastTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="area_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_area_entered"]
 [connection signal="body_entered" from="ProjectileHitbox" to="." method="_on_arrow_hitbox_body_entered"]
 [connection signal="area_entered" from="ProjectileImpactDetector" to="." method="_on_projectile_impact_detector_area_entered"]
@@ -68,3 +72,4 @@ shape = SubResource("CircleShape2D_nrt6g")
 [connection signal="body_entered" from="HomingRange" to="." method="_on_homing_range_body_entered"]
 [connection signal="area_entered" from="GravitationPullRange" to="." method="_on_gravitation_pull_range_area_entered"]
 [connection signal="area_exited" from="GravitationPullRange" to="." method="_on_gravitation_pull_range_area_exited"]
+[connection signal="timeout" from="RecastTimer" to="." method="_on_recast_timer_timeout"]
