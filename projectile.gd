@@ -2,7 +2,7 @@ class_name Projectile
 extends Node2D
 
 @export var speed : float
-@export var lifetime : float
+@export var lifetime : float = 3
 @export var max_homing_speed : float = 0.7 
 
 var damage : float

@@ -16,7 +16,6 @@ radius = 109.165
 [node name="BlackHoleProjectile" type="Node2D"]
 script = ExtResource("2_245s3")
 speed = 50.0
-lifetime = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
