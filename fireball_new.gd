@@ -37,4 +37,5 @@ func _on_fireball_explosion_radius_area_entered(area: Area2D) -> void:
 		area.get_parent().take_damage(new_damage, global_position.direction_to(area.global_position), 2, PlayerState.has_poison_attacks, is_crit)
 		
 func _reusable_ready():
+	$FireballExplosionRadius.monitoring = false
 	super()

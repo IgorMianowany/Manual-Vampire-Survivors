@@ -8,9 +8,9 @@ var texture : CompressedTexture2D = preload("res://icon.svg")
 
 
 func _ready() -> void:
-	$VBoxContainer/MarginContainer/Label.text = upgrade_name
+	$VBoxContainer/MarginContainer/HBoxContainer/Label.text = upgrade_name
 	$VBoxContainer/MarginContainer3/Button.text = str(cost)
-	$VBoxContainer/MarginContainer2/TextureRect.texture = texture
+	$VBoxContainer/MarginContainer/HBoxContainer/TextureRect.texture = texture
 	checkAvailability()
 
 func _process(_delta: float) -> void:
