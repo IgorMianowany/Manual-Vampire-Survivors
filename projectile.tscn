@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_wdrrb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkxp7"]
-radius = 58.89
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vmqc"]
 radius = 2.0
