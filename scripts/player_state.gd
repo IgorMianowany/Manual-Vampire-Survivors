@@ -320,3 +320,28 @@ func reset_bonus_stats():
 
 func calculate_experience_threshold():
 	experience_threshold_bonus = experience_threshold_base * 2 * level
+	
+func get_current_upgrade_value(upgrade_type : UPGRADES) -> int:
+	if upgrade_type == UPGRADES.ATTACK_SPEED:
+		return attack_speed
+	elif upgrade_type == UPGRADES.ATTACK_DAMAGE:
+		return attack_damage
+	elif upgrade_type == UPGRADES.HEALTH:
+		return max_health
+	elif upgrade_type == UPGRADES.MOVESPEED:
+		return movespeed
+	else:
+		return 0
+
+func get_new_upgrade_value(upgrade_type : UPGRADES) -> int:
+	var base = get_current_upgrade_value(upgrade_type)
+	if upgrade_type == UPGRADES.ATTACK_SPEED:
+		return base - 0.5
+	elif upgrade_type == UPGRADES.ATTACK_DAMAGE:
+		return base + 1
+	elif upgrade_type == UPGRADES.HEALTH:
+		return base + 5
+	elif upgrade_type == UPGRADES.MOVESPEED:
+		return base + 10
+	else:
+		return 0
