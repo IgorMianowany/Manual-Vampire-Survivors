@@ -70,7 +70,7 @@ var health_bonus_per_jim_beam = 50
 var upgrades_amount : get = get_upgrades_amount
 var upgrades_amount_base : int = 3
 var upgrades_amount_bonus : int = 0
-var coins_base : int = 600
+var coins_base : int = 6000
 var ninja_unlocked_base : bool = false
 var game_time : float = 0
 var slime_scene := preload("res://slime.tscn")
@@ -89,7 +89,7 @@ var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_na
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene"]
 @onready var mana : float = max_mana
 
-enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, MISC}
+enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, SWORD_LEVEL, BOW_LEVEL, STAFF_LEVEL, MISC}
 
 var debug_value : int = 0
 	
@@ -200,6 +200,8 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 		max_health_base += 5
 	elif upgrade == UPGRADES.MOVESPEED:
 		movespeed_bonus += 10
+	elif upgrade == UPGRADES.STAFF_LEVEL:
+		staff_level_base += 1
 	else:
 		debug_value += 1
 		
@@ -331,6 +333,12 @@ func get_current_upgrade_value(upgrade_type : UPGRADES) -> float:
 		return max_health
 	elif upgrade_type == UPGRADES.MOVESPEED:
 		return movespeed
+	elif upgrade_type == UPGRADES.SWORD_LEVEL:
+		return sword_level_base
+	elif upgrade_type == UPGRADES.BOW_LEVEL:
+		return bow_level_base
+	elif upgrade_type == UPGRADES.STAFF_LEVEL:
+		return staff_level_base
 	else:
 		return 0
 
@@ -350,5 +358,11 @@ func get_new_upgrade_value(upgrade_type : UPGRADES) -> float:
 			return 0
 		else:
 			return base + 10
+	elif upgrade_type == UPGRADES.SWORD_LEVEL:
+		return sword_level_base + 1
+	elif upgrade_type == UPGRADES.BOW_LEVEL:
+		return bow_level_base + 1
+	elif upgrade_type == UPGRADES.STAFF_LEVEL:
+		return staff_level_base + 1
 	else:
 		return 0

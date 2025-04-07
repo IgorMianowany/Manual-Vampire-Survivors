@@ -5,3 +5,12 @@
 
 [node name="NinjaUnlockPanel" instance=ExtResource("1_at4cv")]
 script = ExtResource("1_vx2cl")
+
+[node name="Arrow" parent="VBoxContainer/MarginContainer2/HBoxContainer" index="1"]
+visible = false
+
+[node name="NewValue" parent="VBoxContainer/MarginContainer2/HBoxContainer" index="2"]
+visible = false
+
+[node name="Unit" parent="VBoxContainer/MarginContainer2/HBoxContainer" index="3"]
+visible = false

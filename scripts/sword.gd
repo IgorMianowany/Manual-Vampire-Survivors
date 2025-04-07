@@ -13,13 +13,6 @@ var crit_multi : float
 @export var hitboxShape : CollisionShape2D
 
 func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, direction : Vector2 = Vector2.ZERO, crit_chance_from_weapon : float = 0, crit_multi_from_weapon : float = 0) -> void:
-	var black_hole_scene := preload("res://black_hole_projectile.tscn")
-	var black_hole = black_hole_scene.instantiate()
-	black_hole.position = attack_position + direction * 15
-	black_hole.direction = global_position.direction_to(get_global_mouse_position())
-	add_child(black_hole)
-	
-
 	sword_projectiles = projectiles - 1
 	attack_started.emit()
 	# timeout to account for attack starting with delay, animation specific

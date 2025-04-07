@@ -23,11 +23,17 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 		mana_regen_timer.start(mana_regen_cooldown)
 		PlayerState.mana_regen_blocked = true
 		PlayerState.mana -= PlayerState.staff_level_base * 0
-		if PlayerState.staff_level_base > 9:
+		if PlayerState.staff_level_base > 9 and PlayerState.staff_level_base < 20:
 			var meteor := preload("res://meteor_strike.tscn")
 			var meteor_instance = meteor.instantiate()
 			meteor_instance.global_position = get_global_mouse_position()
 			add_child(meteor_instance)
+		elif PlayerState.staff_level_base >= 20:
+			var black_hole_scene := preload("res://black_hole_projectile.tscn")
+			var black_hole = black_hole_scene.instantiate()
+			black_hole.position = attack_position + direction * 15
+			black_hole.direction = global_position.direction_to(get_global_mouse_position())
+			add_child(black_hole)
 		else:
 			for index in projectiles:
 				var existing_direction = direction

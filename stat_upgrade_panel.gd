@@ -31,9 +31,11 @@ func checkAvailability():
 		$VBoxContainer/MarginContainer3/Button.text = str(cost)
 	
 func reset_upgrade_values():
+	var current_value = PlayerState.get_current_upgrade_value(upgrade_type)
 	var new_value = PlayerState.get_new_upgrade_value(upgrade_type)
-	$VBoxContainer/MarginContainer2/HBoxContainer/CurrentValue.text = str(PlayerState.get_current_upgrade_value(upgrade_type))
-	$VBoxContainer/MarginContainer2/HBoxContainer/NewValue.text = str(PlayerState.get_new_upgrade_value(upgrade_type))
+	$VBoxContainer/MarginContainer2/HBoxContainer/CurrentValue.text = str(int(current_value)) if current_value - int(current_value) < 0.01 else str(current_value)
+	#$VBoxContainer/MarginContainer2/HBoxContainer/CurrentValue.text = str(PlayerState.get_current_upgrade_value(upgrade_type))
+	$VBoxContainer/MarginContainer2/HBoxContainer/NewValue.text = str(int(new_value)) if new_value - int(new_value) < 0.01 else str(new_value)
 	if new_value == 0:
 		for child in $VBoxContainer/MarginContainer2/HBoxContainer.get_children():
 			(child as Label).text = ""

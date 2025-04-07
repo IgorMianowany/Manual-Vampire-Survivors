@@ -13,7 +13,7 @@ func _ready() -> void:
 	set_as_top_level(true)
 	land_position_y = global_position.y
 	land_position_x = global_position.x
-	$AnimatedSprite2D.global_positeion.y -= travel_distance
+	$AnimatedSprite2D.global_position.y -= travel_distance
 	$AnimatedSprite2D.global_position.x += randf_range(-150,150)
 	start_position_x = $AnimatedSprite2D.global_position.x
 	$AnimatedSprite2D.look_at(Vector2(land_position_x, land_position_y))
