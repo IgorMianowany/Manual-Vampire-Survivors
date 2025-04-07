@@ -541,17 +541,17 @@ damage = 5.0
 [node name="WeaponType" type="Node2D" parent="Weapon"]
 script = ExtResource("55_2hpdj")
 
-[node name="Bow" type="Node2D" parent="Weapon"]
-script = ExtResource("54_31diy")
-attack_speed = 0.5
-weapon_texture = ExtResource("56_7oyge")
-
 [node name="Sword" type="Node2D" parent="Weapon" node_paths=PackedStringArray("attack_range_pointer", "attack_shape_cast", "hitbox", "hitboxShape")]
 script = ExtResource("56_3p1v6")
 attack_range_pointer = NodePath("../../AttackRangePointer")
 attack_shape_cast = NodePath("../../AttackShapeCast")
 hitbox = NodePath("../../AttackRangePointer/PlayerHitbox")
 hitboxShape = NodePath("../../AttackRangePointer/PlayerHitbox/CollisionShape2D")
+
+[node name="Bow" type="Node2D" parent="Weapon"]
+script = ExtResource("54_31diy")
+attack_speed = 0.5
+weapon_texture = ExtResource("56_7oyge")
 
 [node name="Staff" type="Node2D" parent="Weapon"]
 script = ExtResource("57_gw1fk")
@@ -623,10 +623,10 @@ shape = SubResource("CircleShape2D_dhoyc")
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]
 [connection signal="attack_started" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_started"]
-[connection signal="attack_finished" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_finished"]
-[connection signal="attack_started" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_started"]
 [connection signal="attack_finished" from="Weapon/Sword" to="Weapon" method="_on_sword_attack_finished"]
 [connection signal="attack_started" from="Weapon/Sword" to="Weapon" method="_on_sword_attack_started"]
+[connection signal="attack_finished" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_finished"]
+[connection signal="attack_started" from="Weapon/Bow" to="Weapon" method="_on_bow_attack_started"]
 [connection signal="attack_finished" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_finished"]
 [connection signal="attack_started" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_started"]
 [connection signal="attack_finished" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_finished"]

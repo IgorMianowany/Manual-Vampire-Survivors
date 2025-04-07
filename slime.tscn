@@ -295,6 +295,7 @@ max_value = 0.0
 value = 0.0
 
 [node name="Label" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = -19.0
 offset_top = -34.0
