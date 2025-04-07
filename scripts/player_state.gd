@@ -15,7 +15,7 @@ var projectile_speed_bonus : float = 0
 var projectile_speed_base : float = 300
 var projectile_lifetime : float = 3
 var pierce : int = 0
-var attack_speed_base : float = .1
+var attack_speed_base : float = .2
 var attack_speed : get = get_attack_speed
 var attack_speed_bonus : float = 0
 var attack_damage : float : get = get_attack_damage
@@ -321,10 +321,11 @@ func reset_bonus_stats():
 func calculate_experience_threshold():
 	experience_threshold_bonus = experience_threshold_base * 2 * level
 	
-func get_current_upgrade_value(upgrade_type : UPGRADES) -> int:
+func get_current_upgrade_value(upgrade_type : UPGRADES) -> float:
 	if upgrade_type == UPGRADES.ATTACK_SPEED:
 		return attack_speed
 	elif upgrade_type == UPGRADES.ATTACK_DAMAGE:
+		@warning_ignore("narrowing_conversion")
 		return attack_damage
 	elif upgrade_type == UPGRADES.HEALTH:
 		return max_health
@@ -333,15 +334,21 @@ func get_current_upgrade_value(upgrade_type : UPGRADES) -> int:
 	else:
 		return 0
 
-func get_new_upgrade_value(upgrade_type : UPGRADES) -> int:
+func get_new_upgrade_value(upgrade_type : UPGRADES) -> float:
 	var base = get_current_upgrade_value(upgrade_type)
 	if upgrade_type == UPGRADES.ATTACK_SPEED:
-		return base - 0.5
+		if base < 0.11:
+			return 0
+		else:
+			return base - 0.05
 	elif upgrade_type == UPGRADES.ATTACK_DAMAGE:
 		return base + 1
 	elif upgrade_type == UPGRADES.HEALTH:
 		return base + 5
 	elif upgrade_type == UPGRADES.MOVESPEED:
-		return base + 10
+		if base > 199:
+			return 0
+		else:
+			return base + 10
 	else:
 		return 0
