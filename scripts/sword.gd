@@ -42,6 +42,7 @@ func attack(attack_damage : float, attack_position : Vector2 = Vector2.ZERO, dir
 		projectile.pierce = pierce
 		projectile.crit_chance = crit_chance_from_weapon
 		projectile.crit_multi = crit_multi_from_weapon
+		projectile.active = true
 		add_child(projectile)
 		
 	await(get_tree().create_timer(attack_time).timeout)

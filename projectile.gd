@@ -1,7 +1,7 @@
 class_name Projectile
 extends Node2D
 
-@export var speed : float
+@export var speed : float = 100
 @export var lifetime : float = 3
 @export var max_homing_speed : float = 0.7 
 
@@ -18,9 +18,7 @@ var current_speed : float
 var velocity : Vector2
 var active : bool = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#_reusable_ready()
 	set_as_top_level(true)
 	set_process(false)
 	$Timer.wait_time = lifetime
