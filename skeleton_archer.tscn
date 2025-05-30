@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://qqgar3883ohh"]
+
+[ext_resource type="PackedScene" uid="uid://ct6xfu2g763f5" path="res://enemy.tscn" id="1_wy3j7"]
+[ext_resource type="Script" uid="uid://3a4p23d0qsuw" path="res://skeleton_archer.gd" id="2_of827"]
+[ext_resource type="Texture2D" uid="uid://cm3i30wiyh7vd" path="res://Skeleton_Archer.png" id="3_syo3g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8hkl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_syo3g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SkeletonArcher" instance=ExtResource("1_wy3j7")]
+script = ExtResource("2_of827")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+visible = false
+animation = &"default"
+
+[node name="SkeletonSprite" type="AnimatedSprite2D" parent="." index="12"]
+sprite_frames = SubResource("SpriteFrames_j8hkl")

@@ -7,6 +7,7 @@ var upperLimit : int = 100
 var regex : RegEx
 
 var slime := preload("res://slime.tscn") 
+var skeleton_archer := preload("res://skeleton_archer.tscn")
 var count : int = 0
 
 func _ready() -> void:
@@ -18,6 +19,8 @@ func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
 		var slime_instance = slime.instantiate()
+		if name.contains("26"):
+			slime_instance = skeleton_archer.instantiate()
 		count += 1
 		PlayerState.slime_spawned += 1
 		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
