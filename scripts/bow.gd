@@ -21,10 +21,10 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 			projectile = arrow_scene.instantiate()
 		else:
 			projectile.reparent(self)
+		$ShapeCast2D.target_position = get_local_mouse_position()
 		projectile.active = true
 		projectile.global_position = attack_position + direction * 15
-		projectile.direction = new_direction
-		$ShapeCast2D.target_position = global_position * new_direction
+		projectile.direction = new_direction.normalized()
 		projectile.start_position = global_position
 		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce

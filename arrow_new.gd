@@ -9,9 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if active:
-		print(direction)
-		print(prev_pos.direction_to(current_pos))	
 	
 func change_target(is_target_player : bool):
 	if is_target_player:

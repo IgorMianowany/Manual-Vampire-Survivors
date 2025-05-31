@@ -215,7 +215,7 @@ func choose_class(class_number : int):
 	var fireball_scene := preload("res://fireball_new.tscn")
 	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
 	if class_number == 1:
-		for i in range(0,5):
+		for i in range(0,100):
 			var projectile := arrow_scene.instantiate()
 			projectile_node.add_child(projectile)
 			projectile_bench.append(projectile)

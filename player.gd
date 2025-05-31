@@ -82,7 +82,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		#attack()
 		set_attack_direction()
-		$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
+		$Weapon.attack(global_position, (get_global_mouse_position() - global_position).normalized())
+		#$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
 		
 	if Input.is_action_just_pressed("level_up"):
 		PlayerState.add_exp(PlayerState.experience_threshold)
