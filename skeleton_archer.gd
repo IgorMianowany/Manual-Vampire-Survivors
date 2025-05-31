@@ -33,15 +33,15 @@ func attack():
 	if not is_attacking:
 		is_attacking = true
 		var attack_projectile = projectile.instantiate()
+		add_child(attack_projectile)
 		attack_projectile.change_target(true)
 		attack_projectile.active = true
-		attack_projectile.position = global_position + direction * 15
+		attack_projectile.global_position = global_position + direction * 15
 		attack_projectile.direction = global_position.direction_to(player.global_position)
 		attack_projectile.damage = 10
 		attack_projectile.pierce = 0
 		attack_projectile.crit_chance = 0
 		attack_projectile.crit_multi = 0
 		attack_projectile._reusable_ready()
-		add_child(attack_projectile)
 		await(get_tree().create_timer(1).timeout)
 		is_attacking = false
