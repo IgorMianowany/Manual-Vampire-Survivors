@@ -17,10 +17,15 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 
 		#var projectile := arrow_scene.instantiate()
 		var projectile = PlayerState.projectile_bench.pop_front()
-		projectile.reparent(self)
+		if projectile == null:
+			projectile = arrow_scene.instantiate()
+		else:
+			projectile.reparent(self)
 		projectile.active = true
-		projectile.position = attack_position + direction * 15
+		projectile.global_position = attack_position + direction * 15
 		projectile.direction = new_direction
+		$ShapeCast2D.target_position = global_position * new_direction
+		projectile.start_position = global_position
 		projectile.damage = PlayerState.attack_damage
 		projectile.pierce = pierce
 		projectile.crit_chance = crit_chance

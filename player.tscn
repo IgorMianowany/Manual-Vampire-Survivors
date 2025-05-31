@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=98 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" uid="uid://br0imqlcdd70p" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -396,6 +396,9 @@ height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krfh3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04cqw"]
+size = Vector2(2, 2)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8vscl"]
 animations = [{
 "frames": [{
@@ -553,6 +556,9 @@ script = ExtResource("54_31diy")
 attack_speed = 0.5
 weapon_texture = ExtResource("56_7oyge")
 
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Weapon/Bow"]
+shape = SubResource("RectangleShape2D_04cqw")
+
 [node name="Staff" type="Node2D" parent="Weapon"]
 script = ExtResource("57_gw1fk")
 weapon_texture = ExtResource("58_ojugi")
@@ -586,10 +592,6 @@ animation = &"chain_lightning_ready"
 autoplay = "chain_lightning_ready"
 
 [node name="DashTimer" type="Timer" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-z_index = 5
 
 [node name="DashHitbox" type="Area2D" parent="."]
 monitoring = false

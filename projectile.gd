@@ -17,6 +17,7 @@ var crit_multi : float
 var current_speed : float
 var velocity : Vector2
 var active : bool = false
+var start_position : Vector2
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -27,18 +28,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
+	PlayerState.max_projectile_speed = 2
 	prev_pos = current_pos
 	current_pos = global_position
 	current_speed = (prev_pos - current_pos).length()
 	if not PlayerState.has_homing_projectiles and current_speed < PlayerState.max_projectile_speed and current_speed != 0:
 		PlayerState.max_projectile_speed = current_speed
-		
-	
-	#if current_speed != (prev_pos-current_pos).length():
-		#current_speed = (prev_pos-current_pos).length()
-		#print(current_speed)
 
-	
 	if PlayerState.has_homing_projectiles and PlayerState.projectile_lifetime - $Timer.time_left > 0.1:
 		if target != null and (target as Slime).health > 0:
 			direction += (global_position.direction_to(target.global_position)/5)
@@ -56,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed * delta
 	if velocity.length() > PlayerState.max_projectile_speed:
 		velocity = velocity.normalized() * PlayerState.max_projectile_speed
-	position += velocity
+	global_position += velocity
 	#if current_speed > max_speed:
 		#position = position.normalized() * max_speed
 	#TODO ogarnąć zcy to ma sens
@@ -105,7 +101,7 @@ func _on_homing_range_body_entered(body: Node2D) -> void:
 		
 		
 func _reusable_ready():
-	look_at(position + direction)
+	look_at(global_position + direction)
 	set_process(true)
 	target = null
 	speed = PlayerState.projectile_speed

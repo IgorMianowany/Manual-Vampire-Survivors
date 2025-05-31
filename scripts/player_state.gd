@@ -64,7 +64,7 @@ var slime_count = 0
 var active_enemies_count = 0
 var slime_spawned = 0
 var has_knife : bool = false
-var max_projectile_speed : float = 4
+var max_projectile_speed : float = .1
 var final_score : int = 0
 var health_bonus_per_jim_beam = 50
 var upgrades_amount : get = get_upgrades_amount
@@ -215,7 +215,7 @@ func choose_class(class_number : int):
 	var fireball_scene := preload("res://fireball_new.tscn")
 	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
 	if class_number == 1:
-		for i in range(0,200):
+		for i in range(0,5):
 			var projectile := arrow_scene.instantiate()
 			projectile_node.add_child(projectile)
 			projectile_bench.append(projectile)
