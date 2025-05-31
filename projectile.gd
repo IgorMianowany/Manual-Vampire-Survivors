@@ -75,7 +75,7 @@ func _on_projectile_impact_detector_area_entered(area: Area2D) -> void:
 			_on_projectile_death()
 
 func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
-	if body.name != $ProjectileImpactDetector.name and body.name != "Slime":
+	if body.name != $ProjectileImpactDetector.name and body.name != "Slime" and body.name != "SkeletonArcher" and body.name != "Player":
 		_on_projectile_death()
 
 func _on_projectile_death():

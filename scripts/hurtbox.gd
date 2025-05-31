@@ -10,6 +10,7 @@ func _ready() -> void:
 	connect("area_entered", self._on_area_entered)
 
 func _on_area_entered(hitbox : Hitbox) -> void:
+	print(hitbox.name)
 	if hitbox == null or hitbox.owner == owner:
 		return
 	
@@ -45,7 +46,8 @@ func _on_area_entered(hitbox : Hitbox) -> void:
 					owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 		elif owner.name == "Player" or hitbox.get_parent().get_parent().get_parent().name == "Player":
 			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
-
+			if hitbox.hits > hitbox.max_hits:
+				(hitbox.owner as Projectile)._on_projectile_death()
 		else:
 			owner.take_damage(damage, hitbox.owner.global_position.direction_to(owner.global_position), hitbox.knockback_power, PlayerState.has_poison_attacks, is_crit)
 			if hitbox.owner.name == "KnifeSummon":

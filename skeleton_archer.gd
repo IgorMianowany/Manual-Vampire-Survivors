@@ -39,7 +39,7 @@ func attack():
 		attack_projectile.global_position = global_position + direction * 15
 		attack_projectile.direction = global_position.direction_to(player.global_position)
 		attack_projectile.damage = 10
-		attack_projectile.pierce = 0
+		attack_projectile.pierce = -1
 		attack_projectile.crit_chance = 0
 		attack_projectile.crit_multi = 0
 		attack_projectile._reusable_ready()
