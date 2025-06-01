@@ -16,6 +16,7 @@ animations = [{
 }]
 
 [node name="SkeletonArcher" instance=ExtResource("1_wy3j7")]
+platform_on_leave = 2
 script = ExtResource("2_of827")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

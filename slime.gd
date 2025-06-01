@@ -40,7 +40,9 @@ extends Enemy
 #@onready var healthbar_new = $Control/Healthbar
 #
 #
-#func _ready() -> void:
+func _ready() -> void:
+	sprite = $AnimatedSprite2D
+	super()
 	#set_as_top_level(true)
 	#PlayerState.slime_count += 1
 	##var current_parent = get_parent()
@@ -58,6 +60,8 @@ extends Enemy
 	#healthbar_new.init_health(max_health)
 #
 func _physics_process(delta: float) -> void:
+	jump_timer += delta
+	super.jump_toward_player(variation)
 	super(delta)
 
 #

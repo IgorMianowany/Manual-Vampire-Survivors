@@ -37,6 +37,7 @@ var pull_source : Node2D = null
 var boids_i_see : Array[Enemy] = []
 var screensize : Vector2
 var movv := 48
+var sprite : AnimatedSprite2D
 
 @export var test_name : String
 
@@ -66,20 +67,21 @@ func _physics_process(delta: float) -> void:
 	$Control/Label.text = test_name
 	if not active:
 		return
-
-	jump_timer += delta
-	if jump_timer > jump_cooldown + variation and not is_jumping and not is_pulled:
-		jump_toward_player(variation)
-	elif is_pulled:
+	if is_pulled:
 		if pull_source != null:
 			direction = global_position.direction_to(pull_source.global_position)
 			var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			velocity = direction * new_speed
-	boids()
-	check_collisions()
+
+	#jump_toward_player(variation)
+	
+	#boids()
+	#check_collisions()
 	move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
+	if not jump_timer > jump_cooldown + variation or is_jumping or  is_pulled:
+		return
 	var new_direction := Vector2.ZERO
 	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health > 0:
 		is_jumping = true
