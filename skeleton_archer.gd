@@ -35,8 +35,8 @@ func _physics_process(delta: float) -> void:
 func attack():
 	if not is_attacking:
 		is_attacking = true
-		var attack_projectile = projectile.instantiate()
-		add_child(attack_projectile)
+		var attack_projectile = PlayerState.projectile_bench.pop_front()
+		#add_child(attack_projectile)
 		attack_projectile.change_target(true)
 		attack_projectile.active = true
 		attack_projectile.global_position = global_position + direction * 15
@@ -45,6 +45,7 @@ func attack():
 		attack_projectile.pierce = -1
 		attack_projectile.crit_chance = 0
 		attack_projectile.crit_multi = 0
+		attack_projectile.player_projectile = false
 		attack_projectile._reusable_ready()
-		await(get_tree().create_timer(1).timeout)
+		await(get_tree().create_timer(2).timeout)
 		is_attacking = false

@@ -18,6 +18,7 @@ var current_speed : float
 var velocity : Vector2
 var active : bool = false
 var start_position : Vector2
+var player_projectile : bool = true
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -27,6 +28,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not active:
+		return
+	if not player_projectile:
+		velocity = direction * (speed / 2) * delta
+		global_position += velocity
 		return
 	PlayerState.max_projectile_speed = 2
 	prev_pos = current_pos
@@ -52,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed * delta
 	if velocity.length() > PlayerState.max_projectile_speed:
 		velocity = velocity.normalized() * PlayerState.max_projectile_speed
-	global_position += velocity.snapped(Vector2(0.1,0.1))
+	global_position += velocity
 	#if current_speed > max_speed:
 		#position = position.normalized() * max_speed
 	#TODO ogarnąć zcy to ma sens
@@ -76,6 +81,8 @@ func _on_projectile_impact_detector_body_entered(body: Node2D) -> void:
 
 func _on_projectile_death():
 	set_process(false)
+	change_target(false)
+	player_projectile = true
 	active = false
 	PlayerState.projectile_bench.append(self)
 	global_position = Vector2(1000,-1000)
@@ -114,3 +121,12 @@ func _reusable_ready():
 	$ProjectileHitbox.crit_multi = crit_multi
 	$HomingRange/CollisionShape2D.set_deferred("disabled", false)
 	$Timer.start(lifetime)
+
+	
+func change_target(is_target_player : bool):
+	if is_target_player:
+		$ProjectileHitbox.collision_layer = 32
+		$ProjectileImpactDetector.collision_mask = 11
+	else:
+		$ProjectileHitbox.collision_layer = 16
+		$ProjectileImpactDetector.collision_mask = 7
