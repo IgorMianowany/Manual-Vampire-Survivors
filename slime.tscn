@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=56 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" uid="uid://bceappluso7yp" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -243,6 +243,9 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv8ia"]
 radius = 50.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y60gu"]
+size = Vector2(13.9995, 11.9996)
+
 [node name="Slime" type="CharacterBody2D"]
 process_mode = 1
 physics_interpolation_mode = 2
@@ -250,6 +253,8 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 motion_mode = 1
+platform_on_leave = 2
+platform_floor_layers = 4294901761
 script = ExtResource("1_ahcej")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -366,6 +371,16 @@ collision_mask = 4
 
 [node name="ChainLightningAnimation" parent="." instance=ExtResource("46_kimln")]
 
+[node name="SlimeVision" type="Area2D" parent="." groups=["boid"]]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeVision"]
+position = Vector2(-0.016127, -2.9999)
+shape = SubResource("RectangleShape2D_y60gu")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="area_entered" from="SlimeVision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="SlimeVision" to="." method="_on_slime_vision_area_exited"]

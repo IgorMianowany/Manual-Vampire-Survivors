@@ -6,6 +6,7 @@ var is_attacking : bool = false
 var projectile := preload("res://arrow.tscn")
 
 func jump_toward_player(_jump_variation : float) -> void:
+	var new_direction := Vector2.ZERO
 	velocity = position.direction_to(player_position) * speed
 
 func _physics_process(delta: float) -> void:
@@ -14,10 +15,11 @@ func _physics_process(delta: float) -> void:
 		return
 	#print(global_position.distance_to(player.global_position) < 50)
 	distance_to_player = global_position.distance_to(player.global_position)
+	player_direction = global_position.direction_to(player.global_position) * speed
 	if distance_to_player > 115:
-		velocity = global_position.direction_to(player.global_position) * speed
+		velocity = player_direction
 	elif distance_to_player < 85:
-		velocity = global_position.direction_to(player.global_position) * speed * -1
+		velocity = player_direction * -1
 	else:
 		velocity = Vector2.ZERO
 		attack()
@@ -26,6 +28,8 @@ func _physics_process(delta: float) -> void:
 			direction = global_position.direction_to(pull_source.global_position)
 			var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			velocity = direction * new_speed
+	boids()
+	check_collisions()
 	move_and_slide()
 	
 func attack():

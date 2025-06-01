@@ -57,19 +57,9 @@ extends Enemy
 	#variation = randf_range(0, jump_variation)
 	#healthbar_new.init_health(max_health)
 #
-#func _physics_process(delta: float) -> void:
-	#$Control/Label.text = test_name
-	#if not active:
-		#return
-	#jump_timer += delta
-	#if jump_timer > jump_cooldown + variation and not is_jumping and not is_pulled:
-		#jump_toward_player(variation)
-	#elif is_pulled:
-		#if pull_source != null:
-			#direction = global_position.direction_to(pull_source.global_position)
-			#var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
-			#velocity = direction * new_speed
-	#move_and_slide()
+func _physics_process(delta: float) -> void:
+	super(delta)
+
 #
 #func jump_toward_player(_jump_variation : float) -> void:
 	#var new_direction := Vector2.ZERO
@@ -289,3 +279,12 @@ extends Enemy
 		#if property is Timer:
 			#continue
 		#property.global_position = global_position
+		
+func _on_vision_area_entered(area: Area2D) -> void:
+	if area != self and area.is_in_group("boid"):
+		boids_i_see.append(area.owner)
+
+
+func _on_vision_area_exited(area: Area2D) -> void:
+	if area:
+		boids_i_see.erase(area.owner)

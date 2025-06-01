@@ -66,8 +66,7 @@ func _physics_process(delta: float) -> void:
 	$Control/Label.text = test_name
 	if not active:
 		return
-	boids()
-	check_collisions()
+
 	jump_timer += delta
 	if jump_timer > jump_cooldown + variation and not is_jumping and not is_pulled:
 		jump_toward_player(variation)
@@ -76,6 +75,8 @@ func _physics_process(delta: float) -> void:
 			direction = global_position.direction_to(pull_source.global_position)
 			var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			velocity = direction * new_speed
+	boids()
+	check_collisions()
 	move_and_slide()
 
 func jump_toward_player(_jump_variation : float) -> void:
@@ -304,7 +305,7 @@ func boids():
 		var avg_position := Vector2.ZERO
 		var steer_away := Vector2.ZERO
 		for boid in boids_i_see:
-			avg_velocity += boid.vel
+			avg_velocity += boid.velocity
 			avg_position += boid.position
 			steer_away -= (boid.global_position - global_position) * (movv/(global_position - boid.global_position).length())
 			
@@ -314,8 +315,13 @@ func boids():
 		avg_position /= num_of_boids
 		velocity += (avg_position - position)
 		
+		steer_away /= num_of_boids
+		velocity += steer_away
+		
 	
 func check_collisions():
+	if boids_i_see.size() == 0:
+		return
 	var closest_boid : Enemy
 	var closest_distance : float = 100
 	var current_distance : float
@@ -324,8 +330,11 @@ func check_collisions():
 		if current_distance < closest_distance:
 			closest_distance = current_distance
 			closest_boid = boid
+	if closest_boid == null:
+		return
 	var repulsion_direction : Vector2 = global_position.direction_to(closest_boid.global_position)
-	closest_boid.velocity += repulsion_direction * 5
+	closest_boid.velocity -= repulsion_direction * .1
+	await(get_tree().create_timer(.2).timeout)
 	
 
 

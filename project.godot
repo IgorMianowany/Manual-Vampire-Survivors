@@ -112,6 +112,7 @@ death={
 2d_physics/layer_6="EnemyHitboxHurtbox"
 2d_physics/layer_7="Pickup"
 2d_physics/layer_8="Interactable"
+2d_physics/layer_9="Boid"
 
 [physics]
 
