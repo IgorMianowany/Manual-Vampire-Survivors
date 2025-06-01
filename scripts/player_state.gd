@@ -78,6 +78,8 @@ var enemy_bench : Array[Enemy] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
 var projectile_bench : Array[Projectile] = []
+var enemy_projectile_bench : Array[SimpleProjectile] = []
+var simple_projectile_scene := preload("res://simple_projectile.tscn")
 var sword_level_base : int = 1
 var staff_level_base : int = 1
 var bow_level_base : int = 1
@@ -86,7 +88,7 @@ var mana_regen_base : float = 0.05
 var mana_regen_bonus : float = 0
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene"]
 @onready var mana : float = max_mana
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, SWORD_LEVEL, BOW_LEVEL, STAFF_LEVEL, MISC}
@@ -209,11 +211,18 @@ func add_upgrade(upgrade : UPGRADES, upgrade_number : int):
 	after_level_up.emit()
 
 func choose_class(class_number : int):
-	chosen_class = class_number
-	after_class_chosen.emit()
 	var arrow_scene := preload("res://arrow.tscn")
 	var fireball_scene := preload("res://fireball_new.tscn")
 	var projectile_node = get_parent().get_child(2).get_child(0).find_child("ProjectileHolder")
+	var simple_projectile : SimpleProjectile
+	for i in range(0, 200):
+		simple_projectile = simple_projectile_scene.instantiate()
+		projectile_node.add_child(simple_projectile)
+		enemy_projectile_bench.append(simple_projectile)
+		
+	chosen_class = class_number
+	after_class_chosen.emit()
+
 	if class_number == 1:
 		for i in range(0,100):
 			var projectile := arrow_scene.instantiate()

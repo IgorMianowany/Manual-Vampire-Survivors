@@ -3,7 +3,8 @@ extends Node2D
 @export var min_cooldown : float = 1
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 100
+var upperLimit : int = 500
+
 var regex : RegEx
 
 var slime := preload("res://slime.tscn") 
