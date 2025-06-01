@@ -323,18 +323,19 @@ func check_collisions():
 	if boids_i_see.size() == 0:
 		return
 	var closest_boid : Enemy
-	var closest_distance : float = 100
+	var closest_distance : float = 10000
 	var current_distance : float
 	for boid in boids_i_see:
 		current_distance = global_position.distance_squared_to(boid.global_position)
 		if current_distance < closest_distance:
 			closest_distance = current_distance
 			closest_boid = boid
+		await(get_tree().create_timer(.2).timeout)
+		
 	if closest_boid == null:
 		return
 	var repulsion_direction : Vector2 = global_position.direction_to(closest_boid.global_position)
-	closest_boid.velocity -= repulsion_direction * .1
-	await(get_tree().create_timer(.2).timeout)
+	closest_boid.velocity += repulsion_direction * 100
 	
 
 

@@ -28,8 +28,8 @@ func _physics_process(delta: float) -> void:
 			direction = global_position.direction_to(pull_source.global_position)
 			var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			velocity = direction * new_speed
-	boids()
-	check_collisions()
+	#boids()
+	#check_collisions()
 	move_and_slide()
 	
 func attack():
