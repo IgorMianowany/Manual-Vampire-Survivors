@@ -1,45 +1,6 @@
 class_name Slime
 extends Enemy
-#
-#@export var player : Player
-#@export var speed : float = 75
-##@export var speed : float = 0
-#@export var jump_cooldown : float = 1.5
-#@export var jump_duration : float = .9
-#@export var jump_variation : float = 0.5
-#@export var direction_variation : float = 15
-#@export var damage : float = 10
-#@export var knockback_power : float = 1
-#@export var max_health : float = 10 
-#@export var exp_amount : int = 1
-#@export var healthbar : TextureProgressBar
-#@export var money : int = 100 
-#@onready var health : float = max_health
-#@onready var damage_numbers_origin = $DamageNumbersOrigin
-#@onready var experience_pickup := preload("res://experience_pickup.tscn")
-#var player_direction : Vector2
-#var jump_timer : float = 0
-#var direction : Vector2 = Vector2.ZERO
-#var player_position : Vector2
-#var is_jumping : bool = false
-#enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
-#var facing_direction : DirectionEnum
-#var is_knocked_back : bool = false
-#var is_poisoned : bool = false
-#var poison_damage : float = 0
-#var poison_ticks_left : float = 0
-#var already_hit_by_chain_lightning : bool = false
-#var is_first_hit_by_chain_lightning : bool = false
-#var variation : float
-#var active : bool = false
-#var is_pulled : bool = false
-#var pull_source : Node2D = null
-#@export var test_name : String
-#
-#@onready var start_pos : Vector2 = position
-#@onready var healthbar_new = $Control/Healthbar
-#
-#
+
 func _ready() -> void:
 	sprite = $AnimatedSprite2D
 	super()
@@ -61,9 +22,49 @@ func _ready() -> void:
 #
 func _physics_process(delta: float) -> void:
 	jump_timer += delta
-	super.jump_toward_player(variation)
+	jump_toward_player(variation)
 	super(delta)
+	
 
+
+func _on_vision_area_entered(area: Area2D) -> void:
+	if area != self and area.is_in_group("boid"):
+		boids_i_see.append(area.owner)
+
+
+func _on_vision_area_exited(area: Area2D) -> void:
+	if area:
+		boids_i_see.erase(area.owner)
+		
+func jump_toward_player(_jump_variation : float) -> void:
+	if not jump_timer > jump_cooldown + variation or is_jumping or  is_pulled:
+		return
+	var new_direction := Vector2.ZERO
+	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health > 0:
+		is_jumping = true
+		repulsion_force = .1
+		$SlimeHitbox/CollisionShape2D.disabled = false
+		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
+
+		if not is_knocked_back:
+			# this is a weird way to check if slime reached it's jump destination before finishing the jump
+			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
+			# this fixes that case
+			new_direction = position.direction_to(player_position)
+			$AnimatedSprite2D.play("move_down")
+			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
+				return
+			velocity = position.direction_to(player_position) * speed
+		else:
+			is_jumping = false
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
+		jump_timer = 0
+		$SlimeHitbox/CollisionShape2D.disabled = true
+		repulsion_force = 0
+		velocity = Vector2.ZERO
+	player_direction = new_direction
 #
 #func jump_toward_player(_jump_variation : float) -> void:
 	#var new_direction := Vector2.ZERO
@@ -284,11 +285,3 @@ func _physics_process(delta: float) -> void:
 			#continue
 		#property.global_position = global_position
 		
-func _on_vision_area_entered(area: Area2D) -> void:
-	if area != self and area.is_in_group("boid"):
-		boids_i_see.append(area.owner)
-
-
-func _on_vision_area_exited(area: Area2D) -> void:
-	if area:
-		boids_i_see.erase(area.owner)

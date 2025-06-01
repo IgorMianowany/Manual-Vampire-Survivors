@@ -5,15 +5,19 @@ var distance_to_player : float
 var is_attacking : bool = false
 var projectile := preload("res://arrow.tscn")
 
+func _ready() -> void:
+	super()
+	collision_calc_cooldown = 10
+	repulsion_force = 100
+
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
-	#print(global_position.distance_to(player.global_position) < 50)
 	distance_to_player = global_position.distance_to(player.global_position)
 	player_direction = global_position.direction_to(player.global_position) * speed
-	if distance_to_player > 115:
+	if distance_to_player > 150 + variation * 100:
 		velocity = player_direction
-	elif distance_to_player < 85:
+	elif distance_to_player < 60 + variation * 100:
 		velocity = player_direction * -1
 	else:
 		velocity = Vector2.ZERO
@@ -23,8 +27,11 @@ func _physics_process(delta: float) -> void:
 			#direction = global_position.direction_to(pull_source.global_position)
 			#var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			#velocity = direction * new_speed
-	#boids()
-	#check_collisions()
+	collision_calc_cooldown -= 1
+	if collision_calc_cooldown == 0:
+		collision_calc_cooldown = 10
+		super.boids()
+		super.check_collisions()
 	super(delta)
 
 
@@ -48,6 +55,3 @@ func attack():
 		attack_projectile._reusable_ready()
 		await(get_tree().create_timer(2).timeout)
 		is_attacking = false
-		
-func jump_towards_player(_variation : float):
-	pass

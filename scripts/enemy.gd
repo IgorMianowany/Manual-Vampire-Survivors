@@ -38,6 +38,8 @@ var boids_i_see : Array[Enemy] = []
 var screensize : Vector2
 var movv := 48
 var sprite : AnimatedSprite2D
+var repulsion_force : float = 0.1
+var collision_calc_cooldown : int = 0
 
 @export var test_name : String
 
@@ -79,32 +81,7 @@ func _physics_process(delta: float) -> void:
 	#check_collisions()
 	move_and_slide()
 
-func jump_toward_player(_jump_variation : float) -> void:
-	if not jump_timer > jump_cooldown + variation or is_jumping or  is_pulled:
-		return
-	var new_direction := Vector2.ZERO
-	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health > 0:
-		is_jumping = true
-		$SlimeHitbox/CollisionShape2D.disabled = false
-		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 
-		if not is_knocked_back:
-			# this is a weird way to check if slime reached it's jump destination before finishing the jump
-			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
-			# this fixes that case
-			new_direction = position.direction_to(player_position)
-			$AnimatedSprite2D.play("move_down")
-			if player_direction + new_direction < Vector2(0.001, 0.001) and player_direction + new_direction > Vector2(-0.001, -0.001):
-				return
-			velocity = position.direction_to(player_position) * speed
-		else:
-			is_jumping = false
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
-		jump_timer = 0
-		$SlimeHitbox/CollisionShape2D.disabled = true
-	player_direction = new_direction
 
 func handle_animation(animation_variation : float) -> void:
 	direction = position.direction_to(player.position)
@@ -332,12 +309,15 @@ func check_collisions():
 		if current_distance < closest_distance:
 			closest_distance = current_distance
 			closest_boid = boid
-		await(get_tree().create_timer(.2).timeout)
 		
 	if closest_boid == null:
 		return
 	var repulsion_direction : Vector2 = global_position.direction_to(closest_boid.global_position)
-	closest_boid.velocity += repulsion_direction * 100
+
+	closest_boid.global_position += repulsion_direction * 5
+
+		
+
 	
 
 
