@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed * delta
 	if velocity.length() > PlayerState.max_projectile_speed:
 		velocity = velocity.normalized() * PlayerState.max_projectile_speed
-	global_position += velocity
+	global_position += velocity.snapped(Vector2(0.1,0.1))
 	#if current_speed > max_speed:
 		#position = position.normalized() * max_speed
 	#TODO ogarnąć zcy to ma sens

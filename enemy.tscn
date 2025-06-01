@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ct6xfu2g763f5"]
+[gd_scene load_steps=56 format=3 uid="uid://ct6xfu2g763f5"]
 
 [ext_resource type="Script" uid="uid://v7prbopsco2o" path="res://scripts/enemy.gd" id="1_fq8ad"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_j1pr3"]
@@ -243,7 +243,10 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv8ia"]
 radius = 50.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq8ad"]
+size = Vector2(50, 36)
+
+[node name="Enemy" type="CharacterBody2D" groups=["boid"]]
 process_mode = 1
 physics_interpolation_mode = 2
 y_sort_enabled = true
@@ -262,6 +265,7 @@ autoplay = "idle_down"
 speed_scale = 0.85
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Areas"]]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_83fs2")
 
@@ -303,6 +307,7 @@ offset_bottom = -11.0
 text = "cos"
 
 [node name="EnemyHurtbox" type="Area2D" parent="." groups=["Areas"]]
+visible = false
 collision_layer = 0
 collision_mask = 16
 monitorable = false
@@ -314,6 +319,7 @@ shape = SubResource("CircleShape2D_03ef8")
 debug_color = Color(0.968809, 0, 0.465463, 0.42)
 
 [node name="EnemyHitbox" type="Area2D" parent="." groups=["Areas"]]
+visible = false
 collision_layer = 32
 collision_mask = 0
 monitoring = false
@@ -324,6 +330,7 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_g7tg0")
 
 [node name="CollisionArea" type="Area2D" parent="." groups=["Areas"]]
+visible = false
 collision_layer = 0
 
 [node name="KnockbackCollisionShape" type="CollisionShape2D" parent="CollisionArea" groups=["Areas"]]
@@ -331,6 +338,7 @@ shape = SubResource("CircleShape2D_xcpqa")
 debug_color = Color(0, 0.631203, 0.464635, 0.42)
 
 [node name="ProjectileDestroyArea" type="Area2D" parent="." groups=["Areas"]]
+visible = false
 position = Vector2(0, -1)
 collision_layer = 4
 collision_mask = 0
@@ -359,13 +367,22 @@ position = Vector2(0, -11)
 autostart = true
 
 [node name="ChainLightningShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 enabled = false
 shape = SubResource("CircleShape2D_rv8ia")
 target_position = Vector2(0, 0)
 collision_mask = 4
 
 [node name="ChainLightningAnimation" parent="." instance=ExtResource("47_pf1hb")]
+visible = false
+
+[node name="Vision" type="Area2D" parent="." groups=["boid"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+shape = SubResource("RectangleShape2D_fq8ad")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="EnemyHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

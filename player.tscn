@@ -483,6 +483,7 @@ animation = &"pop"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.42857, 5.35714)
 shape = SubResource("RectangleShape2D_ysp0x")
 
@@ -515,6 +516,7 @@ margin = 5.0
 collision_mask = 4
 
 [node name="AttackRangePointer" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, -25)
 
 [node name="PlayerHitbox" type="Area2D" parent="AttackRangePointer"]
@@ -529,6 +531,7 @@ shape = SubResource("CapsuleShape2D_ew5ft")
 disabled = true
 
 [node name="PlayerHurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("52_odxbq")
@@ -557,6 +560,7 @@ attack_speed = 0.5
 weapon_texture = ExtResource("56_7oyge")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Weapon/Bow"]
+visible = false
 shape = SubResource("RectangleShape2D_04cqw")
 
 [node name="Staff" type="Node2D" parent="Weapon"]
@@ -594,6 +598,7 @@ autoplay = "chain_lightning_ready"
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="DashHitbox" type="Area2D" parent="."]
+visible = false
 monitoring = false
 monitorable = false
 script = ExtResource("50_rxefe")
@@ -605,6 +610,7 @@ disabled = true
 debug_color = Color(0.936042, 1.89635e-05, 0.633872, 0.42)
 
 [node name="LightningStrikeRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitoring = false
@@ -616,6 +622,7 @@ disabled = true
 debug_color = Color(0.349783, 0.483477, 1, 0.42)
 
 [node name="InteractRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 128
 

@@ -6,7 +6,6 @@ var is_attacking : bool = false
 var projectile := preload("res://arrow.tscn")
 
 func jump_toward_player(_jump_variation : float) -> void:
-	var new_direction := Vector2.ZERO
 	velocity = position.direction_to(player_position) * speed
 
 func _physics_process(delta: float) -> void:

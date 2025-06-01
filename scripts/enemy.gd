@@ -34,6 +34,10 @@ var variation : float
 var active : bool = false
 var is_pulled : bool = false
 var pull_source : Node2D = null
+var boids_i_see : Array[Enemy] = []
+var screensize : Vector2
+var movv := 48
+
 @export var test_name : String
 
 @onready var start_pos : Vector2 = position
@@ -41,6 +45,7 @@ var pull_source : Node2D = null
 
 
 func _ready() -> void:
+	screensize = get_viewport_rect().size
 	set_as_top_level(true)
 	PlayerState.slime_count += 1
 	#var current_parent = get_parent()
@@ -61,6 +66,8 @@ func _physics_process(delta: float) -> void:
 	$Control/Label.text = test_name
 	if not active:
 		return
+	boids()
+	check_collisions()
 	jump_timer += delta
 	if jump_timer > jump_cooldown + variation and not is_jumping and not is_pulled:
 		jump_toward_player(variation)
@@ -289,3 +296,46 @@ func spawn_enemy(spawn_position : Vector2):
 		if property is Timer:
 			continue
 		property.global_position = global_position
+		
+func boids():
+	if boids_i_see:
+		var num_of_boids := boids_i_see.size()
+		var avg_velocity := Vector2.ZERO
+		var avg_position := Vector2.ZERO
+		var steer_away := Vector2.ZERO
+		for boid in boids_i_see:
+			avg_velocity += boid.vel
+			avg_position += boid.position
+			steer_away -= (boid.global_position - global_position) * (movv/(global_position - boid.global_position).length())
+			
+		avg_velocity /= num_of_boids
+		velocity += (avg_velocity - velocity)/2
+		
+		avg_position /= num_of_boids
+		velocity += (avg_position - position)
+		
+	
+func check_collisions():
+	var closest_boid : Enemy
+	var closest_distance : float = 100
+	var current_distance : float
+	for boid in boids_i_see:
+		current_distance = global_position.distance_squared_to(boid.global_position)
+		if current_distance < closest_distance:
+			closest_distance = current_distance
+			closest_boid = boid
+	var repulsion_direction : Vector2 = global_position.direction_to(closest_boid.global_position)
+	closest_boid.velocity += repulsion_direction * 5
+	
+
+
+func _on_vision_area_entered(area: Area2D) -> void:
+	if area != self and area.is_in_group("boid"):
+		boids_i_see.append(area.owner)
+
+
+func _on_vision_area_exited(area: Area2D) -> void:
+	#if boids_i_see.has(area.owner):
+		#boids_i_see.erase(area.owner)
+	if area:
+		boids_i_see.erase(area.owner)
