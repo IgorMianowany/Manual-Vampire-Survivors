@@ -3,12 +3,13 @@ extends Node2D
 @export var min_cooldown : float = 1
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 30
+var upperLimit : int = 150
 
 var regex : RegEx
 
 var slime := preload("res://slime.tscn") 
 var skeleton_archer := preload("res://skeleton_archer.tscn")
+var necromancer := preload("res://necromancer.tscn")
 var count : int = 0
 
 func _ready() -> void:
@@ -34,10 +35,10 @@ func _on_timer_timeout() -> void:
 			#add_child(slime_instance)
 			#PlayerState.active_enemies_count += 1
 		var slime_instance = slime.instantiate()
-		var slime_instance2 = slime.instantiate()
 		if name.contains("26"):
 			slime_instance = skeleton_archer.instantiate()
-			slime_instance2 = skeleton_archer.instantiate()
+		elif name.contains("99"):
+			slime_instance = necromancer.instantiate()
 
 		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
 		slime_instance.active = true

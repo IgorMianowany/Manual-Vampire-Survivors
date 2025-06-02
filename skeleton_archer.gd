@@ -3,9 +3,6 @@ extends Enemy
 
 signal attack_signal
 
-var distance_to_player : float
-var is_attacking : bool = false
-var frame_counter : int = 15
 var projectile_speed : float = 100
 
 func _ready() -> void:
@@ -13,7 +10,7 @@ func _ready() -> void:
 	collision_calc_cooldown = 10
 	repulsion_force = 100
 	attack_signal.connect(attack)
-	$CollisionShape2D.shape.size = Vector2(20, 30)
+	$CollisionShape2D.shape.size = Vector2(15, 20)
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -38,9 +35,10 @@ func calculate_position():
 		velocity = player_direction * -1
 	else:
 		velocity = Vector2.ZERO
+	
 
 func attack():
-	if not is_attacking and false:
+	if not is_attacking:
 		is_attacking = true
 		var attack_projectile = PlayerState.enemy_projectile_bench.pop_front()
 		#add_child(attack_projectile)

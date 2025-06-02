@@ -22,6 +22,7 @@ var jump_timer : float = 0
 var direction : Vector2 = Vector2.ZERO
 var player_position : Vector2
 var is_jumping : bool = false
+var is_dead : bool = false
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var facing_direction : DirectionEnum
 var is_knocked_back : bool = false
@@ -40,6 +41,10 @@ var movv := 48
 var sprite : AnimatedSprite2D
 var repulsion_force : float = 0.1
 var collision_calc_cooldown : int = 0
+var is_attacking : bool = false
+var distance_to_player : float
+var frame_counter : int = 15
+
 
 @export var test_name : String
 
@@ -80,7 +85,8 @@ func _physics_process(delta: float) -> void:
 	#boids()
 	#check_collisions()
 	#move_and_slide()
-	move_and_collide(velocity * delta)
+	#move_and_collide(velocity * delta)
+	move_and_slide()
 
 
 
@@ -235,7 +241,25 @@ func handle_chain_lightning_logic():
 	
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if $AnimatedSprite2D.animation == "die":
+	_on_animation_finished($AnimatedSprite2D.animation)
+	#if $AnimatedSprite2D.animation == "die":
+		#if PlayerState.experience_pickup_bench.size() != 0:
+			#var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
+			#experience_pickup_new.reset(global_position)
+		#$Control.global_position = global_position
+		##experience_pickup_new.turn_on_collision()
+		##experience_pickup_new.global_position = global_position
+		##experience_pickup_new.player = null
+		##experience_pickup_new.active = true
+		##experience_pickup_new.speed = 10000
+		##PlayerState.active_enemies_count -= 2
+		#PlayerState.coins_base += money
+		#reset_enemy()
+	is_jumping = false
+	$AnimatedSprite2D.play("idle_down")
+	
+func _on_animation_finished(name : StringName):
+	if name == "die":
 		if PlayerState.experience_pickup_bench.size() != 0:
 			var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
 			experience_pickup_new.reset(global_position)
@@ -250,7 +274,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		reset_enemy()
 	is_jumping = false
 	$AnimatedSprite2D.play("idle_down")
-
+	
+	
 func reset_enemy():
 	PlayerState.active_enemies_count -= 1
 	speed = 0
