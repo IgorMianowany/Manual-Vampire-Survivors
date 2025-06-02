@@ -79,7 +79,8 @@ func _physics_process(delta: float) -> void:
 	
 	#boids()
 	#check_collisions()
-	move_and_slide()
+	#move_and_slide()
+	move_and_collide(velocity * delta)
 
 
 

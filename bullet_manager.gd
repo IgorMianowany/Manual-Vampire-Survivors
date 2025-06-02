@@ -4,7 +4,6 @@ extends Node2D
 @export var bullet_image : Texture2D
 @export var marker_image : Texture2D
 var shared_area
-@onready var sprite : Sprite2D = $Sprite2D
 var bullets : Array[Bullet] = []
 var counter = 20
 
@@ -22,7 +21,6 @@ func spawn_bullet(i_movement: Vector2, speed: float, origin : Vector2) -> void:
 	bullet.speed = speed
 	bullet.current_position = origin
 	bullet.origin = origin
-	sprite.global_position = origin
 		
 	# Configure its collision
 	_configure_collision_for_bullet(bullet)

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var health : float = max_health : get = get_current_health
+var health : float : get = get_current_health
 var max_health_bonus : float = 0
 var max_health_base : float = 100000
 var max_health : get = get_max_health
@@ -21,7 +21,7 @@ var attack_speed_bonus : float = 0
 var attack_damage : float : get = get_attack_damage
 var attack_damage_base : float = 5
 var attack_damage_bonus : float = 0
-var movespeed_bonus : float = 1000
+var movespeed_bonus : float = 0
 var movespeed_base : float = 100
 var movespeed : get = get_movement_speed
 var chosen_class : int = -1
@@ -158,6 +158,7 @@ func get_game_time() -> int:
 	return int(game_time)
 	
 func _ready() -> void:
+	health = max_health
 	add_child(chain_lightning_timer)
 	add_child(dash_timer)
 	chain_lightning_timer.autostart = false

@@ -6,12 +6,14 @@ signal attack_signal
 var distance_to_player : float
 var is_attacking : bool = false
 var frame_counter : int = 15
+var projectile_speed : float = 100
 
 func _ready() -> void:
 	super()
 	collision_calc_cooldown = 10
 	repulsion_force = 100
 	attack_signal.connect(attack)
+	$CollisionShape2D.shape.size = Vector2(20, 30)
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -20,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	if frame_counter == 0:
 		calculate_position()
 		frame_counter = 15
-
+	#global_position += velocity * delta
 	super(delta)
 	
 func _process(delta: float) -> void:
@@ -38,7 +40,7 @@ func calculate_position():
 		velocity = Vector2.ZERO
 
 func attack():
-	if not is_attacking:
+	if not is_attacking and false:
 		is_attacking = true
 		var attack_projectile = PlayerState.enemy_projectile_bench.pop_front()
 		#add_child(attack_projectile)
@@ -48,7 +50,7 @@ func attack():
 		attack_projectile.global_position = global_position + direction * 15
 		attack_projectile.direction = global_position.direction_to(player.global_position)
 		attack_projectile.damage = 10
-		attack_projectile.velocity = 5 * attack_projectile.direction
+		attack_projectile.velocity = projectile_speed * attack_projectile.direction
 		attack_projectile._reusable_ready()
 		await(get_tree().create_timer(1.25 + variation * 10).timeout)
 		is_attacking = false

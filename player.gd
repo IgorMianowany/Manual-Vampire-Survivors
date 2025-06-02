@@ -160,7 +160,7 @@ func _physics_process(delta: float) -> void:
 		handle_movement()
 	handle_animation()
 	handle_weapon_rotation()
-	move_and_slide()
+	move_and_collide(velocity * delta)
 	
 func handle_animation() -> void:
 	if $Weapon.is_attacking and PlayerState.chosen_class == 0:
