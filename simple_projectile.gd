@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	if not active:
 		return
 	#velocity = direction * speed * delta
-	global_position += velocity
+	global_position += velocity * delta
 
 
 func _on_timer_timeout() -> void:

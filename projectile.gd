@@ -19,10 +19,11 @@ var velocity : Vector2
 var active : bool = false
 var start_position : Vector2
 var player_projectile : bool = true
+var shape_id : RID
 
 func _ready() -> void:
 	set_as_top_level(true)
-	set_process(false)
+	#set_process(false)
 	$Timer.wait_time = lifetime
 	$Timer.autostart = true
 

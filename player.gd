@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var knockback_power : float = 1
 @export var self_knockback_speed : float = 5
 @export var player_class : int = 1
+@export var bullet_manager : BulletManager
 var invincibility_timer : float = 0
 var is_invincible : bool = false
 var invincibility_animation_frequency = 5
@@ -82,8 +83,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("attack"):
 		#attack()
 		set_attack_direction()
-		$Weapon.attack(global_position, (get_global_mouse_position() - global_position).normalized())
-		#$Weapon.attack(global_position, global_position.direction_to(get_global_mouse_position()))
+		$Weapon.attack(global_position, (get_global_mouse_position() - global_position).normalized()) 
+	
+	#if Input.is_action_just_pressed("attack"):
+		#bullet_manager.spawn_bullet(global_position.direction_to(get_global_mouse_position()), 500, global_position)
 		
 	if Input.is_action_just_pressed("level_up"):
 		PlayerState.add_exp(PlayerState.experience_threshold)
