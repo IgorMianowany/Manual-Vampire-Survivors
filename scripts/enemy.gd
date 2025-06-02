@@ -44,6 +44,7 @@ var collision_calc_cooldown : int = 0
 var is_attacking : bool = false
 var distance_to_player : float
 var frame_counter : int = 15
+var color : Color = Color.WHITE
 
 
 @export var test_name : String
@@ -72,6 +73,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#$Control/Label.text = test_name
+	$AnimatedSprite2D.modulate = color
 	if not active:
 		return
 	if is_pulled:
@@ -342,9 +344,9 @@ func check_collisions():
 
 	closest_boid.global_position += repulsion_direction * 5
 
-		
-
-	
+func change_color(_color : Color):
+	color = _color
+	#$AnimatedSprite2D.modulate = color
 
 
 func _on_vision_area_entered(area: Area2D) -> void:

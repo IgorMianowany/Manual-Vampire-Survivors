@@ -32,11 +32,15 @@ func summon():
 		var summon_position = global_position + Vector2(50, 50)
 		is_attacking = true
 		$AnimatedSprite2D2.play("summon")
+
+		await(get_tree().create_timer(variation * 2).timeout)
+		print(variation)
 		$SummoningCircle.global_position = summon_position
 		$SummoningCircle.visible = true
 		await(get_tree().create_timer(1).timeout)
 		var slime = slime_scene.instantiate()
 		slime.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+		slime.change_color(Color.LAWN_GREEN)
 		slime.active = true
 		slime.player = player
 		slime.global_position = summon_position

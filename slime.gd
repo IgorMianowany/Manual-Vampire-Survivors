@@ -65,6 +65,7 @@ func jump_toward_player(_jump_variation : float) -> void:
 		repulsion_force = 0
 		velocity = Vector2.ZERO
 	player_direction = new_direction
+
 #
 #func jump_toward_player(_jump_variation : float) -> void:
 	#var new_direction := Vector2.ZERO
