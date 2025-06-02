@@ -3,7 +3,7 @@ extends Node2D
 @export var min_cooldown : float = 1
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 500
+var upperLimit : int = 300
 
 var regex : RegEx
 
@@ -19,17 +19,60 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
-		var slime_instance = slime.instantiate()
-		if name.contains("26"):
-			slime_instance = skeleton_archer.instantiate()
-		count += 1
-		PlayerState.slime_spawned += 1
-		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
-		slime_instance.active = true
-		slime_instance.player = player
-		slime_instance.global_position = global_position
-		add_child(slime_instance)
-		PlayerState.active_enemies_count += 1
+		for i in range(1, 10):
+			var slime_instance
+			if name.contains("26"):
+				slime_instance = skeleton_archer.instantiate()
+			else:
+				slime_instance = slime.instantiate()
+			count += 1
+			PlayerState.slime_spawned += 1
+			slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+			slime_instance.active = true
+			slime_instance.player = player
+			slime_instance.global_position = global_position
+			add_child(slime_instance)
+			PlayerState.active_enemies_count += 1
+		#var slime_instance = slime.instantiate()
+		#var slime_instance2 = slime.instantiate()
+		#var slime_instance3 = slime.instantiate()
+		#var slime_instance4 = slime.instantiate()
+		#if name.contains("26"):
+			#slime_instance = skeleton_archer.instantiate()
+			#slime_instance2 = skeleton_archer.instantiate()
+			#slime_instance3 = skeleton_archer.instantiate()
+			#slime_instance4 = skeleton_archer.instantiate()
+		#count += 1
+		#PlayerState.slime_spawned += 1
+		#slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+		#slime_instance.active = true
+		#slime_instance.player = player
+		#slime_instance.global_position = global_position
+		#add_child(slime_instance)
+		#PlayerState.active_enemies_count += 1
+		#count += 1
+		#PlayerState.slime_spawned += 1
+		#slime_instance2.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+		#slime_instance2.active = true
+		#slime_instance2.player = player
+		#slime_instance2.global_position = global_position
+		#add_child(slime_instance2)
+		#PlayerState.active_enemies_count += 1
+		#count += 1
+		#PlayerState.slime_spawned += 1
+		#slime_instance3.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+		#slime_instance3.active = true
+		#slime_instance3.player = player
+		#slime_instance3.global_position = global_position
+		#add_child(slime_instance3)
+		#count += 1
+		#PlayerState.slime_spawned += 1
+		#slime_instance4.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
+		#slime_instance4.active = true
+		#slime_instance4.player = player
+		#slime_instance4.global_position = global_position
+		#add_child(slime_instance4)
+		#PlayerState.active_enemies_count += 1
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)

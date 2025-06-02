@@ -66,7 +66,7 @@ func _ready() -> void:
 	healthbar_new.init_health(max_health)
 
 func _physics_process(delta: float) -> void:
-	$Control/Label.text = test_name
+	#$Control/Label.text = test_name
 	if not active:
 		return
 	if is_pulled:

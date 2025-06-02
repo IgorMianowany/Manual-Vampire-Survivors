@@ -1,7 +1,7 @@
 class_name SimpleProjectile
 extends Node2D
 
-@export var speed : float = 100
+@export var speed : float = 5
 @export var lifetime : float = 2
 
 var damage : float
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not active:
 		return
-	velocity = direction * speed * delta
+	#velocity = direction * speed * delta
 	global_position += velocity
 
 
@@ -49,3 +49,4 @@ func _reusable_ready():
 	$ProjectileHitbox.damage = damage
 	$ProjectileHitbox.is_player_hitbox = false
 	$Timer.start(lifetime)
+	
