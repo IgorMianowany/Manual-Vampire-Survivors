@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdslidoesuukt"]
+[gd_scene load_steps=10 format=3 uid="uid://bdslidoesuukt"]
 
 [ext_resource type="Script" uid="uid://dfipnrxnrswon" path="res://ui.gd" id="1_asaxx"]
 [ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="1_remj8"]
 [ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="2_hthmp"]
 [ext_resource type="Texture2D" uid="uid://de53741k1piw3" path="res://assets/sprites/UI/experiencebarProgress.png" id="4_pd1fm"]
 [ext_resource type="Texture2D" uid="uid://b0dn2m6qe60cj" path="res://assets/sprites/UI/Experiencebar.png" id="5_gevhn"]
+[ext_resource type="Texture2D" uid="uid://c5bkahvyqepyn" path="res://assets/sprites/UI/faithbar_progress.png" id="5_ok7cu"]
 [ext_resource type="PackedScene" uid="uid://bhybws6isov8o" path="res://skills_cooldown.tscn" id="6_d20t8"]
 [ext_resource type="PackedScene" uid="uid://bm5ln50kqbehs" path="res://stat_sheet.tscn" id="7_iwrbj"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="8_wfc1t"]
@@ -30,6 +31,7 @@ texture_under = ExtResource("1_remj8")
 texture_progress = ExtResource("2_hthmp")
 
 [node name="Manabar" type="TextureProgressBar" parent="CanvasLayer"]
+visible = false
 offset_left = 17.0
 offset_top = 80.0
 offset_right = 238.0
@@ -38,6 +40,16 @@ step = 0.1
 nine_patch_stretch = true
 texture_under = ExtResource("1_remj8")
 texture_progress = ExtResource("4_pd1fm")
+
+[node name="Faithbar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 17.0
+offset_top = 80.0
+offset_right = 238.0
+offset_bottom = 123.0
+step = 0.1
+nine_patch_stretch = true
+texture_under = ExtResource("1_remj8")
+texture_progress = ExtResource("5_ok7cu")
 
 [node name="ExperienceBar" type="TextureProgressBar" parent="CanvasLayer"]
 anchors_preset = 7

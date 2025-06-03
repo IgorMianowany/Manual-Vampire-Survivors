@@ -71,7 +71,7 @@ func _ready() -> void:
 	variation = randf_range(0, jump_variation)
 	healthbar_new.init_health(max_health)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#$Control/Label.text = test_name
 	$AnimatedSprite2D.modulate = color
 	if not active:
@@ -260,8 +260,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_jumping = false
 	$AnimatedSprite2D.play("idle_down")
 	
-func _on_animation_finished(name : StringName):
-	if name == "die":
+func _on_animation_finished(anim_name : StringName):
+	if anim_name == "die":
 		if PlayerState.experience_pickup_bench.size() != 0:
 			var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
 			experience_pickup_new.reset(global_position)

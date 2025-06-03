@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://de1gu8p60tcid"]
+
+[ext_resource type="Texture2D" uid="uid://c6wvucn2bxdr1" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable4.png" id="1_2wt25"]
+[ext_resource type="Script" uid="uid://cosysh70wnypg" path="res://holy_bolt.gd" id="1_v6vm0"]
+[ext_resource type="Texture2D" uid="uid://bsypshlvkd5mj" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable5.png" id="2_x5yqo"]
+[ext_resource type="Texture2D" uid="uid://bapiggpu6x1au" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable6.png" id="3_v6vm0"]
+[ext_resource type="Texture2D" uid="uid://dtsf5lsfo41jj" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable7.png" id="4_fkrsl"]
+[ext_resource type="Texture2D" uid="uid://bm35jurhq8i5j" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable8.png" id="5_xo7nt"]
+[ext_resource type="Texture2D" uid="uid://ckc7jdc813whu" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Impact7.png" id="6_njj5i"]
+[ext_resource type="Texture2D" uid="uid://dl8uel6oio50d" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Initial1.png" id="7_lgjc8"]
+[ext_resource type="Texture2D" uid="uid://dr0kemc6xlsxs" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Initial2.png" id="8_yo0rw"]
+[ext_resource type="Texture2D" uid="uid://bxww5y3eayfq" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable1.png" id="9_6ppd6"]
+[ext_resource type="Texture2D" uid="uid://d2w8j2il750e8" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable2.png" id="10_lc23e"]
+[ext_resource type="Texture2D" uid="uid://cpdmexrkopnyp" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable3.png" id="11_hwmvv"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="13_fkrsl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdmfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2wt25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x5yqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v6vm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fkrsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xo7nt")
+}],
+"loop": true,
+"name": &"loop_projectile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_njj5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lgjc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yo0rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6ppd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lc23e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hwmvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_2wt25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x5yqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v6vm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fkrsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xo7nt")
+}],
+"loop": false,
+"name": &"spawn_projectile",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xo7nt"]
+radius = 11.0454
+
+[node name="HolyBolt" type="Node2D"]
+z_index = 1
+script = ExtResource("1_v6vm0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gdmfl")
+animation = &"loop_projectile"
+autoplay = "spawn_projectile"
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("13_fkrsl")
+metadata/_custom_type_script = "uid://p8h3fxevo1ct"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_xo7nt")

@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	#global_position += velocity * delta
 	super(delta)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if velocity == Vector2.ZERO and not is_attacking:
 		attack()
 

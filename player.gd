@@ -36,6 +36,7 @@ var knife_summon_scene = preload("res://knife_summon.tscn")
 var current_interactable : Interactable = null
 var min_interact_distance : float = 100
 var current_interact_distance : float = 100
+var holy_bolt_scene := preload("res://holy_bolt.tscn")
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
@@ -155,6 +156,14 @@ func _physics_process(delta: float) -> void:
 				current_interactable.toggle_interact_outline(false)
 				current_interactable = area
 				current_interactable.toggle_interact_outline(true)
+				
+	if Input.is_action_just_pressed("spell_1") and PlayerState.chosen_class == 4:
+		var holy_bolt = holy_bolt_scene.instantiate()
+		add_child(holy_bolt)
+		holy_bolt.speed = 10
+		holy_bolt.damage = 1
+		holy_bolt.direction = global_position.direction_to(get_global_mouse_position())
+		holy_bolt.global_position = global_position
 
 	if not is_knocked_back and not is_dashing:
 		handle_movement()
@@ -302,6 +311,7 @@ func get_elapsed_time() -> int:
 	return int(max_time - $GameTimer.time_left + 1)
 	
 func set_class():
+	$AnimatedSprite2D/HolyCross.visible = false
 	match PlayerState.chosen_class:
 		0:
 			$Weapon.weapon_type = $Weapon/Sword
@@ -322,6 +332,13 @@ func set_class():
 			$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
 			$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
 			PlayerState.class_level = PlayerState.staff_level_base
+		4:
+			$Weapon.weapon_type = $Weapon/PrayerBook
+			#$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
+			#$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
+			$AnimatedSprite2D/HolyCross.visible = true
+			PlayerState.class_level = PlayerState.prayer_book_level_base
+		
 
 func handle_weapon_rotation():
 	#Get the mouse position relative to the screen

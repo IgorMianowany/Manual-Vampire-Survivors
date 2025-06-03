@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 			
 func _draw() -> void:
-	var offset = bullet_image.get_size() / 2.0
+	var _offset = bullet_image.get_size() / 2.0
 	for i in range(0, bullets.size()):
 		var bullet = bullets[i]
 		var sprite2d = Sprite2D.new()

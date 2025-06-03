@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp5b3a2qsf42v"]
+[gd_scene load_steps=9 format=3 uid="uid://cp5b3a2qsf42v"]
 
 [ext_resource type="Script" uid="uid://d2lnii27x821d" path="res://class_selection.gd" id="1_2yygo"]
 [ext_resource type="PackedScene" uid="uid://dnp8qdml8cw8g" path="res://class_card.tscn" id="2_nswkl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cev6tdhrl5yco" path="res://assets/sprites/objects/stone_blue.png" id="4_p7dw6"]
 [ext_resource type="Texture2D" uid="uid://70c0v3rj4x74" path="res://assets/sprites/projectiles/fire.png" id="5_r8pnt"]
 [ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="7_6llrb"]
+[ext_resource type="Texture2D" uid="uid://cya41kpntrfm3" path="res://assets/sprites/Holy Knight/HolyAssets/Cross.png" id="8_5gcrx"]
 
 [node name="ClassSelection" type="Control"]
 process_mode = 3
@@ -69,3 +70,10 @@ script = ExtResource("3_22nrg")
 icon = ExtResource("7_6llrb")
 description = "Ninja"
 class_number = 3
+
+[node name="Holy Knight" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_nswkl")]
+layout_mode = 2
+script = ExtResource("3_22nrg")
+icon = ExtResource("8_5gcrx")
+description = "Holy Knight"
+class_number = 4

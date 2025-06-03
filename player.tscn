@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=100 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" uid="uid://br0imqlcdd70p" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -71,6 +71,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qjeloah7jw6" path="res://assets/sprites/particles/chainlightning/lightning_v2_2.png" id="68_o0f6m"]
 [ext_resource type="Texture2D" uid="uid://b1irv41kfp4mk" path="res://assets/sprites/items/shuriken.png" id="68_uihbl"]
 [ext_resource type="Texture2D" uid="uid://byr76s2pcacna" path="res://assets/sprites/particles/chainlightning/lightning_v2_3.png" id="69_0latn"]
+[ext_resource type="Script" uid="uid://c4agbmhxyxdmd" path="res://prayer_book.gd" id="70_7c55y"]
 [ext_resource type="Texture2D" uid="uid://smnih7xin388" path="res://assets/sprites/particles/chainlightning/lightning_v2_4.png" id="70_wx8kk"]
 [ext_resource type="Texture2D" uid="uid://cm76oghs33am5" path="res://assets/sprites/particles/chainlightning/lightning_v2_5.png" id="71_oe8vt"]
 [ext_resource type="Texture2D" uid="uid://bg26dd2aqnqdp" path="res://assets/sprites/particles/chainlightning/lightning_v2_6.png" id="72_igqa3"]
@@ -81,6 +82,7 @@
 [ext_resource type="Texture2D" uid="uid://b4r73pkuyslxy" path="res://assets/sprites/particles/chainlightning/lightning_v2_11.png" id="77_b18lj"]
 [ext_resource type="Texture2D" uid="uid://be2teer4yp1pp" path="res://assets/sprites/particles/chainlightning/lightning_v2_12.png" id="78_wq3il"]
 [ext_resource type="Texture2D" uid="uid://djusm71psot4x" path="res://assets/sprites/particles/chainlightning/lightning_v2_13.png" id="79_iqhw1"]
+[ext_resource type="Texture2D" uid="uid://cya41kpntrfm3" path="res://assets/sprites/Holy Knight/HolyAssets/Cross.png" id="82_vihdy"]
 
 [sub_resource type="Shader" id="Shader_yifqv"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -476,6 +478,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_y0j88")
 
 [node name="BubbleShield" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 7
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_6lt3n")
@@ -492,11 +495,16 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_abd2b")
-animation = &"death"
+animation = &"idle_front"
 autoplay = "idle_front"
-frame = 2
-frame_progress = 1.0
 speed_scale = 1.5
+
+[node name="HolyCross" type="Sprite2D" parent="AnimatedSprite2D"]
+visible = false
+z_index = 2
+position = Vector2(9.625, 9.2125)
+scale = Vector2(0.167969, 0.184766)
+texture = ExtResource("82_vihdy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -571,6 +579,9 @@ weapon_texture = ExtResource("58_ojugi")
 script = ExtResource("67_oftbl")
 weapon_texture = ExtResource("68_uihbl")
 
+[node name="PrayerBook" type="Node2D" parent="Weapon"]
+script = ExtResource("70_7c55y")
+
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 1e+07
 one_shot = true
@@ -582,12 +593,15 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
+visible = false
 
 [node name="WeaponSprite" type="Sprite2D" parent="Marker2D"]
+visible = false
 z_index = 1
 position = Vector2(10, 0)
 
 [node name="ChainLightningReady" type="AnimatedSprite2D" parent="Marker2D"]
+visible = false
 z_index = 1
 position = Vector2(10, 0)
 scale = Vector2(0.192308, 0.181818)
@@ -640,5 +654,7 @@ shape = SubResource("CircleShape2D_dhoyc")
 [connection signal="attack_started" from="Weapon/Staff" to="Weapon" method="_on_staff_attack_started"]
 [connection signal="attack_finished" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_finished"]
 [connection signal="attack_started" from="Weapon/Shuriken" to="Weapon" method="_on_bow_attack_started"]
+[connection signal="attack_finished" from="Weapon/PrayerBook" to="Weapon" method="_on_sword_attack_finished"]
+[connection signal="attack_started" from="Weapon/PrayerBook" to="Weapon" method="_on_sword_attack_started"]
 [connection signal="area_entered" from="InteractRange" to="." method="_on_interact_range_area_entered"]
 [connection signal="area_exited" from="InteractRange" to="." method="_on_interact_range_area_exited"]

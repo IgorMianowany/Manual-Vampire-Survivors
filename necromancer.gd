@@ -1,6 +1,8 @@
 class_name Necromancer
 extends Enemy
 
+# BEFORE DYING PLAY DIE ANIMATION ON ALL CHILD NODES
+
 var slime_scene := preload("res://slime.tscn")
 
 func _ready() -> void:
@@ -65,7 +67,7 @@ func calculate_position():
 	else:
 		velocity = Vector2.ZERO
 	
-func handle_animation(variation : float):
+func handle_animation(_anim_variation : float):
 	if is_dead:
 		return
 	elif velocity == Vector2.ZERO and not $AnimatedSprite2D2.animation == "summon":
