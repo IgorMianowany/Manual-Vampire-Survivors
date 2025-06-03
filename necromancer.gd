@@ -34,7 +34,6 @@ func summon():
 		$AnimatedSprite2D2.play("summon")
 
 		await(get_tree().create_timer(variation * 2).timeout)
-		print(variation)
 		$SummoningCircle.global_position = summon_position
 		$SummoningCircle.visible = true
 		await(get_tree().create_timer(1).timeout)
