@@ -1,11 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://butyum2woyxx7"]
+[gd_scene load_steps=11 format=3 uid="uid://butyum2woyxx7"]
 
 [ext_resource type="Script" uid="uid://dhd635funswp5" path="res://holy_explosion.gd" id="1_q0e15"]
-[ext_resource type="Texture2D" uid="uid://c6wvucn2bxdr1" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable4.png" id="2_bgan7"]
-[ext_resource type="Texture2D" uid="uid://bsypshlvkd5mj" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable5.png" id="3_jdux8"]
-[ext_resource type="Texture2D" uid="uid://bapiggpu6x1au" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable6.png" id="4_13l8q"]
-[ext_resource type="Texture2D" uid="uid://dtsf5lsfo41jj" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable7.png" id="5_ghr7f"]
-[ext_resource type="Texture2D" uid="uid://bm35jurhq8i5j" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable8.png" id="6_jr8bx"]
 [ext_resource type="Texture2D" uid="uid://diunpg7s213fp" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Impact1.png" id="7_jpfjb"]
 [ext_resource type="Texture2D" uid="uid://0o5qhuc0d15s" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Impact2.png" id="8_65hbs"]
 [ext_resource type="Texture2D" uid="uid://dgfw0ddva0gjg" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Impact3.png" id="9_qhscw"]
@@ -17,26 +12,6 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5pnfu"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_bgan7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_jdux8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_13l8q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ghr7f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_jr8bx")
-}],
-"loop": true,
-"name": &"loop_projectile",
-"speed": 8.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_jpfjb")
@@ -59,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_5rncy")
 }],
-"loop": true,
+"loop": false,
 "name": &"spawn_projectile",
 "speed": 21.0
 }]
@@ -73,7 +48,8 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_5pnfu")
 animation = &"spawn_projectile"
 autoplay = "spawn_projectile"
-frame_progress = 0.102216
+frame = 6
+frame_progress = 1.0
 speed_scale = 0.5
 
 [node name="Hitbox" type="Area2D" parent="."]
