@@ -1,3 +1,4 @@
+class_name HolyBolt
 extends Node2D
 
 var cost : float

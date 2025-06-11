@@ -1,0 +1,113 @@
+[gd_scene load_steps=21 format=3 uid="uid://bpqnxgtl556yo"]
+
+[ext_resource type="Texture2D" uid="uid://bf3toqguasv1n" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 1.png" id="1_40tla"]
+[ext_resource type="Script" uid="uid://0enrf46683k" path="res://holy_beam.gd" id="1_xkx6s"]
+[ext_resource type="Texture2D" uid="uid://blvg2lb2dcdm0" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 2.png" id="2_xkx6s"]
+[ext_resource type="Texture2D" uid="uid://bdoeasi3d0hex" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 3.png" id="3_3q3vw"]
+[ext_resource type="Texture2D" uid="uid://bxbpxuojwequ5" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 4.png" id="4_toybq"]
+[ext_resource type="Texture2D" uid="uid://dhsqucwtc6ogy" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 5.png" id="5_w4okb"]
+[ext_resource type="Texture2D" uid="uid://dmrrruwe36fev" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 6.png" id="6_dyj7k"]
+[ext_resource type="Texture2D" uid="uid://3fssg1cryrpn" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 7.png" id="7_6xe0f"]
+[ext_resource type="Texture2D" uid="uid://banqqx3k7gkxl" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 8.png" id="8_i8xwd"]
+[ext_resource type="Texture2D" uid="uid://bjijnlkf84tpc" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 9.png" id="9_on83s"]
+[ext_resource type="Texture2D" uid="uid://dfdoeymj3uon" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 10.png" id="10_1lvfw"]
+[ext_resource type="Texture2D" uid="uid://cy30f7xe6s8wr" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 11.png" id="11_u40ml"]
+[ext_resource type="Texture2D" uid="uid://ca7pqd4eyfl8b" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 12.png" id="12_j2ral"]
+[ext_resource type="Texture2D" uid="uid://bfeldhko2lo3b" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 13.png" id="13_mtiqo"]
+[ext_resource type="Texture2D" uid="uid://cu2s2t5rnswn1" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 14.png" id="14_75nun"]
+[ext_resource type="Texture2D" uid="uid://kqitl2abgass" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 15.png" id="15_4a7p3"]
+[ext_resource type="Texture2D" uid="uid://cc7vmabedie8y" path="res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 02/Separated Frames/Holy VFX 02 16.png" id="16_txyve"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="17_d2f8a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jse6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_40tla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xkx6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3q3vw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_toybq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w4okb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dyj7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6xe0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i8xwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_on83s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1lvfw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u40ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_j2ral")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mtiqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_75nun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4a7p3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_txyve")
+}],
+"loop": false,
+"name": &"spawn_projectile",
+"speed": 32.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlruy"]
+size = Vector2(24, 28)
+
+[node name="HolyBeam" type="Node2D"]
+script = ExtResource("1_xkx6s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(240, 0)
+rotation = 1.5708
+scale = Vector2(1, 10)
+sprite_frames = SubResource("SpriteFrames_jse6k")
+animation = &"spawn_projectile"
+autoplay = "spawn_projectile"
+frame = 15
+frame_progress = 1.0
+speed_scale = 0.5
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("17_d2f8a")
+metadata/_custom_type_script = "uid://p8h3fxevo1ct"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_hlruy")
+disabled = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(480, 0)
+rotation = 1.5708
+scale = Vector2(1, 10)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

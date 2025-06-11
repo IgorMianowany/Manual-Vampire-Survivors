@@ -38,6 +38,7 @@ var min_interact_distance : float = 100
 var current_interact_distance : float = 100
 var holy_bolt_scene := preload("res://holy_bolt.tscn")
 var holy_explosion_scene := preload("res://holy_explosion.tscn")
+var holy_beam_scene := preload("res://holy_beam.tscn")
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
@@ -176,6 +177,15 @@ func _physics_process(delta: float) -> void:
 			holy_explosion.damage = 5
 			holy_explosion.global_position = get_global_mouse_position()
 			holy_explosion.set_skill_stats()
+	if Input.is_action_just_pressed("spell_3") and PlayerState.chosen_class == 4:
+		if PlayerState.holy_beam_cooldown_base <= 0:
+			PlayerState.holy_beam_cooldown_base = 1
+			var holy_beam = holy_beam_scene.instantiate()
+			add_child(holy_beam)
+			holy_beam.direction = global_position.direction_to(get_global_mouse_position())
+			holy_beam.damage = 5
+			holy_beam.global_position = global_position
+			holy_beam.set_skill_stats()
 		
 
 	if not is_knocked_back and not is_dashing:
@@ -187,6 +197,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	PlayerState.holy_bolt_cooldown_base -= delta
 	PlayerState.holy_explosion_cooldown_base -= delta
+	PlayerState.holy_beam_cooldown_base -= delta
 	
 func handle_animation() -> void:
 	if $Weapon.is_attacking and PlayerState.chosen_class == 0:
