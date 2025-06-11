@@ -92,6 +92,8 @@ var max_faith : float = 100
 var faith_bonus : float = 0
 var faith_regen_base : float = 0.05
 var faith_regen_bonus : float = 0
+var holy_bolt_cooldown_base : float = 1
+var holy_explosion_cooldown_base : float = 1
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
 "debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene"]
