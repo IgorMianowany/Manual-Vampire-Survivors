@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://ryyuju6qndc"]
+[gd_scene load_steps=101 format=3 uid="uid://ryyuju6qndc"]
 
 [ext_resource type="Script" uid="uid://br0imqlcdd70p" path="res://player.gd" id="1_0qibv"]
 [ext_resource type="Texture2D" uid="uid://bg2j2f5p63slf" path="res://assets/sprites/characters/tiles/tile000.png" id="1_41ohv"]
@@ -83,6 +83,7 @@
 [ext_resource type="Texture2D" uid="uid://be2teer4yp1pp" path="res://assets/sprites/particles/chainlightning/lightning_v2_12.png" id="78_wq3il"]
 [ext_resource type="Texture2D" uid="uid://djusm71psot4x" path="res://assets/sprites/particles/chainlightning/lightning_v2_13.png" id="79_iqhw1"]
 [ext_resource type="Texture2D" uid="uid://cya41kpntrfm3" path="res://assets/sprites/Holy Knight/HolyAssets/Cross.png" id="82_vihdy"]
+[ext_resource type="Script" uid="uid://dr3xjpqljcpld" path="res://skill.gd" id="84_hoal8"]
 
 [sub_resource type="Shader" id="Shader_yifqv"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
@@ -642,6 +643,15 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
 shape = SubResource("CircleShape2D_dhoyc")
+
+[node name="Skills" type="Node2D" parent="."]
+
+[node name="Skill1" type="Node2D" parent="Skills"]
+script = ExtResource("84_hoal8")
+
+[node name="Skill2" type="Node2D" parent="Skills"]
+
+[node name="Skill3" type="Node2D" parent="Skills"]
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]

@@ -7,10 +7,12 @@ var speed : float
 var velocity : Vector2
 var direction : Vector2
 var lifetime : float = 3
+var player : Player
 
 
 func _ready() -> void:
 	set_as_top_level(true)
+	
 
 func _process(delta: float) -> void:
 	lifetime -= delta
@@ -19,6 +21,10 @@ func _process(delta: float) -> void:
 	global_position += velocity * delta
 
 func set_skill_stats():
+	speed = 100
+	damage = 1
+	direction = global_position.direction_to(get_global_mouse_position())
+	global_position = Player.global_position
 	velocity = direction * speed
 	$Hitbox.damage = damage
 	#get_angle_to(direction)

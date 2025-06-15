@@ -162,13 +162,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("spell_1") and PlayerState.chosen_class == 4:
 		if PlayerState.holy_bolt_cooldown_base <= 0:
 			PlayerState.holy_bolt_cooldown_base = 1
-			var holy_bolt = holy_bolt_scene.instantiate()
-			add_child(holy_bolt)
-			holy_bolt.speed = 100
-			holy_bolt.damage = 1
-			holy_bolt.direction = global_position.direction_to(get_global_mouse_position())
-			holy_bolt.global_position = global_position
-			holy_bolt.set_skill_stats()
+			$Skills/Skill1.cast_skill()
+			#var holy_bolt = holy_bolt_scene.instantiate()
+			#add_child(holy_bolt)
+			#holy_bolt.speed = 100
+			#holy_bolt.damage = 1
+			#holy_bolt.direction = global_position.direction_to(get_global_mouse_position())
+			#holy_bolt.global_position = global_position
+			#holy_bolt.set_skill_stats()
 	if Input.is_action_just_pressed("spell_2") and PlayerState.chosen_class == 4:
 		if PlayerState.holy_explosion_cooldown_base <= 0:
 			PlayerState.holy_explosion_cooldown_base = 1
@@ -362,6 +363,7 @@ func set_class():
 			PlayerState.class_level = PlayerState.staff_level_base
 		4:
 			$Weapon.weapon_type = $Weapon/PrayerBook
+			$Skills/Skill1.skill_scene = holy_bolt_scene
 			#$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
 			#$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
 			$AnimatedSprite2D/HolyCross.visible = true
