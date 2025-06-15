@@ -1,7 +1,6 @@
 class_name HolyBolt
 extends CommonSkill
 
-var cost : float
 var damage : float = 1
 var speed : float
 var velocity : Vector2
@@ -12,6 +11,7 @@ var player : Player
 
 func _ready() -> void:
 	set_as_top_level(true)
+	icon = preload("res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable1.png")
 	
 
 func _process(delta: float) -> void:

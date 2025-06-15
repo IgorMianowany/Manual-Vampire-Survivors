@@ -54,3 +54,10 @@ func _on_back_button_pressed() -> void:
 	
 func toggle_interact_visibility(_visible : bool):
 	$CanvasLayer/Interact.visible = _visible
+
+func set_skills(skill1 : CommonSkill, skill2: CommonSkill, skill3: CommonSkill):
+	$CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer/SkillSlot.set_skill_info(skill1)
+	$CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer2/SkillSlot.set_skill_info(skill2)
+	$CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer3/SkillSlot.set_skill_info(skill3)
+	
+	

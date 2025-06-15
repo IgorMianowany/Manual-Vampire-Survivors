@@ -368,6 +368,7 @@ func set_class():
 			$Skills/Skill1.skill_scene = holy_bolt_scene
 			$Skills/Skill2.skill_scene = holy_explosion_scene
 			$Skills/Skill3.skill_scene = holy_beam_scene
+			$UI.set_skills(HolyBolt.new(), holy_explosion_scene.instantiate(), holy_beam_scene.instantiate())
 			#$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
 			#$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
 			$AnimatedSprite2D/HolyCross.visible = true

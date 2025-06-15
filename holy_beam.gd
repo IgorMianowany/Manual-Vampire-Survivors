@@ -2,7 +2,6 @@ class_name HolyBeam
 extends CommonSkill
 
 var shape_x : float
-var cost : float
 var damage : float = 1
 var speed : float = 32
 var direction : Vector2

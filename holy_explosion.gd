@@ -1,7 +1,6 @@
 class_name HolyExplosion
 extends CommonSkill
 
-var cost : float
 var damage : float = 1
 var direction : Vector2
 

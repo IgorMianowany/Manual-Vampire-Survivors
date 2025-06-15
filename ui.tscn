@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdslidoesuukt"]
+[gd_scene load_steps=11 format=3 uid="uid://bdslidoesuukt"]
 
 [ext_resource type="Script" uid="uid://dfipnrxnrswon" path="res://ui.gd" id="1_asaxx"]
 [ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="1_remj8"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bhybws6isov8o" path="res://skills_cooldown.tscn" id="6_d20t8"]
 [ext_resource type="PackedScene" uid="uid://bm5ln50kqbehs" path="res://stat_sheet.tscn" id="7_iwrbj"]
 [ext_resource type="PackedScene" uid="uid://dtukdveeqlpv4" path="res://coins_label.tscn" id="8_wfc1t"]
+[ext_resource type="PackedScene" uid="uid://delqmj1y585it" path="res://skill_slot.tscn" id="10_irxef"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -196,5 +197,41 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press 'e' to interact"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 65
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer" instance=ExtResource("10_irxef")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer2" instance=ExtResource("10_irxef")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="SkillSlot" parent="CanvasLayer/MarginContainer2/HBoxContainer/MarginContainer3" instance=ExtResource("10_irxef")]
+layout_mode = 2
 
 [connection signal="pressed" from="CanvasLayer/OnDeathControls/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -88,8 +88,9 @@ var class_level : int = 0
 var mana_regen_base : float = 0.05
 var mana_regen_bonus : float = 0
 var faith_base : float = 100
-var max_faith : float = 100
+var max_faith : float = 100 : get = get_max_faith
 var faith_bonus : float = 0
+var faith : float = max_faith
 var faith_regen_base : float = 0.05
 var faith_regen_bonus : float = 0
 var holy_bolt_cooldown_base : float = 1
@@ -165,6 +166,9 @@ func set_upgrades_amount(new_value):
 	
 func get_game_time() -> int:
 	return int(game_time)
+
+func get_max_faith() -> float:
+	return faith_base + faith_bonus
 	
 func _ready() -> void:
 	health = max_health
@@ -385,3 +389,17 @@ func get_new_upgrade_value(upgrade_type : UPGRADES) -> float:
 		return staff_level_base + 1
 	else:
 		return 0
+		
+func get_current_resource() -> int:
+	match chosen_class:
+		0:
+			return 0
+		1:
+			return 0
+		2: 
+			return mana
+		3:
+			return 0
+		4:
+			return faith_base
+	return 0
