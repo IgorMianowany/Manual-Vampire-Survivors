@@ -77,6 +77,8 @@ radius = 11.0454
 [node name="HolyBolt" type="Node2D"]
 z_index = 1
 script = ExtResource("1_v6vm0")
+cost = 10.0
+icon = ExtResource("9_6ppd6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gdmfl")

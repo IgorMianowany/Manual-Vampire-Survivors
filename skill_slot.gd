@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	else:
 		$ColorRect/MarginContainer.z_index = 0
 	
-	#available = skill.cost >= PlayerState.get_current_resource() and skill.cooldown <= 0
+	available = cost <= PlayerState.get_current_resource() and skill.cooldown <= 0
 	
 func set_skill_info(_skill: CommonSkill):
 	skill = _skill

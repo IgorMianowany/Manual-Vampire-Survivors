@@ -3,8 +3,8 @@ extends Node2D
 
 var player_position : Vector2
 var cooldown : float
-var cost : float
-var icon : Texture2D = preload("res://icon.svg")
+@export var cost : float
+@export var icon : Texture2D = preload("res://icon.svg")
 
 
 

@@ -11,8 +11,6 @@ var player : Player
 
 func _ready() -> void:
 	set_as_top_level(true)
-	icon = preload("res://assets/sprites/Holy Knight/HolyAssets/Holy VFX 01/Separated Frames/Holy VFX 01 Repeatable1.png")
-	
 
 func _process(delta: float) -> void:
 	lifetime -= delta
@@ -23,6 +21,7 @@ func _process(delta: float) -> void:
 func set_skill_stats():
 	speed = 100
 	damage = 1
+	cost = 10
 	global_position = player_position
 	direction = global_position.direction_to(get_global_mouse_position())
 	velocity = direction * speed
