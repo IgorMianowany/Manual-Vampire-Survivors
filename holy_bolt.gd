@@ -1,5 +1,5 @@
 class_name HolyBolt
-extends Node2D
+extends CommonSkill
 
 var cost : float
 var damage : float = 1
@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 func set_skill_stats():
 	speed = 100
 	damage = 1
+	global_position = player_position
 	direction = global_position.direction_to(get_global_mouse_position())
-	global_position = Player.global_position
 	velocity = direction * speed
 	$Hitbox.damage = damage
 	#get_angle_to(direction)

@@ -9,7 +9,6 @@ var skill_scene : PackedScene
 
 func cast_skill():
 	var skill = skill_scene.instantiate()
-	skill.player = get_tree().get_root().get_child(1)
-	print(skill.player.name)
+	skill.player_position = global_position
 	add_child(skill)
 	skill.set_skill_stats()

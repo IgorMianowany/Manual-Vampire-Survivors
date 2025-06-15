@@ -1,5 +1,5 @@
 class_name HolyBeam
-extends Node2D
+extends CommonSkill
 
 var shape_x : float
 var cost : float
@@ -12,6 +12,8 @@ func _ready() -> void:
 	$Hitbox/CollisionShape2D.disabled = false
 	
 func set_skill_stats():
+	global_position = player_position
+	direction = global_position.direction_to(get_global_mouse_position())
 	$Hitbox.damage = damage
 	look_at(global_position + direction)
 	

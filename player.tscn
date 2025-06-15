@@ -650,8 +650,10 @@ shape = SubResource("CircleShape2D_dhoyc")
 script = ExtResource("84_hoal8")
 
 [node name="Skill2" type="Node2D" parent="Skills"]
+script = ExtResource("84_hoal8")
 
 [node name="Skill3" type="Node2D" parent="Skills"]
+script = ExtResource("84_hoal8")
 
 [connection signal="body_entered" from="PlayerHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="attack_finished" from="Weapon/WeaponType" to="Weapon" method="_on_weapon_type_attack_finished"]

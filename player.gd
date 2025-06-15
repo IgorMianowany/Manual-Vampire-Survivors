@@ -173,20 +173,22 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("spell_2") and PlayerState.chosen_class == 4:
 		if PlayerState.holy_explosion_cooldown_base <= 0:
 			PlayerState.holy_explosion_cooldown_base = 1
-			var holy_explosion = holy_explosion_scene.instantiate()
-			add_child(holy_explosion)
-			holy_explosion.damage = 5
-			holy_explosion.global_position = get_global_mouse_position()
-			holy_explosion.set_skill_stats()
+			$Skills/Skill2.cast_skill()
+			#var holy_explosion = holy_explosion_scene.instantiate()
+			#add_child(holy_explosion)
+			#holy_explosion.damage = 5
+			#holy_explosion.global_position = get_global_mouse_position()
+			#holy_explosion.set_skill_stats()
 	if Input.is_action_just_pressed("spell_3") and PlayerState.chosen_class == 4:
 		if PlayerState.holy_beam_cooldown_base <= 0:
 			PlayerState.holy_beam_cooldown_base = 1
-			var holy_beam = holy_beam_scene.instantiate()
-			add_child(holy_beam)
-			holy_beam.direction = global_position.direction_to(get_global_mouse_position())
-			holy_beam.damage = 5
-			holy_beam.global_position = global_position
-			holy_beam.set_skill_stats()
+			$Skills/Skill3.cast_skill()
+			#var holy_beam = holy_beam_scene.instantiate()
+			#add_child(holy_beam)
+			#holy_beam.direction = global_position.direction_to(get_global_mouse_position())
+			#holy_beam.damage = 5
+			#holy_beam.global_position = global_position
+			#holy_beam.set_skill_stats()
 		
 
 	if not is_knocked_back and not is_dashing:
@@ -364,6 +366,8 @@ func set_class():
 		4:
 			$Weapon.weapon_type = $Weapon/PrayerBook
 			$Skills/Skill1.skill_scene = holy_bolt_scene
+			$Skills/Skill2.skill_scene = holy_explosion_scene
+			$Skills/Skill3.skill_scene = holy_beam_scene
 			#$Marker2D/WeaponSprite.texture = $Weapon/Shuriken.weapon_texture
 			#$Marker2D/WeaponSprite.scale = Vector2(0.02,0.02)
 			$AnimatedSprite2D/HolyCross.visible = true
