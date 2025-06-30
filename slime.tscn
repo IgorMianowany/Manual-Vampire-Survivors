@@ -396,3 +396,4 @@ shape = SubResource("CircleShape2D_y60gu")
 [connection signal="area_entered" from="SlimeVision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="SlimeVision" to="." method="_on_slime_vision_area_exited"]
 [connection signal="body_entered" from="PushAway" to="." method="_on_push_away_body_entered"]
+[connection signal="body_exited" from="PushAway" to="." method="_on_push_away_body_exited"]
