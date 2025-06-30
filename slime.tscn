@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bhbi45iw72g6f"]
+[gd_scene load_steps=57 format=3 uid="uid://bhbi45iw72g6f"]
 
 [ext_resource type="Script" uid="uid://bceappluso7yp" path="res://slime.gd" id="1_ahcej"]
 [ext_resource type="Texture2D" uid="uid://cyxw2rdg03foi" path="res://assets/sprites/characters/tiles/slime/tile077.png" id="2_vo6pc"]
@@ -246,6 +246,9 @@ radius = 50.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y60gu"]
 size = Vector2(46, 41)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y60gu"]
+radius = 12.0
+
 [node name="Slime" type="CharacterBody2D"]
 process_mode = 1
 physics_interpolation_mode = 2
@@ -379,8 +382,17 @@ collision_mask = 256
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_y60gu")
 
+[node name="PushAway" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PushAway"]
+shape = SubResource("CircleShape2D_y60gu")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="SlimeHurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
 [connection signal="area_entered" from="SlimeVision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="SlimeVision" to="." method="_on_slime_vision_area_exited"]
+[connection signal="body_entered" from="PushAway" to="." method="_on_push_away_body_entered"]

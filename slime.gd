@@ -1,6 +1,18 @@
 class_name Slime
 extends Enemy
 
+var closest_slime : Enemy
+var push_away_cooldown : float = 1.1
+var push_var : float = randf_range(-1, 1)
+
+
+func _on_push_away_body_entered(body: Node2D) -> void:
+	if (body is Slime) and closest_slime == null:
+		closest_slime = body
+		$PushAway/CollisionShape2D.set_deferred("disabled", true) 
+		
+		
+
 func _ready() -> void:
 	sprite = $AnimatedSprite2D
 	super()
@@ -21,7 +33,15 @@ func _ready() -> void:
 	#healthbar_new.init_health(max_health)
 #
 func _physics_process(delta: float) -> void:
+	if closest_slime != null:
+		if global_position.distance_to(player.global_position) > 100:
+			velocity += closest_slime.global_position.direction_to(global_position) * 50
+			closest_slime = null
+	if push_away_cooldown < 0:
+		push_away_cooldown = 1 + push_var
+		$PushAway/CollisionShape2D.set_deferred("disabled", false) 
 	jump_timer += delta
+	push_away_cooldown -= delta
 	jump_toward_player(variation)
 	super(delta)
 	
