@@ -4,6 +4,7 @@ extends Enemy
 var closest_slime : Enemy
 var push_away_cooldown : float = 0
 var push_var : float = randf_range(-1, 1)
+var push_away_force : float = 1
 
 
 func _on_push_away_body_entered(body: Node2D) -> void:
@@ -38,6 +39,7 @@ func _ready() -> void:
 #
 func _physics_process(delta: float) -> void:
 	if closest_slime != null:
+		push_away_force = 4 * 1 / (closest_slime.global_position.distance_to(global_position) + 0.1)
 		velocity += closest_slime.global_position.direction_to(global_position) * 4
 	if push_away_cooldown < 0:
 		push_away_cooldown = 1
