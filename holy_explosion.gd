@@ -14,4 +14,5 @@ func _ready() -> void:
 	queue_free()
 	
 func set_skill_stats():
+	cost = 50
 	$Hitbox.damage = damage

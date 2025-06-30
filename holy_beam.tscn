@@ -80,6 +80,8 @@ size = Vector2(24, 28)
 
 [node name="HolyBeam" type="Node2D"]
 script = ExtResource("1_xkx6s")
+cost = 100.0
+icon = ExtResource("4_toybq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1

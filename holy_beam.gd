@@ -9,12 +9,15 @@ var direction : Vector2
 func _ready() -> void:
 	set_as_top_level(true)
 	$Hitbox/CollisionShape2D.disabled = false
+
 	
 func set_skill_stats():
 	global_position = player_position
 	direction = global_position.direction_to(get_global_mouse_position())
 	$Hitbox.damage = damage
+	cost = 100
 	look_at(global_position + direction)
+	
 	
 func _physics_process(delta: float) -> void:
 	if $Hitbox/CollisionShape2D.shape.size.x > 460:

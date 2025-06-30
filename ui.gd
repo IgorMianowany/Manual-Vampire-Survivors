@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Manabar.visible = PlayerState.chosen_class == 2
 	$CanvasLayer/Manabar.value = PlayerState.mana
 	$CanvasLayer/Manabar.max_value = PlayerState.max_mana
-	$CanvasLayer/Faithbar.value = PlayerState.faith_base
+	$CanvasLayer/Faithbar.value = PlayerState.faith
 	$CanvasLayer/Faithbar.max_value = PlayerState.max_faith
 	$CanvasLayer/HasChainLightning.text = str(PlayerState.active_enemies_count)
 	$CanvasLayer/Level.text = str(PlayerState.active_enemies_count)

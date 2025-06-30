@@ -403,3 +403,16 @@ func get_current_resource() -> int:
 		4:
 			return faith_base
 	return 0
+	
+func spend_current_resource(cost : float):
+	match chosen_class:
+		0:
+			return
+		1:
+			return
+		2: 
+			mana -= cost
+		3:
+			return
+		4:
+			faith -= cost

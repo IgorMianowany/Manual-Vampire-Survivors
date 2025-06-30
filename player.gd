@@ -160,9 +160,10 @@ func _physics_process(delta: float) -> void:
 				current_interactable.toggle_interact_outline(true)
 				
 	if Input.is_action_just_pressed("spell_1") and PlayerState.chosen_class == 4:
-		if PlayerState.holy_bolt_cooldown_base <= 0:
+		if PlayerState.holy_bolt_cooldown_base <= 0  and PlayerState.get_current_resource() > $Skills/Skill1.cost:
 			PlayerState.holy_bolt_cooldown_base = 1
 			$Skills/Skill1.cast_skill()
+			PlayerState.spend_current_resource($Skills/Skill1.cost)
 			#var holy_bolt = holy_bolt_scene.instantiate()
 			#add_child(holy_bolt)
 			#holy_bolt.speed = 100
@@ -171,18 +172,21 @@ func _physics_process(delta: float) -> void:
 			#holy_bolt.global_position = global_position
 			#holy_bolt.set_skill_stats()
 	if Input.is_action_just_pressed("spell_2") and PlayerState.chosen_class == 4:
-		if PlayerState.holy_explosion_cooldown_base <= 0:
+		if PlayerState.holy_explosion_cooldown_base <= 0 and PlayerState.get_current_resource() > $Skills/Skill2.cost:
 			PlayerState.holy_explosion_cooldown_base = 1
 			$Skills/Skill2.cast_skill()
+			PlayerState.spend_current_resource($Skills/Skill2.cost)
 			#var holy_explosion = holy_explosion_scene.instantiate()
 			#add_child(holy_explosion)
 			#holy_explosion.damage = 5
 			#holy_explosion.global_position = get_global_mouse_position()
 			#holy_explosion.set_skill_stats()
 	if Input.is_action_just_pressed("spell_3") and PlayerState.chosen_class == 4:
-		if PlayerState.holy_beam_cooldown_base <= 0:
+		if PlayerState.holy_beam_cooldown_base <= 0  and PlayerState.get_current_resource() > $Skills/Skill3.cost:
 			PlayerState.holy_beam_cooldown_base = 1
 			$Skills/Skill3.cast_skill()
+			PlayerState.spend_current_resource($Skills/Skill3.cost)
+
 			#var holy_beam = holy_beam_scene.instantiate()
 			#add_child(holy_beam)
 			#holy_beam.direction = global_position.direction_to(get_global_mouse_position())
