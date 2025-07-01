@@ -38,10 +38,11 @@ func _ready() -> void:
 	#healthbar_new.init_health(max_health)
 #
 func _physics_process(delta: float) -> void:
-	if global_position.distance_to(player.global_position) > 100 and closest_slime != null:
+	if closest_slime != null and distance_to_player > 100:
 		push_away_force = 2 * 1 / (closest_slime.global_position.distance_to(global_position) + 0.1)
 		velocity += closest_slime.global_position.direction_to(global_position) * 4
 	if push_away_cooldown < 0:
+		distance_to_player = global_position.distance_to(player.global_position)
 		push_away_cooldown = 1
 		closest_slime = null
 	jump_timer += delta

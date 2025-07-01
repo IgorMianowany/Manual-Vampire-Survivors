@@ -5,6 +5,7 @@ extends Node2D
 @export var limit : int = 12
 var upperLimit : int = 300
 
+
 var regex : RegEx
 
 var slime := preload("res://slime.tscn") 
