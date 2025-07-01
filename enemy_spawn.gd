@@ -3,7 +3,7 @@ extends Node2D
 @export var min_cooldown : float = 1
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 100
+var upperLimit : int = 300
 
 var regex : RegEx
 
@@ -55,7 +55,6 @@ func _on_timer_timeout() -> void:
 		#add_child(slime_instance2)
 		#count += 1
 		#PlayerState.slime_spawned += 1
-		PlayerState.active_enemies_count += 1
 		@warning_ignore("integer_division")
 		cooldown = clampf(cooldown - player.get_elapsed_time() / 100, min_cooldown, cooldown)
 		$Timer.wait_time = cooldown + randf_range(0, 1)
@@ -65,3 +64,4 @@ func _on_timer_timeout() -> void:
 			pooled_slime.spawn_enemy(global_position)
 			pooled_slime.active = true
 			count += 1
+			PlayerState.active_enemies_count += 1
