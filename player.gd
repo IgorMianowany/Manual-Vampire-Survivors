@@ -61,6 +61,7 @@ func _ready() -> void:
 	PlayerState.health = PlayerState.max_health
 
 func _physics_process(delta: float) -> void:
+	PlayerState.player_position = global_position
 	previous_pos = current_pos
 	current_pos = global_position
 	#var zoom_bonus = Vector2(base_view_distance + PlayerState.view_distance_bonus, base_view_distance  + PlayerState.view_distance_bonus)

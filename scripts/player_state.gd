@@ -98,8 +98,9 @@ var holy_explosion_cooldown_base : float = 1
 var holy_beam_cooldown_base : float = 1
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene", "player_position"]
 @onready var mana : float = max_mana
+var player_position : Vector2
 
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, SWORD_LEVEL, BOW_LEVEL, STAFF_LEVEL, MISC}
 

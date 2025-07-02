@@ -3,7 +3,7 @@ extends Node2D
 @export var min_cooldown : float = .25
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 450
+var upperLimit : int = 420
 
 
 var regex : RegEx

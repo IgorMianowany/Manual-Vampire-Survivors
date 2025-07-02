@@ -8,8 +8,9 @@ var push_away_force : float = 1
 
 
 func _on_push_away_body_entered(body: Node2D) -> void:
-	if body is Slime and closest_slime == null:
-		closest_slime = body
+	if body is Slime:
+		push_away_force = 100 * 1 / (body.global_position.distance_to(global_position) + 0.1)
+		velocity += body.global_position.direction_to(global_position) * push_away_force
 		
 
 
@@ -40,21 +41,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	jump_timer += delta
 	push_away_cooldown -= delta
-	if push_away_cooldown < 0:
-		distance_to_player = global_position.distance_to(player.global_position)
-		push_away_cooldown = 1
-		closest_slime = null
+	#if push_away_cooldown < 0:
+		#distance_to_player = global_position.distance_to(player.global_position)
+		#push_away_cooldown = 1
+		#closest_slime = null
 	if distance_to_player < 25 and distance_to_player != 0:
 		set_physics_process(false)
 	else:
 		set_physics_process(true)
+
 #
 func _physics_process(delta: float) -> void:
-	if closest_slime != null and distance_to_player > 100:
-		push_away_force = 2 * 1 / (closest_slime.global_position.distance_to(global_position) + 0.1)
-		velocity += closest_slime.global_position.direction_to(global_position) * 4
-
-
+	#if closest_slime != null and distance_to_player > 100:
+		#push_away_force = 10 * 1 / (closest_slime.global_position.distance_to(global_position) + 0.1)
+		#velocity += closest_slime.global_position.direction_to(global_position) * push_away_force
+#
 	jump_toward_player(variation)
 	super(delta)
 	

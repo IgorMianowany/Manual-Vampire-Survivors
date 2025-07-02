@@ -74,17 +74,21 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	#$Control/Label.text = test_name
 	#$AnimatedSprite2D.modulate = color
-	if not active:
-		return
+
 	#if is_pulled:
 		#if pull_source != null:
 			#direction = global_position.direction_to(pull_source.global_position)
 			#var new_speed = clampf(speed * 1000 * (1 / global_position.distance_squared_to(pull_source.global_position)), 0, 75)
 			#velocity = direction * new_speed
-	position += velocity.normalized()
+	#position += velocity.normalized()
 	#move_and_slide()
+	position += velocity.normalized()
 
-
+func _process(delta: float) -> void:
+	if not active:
+		set_physics_process(false)
+	else:
+		set_physics_process(true)
 
 func handle_animation(animation_variation : float) -> void:
 	direction = position.direction_to(player.position)
