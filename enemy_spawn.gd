@@ -1,9 +1,9 @@
 extends Node2D
 @export var cooldown : float = 5
-@export var min_cooldown : float = 1
+@export var min_cooldown : float = .25
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 300
+var upperLimit : int = 450
 
 
 var regex : RegEx
@@ -19,6 +19,7 @@ func _ready() -> void:
 	$Timer.start()
 
 func _on_timer_timeout() -> void:
+	min_cooldown = 0.25
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
 		#for i in range(1, 10):
@@ -38,8 +39,8 @@ func _on_timer_timeout() -> void:
 		var slime_instance = slime.instantiate()
 		if name.contains("26"):
 			slime_instance = skeleton_archer.instantiate()
-		elif name.contains("99"):
-			slime_instance = necromancer.instantiate()
+		#elif name.contains("99"):
+			#slime_instance = necromancer.instantiate()
 
 		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
 		slime_instance.active = true

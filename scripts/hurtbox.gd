@@ -12,7 +12,8 @@ func _ready() -> void:
 func _on_area_entered(hitbox : Hitbox) -> void:
 	if hitbox == null or hitbox.owner == owner:
 		return
-	
+	if hitbox.owner.get_parent().get_parent().get_parent() == null:
+		return
 	if owner.name == hitbox.owner.get_parent().get_parent().get_parent().name:
 		return
 		
