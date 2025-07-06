@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwr1y7ewa56ww"]
+
+[ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="1_5ofjv"]
+[ext_resource type="Script" uid="uid://bjbvtjswl36oj" path="res://light_enemy.gd" id="1_rn2co"]
+[ext_resource type="Script" uid="uid://calvmjgqc5a6q" path="res://scripts/hurtbox.gd" id="3_scrn6"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="4_kinta"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aa7bk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mp356"]
+
+[node name="LightEnemy" type="Node2D"]
+z_index = 10
+script = ExtResource("1_rn2co")
+tex = ExtResource("1_5ofjv")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_scrn6")
+metadata/_custom_type_script = "uid://calvmjgqc5a6q"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_aa7bk")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("4_kinta")
+metadata/_custom_type_script = "uid://p8h3fxevo1ct"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_mp356")

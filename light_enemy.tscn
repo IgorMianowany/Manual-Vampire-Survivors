@@ -4,6 +4,6 @@
 [ext_resource type="Script" uid="uid://bjbvtjswl36oj" path="res://light_enemy.gd" id="1_rn2co"]
 
 [node name="LightEnemy" type="Node2D"]
-z_index = -1
+z_index = 10
 script = ExtResource("1_rn2co")
 tex = ExtResource("1_5ofjv")
