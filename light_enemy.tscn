@@ -1,15 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwr1y7ewa56ww"]
 
 [ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="1_5ofjv"]
+[ext_resource type="Script" uid="uid://bjbvtjswl36oj" path="res://light_enemy.gd" id="1_rn2co"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rn2co"]
-points = PackedVector2Array(-9, -11, -11, -9, -11, 9, -9, 11, 9, 11, 11, 9, 11, -9, 9, -11)
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.171875, 0.171875)
-texture = ExtResource("1_5ofjv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("ConvexPolygonShape2D_rn2co")
+[node name="LightEnemy" type="Node2D"]
+z_index = -1
+script = ExtResource("1_rn2co")
+tex = ExtResource("1_5ofjv")

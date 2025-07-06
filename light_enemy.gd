@@ -1,22 +1,33 @@
 class_name LightEnemy
-extends CharacterBody2D
+extends Node2D
 
+var object 
+var img
 
-
-#var velocity : Vector2
-@export var speed : float
-var direction : Vector2
-var variation : Vector2
-var range : float = 1
+@onready var box_shape = RectangleShape2D.new()
+@export var tex : Texture2D
 
 func _ready() -> void:
-	speed = 50
-	speed += randf_range(-25, 25)
-	variation = Vector2(randf_range(-range, range), randf_range(-range, range))
-
-func _process(delta: float) -> void:
-	direction = global_position.direction_to(PlayerState.player_position)
-	velocity = direction.normalized() * speed * delta
-	#velocity += Vector2(randf_range(-range, range), randf_range(-range, range))
-	#global_position += velocity
-	move_and_collide(velocity)
+	box_shape.size = Vector2(25, 25)
+	var ps = PhysicsServer2D
+	object = ps.body_create()
+	ps.body_set_space(object, get_world_2d().space)
+	ps.body_add_shape(object, box_shape)
+	
+	var transform = Transform2D(0, Vector2(250, 250))
+	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, transform)
+	
+	var rs = RenderingServer
+	img = rs.canvas_item_create()
+	rs.canvas_item_set_parent(img, get_canvas_item())
+	rs.canvas_item_add_texture_rect(img, Rect2(-12.5,-12.5,25,25), tex)
+	rs.canvas_item_set_transform(img, transform)
+	
+func _physics_process(delta: float) -> void:
+	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
+	RenderingServer.canvas_item_set_transform(img, trans)
+	
+	
+func _exit_tree() -> void:
+	PhysicsServer2D.free_rid(object)
+	RenderingServer.free_rid(img)
