@@ -3,10 +3,13 @@ extends Node2D
 
 var object 
 var img
+var speed : float = 50
 @export var player : Player
 
 @onready var box_shape = RectangleShape2D.new()
 @export var tex : Texture2D
+
+var hp : float = 100
 
 func _ready() -> void:
 	box_shape.size = Vector2(32, 32)
@@ -31,11 +34,13 @@ func _ready() -> void:
 	
 	
 func _physics_process(delta: float) -> void:
+	if hp < 0:
+		queue_free()
 	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
-	var velocity = trans.origin.direction_to(player.position) * 100 * delta
+	var velocity = trans.origin.direction_to(player.position) * 50 * delta
 	var next_position : Vector2 = trans.origin + velocity
 	trans = Transform2D(0, next_position)
-
+	$Position.global_position = trans.origin
 	RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 	
@@ -49,3 +54,10 @@ func set_enemy_position(pos : Vector2):
 
 	RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
+
+func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool, is_crit : bool):
+	hp -= damage * 15
+	print(hp)
+	
+
+			
