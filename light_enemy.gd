@@ -3,7 +3,7 @@ extends Node2D
 
 var object 
 var img
-var speed : float = 50
+var speed : float = 500
 @export var player : Player
 #@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
@@ -33,7 +33,7 @@ var poison_damage : float = 0
 var poison_ticks_left : float = 0
 var already_hit_by_chain_lightning : bool = false
 var is_first_hit_by_chain_lightning : bool = false
-var variation : float
+var variation : float = randf_range(0, jump_variation)
 var active : bool = false
 var is_pulled : bool = false
 var pull_source : Node2D = null
@@ -50,17 +50,17 @@ var color : Color = Color.WHITE
 var velocity : Vector2
 
 
-@onready var box_shape = CircleShape2D.new()
+@onready var collision_shape = CircleShape2D.new()
 @export var tex : Texture2D
 
 var hp : float = 100
 
 func _ready() -> void:
-	box_shape.radius = 8
+	collision_shape.radius = 8
 	var ps = PhysicsServer2D
 	object = ps.body_create()
 	ps.body_set_space(object, get_world_2d().space)
-	ps.body_add_shape(object, box_shape)
+	ps.body_add_shape(object, collision_shape)
 	ps.body_add_collision_exception(object, player)
 	ps.body_set_param(object, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, 0)
 	
@@ -78,16 +78,20 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	jump_timer += delta
-	print(jump_timer)
-	print(jump_cooldown + jump_duration + variation)
 
 
 func _physics_process(delta: float) -> void:
-	jump_toward_player(variation)
+	#jump_toward_player(variation)
+	#if is_jumping:
+		#PhysicsServer2D.body_set_collision_layer(object, 0)
+		#PhysicsServer2D.body_set_collision_mask(object, 0)
+	#else:
+		#PhysicsServer2D.body_set_collision_layer(object, 1)
+		#PhysicsServer2D.body_set_collision_mask(object, 1)
 	if hp < 0:
 		queue_free()
 	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
-	#velocity = trans.origin.direction_to(player.position) * 50 * delta
+	velocity = trans.origin.direction_to(player.position) * speed * delta
 	var next_position : Vector2 = trans.origin + velocity * delta
 	trans = Transform2D(0, next_position)
 	$Position.global_position = trans.origin
@@ -107,7 +111,6 @@ func set_enemy_position(pos : Vector2):
 
 func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool, is_crit : bool):
 	hp -= damage * 15
-	print(hp)
 	
 func jump_toward_player(_jump_variation : float) -> void:
 	if not jump_timer > jump_cooldown + _jump_variation or is_jumping:
