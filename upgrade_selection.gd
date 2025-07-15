@@ -5,13 +5,14 @@ func _ready() -> void:
 	var upgrades : Array[Node] = $CanvasLayer/HBoxContainer.get_children()
 	var filtered_upgrades = filter_upgrades(upgrades)
 	
-	# just for testing
+	 #just for testing
 	#TODO remove
-	#if PlayerState.upgrades_amount > filtered_upgrades.size():
-		#PlayerState.set_upgrades_amount(filtered_upgrades.size()) 
+	print(filtered_upgrades.size())
+	if PlayerState.upgrades_amount > filtered_upgrades.size():
+		PlayerState.set_upgrades_amount(filtered_upgrades.size()) 
 		
-	#while chosen_numbers.size() < PlayerState.upgrades_amount:
-	while chosen_numbers.size() < filtered_upgrades.size():
+	while chosen_numbers.size() < PlayerState.upgrades_amount:
+	#while chosen_numbers.size() < filtered_upgrades.size():
 		var num = randi_range(0,filtered_upgrades.size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)
@@ -28,7 +29,7 @@ func _input(event):
 	# this function is not really working right now because of mouse position shenenigans i'm not
 	# yet equiped to deal with at this time, upgrades selected with button
 	var mouse_position = get_global_mouse_position()
-	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
+	if event is InputEventMouseButton and event.button_index == 2 and event.is_pressed():
 		for node in $"CanvasLayer/HBoxContainer".get_children():
 			if node.get_global_rect().has_point(mouse_position):
 				node.apply_upgrade()

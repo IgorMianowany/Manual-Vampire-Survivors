@@ -158,3 +158,9 @@ func _on_animation_finished(anim_name : StringName):
 		PlayerState.coins_base += money
 	is_jumping = false
 	$Position/AnimatedSprite2D.play("idle_down")
+	
+	
+func _on_tree_exiting() -> void:
+	PlayerState.active_enemies_count -= 1
+	
+	

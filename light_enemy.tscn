@@ -54,9 +54,6 @@ radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkpv8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
-radius = 50.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
@@ -241,6 +238,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
+radius = 50.0
+
 [node name="LightEnemy" type="Node2D"]
 z_index = 10
 script = ExtResource("1_rn2co")
@@ -324,14 +324,6 @@ position = Vector2(0, -11)
 [node name="PoisonTimer" type="Timer" parent="Position/ProcessDisabled"]
 autostart = true
 
-[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="Position/ProcessDisabled"]
-enabled = false
-shape = SubResource("CircleShape2D_7dbtx")
-target_position = Vector2(0, 0)
-collision_mask = 4
-
-[node name="ChainLightningAnimation" parent="Position/ProcessDisabled" instance=ExtResource("48_uk8kf")]
-
 [node name="SlimeHurtbox" type="Area2D" parent="Position" groups=["Areas"]]
 collision_layer = 0
 collision_mask = 16
@@ -362,5 +354,14 @@ animation = &"die"
 autoplay = "idle_down"
 speed_scale = 0.85
 
+[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="Position"]
+enabled = false
+shape = SubResource("CircleShape2D_7dbtx")
+target_position = Vector2(0, 0)
+collision_mask = 4
+
+[node name="ChainLightningAnimation" parent="Position" instance=ExtResource("48_uk8kf")]
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Position/SlimeHurtbox" to="." method="_on_slime_hurtbox_area_entered"]
 [connection signal="animation_finished" from="Position/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
