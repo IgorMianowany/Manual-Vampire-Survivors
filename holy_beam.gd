@@ -5,6 +5,8 @@ var shape_x : float
 var damage : float = 1
 var speed : float = 32
 var direction : Vector2
+var duration : float = 0
+var max_duration : float = 0.4
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -20,6 +22,9 @@ func set_skill_stats():
 	
 	
 func _physics_process(delta: float) -> void:
+	duration+=delta
+	if(duration>max_duration):
+		$Hitbox/CollisionShape2D.disabled = true
 	if $Hitbox/CollisionShape2D.shape.size.x > 460:
 		return
 	$Hitbox/CollisionShape2D.shape.size.x += speed
