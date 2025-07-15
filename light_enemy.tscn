@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dwr1y7ewa56ww"]
+[gd_scene load_steps=55 format=3 uid="uid://dwr1y7ewa56ww"]
 
 [ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="1_5ofjv"]
 [ext_resource type="Script" uid="uid://bjbvtjswl36oj" path="res://light_enemy.gd" id="1_rn2co"]
@@ -48,12 +48,6 @@
 [ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="46_r3pnc"]
 [ext_resource type="PackedScene" uid="uid://cupoiia1ecpch" path="res://healthbar.tscn" id="47_upmlb"]
 [ext_resource type="PackedScene" uid="uid://cebm1aefx438s" path="res://chain_lightning_animation.tscn" id="48_uk8kf"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kinta"]
-radius = 30.0167
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_scrn6"]
-radius = 15.0333
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2dsld"]
 animations = [{
@@ -235,10 +229,6 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_gnl8p"]
 radius = 12.0
 
@@ -247,6 +237,10 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
 radius = 50.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
+
 [node name="LightEnemy" type="Node2D"]
 z_index = 10
 script = ExtResource("1_rn2co")
@@ -254,26 +248,11 @@ tex = ExtResource("1_5ofjv")
 
 [node name="Position" type="Node2D" parent="."]
 
-[node name="Hurtbox" type="Area2D" parent="Position"]
-collision_layer = 0
-collision_mask = 16
-script = ExtResource("3_5spd6")
-metadata/_custom_type_script = "uid://calvmjgqc5a6q"
+[node name="ProcessDisabled" type="Node" parent="Position"]
+process_mode = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/Hurtbox"]
-shape = SubResource("CircleShape2D_kinta")
-
-[node name="Hitbox" type="Area2D" parent="Position"]
-collision_layer = 32
-collision_mask = 0
-monitoring = false
-script = ExtResource("4_scrn6")
-metadata/_custom_type_script = "uid://p8h3fxevo1ct"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/Hitbox"]
-shape = SubResource("CircleShape2D_scrn6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Position"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Position/ProcessDisabled"]
+visible = false
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -3)
@@ -282,15 +261,14 @@ animation = &"die"
 autoplay = "idle_down"
 speed_scale = 0.85
 
-[node name="Control" type="Control" parent="Position"]
-visible = false
+[node name="Control" type="Control" parent="Position/ProcessDisabled"]
 z_index = 20
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Position/Control"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Position/ProcessDisabled/Control"]
 visible = false
 layout_mode = 0
 offset_left = -17.0
@@ -301,7 +279,8 @@ nine_patch_stretch = true
 texture_under = ExtResource("45_ttjca")
 texture_progress = ExtResource("46_r3pnc")
 
-[node name="Healthbar" parent="Position/Control" instance=ExtResource("47_upmlb")]
+[node name="Healthbar" parent="Position/ProcessDisabled/Control" instance=ExtResource("47_upmlb")]
+visible = false
 layout_mode = 0
 offset_left = -10.0
 offset_top = 7.0
@@ -311,7 +290,7 @@ scale = Vector2(0.5, 0.5)
 max_value = 0.0
 value = 0.0
 
-[node name="Label" type="Label" parent="Position/Control"]
+[node name="Label" type="Label" parent="Position/ProcessDisabled/Control"]
 visible = false
 layout_mode = 0
 offset_left = -19.0
@@ -319,6 +298,49 @@ offset_top = -34.0
 offset_right = 21.0
 offset_bottom = -11.0
 text = "cos"
+
+[node name="CollisionArea" type="Area2D" parent="Position/ProcessDisabled" groups=["Areas"]]
+collision_layer = 0
+
+[node name="KnockbackCollisionShape" type="CollisionShape2D" parent="Position/ProcessDisabled/CollisionArea" groups=["Areas"]]
+shape = SubResource("CircleShape2D_gnl8p")
+debug_color = Color(0, 0.631203, 0.464635, 0.42)
+
+[node name="ProjectileDestroyArea" type="Area2D" parent="Position/ProcessDisabled" groups=["Areas"]]
+position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/ProcessDisabled/ProjectileDestroyArea" groups=["Areas"]]
+shape = SubResource("CircleShape2D_tkpv8")
+
+[node name="HitParticles" type="CPUParticles2D" parent="Position/ProcessDisabled"]
+emitting = false
+amount = 6
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+randomness = 0.55
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 475.44
+scale_amount_max = 3.0
+color = Color(0.392157, 0.701961, 0.729412, 1)
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Position/ProcessDisabled"]
+position = Vector2(0, -11)
+
+[node name="PoisonTimer" type="Timer" parent="Position/ProcessDisabled"]
+autostart = true
+
+[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="Position/ProcessDisabled"]
+enabled = false
+shape = SubResource("CircleShape2D_7dbtx")
+target_position = Vector2(0, 0)
+collision_mask = 4
+
+[node name="ChainLightningAnimation" parent="Position/ProcessDisabled" instance=ExtResource("48_uk8kf")]
 
 [node name="SlimeHurtbox" type="Area2D" parent="Position" groups=["Areas"]]
 collision_layer = 0
@@ -341,48 +363,5 @@ script = ExtResource("4_scrn6")
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_hrisp")
 
-[node name="CollisionArea" type="Area2D" parent="Position" groups=["Areas"]]
-collision_layer = 0
-
-[node name="KnockbackCollisionShape" type="CollisionShape2D" parent="Position/CollisionArea" groups=["Areas"]]
-shape = SubResource("CircleShape2D_gnl8p")
-debug_color = Color(0, 0.631203, 0.464635, 0.42)
-
-[node name="ProjectileDestroyArea" type="Area2D" parent="Position" groups=["Areas"]]
-position = Vector2(0, -1)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/ProjectileDestroyArea" groups=["Areas"]]
-shape = SubResource("CircleShape2D_tkpv8")
-
-[node name="HitParticles" type="CPUParticles2D" parent="Position"]
-emitting = false
-amount = 6
-lifetime = 0.1
-one_shot = true
-explosiveness = 1.0
-randomness = 0.55
-spread = 15.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 475.44
-scale_amount_max = 3.0
-color = Color(0.392157, 0.701961, 0.729412, 1)
-
-[node name="DamageNumbersOrigin" type="Node2D" parent="Position"]
-position = Vector2(0, -11)
-
-[node name="PoisonTimer" type="Timer" parent="Position"]
-autostart = true
-
-[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="Position"]
-enabled = false
-shape = SubResource("CircleShape2D_7dbtx")
-target_position = Vector2(0, 0)
-collision_mask = 4
-
-[node name="ChainLightningAnimation" parent="Position" instance=ExtResource("48_uk8kf")]
-
-[connection signal="area_entered" from="Position/Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="animation_finished" from="Position/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Position/ProcessDisabled/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Position/SlimeHurtbox" to="." method="_on_slime_hurtbox_area_entered"]

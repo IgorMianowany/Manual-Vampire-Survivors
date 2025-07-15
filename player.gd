@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.visible = true
 		invincibility_timer = 0
 		
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_pressed("attack") and PlayerState.active_enemies_count <= 1000:
 		for i in range(0, 10):
 			var light_enemy := preload("res://light_enemy.tscn").instantiate()
 			light_enemy.player = self

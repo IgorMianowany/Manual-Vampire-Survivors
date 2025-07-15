@@ -17,7 +17,6 @@ var speed : float = 500
 @export var healthbar : TextureProgressBar
 @export var money : int = 100 
 @onready var health : float = max_health
-@onready var damage_numbers_origin = $Position/DamageNumbersOrigin
 @onready var experience_pickup := preload("res://experience_pickup.tscn")
 var player_direction : Vector2
 var jump_timer : float = 0
@@ -66,28 +65,21 @@ func _ready() -> void:
 	
 	
 	#var transform = Transform2D(0, Vector2(250, 250))
-	var transform = Transform2D(0, Vector2.ZERO)
-	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, transform)
+	var trans = Transform2D(0, Vector2.ZERO)
+	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, trans)
 	
-	#var rs = RenderingServer
-	#img = rs.canvas_item_create()
-	#rs.canvas_item_set_parent(img, get_canvas_item())
-	##rs.canvas_item_add_texture_rect(img, Rect2(Vector2(409, -516),Vector2(32,32)), tex)
-	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-16, -16),Vector2(32,32)), tex)
-	#rs.canvas_item_set_transform(img, transform)
+	var rs = RenderingServer
+	img = rs.canvas_item_create()
+	rs.canvas_item_set_parent(img, get_canvas_item())
+	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(409, -516),Vector2(32,32)), tex)
+	rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), tex)
+	rs.canvas_item_set_transform(img, trans)
 	
 func _process(delta: float) -> void:
 	jump_timer += delta
 
 
 func _physics_process(delta: float) -> void:
-	#jump_toward_player(variation)
-	#if is_jumping:
-		#PhysicsServer2D.body_set_collision_layer(object, 0)
-		#PhysicsServer2D.body_set_collision_mask(object, 0)
-	#else:
-		#PhysicsServer2D.body_set_collision_layer(object, 1)
-		#PhysicsServer2D.body_set_collision_mask(object, 1)
 	if hp < 0:
 		queue_free()
 	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
@@ -95,9 +87,9 @@ func _physics_process(delta: float) -> void:
 	var next_position : Vector2 = trans.origin + velocity * delta
 	trans = Transform2D(0, next_position)
 	$Position.global_position = trans.origin
-	#RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
-	
+	RenderingServer.canvas_item_set_transform(img, trans)
+
 	
 func _exit_tree() -> void:
 	PhysicsServer2D.free_rid(object)
@@ -110,7 +102,9 @@ func set_enemy_position(pos : Vector2):
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
 func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool, is_crit : bool):
-	hp -= damage * 15
+	hp -= damage * 150
+	#$Position/Control/Healthbar.health = hp
+
 	
 func jump_toward_player(_jump_variation : float) -> void:
 	if not jump_timer > jump_cooldown + _jump_variation or is_jumping:

@@ -18,7 +18,8 @@ func _set_health(new_health : float):
 	if prev_health == 0:
 		prev_health = max_value
 	health = min(max_value, new_health)
-	value = health
+	#value = health
+	set_value_no_signal(health)
 	
 	if health < prev_health:
 		timer.start()
