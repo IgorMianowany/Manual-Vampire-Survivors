@@ -49,6 +49,18 @@
 [ext_resource type="PackedScene" uid="uid://cupoiia1ecpch" path="res://healthbar.tscn" id="47_upmlb"]
 [ext_resource type="PackedScene" uid="uid://cebm1aefx438s" path="res://chain_lightning_animation.tscn" id="48_uk8kf"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnl8p"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkpv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2dsld"]
 animations = [{
 "frames": [{
@@ -229,18 +241,6 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gnl8p"]
-radius = 12.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tkpv8"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
-radius = 50.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
-
 [node name="LightEnemy" type="Node2D"]
 z_index = 10
 script = ExtResource("1_rn2co")
@@ -250,16 +250,6 @@ tex = ExtResource("1_5ofjv")
 
 [node name="ProcessDisabled" type="Node" parent="Position"]
 process_mode = 4
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Position/ProcessDisabled"]
-visible = false
-z_index = 1
-y_sort_enabled = true
-position = Vector2(0, -3)
-sprite_frames = SubResource("SpriteFrames_2dsld")
-animation = &"die"
-autoplay = "idle_down"
-speed_scale = 0.85
 
 [node name="Control" type="Control" parent="Position/ProcessDisabled"]
 z_index = 20
@@ -363,5 +353,14 @@ script = ExtResource("4_scrn6")
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_hrisp")
 
-[connection signal="animation_finished" from="Position/ProcessDisabled/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Position"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_2dsld")
+animation = &"die"
+autoplay = "idle_down"
+speed_scale = 0.85
+
 [connection signal="area_entered" from="Position/SlimeHurtbox" to="." method="_on_slime_hurtbox_area_entered"]
+[connection signal="animation_finished" from="Position/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

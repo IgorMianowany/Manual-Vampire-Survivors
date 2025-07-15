@@ -1,8 +1,8 @@
 class_name LightEnemy
 extends Node2D
 
-var object 
-var img
+var object : RID
+var img : RID
 var speed : float = 500
 @export var player : Player
 #@export var speed : float = 0
@@ -71,9 +71,8 @@ func _ready() -> void:
 	var rs = RenderingServer
 	img = rs.canvas_item_create()
 	rs.canvas_item_set_parent(img, get_canvas_item())
-	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(409, -516),Vector2(32,32)), tex)
-	rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), tex)
-	rs.canvas_item_set_transform(img, trans)
+	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), tex)
+	#rs.canvas_item_set_transform(img, trans)
 	
 func _process(delta: float) -> void:
 	jump_timer += delta
@@ -88,6 +87,7 @@ func _physics_process(delta: float) -> void:
 	trans = Transform2D(0, next_position)
 	$Position.global_position = trans.origin
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
+	img
 	RenderingServer.canvas_item_set_transform(img, trans)
 
 	
