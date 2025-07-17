@@ -7,12 +7,12 @@ func _ready() -> void:
 	
 	 #just for testing
 	#TODO remove
-	print(filtered_upgrades.size())
+	print(PlayerState.upgrades_amount)
 	if PlayerState.upgrades_amount > filtered_upgrades.size():
 		PlayerState.set_upgrades_amount(filtered_upgrades.size()) 
 		
-	while chosen_numbers.size() < PlayerState.upgrades_amount:
-	#while chosen_numbers.size() < filtered_upgrades.size():
+	#while chosen_numbers.size() < PlayerState.upgrades_amount:
+	while chosen_numbers.size() < filtered_upgrades.size():
 		var num = randi_range(0,filtered_upgrades.size()-1)
 		if not chosen_numbers.has(num):
 			chosen_numbers.append(num)

@@ -50,6 +50,7 @@ var chain_lightning_max_hits : int = 0
 var chain_lightning_current_hits : int = 0
 var chain_lightning_cooldown : float = 0
 var enemies_hit_by_chain_lightning : Array[Slime]
+var light_enemies_hit_by_chain_lightning : Array[LightEnemy]
 var view_distance_bonus : float = 0
 var chain_lightning_timer : Timer = Timer.new()
 var first_enemy_hit_name : String
@@ -259,6 +260,7 @@ func clear_enemies_chain_lightning():
 		#if enemy != null:
 			#enemy.already_hit_by_chain_lightning = false
 	enemies_hit_by_chain_lightning.clear()
+	light_enemies_hit_by_chain_lightning.clear()
 	chain_lightning_ready = true
 	
 func get_chain_lightning():
