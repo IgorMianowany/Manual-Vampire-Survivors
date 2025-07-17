@@ -348,6 +348,7 @@ collide_with_areas = true
 [node name="ChainLightningAnimation" parent="Position" instance=ExtResource("48_uk8kf")]
 
 [node name="HitParticles" type="CPUParticles2D" parent="Position"]
+process_mode = 4
 emitting = false
 amount = 6
 lifetime = 0.1
@@ -362,6 +363,7 @@ scale_amount_max = 3.0
 color = Color(0.392157, 0.701961, 0.729412, 1)
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="Position"]
+process_mode = 4
 position = Vector2(0, -11)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

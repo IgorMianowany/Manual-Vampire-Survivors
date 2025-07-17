@@ -84,7 +84,9 @@ cost = 100.0
 icon = ExtResource("4_toybq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 1
+z_index = 100
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(240, 0)
 rotation = 1.5708
 scale = Vector2(1, 10)

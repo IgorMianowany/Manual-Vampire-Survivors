@@ -126,9 +126,9 @@ func take_damage(damage : float, direction : Vector2, knockback_power : float, i
 
 	var tween : Tween = create_tween()
 	tween.tween_property($Position/AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
-	$Position/HitParticles.emitting = true
+	#$Position/HitParticles.emitting = true
 	DamageNumbers.display_number(int(damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit)
-	$Position/HitParticles.set_direction(direction)
+	#$Position/HitParticles.set_direction(direction)
 
 
 	if PlayerState.chain_lightning_ready:
