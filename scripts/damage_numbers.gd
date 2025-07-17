@@ -1,10 +1,16 @@
 extends Node
 
-func display_number(value : int, position : Vector2, is_critical : bool = false):
+func display_number(value : int, position : Vector2, is_critical : bool = false, label : Label = null):
 	if value <= 0:
 		return
-	
-	var number = Label.new()
+	var number
+	if label != null:
+		number = label
+		number.visible = true
+		number.scale = Vector2.ONE
+	else:
+		number = Label.new()
+		
 	number.global_position = position
 	number.text = str(value)
 	number.z_index = 5
@@ -19,10 +25,11 @@ func display_number(value : int, position : Vector2, is_critical : bool = false)
 	number.label_settings.font_size = 10
 	number.label_settings.outline_color = "#000"
 	number.label_settings.outline_size = 1
-
-	call_deferred("add_child", number)
 	
-	await number.resized
+	if(label == null):
+		call_deferred("add_child", number)
+		await number.resized
+	
 	number.pivot_offset = Vector2(number.size / 2)
 	 
 	var tween = get_tree().create_tween()
@@ -38,4 +45,7 @@ func display_number(value : int, position : Vector2, is_critical : bool = false)
 	).set_ease(Tween.EASE_IN).set_delay(0.5)
 	
 	await tween.finished
-	number.queue_free()
+	#if label != null:
+		#number.visible = false
+	#else:
+		#number.queue_free()
