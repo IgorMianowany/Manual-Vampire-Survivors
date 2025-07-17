@@ -304,23 +304,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position/ProcessDisabled/ProjectileDestroyArea" groups=["Areas"]]
 shape = SubResource("CircleShape2D_tkpv8")
 
-[node name="HitParticles" type="CPUParticles2D" parent="Position/ProcessDisabled"]
-emitting = false
-amount = 6
-lifetime = 0.1
-one_shot = true
-explosiveness = 1.0
-randomness = 0.55
-spread = 15.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 475.44
-scale_amount_max = 3.0
-color = Color(0.392157, 0.701961, 0.729412, 1)
-
-[node name="DamageNumbersOrigin" type="Node2D" parent="Position/ProcessDisabled"]
-position = Vector2(0, -11)
-
 [node name="PoisonTimer" type="Timer" parent="Position/ProcessDisabled"]
 autostart = true
 
@@ -363,6 +346,23 @@ collision_mask = 36
 collide_with_areas = true
 
 [node name="ChainLightningAnimation" parent="Position" instance=ExtResource("48_uk8kf")]
+
+[node name="HitParticles" type="CPUParticles2D" parent="Position"]
+emitting = false
+amount = 6
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+randomness = 0.55
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 475.44
+scale_amount_max = 3.0
+color = Color(0.392157, 0.701961, 0.729412, 1)
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Position"]
+position = Vector2(0, -11)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Position/SlimeHurtbox" to="." method="_on_slime_hurtbox_area_entered"]

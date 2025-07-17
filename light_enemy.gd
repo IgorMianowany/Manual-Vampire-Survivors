@@ -122,6 +122,15 @@ func set_enemy_position(pos : Vector2):
 
 func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool = false, is_crit : bool = false):
 	hp -= damage * 15
+
+
+	var tween : Tween = create_tween()
+	tween.tween_property($Position/AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
+	$Position/HitParticles.emitting = true
+	DamageNumbers.display_number(int(damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit)
+	$Position/HitParticles.set_direction(direction)
+
+
 	if PlayerState.chain_lightning_ready:
 		if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
 			PlayerState.start_chain_lightning_timer()
@@ -207,7 +216,6 @@ func handle_chain_lightning_logic():
 	for index in chain_lightning_shape_cast.get_collision_count():
 		if index >= chain_lightning_shape_cast.get_collision_count():
 			continue
-		print(chain_lightning_shape_cast.is_colliding())
 		var enemy = chain_lightning_shape_cast.get_collider(index)
 		
 		if enemy != null and not PlayerState.light_enemies_hit_by_chain_lightning.has(enemy.owner):
