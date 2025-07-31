@@ -136,7 +136,7 @@ func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockbac
 		handle_chain_lightning_logic()
 	#$Position/Control/Healthbar.health = hp
 	if hp < max_health:
-		$Position/SlimeHitbox.collision_layer = 0
+		$Position/Hitbox.collision_layer = 0
 		animated_sprite_2d.play("die")
 
 	
@@ -147,7 +147,7 @@ func jump_toward_player(_jump_variation : float) -> void:
 	if jump_timer < jump_cooldown + jump_duration + _jump_variation and health > 0:
 		is_jumping = true
 		repulsion_force = .1
-		$Position/SlimeHitbox/CollisionShape2D.disabled = false
+		$Position/Hitbox/CollisionShape2D.disabled = false
 		player_position = player.global_position + Vector2(randf_range(-direction_variation, direction_variation), randf_range(-direction_variation, direction_variation))
 
 		if not is_knocked_back:
@@ -165,7 +165,7 @@ func jump_toward_player(_jump_variation : float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
 		jump_timer = 0
-		$Position/SlimeHitbox/CollisionShape2D.disabled = true
+		$Position/Hitbox/CollisionShape2D.disabled = true
 		repulsion_force = 0
 		velocity = Vector2.ZERO
 	player_direction = new_direction
