@@ -1,0 +1,200 @@
+[gd_scene load_steps=23 format=3 uid="uid://cvknrbeqv4fmy"]
+
+[ext_resource type="Script" uid="uid://c3k3lojao5ilt" path="res://light_skeleton_archer.gd" id="2_6jrl1"]
+[ext_resource type="Texture2D" uid="uid://bq1bho2h6jnma" path="res://assets/sprites/UI/healthbarUnder.png" id="2_fpdjp"]
+[ext_resource type="Texture2D" uid="uid://cf2egftds03tm" path="res://assets/sprites/UI/healthbarProgress.png" id="3_w47xq"]
+[ext_resource type="PackedScene" uid="uid://cupoiia1ecpch" path="res://healthbar.tscn" id="4_8r3cw"]
+[ext_resource type="Script" uid="uid://calvmjgqc5a6q" path="res://scripts/hurtbox.gd" id="5_a5ln0"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="6_lq41c"]
+[ext_resource type="Texture2D" uid="uid://cm3i30wiyh7vd" path="res://Skeleton_Archer.png" id="7_w0df8"]
+[ext_resource type="Texture2D" uid="uid://cxmytvqayg1gk" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (1).png" id="8_e4d72"]
+[ext_resource type="Texture2D" uid="uid://csreq33bdgmfr" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (2).png" id="9_a12w0"]
+[ext_resource type="Texture2D" uid="uid://dkdvspmshlrxg" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (3).png" id="10_ws5yy"]
+[ext_resource type="Texture2D" uid="uid://b43g1fo5tftpd" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (4).png" id="11_iheu2"]
+[ext_resource type="Texture2D" uid="uid://c7t0plk7pbxuv" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (5).png" id="12_hv5b2"]
+[ext_resource type="Texture2D" uid="uid://5p656i2mgvcf" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (6).png" id="13_e7wa1"]
+[ext_resource type="Texture2D" uid="uid://2x7xq38hkcjm" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (7).png" id="14_20o0l"]
+[ext_resource type="Texture2D" uid="uid://2n3rxl7x0k4l" path="res://assets/sprites/skeleton/Skeleton_Archer — kopia (8).png" id="15_6rpbj"]
+[ext_resource type="PackedScene" uid="uid://cebm1aefx438s" path="res://chain_lightning_animation.tscn" id="47_y0ydu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnl8p"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkpv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtbe2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrisp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_px1tk"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("7_w0df8")
+}, {
+"duration": 1.5,
+"texture": ExtResource("8_e4d72")
+}, {
+"duration": 1.5,
+"texture": ExtResource("9_a12w0")
+}, {
+"duration": 1.5,
+"texture": ExtResource("10_ws5yy")
+}, {
+"duration": 1.5,
+"texture": ExtResource("11_iheu2")
+}, {
+"duration": 1.5,
+"texture": ExtResource("12_hv5b2")
+}, {
+"duration": 1.5,
+"texture": ExtResource("13_e7wa1")
+}, {
+"duration": 1.5,
+"texture": ExtResource("14_20o0l")
+}, {
+"duration": 1.5,
+"texture": ExtResource("15_6rpbj")
+}],
+"loop": false,
+"name": &"die",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_w0df8")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
+radius = 50.0
+
+[node name="LightSkeletonArcher" type="Node2D"]
+z_index = 10
+script = ExtResource("2_6jrl1")
+
+[node name="Position" type="Node2D" parent="."]
+
+[node name="ProcessDisabled" type="Node" parent="Position"]
+process_mode = 4
+
+[node name="Control" type="Control" parent="Position/ProcessDisabled"]
+z_index = 20
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Position/ProcessDisabled/Control"]
+visible = false
+layout_mode = 0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 17.0
+offset_bottom = -13.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_fpdjp")
+texture_progress = ExtResource("3_w47xq")
+
+[node name="Healthbar" parent="Position/ProcessDisabled/Control" instance=ExtResource("4_8r3cw")]
+visible = false
+layout_mode = 0
+offset_left = -10.0
+offset_top = 7.0
+offset_right = 32.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
+max_value = 0.0
+value = 0.0
+
+[node name="Label" type="Label" parent="Position/ProcessDisabled/Control"]
+visible = false
+layout_mode = 0
+offset_left = -19.0
+offset_top = -34.0
+offset_right = 21.0
+offset_bottom = -11.0
+text = "cos"
+
+[node name="CollisionArea" type="Area2D" parent="Position/ProcessDisabled" groups=["Areas"]]
+collision_layer = 0
+
+[node name="KnockbackCollisionShape" type="CollisionShape2D" parent="Position/ProcessDisabled/CollisionArea" groups=["Areas"]]
+shape = SubResource("CircleShape2D_gnl8p")
+debug_color = Color(0, 0.631203, 0.464635, 0.42)
+
+[node name="ProjectileDestroyArea" type="Area2D" parent="Position/ProcessDisabled" groups=["Areas"]]
+position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/ProcessDisabled/ProjectileDestroyArea" groups=["Areas"]]
+shape = SubResource("CircleShape2D_tkpv8")
+
+[node name="PoisonTimer" type="Timer" parent="Position/ProcessDisabled"]
+autostart = true
+
+[node name="SlimeHurtbox" type="Area2D" parent="Position" groups=["Areas"]]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+script = ExtResource("5_a5ln0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/SlimeHurtbox" groups=["Areas"]]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_vtbe2")
+debug_color = Color(0.968809, 0, 0.465463, 0.42)
+
+[node name="SlimeHitbox" type="Area2D" parent="Position" groups=["Areas"]]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("6_lq41c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/SlimeHitbox" groups=["Areas"]]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_hrisp")
+
+[node name="SkeletonAnimatedSprite2D" type="AnimatedSprite2D" parent="Position"]
+sprite_frames = SubResource("SpriteFrames_px1tk")
+animation = &"idle_down"
+autoplay = "idle_down"
+
+[node name="ChainLightningShapeCast" type="ShapeCast2D" parent="Position"]
+enabled = false
+shape = SubResource("CircleShape2D_7dbtx")
+target_position = Vector2(0, 0)
+max_results = 8
+collision_mask = 36
+collide_with_areas = true
+
+[node name="ChainLightningAnimation" parent="Position" instance=ExtResource("47_y0ydu")]
+
+[node name="HitParticles" type="CPUParticles2D" parent="Position"]
+process_mode = 4
+emitting = false
+amount = 6
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+randomness = 0.55
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 475.44
+scale_amount_max = 3.0
+color = Color(0.392157, 0.701961, 0.729412, 1)
+
+[node name="DamageNumbersOrigin" type="Node2D" parent="Position"]
+position = Vector2(0, -11)
+
+[node name="Label" type="Label" parent="Position"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="area_entered" from="Position/SlimeHurtbox" to="." method="_on_slime_hurtbox_area_entered"]
+[connection signal="animation_finished" from="Position/SkeletonAnimatedSprite2D" to="." method="_on_skeleton_animated_sprite_2d_animation_finished"]

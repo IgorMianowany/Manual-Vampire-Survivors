@@ -6,7 +6,7 @@ var img : RID
 
 
 @export var player : Player
-@export var speed : float = 75
+@export var speed : float = 250
 #@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = .9
@@ -49,6 +49,7 @@ var distance_to_player : float
 var frame_counter : int = 15
 var color : Color = Color.WHITE
 var transformed_position : Vector2 = Vector2.ZERO
+var animated_sprite_2d : AnimatedSprite2D
 
 
 
@@ -65,7 +66,6 @@ var velocity : Vector2
 
 func get_pos() -> Vector2:
 	if $Position != null:
-		print("cos")
 		return $Position.global_position
 	return Vector2.ZERO
 	
@@ -79,9 +79,6 @@ func _ready() -> void:
 	ps.body_set_param(object, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, 0)
 	ps.body_set_collision_layer(object, 5)
 	
-	
-	
-	
 	#var transform = Transform2D(0, Vector2(250, 250))
 	var trans = Transform2D(0, Vector2.ZERO)
 	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, trans)
@@ -93,20 +90,21 @@ func _ready() -> void:
 	#rs.canvas_item_set_transform(img, trans)
 	
 func _process(delta: float) -> void:
+	if hp < 0:
+		return
 	jump_timer += delta
 	transformed_position = $Position.global_position
 
 
 func _physics_process(delta: float) -> void:
-	#if hp < 0:
-		#queue_free()
+	if hp < 0:
+		return
 	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
 	velocity = trans.origin.direction_to(player.position) * speed * delta
 	var next_position : Vector2 = trans.origin + velocity * delta
 	trans = Transform2D(0, next_position)
 	$Position.global_position = trans.origin
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
-	img
 	RenderingServer.canvas_item_set_transform(img, trans)
 
 	
@@ -125,7 +123,7 @@ func take_damage(damage : float, direction : Vector2, knockback_power : float, i
 	hp -= damage
 
 	var tween : Tween = create_tween()
-	tween.tween_property($Position/AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
+	tween.tween_property(animated_sprite_2d, "modulate:v", 1, 0.1).from(15)
 	
 	DamageNumbers.display_number(int(damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
 
@@ -139,7 +137,7 @@ func take_damage(damage : float, direction : Vector2, knockback_power : float, i
 	#$Position/Control/Healthbar.health = hp
 	if hp < max_health:
 		$Position/SlimeHitbox.collision_layer = 0
-		$Position/AnimatedSprite2D.play("die")
+		animated_sprite_2d.play("die")
 
 	
 func jump_toward_player(_jump_variation : float) -> void:
@@ -154,7 +152,7 @@ func jump_toward_player(_jump_variation : float) -> void:
 
 		if not is_knocked_back:
 			new_direction = position.direction_to(player_position)
-			$Position/AnimatedSprite2D.play("move_down")
+			animated_sprite_2d.play("move_down")
 			# this is a weird way to check if slime reached it's jump destination before finishing the jump
 			# in this case it will go back and forth trying to reach exactly this point, instead of keeping the momentum
 			# this fixes that case
@@ -174,9 +172,9 @@ func jump_toward_player(_jump_variation : float) -> void:
 	
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
-	_on_animation_finished($Position/AnimatedSprite2D.animation)
+	_on_animation_finished(animated_sprite_2d.animation)
 	is_jumping = false
-	$Position/AnimatedSprite2D.play("idle_down")
+	animated_sprite_2d.play("idle_down")
 	
 	
 func _on_animation_finished(anim_name : StringName):
@@ -193,7 +191,7 @@ func _on_animation_finished(anim_name : StringName):
 		PlayerState.coins_base += money
 		queue_free()
 	is_jumping = false
-	$Position/AnimatedSprite2D.play("idle_down")
+	animated_sprite_2d.play("idle_down")
 	
 	
 func _on_tree_exiting() -> void:
