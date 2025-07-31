@@ -6,7 +6,7 @@ var img : RID
 
 
 @export var player : Player
-@export var speed : float = 250
+@export var speed : float = 1000
 #@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = .9

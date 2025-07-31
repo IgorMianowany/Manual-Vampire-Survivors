@@ -7,6 +7,7 @@ var projectile_speed : float = 100
 var current_speed : float = 0
 var current_position : Vector2 = Vector2.ZERO
 var previous_position : Vector2
+var attack_check_time : float = 1 
 
 func _ready() -> void:
 	super()
@@ -28,8 +29,15 @@ func _physics_process(delta: float) -> void:
 	#RenderingServer.canvas_item_set_transform(img, trans)
 	
 func _process(delta: float) -> void:
-	if current_speed == 0 and not is_attacking:
+	if attack_check_time < 0:
+		attack_check_time = 1
+		if get_pos().distance_to(player.global_position) < 250:
+			speed = 0
+		else:
+			speed = 1000
+	if speed == 0 and not is_attacking:
 		attack()
+	attack_check_time -= delta
 	super(delta)
 	
 
@@ -41,8 +49,8 @@ func attack():
 		if attack_projectile == null:
 			return
 		attack_projectile.active = true
-		attack_projectile.global_position = global_position + direction * 15
-		attack_projectile.direction = global_position.direction_to(player.global_position)
+		attack_projectile.global_position = get_pos() + direction * 15
+		attack_projectile.direction = get_pos().direction_to(player.global_position)
 		attack_projectile.damage = 10
 		attack_projectile.velocity = projectile_speed * attack_projectile.direction
 		attack_projectile._reusable_ready()
