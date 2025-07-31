@@ -118,14 +118,14 @@ func set_enemy_position(pos : Vector2):
 	#RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
-func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool = false, is_crit : bool = false):
-	damage = damage * 150
-	hp -= damage
+func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockback_power : float, _is_poison : bool = false, is_crit : bool = false):
+	incoming_damage = incoming_damage * 150
+	hp -= incoming_damage
 
 	var tween : Tween = create_tween()
 	tween.tween_property(animated_sprite_2d, "modulate:v", 1, 0.1).from(15)
 	
-	DamageNumbers.display_number(int(damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
+	DamageNumbers.display_number(int(incoming_damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
 
 	#$Position/HitParticles.emitting = true
 	#$Position/HitParticles.set_direction(direction)

@@ -393,7 +393,7 @@ func get_new_upgrade_value(upgrade_type : UPGRADES) -> float:
 	else:
 		return 0
 		
-func get_current_resource() -> int:
+func get_current_resource() -> float:
 	match chosen_class:
 		0:
 			return 0

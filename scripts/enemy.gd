@@ -84,7 +84,7 @@ func _physics_process(_delta: float) -> void:
 	#move_and_slide()
 	position += velocity.normalized()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not active:
 		set_physics_process(false)
 	else:

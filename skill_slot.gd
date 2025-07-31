@@ -2,12 +2,12 @@ class_name SkillSlot
 extends Control
 
 var available : bool
-var cost : int
+var cost : float
 var skill : CommonSkill
 var icon : Texture2D
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not available:
 		$ColorRect/MarginContainer.z_index = -1
 	else:

@@ -4,7 +4,7 @@ extends Node2D
 var body
 var shape
 
-func _body_moved(state, index):
+func _body_moved(state, _index):
 	# Create a canvas item, child of this node.
 	var ci_rid = RenderingServer.canvas_item_create()
 	# Make this node the parent.
