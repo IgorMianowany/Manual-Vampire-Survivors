@@ -98,8 +98,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if hp < 0:
-		queue_free()
+	#if hp < 0:
+		#queue_free()
 	var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
 	velocity = trans.origin.direction_to(player.position) * speed * delta
 	var next_position : Vector2 = trans.origin + velocity * delta
@@ -121,27 +121,25 @@ func set_enemy_position(pos : Vector2):
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
 func take_damage(damage : float, direction : Vector2, knockback_power : float, is_poison : bool = false, is_crit : bool = false):
-	hp -= damage * 15
-
+	damage = damage * 150
+	hp -= damage
 
 	var tween : Tween = create_tween()
 	tween.tween_property($Position/AnimatedSprite2D, "modulate:v", 1, 0.1).from(15)
 	
-	
 	DamageNumbers.display_number(int(damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
-
-
-
 
 	#$Position/HitParticles.emitting = true
 	#$Position/HitParticles.set_direction(direction)
-
 
 	if PlayerState.chain_lightning_ready:
 		if PlayerState.enemies_hit_by_chain_lightning.size() == 0:
 			PlayerState.start_chain_lightning_timer()
 		handle_chain_lightning_logic()
 	#$Position/Control/Healthbar.health = hp
+	if hp < max_health:
+		$Position/SlimeHitbox.collision_layer = 0
+		$Position/AnimatedSprite2D.play("die")
 
 	
 func jump_toward_player(_jump_variation : float) -> void:
@@ -185,8 +183,7 @@ func _on_animation_finished(anim_name : StringName):
 	if anim_name == "die":
 		if PlayerState.experience_pickup_bench.size() != 0:
 			var experience_pickup_new = PlayerState.experience_pickup_bench.pop_front()
-			experience_pickup_new.reset(global_position)
-		$Position/Control.global_position = global_position
+			experience_pickup_new.reset($Position.global_position)
 		#experience_pickup_new.turn_on_collision()
 		#experience_pickup_new.global_position = global_position
 		#experience_pickup_new.player = null
@@ -194,6 +191,7 @@ func _on_animation_finished(anim_name : StringName):
 		#experience_pickup_new.speed = 10000
 		#PlayerState.active_enemies_count -= 2
 		PlayerState.coins_base += money
+		queue_free()
 	is_jumping = false
 	$Position/AnimatedSprite2D.play("idle_down")
 	
