@@ -1,0 +1,204 @@
+[gd_scene load_steps=44 format=3 uid="uid://dnql34p0xapia"]
+
+[ext_resource type="PackedScene" uid="uid://dwr1y7ewa56ww" path="res://light_enemy.tscn" id="1_tyu4e"]
+[ext_resource type="Script" uid="uid://bno7n3be0ayr2" path="res://light_necromancer.gd" id="2_pm5qk"]
+[ext_resource type="Texture2D" uid="uid://djvbsg465sex4" path="res://assets/sprites/Necro sprites/summoning_curcle.png" id="3_4468g"]
+[ext_resource type="Texture2D" uid="uid://bf3xb7mup2btc" path="res://assets/sprites/Necro sprites/102_Necromancer_creativekind-Sheet.png" id="4_s6jdi"]
+[ext_resource type="Texture2D" uid="uid://brjtg1xjie72p" path="res://assets/sprites/Necro sprites/103_Necromancer_creativekind-Sheet.png" id="5_66kg2"]
+[ext_resource type="Texture2D" uid="uid://c3ubden2uuf0w" path="res://assets/sprites/Necro sprites/104_Necromancer_creativekind-Sheet.png" id="6_3iot3"]
+[ext_resource type="Texture2D" uid="uid://b82dmuwv8x4ic" path="res://assets/sprites/Necro sprites/105_Necromancer_creativekind-Sheet.png" id="7_48ejd"]
+[ext_resource type="Texture2D" uid="uid://dgru8wcnx4b6r" path="res://assets/sprites/Necro sprites/106_Necromancer_creativekind-Sheet.png" id="8_2ma4u"]
+[ext_resource type="Texture2D" uid="uid://dg6pati3vcc4l" path="res://assets/sprites/Necro sprites/107_Necromancer_creativekind-Sheet.png" id="9_u0x6o"]
+[ext_resource type="Texture2D" uid="uid://dwwx42mpdkehl" path="res://assets/sprites/Necro sprites/108_Necromancer_creativekind-Sheet.png" id="10_tclaf"]
+[ext_resource type="Texture2D" uid="uid://dj13g4yxli4u2" path="res://assets/sprites/Necro sprites/109_Necromancer_creativekind-Sheet.png" id="11_fd0rl"]
+[ext_resource type="Texture2D" uid="uid://bh8yqw4yxshtn" path="res://assets/sprites/Necro sprites/110_Necromancer_creativekind-Sheet.png" id="12_s4ybe"]
+[ext_resource type="Texture2D" uid="uid://xan8d816qv8r" path="res://assets/sprites/Necro sprites/111_Necromancer_creativekind-Sheet.png" id="13_dc2ba"]
+[ext_resource type="Texture2D" uid="uid://uchd1es8o7b8" path="res://assets/sprites/Necro sprites/00_Necromancer_creativekind-Sheet.png" id="14_71x0n"]
+[ext_resource type="Texture2D" uid="uid://kp3jgkxa3ll6" path="res://assets/sprites/Necro sprites/01_Necromancer_creativekind-Sheet.png" id="15_eqq1v"]
+[ext_resource type="Texture2D" uid="uid://g5geav2an5rt" path="res://assets/sprites/Necro sprites/02_Necromancer_creativekind-Sheet.png" id="16_mdbt3"]
+[ext_resource type="Texture2D" uid="uid://ci476j2s0cfay" path="res://assets/sprites/Necro sprites/03_Necromancer_creativekind-Sheet.png" id="17_uii6g"]
+[ext_resource type="Texture2D" uid="uid://cxhhbfn2oilk5" path="res://assets/sprites/Necro sprites/04_Necromancer_creativekind-Sheet.png" id="18_rrbr3"]
+[ext_resource type="Texture2D" uid="uid://dvgjratvdavw4" path="res://assets/sprites/Necro sprites/05_Necromancer_creativekind-Sheet.png" id="19_quh0t"]
+[ext_resource type="Texture2D" uid="uid://ci0u5kfy1eark" path="res://assets/sprites/Necro sprites/06_Necromancer_creativekind-Sheet.png" id="20_5wwkc"]
+[ext_resource type="Texture2D" uid="uid://b5rdv1n6n5tpp" path="res://assets/sprites/Necro sprites/07_Necromancer_creativekind-Sheet.png" id="21_xrpo5"]
+[ext_resource type="Texture2D" uid="uid://b1nfvej0s35dm" path="res://assets/sprites/Necro sprites/17_Necromancer_creativekind-Sheet.png" id="22_kht5j"]
+[ext_resource type="Texture2D" uid="uid://cbcusnhwb4l2a" path="res://assets/sprites/Necro sprites/18_Necromancer_creativekind-Sheet.png" id="23_viwt2"]
+[ext_resource type="Texture2D" uid="uid://dp5vobr05vsvr" path="res://assets/sprites/Necro sprites/19_Necromancer_creativekind-Sheet.png" id="24_bw1x8"]
+[ext_resource type="Texture2D" uid="uid://crdsnaxeup6iw" path="res://assets/sprites/Necro sprites/20_Necromancer_creativekind-Sheet.png" id="25_2yjcl"]
+[ext_resource type="Texture2D" uid="uid://dnxbn03pdai1d" path="res://assets/sprites/Necro sprites/21_Necromancer_creativekind-Sheet.png" id="26_hc3ae"]
+[ext_resource type="Texture2D" uid="uid://6fhwlbq8t40d" path="res://assets/sprites/Necro sprites/22_Necromancer_creativekind-Sheet.png" id="27_w71mt"]
+[ext_resource type="Texture2D" uid="uid://23w65uk6g4i6" path="res://assets/sprites/Necro sprites/23_Necromancer_creativekind-Sheet.png" id="28_88u5x"]
+[ext_resource type="Texture2D" uid="uid://ce75nvj8efdx0" path="res://assets/sprites/Necro sprites/24_Necromancer_creativekind-Sheet.png" id="29_npf8a"]
+[ext_resource type="Texture2D" uid="uid://bmuh5vd2orw27" path="res://assets/sprites/Necro sprites/34_Necromancer_creativekind-Sheet.png" id="30_p4vtk"]
+[ext_resource type="Texture2D" uid="uid://bi8dqj08qf0it" path="res://assets/sprites/Necro sprites/35_Necromancer_creativekind-Sheet.png" id="31_uymlc"]
+[ext_resource type="Texture2D" uid="uid://ude1kbkb78sg" path="res://assets/sprites/Necro sprites/36_Necromancer_creativekind-Sheet.png" id="32_0mjf1"]
+[ext_resource type="Texture2D" uid="uid://drm628d4tnnvk" path="res://assets/sprites/Necro sprites/37_Necromancer_creativekind-Sheet.png" id="33_u87kq"]
+[ext_resource type="Texture2D" uid="uid://ue1156xw6a0k" path="res://assets/sprites/Necro sprites/38_Necromancer_creativekind-Sheet.png" id="34_pxsp2"]
+[ext_resource type="Texture2D" uid="uid://bxqxac86yeqcq" path="res://assets/sprites/Necro sprites/39_Necromancer_creativekind-Sheet.png" id="35_6blj1"]
+[ext_resource type="Texture2D" uid="uid://bl5lv10p3wp01" path="res://assets/sprites/Necro sprites/40_Necromancer_creativekind-Sheet.png" id="36_70top"]
+[ext_resource type="Texture2D" uid="uid://bg55ntrebtw5w" path="res://assets/sprites/Necro sprites/41_Necromancer_creativekind-Sheet.png" id="37_kngk1"]
+[ext_resource type="Texture2D" uid="uid://b5xjsftdrdh68" path="res://assets/sprites/Necro sprites/42_Necromancer_creativekind-Sheet.png" id="38_ond0o"]
+[ext_resource type="Texture2D" uid="uid://s4kawu5wlkxy" path="res://assets/sprites/Necro sprites/43_Necromancer_creativekind-Sheet.png" id="39_0gwib"]
+[ext_resource type="Texture2D" uid="uid://b6hjpwvpqbo2h" path="res://assets/sprites/Necro sprites/44_Necromancer_creativekind-Sheet.png" id="40_aioyb"]
+[ext_resource type="Texture2D" uid="uid://t3tupfjysipl" path="res://assets/sprites/Necro sprites/45_Necromancer_creativekind-Sheet.png" id="41_y62wl"]
+[ext_resource type="Texture2D" uid="uid://dre8yo1q1e84q" path="res://assets/sprites/Necro sprites/46_Necromancer_creativekind-Sheet.png" id="42_6di81"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2m8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_s6jdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_66kg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3iot3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_48ejd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2ma4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u0x6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tclaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fd0rl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_s4ybe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dc2ba")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_71x0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eqq1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mdbt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uii6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rrbr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_quh0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_5wwkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xrpo5")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_kht5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_viwt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_bw1x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_2yjcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_hc3ae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_w71mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_88u5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_npf8a")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_p4vtk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_uymlc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_0mjf1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_u87kq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_pxsp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_6blj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_70top")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_kngk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ond0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_0gwib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_aioyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_y62wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_6di81")
+}],
+"loop": false,
+"name": &"summon",
+"speed": 13.0
+}]
+
+[node name="LightNecromancer" instance=ExtResource("1_tyu4e")]
+script = ExtResource("2_pm5qk")
+tex = null
+
+[node name="SummoningCircle" type="Sprite2D" parent="Position" index="0"]
+visible = false
+modulate = Color(0.0787355, 0.665386, 5.77569e-07, 1)
+z_index = 1
+position = Vector2(0, -3)
+texture = ExtResource("3_4468g")
+
+[node name="NecromancerSprite2D" type="AnimatedSprite2D" parent="Position" index="1"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_a2m8b")
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -30)
+
+[connection signal="animation_finished" from="Position/NecromancerSprite2D" to="." method="_on_necromancer_sprite_2d_animation_finished"]

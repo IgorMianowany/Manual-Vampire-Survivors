@@ -4,9 +4,6 @@ extends LightEnemy
 signal attack_signal
 
 var projectile_speed : float = 100
-var current_speed : float = 0
-var current_position : Vector2 = Vector2.ZERO
-var previous_position : Vector2
 var attack_check_time : float = 1 
 
 func _ready() -> void:
@@ -15,9 +12,6 @@ func _ready() -> void:
 	attack_signal.connect(attack)
 
 func _physics_process(delta: float) -> void:
-	previous_position = current_position
-	current_position = get_pos()
-	current_speed = current_position.distance_to(previous_position)
 	super(delta)
 	
 	#var trans = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)

@@ -237,3 +237,7 @@ func handle_chain_lightning_logic():
 		PlayerState.clear_enemies_chain_lightning()
 	chain_lightning_animation.set_process(false)
 	chain_lightning_shape_cast.set_deferred("enabled", false)
+	
+func change_color(_color : Color):
+	color = _color
+	animated_sprite_2d.modulate = color
