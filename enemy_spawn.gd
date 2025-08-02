@@ -5,12 +5,14 @@ extends Node2D
 @export var limit : int = 12
 var upperLimit : int = 420
 
+var dice_roll
+
 
 var regex : RegEx
 
-var slime := preload("res://slime.tscn") 
-var skeleton_archer := preload("res://skeleton_archer.tscn")
-var necromancer := preload("res://necromancer.tscn")
+var slime := preload("res://light_slime.tscn") 
+var skeleton_archer := preload("res://light_skeleton_archer.tscn")
+var necromancer := preload("res://light_necromancer.tscn")
 var count : int = 0
 
 func _ready() -> void:
@@ -22,6 +24,8 @@ func _on_timer_timeout() -> void:
 	min_cooldown = 0.25
 	@warning_ignore("narrowing_conversion")
 	if count < limit and PlayerState.slime_count < clampi(PlayerState.game_time, upperLimit, upperLimit):
+		dice_roll = randf_range(0,10)
+		## spawn 10 at the time
 		#for i in range(1, 10):
 			#var slime_instance
 			#if name.contains("26"):
@@ -36,17 +40,17 @@ func _on_timer_timeout() -> void:
 			#slime_instance.global_position = global_position
 			#add_child(slime_instance)
 			#PlayerState.active_enemies_count += 1
-		var slime_instance = slime.instantiate()
-		if name.contains("26"):
-			slime_instance = skeleton_archer.instantiate()
-		#elif name.contains("99"):
-			#slime_instance = necromancer.instantiate()
-
-		slime_instance.test_name = name.right(name.length() - 10) + ":" + str(PlayerState.slime_spawned)
-		slime_instance.active = true
-		slime_instance.player = player
-		slime_instance.global_position = global_position
-		add_child(slime_instance)
+		var enemy_instance : LightEnemy
+		if dice_roll <= 5:
+			enemy_instance = slime.instantiate()
+		elif dice_roll <= 8:
+			enemy_instance = skeleton_archer.instantiate()
+		else:
+			enemy_instance = necromancer.instantiate()
+		enemy_instance.active = true
+		enemy_instance.player = player
+		add_child(enemy_instance)
+		enemy_instance.set_enemy_position(global_position)
 		count += 1
 		PlayerState.slime_spawned += 1
 		PlayerState.active_enemies_count += 1
