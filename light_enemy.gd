@@ -97,7 +97,7 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if hp < 0:
+	if hp < 0 or randf_range(0,1) > .1 + Engine.get_frames_per_second() / 100:
 		return
 	var trans : Transform2D = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
 	direction_update_cooldown -= delta
