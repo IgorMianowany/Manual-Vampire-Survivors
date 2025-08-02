@@ -49,14 +49,9 @@ func summon():
 		slime.player = player
 		get_parent().add_child(slime)
 		slime.set_enemy_position(summon_position)
-		
-		#light_enemy.player = self
-		#get_parent().add_child(light_enemy)
-		#PlayerState.active_enemies_count += 1
-		#light_enemy.set_enemy_position(get_global_mouse_position())
+
 		PlayerState.slime_spawned += 1
 		PlayerState.active_enemies_count += 1
-		#summoning_circle.global_position = summon_position
 		await(get_tree().create_timer(1).timeout)
 		$Position/SummoningCircle.visible = false
 		await(get_tree().create_timer(3).timeout)
@@ -76,28 +71,19 @@ func calculate_position():
 		velocity = Vector2.ZERO
 	
 func handle_animation(_anim_variation : float):
-	if is_dead:
+	if hp < 0:
 		return
 	elif velocity == Vector2.ZERO and not animated_sprite_2d.animation == "summon":
 		animated_sprite_2d.play("idle_down")
 	elif not animated_sprite_2d.animation == "summon":
 		animated_sprite_2d.play("run")
 
-func take_damage(incoming_damage : float, knockback_direction : Vector2, knockback : float, is_poisoning : bool = false, is_crit : bool = false):
-	if health - incoming_damage <= 0:
-		animated_sprite_2d.play("die")
-		is_dead = true
-		await(animated_sprite_2d.animation_finished)
-		animated_sprite_2d.visible = false
-	super(incoming_damage, knockback_direction, knockback, is_poisoning, is_crit)
-
-func _on_animated_sprite_2d_2_animation_finished() -> void:
-	animated_sprite_2d.pause()
-	super._on_animation_finished(animated_sprite_2d.animation)
+#func _on_animated_sprite_2d_2_animation_finished() -> void:
+	#animated_sprite_2d.pause()
+	#super._on_animation_finished(animated_sprite_2d.animation)
 
 func spawn_enemy(_spawn_position: Vector2):
 	animated_sprite_2d.play("idle_down")
 
-
 func _on_necromancer_sprite_2d_animation_finished() -> void:
-	_on_animation_finished(animated_sprite_2d.animation)
+	super._on_animation_finished(animated_sprite_2d.animation)

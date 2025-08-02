@@ -197,7 +197,7 @@ texture = ExtResource("3_4468g")
 [node name="NecromancerSprite2D" type="AnimatedSprite2D" parent="Position" index="1"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_a2m8b")
-animation = &"idle_down"
+animation = &"summon"
 autoplay = "idle_down"
 offset = Vector2(0, -30)
 
