@@ -1,12 +1,29 @@
 class_name LightSlime
 extends LightEnemy
 
+signal change_anim
+
 func _ready() -> void:
 	animated_sprite_2d = $Position/AnimatedSprite2D
+	change_anim.connect(handle_change_animation)
+	variation = randf_range(-1, 1)
 	super()
 	
-	
+func _process(delta: float) -> void:
+	jump_timer -= delta
+	if jump_timer < 0:
+		speed = 3000 if speed == 0 else 0
+		jump_timer = 1.5 + variation
+		change_anim.emit()
+	super(delta)
 	
 func _manual_spawn_ready():
 	animated_sprite_2d = $Position/AnimatedSprite2D
 	
+func handle_change_animation():
+	if hp < 0:
+		return
+	if speed == 0:
+		animated_sprite_2d.play("idle_down")
+	else:
+		animated_sprite_2d.play("move_down")

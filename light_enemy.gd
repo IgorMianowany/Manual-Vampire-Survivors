@@ -92,7 +92,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if hp < 0:
 		return
-	jump_timer += delta
 	transformed_position = $Position.global_position
 
 
@@ -134,7 +133,7 @@ func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockbac
 			PlayerState.start_chain_lightning_timer()
 		handle_chain_lightning_logic()
 	#$Position/Control/Healthbar.health = hp
-	if hp < max_health:
+	if hp < 0:
 		$Position/Hitbox.collision_layer = 0
 		animated_sprite_2d.play("die")
 	

@@ -86,18 +86,21 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_pressed("attack") and PlayerState.active_enemies_count <= 1000:
 		for i in range(0, 10):
-			var light_enemy := preload("res://light_necromancer.tscn").instantiate()
+			var light_enemy := preload("res://light_slime.tscn").instantiate()
 			light_enemy.player = self
 			get_parent().add_child(light_enemy)
 			PlayerState.active_enemies_count += 1
 			light_enemy.set_enemy_position(get_global_mouse_position())
+			
+			
+			
 			#var light_slime_enemy := preload("res://light_slime.tscn").instantiate()
 			#light_slime_enemy.player = self
 			#get_parent().add_child(light_slime_enemy)
 			#PlayerState.active_enemies_count += 1
 			#light_slime_enemy.set_enemy_position(get_global_mouse_position())
 	#if Input.is_action_just_pressed("attack"):
-		#var light_enemy := preload("res://light_necromancer.tscn").instantiate()
+		#var light_enemy := preload("res://light_slime.tscn").instantiate()
 		#light_enemy.player = self
 		#get_parent().add_child(light_enemy)
 		#PlayerState.active_enemies_count += 1
