@@ -189,7 +189,7 @@ tex = null
 
 [node name="SummoningCircle" type="Sprite2D" parent="Position" index="0"]
 visible = false
-modulate = Color(0.0787355, 0.665386, 5.77569e-07, 1)
+self_modulate = Color(0.827451, 0, 0.196078, 1)
 z_index = 1
 position = Vector2(0, -3)
 texture = ExtResource("3_4468g")

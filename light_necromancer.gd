@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	
 func summon():
 	if not is_attacking:
-		var summon_position = get_pos() + 50 * get_pos().direction_to(player.global_position)
+		var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
 		is_attacking = true
 		animated_sprite_2d.play("summon")
 
@@ -45,7 +45,7 @@ func summon():
 		await(get_tree().create_timer(1).timeout)
 		var slime : LightSlime = slime_scene.instantiate()
 		slime._manual_spawn_ready()
-		slime.change_color(Color.LAWN_GREEN)
+		slime.change_color($Position/SummoningCircle.self_modulate)
 		slime.player = player
 		$Position/ChildrenHolder.add_child(slime)
 		slime.set_enemy_position(summon_position)
@@ -80,7 +80,6 @@ func spawn_enemy(_spawn_position: Vector2):
 
 func _on_necromancer_sprite_2d_animation_finished() -> void:
 	super._on_animation_finished(animated_sprite_2d.animation)
-
 	
 func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockback_power : float, _is_poison : bool = false, is_crit : bool = false):
 	if hp - incoming_damage <= 0:
