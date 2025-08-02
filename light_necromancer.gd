@@ -47,8 +47,8 @@ func summon():
 		slime._manual_spawn_ready()
 		slime.change_color(Color.LAWN_GREEN)
 		slime.player = player
-		slime.set_enemy_position(summon_position)
 		get_parent().add_child(slime)
+		slime.set_enemy_position(summon_position)
 		
 		#light_enemy.player = self
 		#get_parent().add_child(light_enemy)
