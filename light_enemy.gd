@@ -68,7 +68,7 @@ func get_pos() -> Vector2:
 	if $Position != null:
 		return $Position.global_position
 	return Vector2.ZERO
-	
+
 func _ready() -> void:
 	collision_shape.radius = 8
 	var ps = PhysicsServer2D
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	trans = Transform2D(0, next_position)
 	$Position.global_position = trans.origin
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
-	RenderingServer.canvas_item_set_transform(img, trans)
+	#RenderingServer.canvas_item_set_transform(img, trans)
 
 	
 func _exit_tree() -> void:
@@ -114,7 +114,6 @@ func _exit_tree() -> void:
 	
 func set_enemy_position(pos : Vector2):
 	var trans = Transform2D(0, pos)
-
 	#RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 

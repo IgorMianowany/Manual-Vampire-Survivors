@@ -201,4 +201,7 @@ animation = &"idle_down"
 autoplay = "idle_down"
 offset = Vector2(0, -30)
 
+[node name="AnimatedSprite2D" parent="Position" index="5"]
+visible = false
+
 [connection signal="animation_finished" from="Position/NecromancerSprite2D" to="." method="_on_necromancer_sprite_2d_animation_finished"]

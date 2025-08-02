@@ -46,10 +46,14 @@ func summon():
 		var slime : LightSlime = slime_scene.instantiate()
 		slime._manual_spawn_ready()
 		slime.change_color(Color.LAWN_GREEN)
-		slime.active = true
 		slime.player = player
-		slime.global_position = summon_position
-		add_child(slime)
+		slime.set_enemy_position(summon_position)
+		get_parent().add_child(slime)
+		
+		#light_enemy.player = self
+		#get_parent().add_child(light_enemy)
+		#PlayerState.active_enemies_count += 1
+		#light_enemy.set_enemy_position(get_global_mouse_position())
 		PlayerState.slime_spawned += 1
 		PlayerState.active_enemies_count += 1
 		#summoning_circle.global_position = summon_position
