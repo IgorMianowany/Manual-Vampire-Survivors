@@ -47,7 +47,7 @@ func summon():
 		slime._manual_spawn_ready()
 		slime.change_color(Color.LAWN_GREEN)
 		slime.player = player
-		get_parent().add_child(slime)
+		$Position/ChildrenHolder.add_child(slime)
 		slime.set_enemy_position(summon_position)
 
 		PlayerState.slime_spawned += 1
@@ -56,9 +56,6 @@ func summon():
 		$Position/SummoningCircle.visible = false
 		await(get_tree().create_timer(3).timeout)
 		is_attacking = false
-		
-	
-	
 
 func calculate_position():
 	distance_to_player = global_position.distance_to(player.global_position)
@@ -77,13 +74,18 @@ func handle_animation(_anim_variation : float):
 		animated_sprite_2d.play("idle_down")
 	elif not animated_sprite_2d.animation == "summon":
 		animated_sprite_2d.play("run")
-
-#func _on_animated_sprite_2d_2_animation_finished() -> void:
-	#animated_sprite_2d.pause()
-	#super._on_animation_finished(animated_sprite_2d.animation)
-
+		
 func spawn_enemy(_spawn_position: Vector2):
 	animated_sprite_2d.play("idle_down")
 
 func _on_necromancer_sprite_2d_animation_finished() -> void:
 	super._on_animation_finished(animated_sprite_2d.animation)
+
+	
+func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockback_power : float, _is_poison : bool = false, is_crit : bool = false):
+	if hp - incoming_damage <= 0:
+		for child in $Position/ChildrenHolder.get_children():
+			child.hp = -1
+			child.take_damage(0, _attack_direction, _knockback_power)
+			
+	super(incoming_damage, _attack_direction, _knockback_power, _is_poison, is_crit)

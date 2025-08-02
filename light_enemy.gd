@@ -137,7 +137,6 @@ func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockbac
 	if hp < max_health:
 		$Position/Hitbox.collision_layer = 0
 		animated_sprite_2d.play("die")
-
 	
 func jump_toward_player(_jump_variation : float) -> void:
 	if not jump_timer > jump_cooldown + _jump_variation or is_jumping:
