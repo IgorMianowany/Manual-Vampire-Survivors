@@ -7,20 +7,25 @@ var slime_scene := preload("res://light_slime.tscn")
 var attack_check_time : float = 1 
 
 func _ready() -> void:
+	collision_shape.radius = 16
 	super()
 	animated_sprite_2d = $Position/NecromancerSprite2D
 	$Position/SummoningCircle.scale = Vector2(.25, .25)
 	$Position/SummoningCircle.set_as_top_level(true)
 
 func _physics_process(delta: float) -> void:
+	if hp < 0:
+		return
 	frame_counter -= 1
 	if frame_counter == 0:
-		calculate_position()
+		#calculate_position()
 		frame_counter = 15
 	attack_check_time -= delta
 	super(delta)
 	
 func _process(delta: float) -> void:
+	if hp < 0:
+		return
 	if attack_check_time < 0:
 		attack_check_time = 1
 		if get_pos().distance_to(player.global_position) < 250:
@@ -34,7 +39,7 @@ func _process(delta: float) -> void:
 	super(delta)
 	
 func summon():
-	if not is_attacking:
+	if not is_attacking and PlayerState.active_enemies_count < 800:
 		var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
 		is_attacking = true
 		animated_sprite_2d.play("summon")

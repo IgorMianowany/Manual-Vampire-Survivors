@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	$CanvasLayer/HasChainLightning.text = str(PlayerState.active_enemies_count)
 	$CanvasLayer/Level.text = str(PlayerState.active_enemies_count)
 	$CanvasLayer/Faithbar.visible = PlayerState.chosen_class == 4
+	$CanvasLayer/AverageFrames.text =  str(int(PlayerState.frames_sum / PlayerState.frames_count))
 	
 
 

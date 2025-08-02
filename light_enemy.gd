@@ -51,8 +51,7 @@ var color : Color = Color.WHITE
 var transformed_position : Vector2 = Vector2.ZERO
 var animated_sprite_2d : AnimatedSprite2D
 var direction_update_cooldown = 2
-
-
+var next_position : Vector2
 
 @export var test_name : String
 
@@ -71,7 +70,7 @@ func get_pos() -> Vector2:
 	return Vector2.ZERO
 
 func _ready() -> void:
-	collision_shape.radius = 8
+	#collision_shape.radius = 8
 	var ps = PhysicsServer2D
 	object = ps.body_create()
 	ps.body_set_space(object, get_world_2d().space)
@@ -90,26 +89,26 @@ func _ready() -> void:
 	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), tex)
 	#rs.canvas_item_set_transform(img, trans)
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if hp < 0:
 		return
 	transformed_position = $Position.global_position
+	direction_update_cooldown -= delta
 
 
 func _physics_process(delta: float) -> void:
 	if hp < 0 or randf_range(0,1) > .1 + Engine.get_frames_per_second() / 100:
 		return
 	var trans : Transform2D = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
-	direction_update_cooldown -= delta
 	if direction_update_cooldown <= 0:
-		velocity = trans.origin.direction_to(player.position) * speed * delta
+		## distance_to()
+		velocity = (player.position - trans.origin).normalized() * speed * delta
 		direction_update_cooldown = 1.5
-	var next_position : Vector2 = trans.origin + velocity * delta
+	next_position = trans.origin + velocity * delta
 	trans = Transform2D(0, next_position)
 
 	$Position.global_position = trans.origin
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
-	#RenderingServer.canvas_item_set_transform(img, trans)
 
 	
 func _exit_tree() -> void:

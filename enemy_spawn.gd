@@ -3,7 +3,8 @@ extends Node2D
 @export var min_cooldown : float = .25
 @export var player : Player 
 @export var limit : int = 12
-var upperLimit : int = 900
+var upperLimit : int = 800
+
 
 var dice_roll
 

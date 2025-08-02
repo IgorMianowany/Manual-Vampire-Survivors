@@ -103,6 +103,10 @@ var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_na
 @onready var mana : float = max_mana
 var player_position : Vector2
 
+
+var frames_sum : float = 0
+var frames_count : int = 0
+
 enum UPGRADES {ATTACK_SPEED, ATTACK_DAMAGE, PROJECTILES, HEALTH, MOVESPEED, SWORD_LEVEL, BOW_LEVEL, STAFF_LEVEL, MISC}
 
 var debug_value : int = 0
@@ -193,7 +197,11 @@ func _ready() -> void:
 		#enemy_holder_node.add_child(slime_instance)
 		#slime_instance.global_position = Vector2.ZERO
 		#enemy_bench.append(slime_instance)
-		
+
+func _process(_delta: float) -> void:
+	frames_count += 1
+	frames_sum += Engine.get_frames_per_second()
+
 func _physics_process(_delta: float) -> void:
 	game_time += _delta
 	if mana < max_mana and not mana_regen_blocked:
