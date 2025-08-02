@@ -14,7 +14,12 @@ func _process(delta: float) -> void:
 	if jump_timer < 0:
 		speed = 3000 if speed == 0 else 0
 		jump_timer = 1.5 + variation
+		velocity = get_pos().direction_to(player.position) * speed * delta
 		change_anim.emit()
+	super(delta)
+	
+func _physics_process(delta: float) -> void:
+	direction_update_cooldown = 2
 	super(delta)
 	
 func _manual_spawn_ready():
