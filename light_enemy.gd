@@ -52,6 +52,7 @@ var transformed_position : Vector2 = Vector2.ZERO
 var animated_sprite_2d : AnimatedSprite2D
 var direction_update_cooldown = 2
 var next_position : Vector2
+var is_necro_spawn : bool = false
 
 @export var test_name : String
 
@@ -117,6 +118,7 @@ func _exit_tree() -> void:
 	
 func set_enemy_position(pos : Vector2):
 	var trans = Transform2D(0, pos)
+	print(object.is_valid())
 	#RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
@@ -190,7 +192,13 @@ func _on_animation_finished(anim_name : StringName):
 		#experience_pickup_new.speed = 10000
 		#PlayerState.active_enemies_count -= 2
 		PlayerState.coins_base += money
-		queue_free()
+		if is_necro_spawn:
+			global_position = Vector2(-5000, 5000)
+			set_enemy_position(Vector2(-5000, 5000))
+			PlayerState.necro_spawn_bench.append(self)
+			process_mode = Node.PROCESS_MODE_DISABLED
+		else:
+			queue_free()
 	is_jumping = false
 	animated_sprite_2d.play("idle_down")
 	

@@ -5,13 +5,17 @@ extends LightEnemy
 
 var slime_scene := preload("res://light_slime.tscn")
 var attack_check_time : float = 1 
+var child_holder
+signal summon_signal
 
 func _ready() -> void:
+	child_holder = $Position/ChildrenHolder
 	collision_shape.radius = 16
 	super()
 	animated_sprite_2d = $Position/NecromancerSprite2D
 	$Position/SummoningCircle.scale = Vector2(.25, .25)
 	$Position/SummoningCircle.set_as_top_level(true)
+	summon_signal.connect(_on_summon_signal)
 
 func _physics_process(delta: float) -> void:
 	if hp < 0:
@@ -34,25 +38,33 @@ func _process(delta: float) -> void:
 			speed = 1000
 	if speed == 0 and not is_attacking:
 		summon()
+		
 	handle_animation(variation)
 	$Position/SummoningCircle.rotate(delta)
 	super(delta)
 	
 func summon():
-	if not is_attacking and PlayerState.active_enemies_count < 800:
-		var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
+	if not is_attacking and PlayerState.active_enemies_count < 800 and not PlayerState.necro_spawn_bench.is_empty():
 		is_attacking = true
-		animated_sprite_2d.play("summon")
 
+		var slime = PlayerState.necro_spawn_bench.pop_front()
+		if slime == null:
+			return
+		slime.process_mode = PROCESS_MODE_ALWAYS
+		slime.player = player
+		if slime.get_parent() != null:
+			slime.reparent($Position/ChildrenHolder)
+		else:
+			$Position/ChildrenHolder.add_child(slime)
+		#$Position/ChildrenHolder.reparent(slime)
+		#var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
+		var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
 		await(get_tree().create_timer(variation * 2).timeout)
 		$Position/SummoningCircle.global_position = summon_position
 		$Position/SummoningCircle.visible = true
 		await(get_tree().create_timer(1).timeout)
-		var slime : LightSlime = slime_scene.instantiate()
-		slime._manual_spawn_ready()
-		slime.change_color($Position/SummoningCircle.self_modulate)
-		slime.player = player
-		$Position/ChildrenHolder.add_child(slime)
+
+
 		slime.set_enemy_position(summon_position)
 
 		PlayerState.slime_spawned += 1
@@ -93,3 +105,7 @@ func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockbac
 			child.take_damage(0, _attack_direction, _knockback_power)
 			
 	super(incoming_damage, _attack_direction, _knockback_power, _is_poison, is_crit)
+
+func _on_summon_signal():
+	animated_sprite_2d.play("summon")
+	

@@ -1,6 +1,7 @@
 class_name LightSlime
 extends LightEnemy
 
+
 signal change_anim
 
 func _ready() -> void:

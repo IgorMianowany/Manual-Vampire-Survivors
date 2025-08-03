@@ -76,6 +76,8 @@ var ninja_unlocked_base : bool = false
 var game_time : float = 0
 var slime_scene := preload("res://slime.tscn")
 var enemy_bench : Array[Enemy] = []
+var necro_spawn_scene := preload("res://light_slime.tscn")
+var necro_spawn_bench : Array[LightEnemy] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
 var projectile_bench : Array[Projectile] = []
@@ -191,12 +193,15 @@ func _ready() -> void:
 		#pickup_holder_node.add_child(experience_pickup_instance)
 		#experience_pickup_bench.append(experience_pickup_instance)
 		#experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
-	#var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
-	#for slime in range(0,100):
-		#var slime_instance = slime_scene.instantiate()
-		#enemy_holder_node.add_child(slime_instance)
-		#slime_instance.global_position = Vector2.ZERO
-		#enemy_bench.append(slime_instance)
+	var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
+	for slime in range(0,5):
+		var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
+		necro_spawn_bench.append(slime_instance)
+		slime_instance._manual_spawn_ready()
+		slime_instance.is_necro_spawn = true
+		slime_instance.change_color(Color("d30032"))
+		#slime_instance.set_enemy_position(Vector2(-5000, 5000))
+		
 
 func _process(_delta: float) -> void:
 	frames_count += 1
@@ -294,7 +299,7 @@ func get_first_vbox_stats() -> Array[String]:
 	var stat_array : Array[String]
 	for propertyInfo in thisScript.get_script_property_list():
 		var propertyName: String = propertyInfo.name
-		if propertyName.contains("timer") or propertyName.contains("bonus") or propertyName.contains("base") or propertyName.contains("bench") or stats_not_displayable.has(propertyName):
+		if propertyName.contains("timer") or propertyName.contains("bonus") or propertyName.contains("base") or propertyName.contains("bench") or stats_not_displayable.has(propertyName) or propertyName.contains("scene"):
 			continue
 		var new_property_name = turn_snake_case_to_name(propertyName)
 		var propertyValue = get(propertyName)

@@ -91,9 +91,9 @@ func _physics_process(delta: float) -> void:
 			get_parent().add_child(light_enemy)
 			PlayerState.active_enemies_count += 1
 			light_enemy.set_enemy_position(get_global_mouse_position())
-			#
-			#
-			#
+			
+			
+			
 			#var light_slime_enemy := preload("res://light_slime.tscn").instantiate()
 			#light_slime_enemy.player = self
 			#get_parent().add_child(light_slime_enemy)
