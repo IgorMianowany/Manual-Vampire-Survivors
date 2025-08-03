@@ -197,9 +197,9 @@ func _ready() -> void:
 	for slime in range(0,5):
 		var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
 		necro_spawn_bench.append(slime_instance)
-		slime_instance._manual_spawn_ready()
 		slime_instance.is_necro_spawn = true
-		slime_instance.change_color(Color("d30032"))
+		slime_instance.active = false
+		enemy_holder_node.add_child(slime_instance)
 		#slime_instance.set_enemy_position(Vector2(-5000, 5000))
 		
 

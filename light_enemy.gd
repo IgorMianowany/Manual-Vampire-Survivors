@@ -63,6 +63,7 @@ var is_necro_spawn : bool = false
 @export var tex : Texture2D
 
 var hp : float = 100
+var max_hp : float = 100
 var velocity : Vector2
 
 func get_pos() -> Vector2:
@@ -76,7 +77,6 @@ func _ready() -> void:
 	object = ps.body_create()
 	ps.body_set_space(object, get_world_2d().space)
 	ps.body_add_shape(object, collision_shape)
-	ps.body_add_collision_exception(object, player)
 	ps.body_set_param(object, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, 0)
 	ps.body_set_collision_layer(object, 5)
 	
@@ -90,6 +90,10 @@ func _ready() -> void:
 	#rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), tex)
 	#rs.canvas_item_set_transform(img, trans)
 	
+func _manual_spawn_ready():
+	var ps = PhysicsServer2D
+	ps.body_add_collision_exception(object, player)
+
 func _process(delta: float) -> void:
 	if hp < 0:
 		return
@@ -118,7 +122,6 @@ func _exit_tree() -> void:
 	
 func set_enemy_position(pos : Vector2):
 	var trans = Transform2D(0, pos)
-	print(object.is_valid())
 	#RenderingServer.canvas_item_set_transform(img, trans)
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
@@ -196,7 +199,6 @@ func _on_animation_finished(anim_name : StringName):
 			global_position = Vector2(-5000, 5000)
 			set_enemy_position(Vector2(-5000, 5000))
 			PlayerState.necro_spawn_bench.append(self)
-			process_mode = Node.PROCESS_MODE_DISABLED
 		else:
 			queue_free()
 	is_jumping = false

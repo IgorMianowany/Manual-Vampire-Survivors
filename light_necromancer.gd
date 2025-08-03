@@ -50,12 +50,16 @@ func summon():
 		var slime = PlayerState.necro_spawn_bench.pop_front()
 		if slime == null:
 			return
-		slime.process_mode = PROCESS_MODE_ALWAYS
 		slime.player = player
-		if slime.get_parent() != null:
-			slime.reparent($Position/ChildrenHolder)
-		else:
-			$Position/ChildrenHolder.add_child(slime)
+		slime.change_color(Color("d30032"))
+		slime._manual_spawn_ready()
+
+
+		#if slime.get_parent() != null:
+			#slime.reparent($Position/ChildrenHolder)
+		#else:
+			#$Position/ChildrenHolder.add_child(slime)
+
 		#$Position/ChildrenHolder.reparent(slime)
 		#var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
 		var summon_position = get_pos() + 200 * get_pos().direction_to(player.global_position)
@@ -64,7 +68,7 @@ func summon():
 		$Position/SummoningCircle.visible = true
 		await(get_tree().create_timer(1).timeout)
 
-
+		slime.hp = slime.max_hp
 		slime.set_enemy_position(summon_position)
 
 		PlayerState.slime_spawned += 1

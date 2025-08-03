@@ -11,6 +11,8 @@ func _ready() -> void:
 	super()
 	
 func _process(delta: float) -> void:
+	if not active:
+		return
 	jump_timer -= delta
 	if jump_timer < 0:
 		speed = 3000 if speed == 0 else 0
@@ -25,6 +27,8 @@ func _physics_process(delta: float) -> void:
 	
 func _manual_spawn_ready():
 	animated_sprite_2d = $Position/AnimatedSprite2D
+	active = true
+	super()
 	
 func handle_change_animation():
 	if hp < 0:

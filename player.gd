@@ -492,4 +492,7 @@ func _on_interact_range_area_exited(area: Area2D) -> void:
 			(current_interactable as Interactable).toggle_interact_outline(true)
 			$UI.toggle_interact_visibility(true)
 			
+func get_player() -> Player:
+	return self
+			
 	
