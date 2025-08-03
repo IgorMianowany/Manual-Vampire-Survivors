@@ -53,6 +53,7 @@ var animated_sprite_2d : AnimatedSprite2D
 var direction_update_cooldown = 2
 var next_position : Vector2
 var is_necro_spawn : bool = false
+var col_layer : int = 5
 
 @export var test_name : String
 
@@ -78,8 +79,14 @@ func _ready() -> void:
 	ps.body_set_space(object, get_world_2d().space)
 	ps.body_add_shape(object, collision_shape)
 	ps.body_set_param(object, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, 0)
-	ps.body_set_collision_layer(object, 5)
-	
+	if is_necro_spawn:
+		ps.body_set_collision_layer(object, 0)
+	else:
+		ps.body_set_collision_layer(object, col_layer)
+		
+	if player != null:
+		ps.body_add_collision_exception(object, player)
+		
 	#var transform = Transform2D(0, Vector2(250, 250))
 	var trans = Transform2D(0, Vector2.ZERO)
 	ps.body_set_state(object, ps.BODY_STATE_TRANSFORM, trans)
@@ -199,6 +206,7 @@ func _on_animation_finished(anim_name : StringName):
 			global_position = Vector2(-5000, 5000)
 			set_enemy_position(Vector2(-5000, 5000))
 			PlayerState.necro_spawn_bench.append(self)
+			PlayerState.active_enemies_count -= 1
 		else:
 			queue_free()
 	is_jumping = false
@@ -252,3 +260,20 @@ func handle_chain_lightning_logic():
 func change_color(_color : Color):
 	color = _color
 	animated_sprite_2d.modulate = color
+	
+func switch_collision(value : bool):
+	if value:
+		PhysicsServer2D.body_set_collision_layer(object, 5)
+	else:
+		PhysicsServer2D.body_set_collision_layer(object, 0)
+
+
+func _on_player_distance_body_entered(body: Node2D) -> void:
+	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_STATIC)
+	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_STATIC)
+	
+		
+
+func _on_player_distance_body_exited(body: Node2D) -> void:
+	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_RIGID)
+	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_RIGID)

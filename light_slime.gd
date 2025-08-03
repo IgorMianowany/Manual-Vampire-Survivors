@@ -8,6 +8,7 @@ func _ready() -> void:
 	animated_sprite_2d = $Position/AnimatedSprite2D
 	change_anim.connect(handle_change_animation)
 	variation = randf_range(-1, 1)
+	col_layer = 9
 	super()
 	
 func _process(delta: float) -> void:
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
 func _manual_spawn_ready():
 	animated_sprite_2d = $Position/AnimatedSprite2D
 	active = true
+	$Position/Hitbox.collision_layer = 32
 	super()
 	
 func handle_change_animation():

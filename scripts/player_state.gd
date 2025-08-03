@@ -76,7 +76,7 @@ var ninja_unlocked_base : bool = false
 var game_time : float = 0
 var slime_scene := preload("res://slime.tscn")
 var enemy_bench : Array[Enemy] = []
-var necro_spawn_scene := preload("res://light_slime.tscn")
+var necro_spawn_scene := preload("res://light_slime_2.tscn")
 var necro_spawn_bench : Array[LightEnemy] = []
 var experience_pickup := preload("res://experience_pickup.tscn")
 var experience_pickup_bench : Array[ExperiencePickup] = []
@@ -194,7 +194,7 @@ func _ready() -> void:
 		#experience_pickup_bench.append(experience_pickup_instance)
 		#experience_pickup_instance.global_position = experience_pickup_instance.get_parent().global_position
 	var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
-	for slime in range(0,5):
+	for slime in range(0,500):
 		var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
 		necro_spawn_bench.append(slime_instance)
 		slime_instance.is_necro_spawn = true

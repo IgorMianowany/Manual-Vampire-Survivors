@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dwr1y7ewa56ww"]
+[gd_scene load_steps=56 format=3 uid="uid://dwr1y7ewa56ww"]
 
 [ext_resource type="Texture2D" uid="uid://dokvpxur0nj5b" path="res://icon.svg" id="1_5ofjv"]
 [ext_resource type="Script" uid="uid://bjbvtjswl36oj" path="res://light_enemy.gd" id="1_rn2co"]
@@ -241,6 +241,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dbtx"]
 radius = 50.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mymao"]
+radius = 58.2151
+
 [node name="LightEnemy" type="Node2D"]
 z_index = 10
 script = ExtResource("1_rn2co")
@@ -369,6 +372,15 @@ position = Vector2(0, -11)
 offset_right = 40.0
 offset_bottom = 23.0
 
+[node name="PlayerDistance" type="Area2D" parent="Position"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/PlayerDistance"]
+shape = SubResource("CircleShape2D_mymao")
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Position/Hurtbox" to="." method="_on_slime_hurtbox_area_entered"]
 [connection signal="animation_finished" from="Position/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Position/PlayerDistance" to="." method="_on_player_distance_body_entered"]
+[connection signal="body_exited" from="Position/PlayerDistance" to="." method="_on_player_distance_body_exited"]

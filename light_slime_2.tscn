@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj73qluche435"]
+
+[ext_resource type="PackedScene" uid="uid://dwr1y7ewa56ww" path="res://light_enemy.tscn" id="1_bi63f"]
+[ext_resource type="Script" uid="uid://clvpmud1k5ly6" path="res://light_slime.gd" id="2_ysk73"]
+
+[node name="LightSlime2" instance=ExtResource("1_bi63f")]
+script = ExtResource("2_ysk73")
+tex = null

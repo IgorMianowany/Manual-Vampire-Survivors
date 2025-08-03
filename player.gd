@@ -100,11 +100,12 @@ func _physics_process(delta: float) -> void:
 			#PlayerState.active_enemies_count += 1
 			#light_slime_enemy.set_enemy_position(get_global_mouse_position())
 	#if Input.is_action_just_pressed("attack"):
-		#var light_enemy := preload("res://light_necromancer.tscn").instantiate()
+		#var light_enemy := preload("res://light_slime_2.tscn").instantiate()
 		#light_enemy.player = self
 		#get_parent().add_child(light_enemy)
 		#PlayerState.active_enemies_count += 1
 		#light_enemy.set_enemy_position(get_global_mouse_position())
+		#light_enemy._manual_spawn_ready()
 
 		#attack()
 		set_attack_direction()

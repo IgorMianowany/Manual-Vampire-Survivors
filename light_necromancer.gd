@@ -53,7 +53,7 @@ func summon():
 		slime.player = player
 		slime.change_color(Color("d30032"))
 		slime._manual_spawn_ready()
-
+		slime.switch_collision(true)
 
 		#if slime.get_parent() != null:
 			#slime.reparent($Position/ChildrenHolder)
