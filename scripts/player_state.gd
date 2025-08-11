@@ -84,7 +84,7 @@ var projectile_bench : Array[Projectile] = []
 var enemy_projectile_bench : Array[SimpleProjectile] = []
 var simple_projectile_scene := preload("res://simple_projectile.tscn")
 var sword_level_base : int = 1
-var staff_level_base : int = 21
+var staff_level_base : int = 1
 var bow_level_base : int = 1
 var prayer_book_level_base : int = 1
 var class_level : int = 0
@@ -196,13 +196,14 @@ func _ready() -> void:
 	#_preload_enemies()
 
 func _preload_enemies():
-	var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
-	for slime in range(0,500):
-		var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
-		necro_spawn_bench.append(slime_instance)
-		slime_instance.is_necro_spawn = true
-		slime_instance.active = false
-		enemy_holder_node.add_child(slime_instance)
+	pass
+	#var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
+	#for slime in range(0,500):
+		#var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
+		#necro_spawn_bench.append(slime_instance)
+		#slime_instance.is_necro_spawn = true
+		#slime_instance.active = false
+		#enemy_holder_node.add_child(slime_instance)
 		#slime_instance.set_enemy_position(Vector2(-5000, 5000))
 		
 func _process(_delta: float) -> void:
@@ -259,12 +260,12 @@ func choose_class(class_number : int):
 			var projectile := arrow_scene.instantiate()
 			projectile_node.add_child(projectile)
 			projectile_bench.append(projectile)
-	if class_number == 2:
-		if class_level < 10:
-			for i in range(0,200):
-				var projectile := fireball_scene.instantiate()
-				projectile_node.add_child(projectile)
-				projectile_bench.append(projectile)
+	#if class_number == 2:
+		#if class_level < 10:
+			#for i in range(0,200):
+				#var projectile := fireball_scene.instantiate()
+				#projectile_node.add_child(projectile)
+				#projectile_bench.append(projectile)
 	
 func clear_enemies_chain_lightning():
 	if not chain_lightning_ready:

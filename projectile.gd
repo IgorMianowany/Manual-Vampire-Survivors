@@ -130,3 +130,7 @@ func change_target(is_target_player : bool):
 	else:
 		$ProjectileHitbox.collision_layer = 16
 		$ProjectileImpactDetector.collision_mask = 7
+
+
+func _on_projectile_impact_detector_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	_on_projectile_death()
