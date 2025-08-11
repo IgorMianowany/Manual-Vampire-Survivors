@@ -68,6 +68,13 @@ var hp : float = 100
 var max_hp : float = 100
 var velocity : Vector2
 
+signal deferred
+
+func wait_deferred() -> Signal:
+	var deferred_signal := Signal(deferred)
+	deferred_signal.emit.call_deferred()
+	return deferred_signal
+
 func get_pos() -> Vector2:
 	if $Position != null:
 		return $Position.global_position
@@ -110,7 +117,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if hp < 0 or randf_range(0,1) > .1 + Engine.get_frames_per_second() / 100:
+	if hp < 0 or Engine.get_frames_per_second() < 50 or not active:
 		return
 	var trans : Transform2D = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
 	if is_pulled:
@@ -140,7 +147,9 @@ func set_enemy_position(pos : Vector2):
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
 func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockback_power : float, _is_poison : bool = false, is_crit : bool = false):
-	incoming_damage = .01
+	if hp < 0:
+		return
+	#incoming_damage = .01
 	incoming_damage = incoming_damage * 150
 	hp -= incoming_damage
 
@@ -216,6 +225,7 @@ func _on_animation_finished(anim_name : StringName):
 			PlayerState.necro_spawn_bench.append(self)
 			PlayerState.active_enemies_count -= 1
 		else:
+			await wait_deferred()
 			queue_free()
 	is_jumping = false
 	animated_sprite_2d.play("idle_down")
@@ -277,9 +287,13 @@ func switch_collision(value : bool):
 
 
 func _on_player_distance_body_entered(_body: Node2D) -> void:
-	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_STATIC)
-	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_STATIC)
+	call_deferred("_set_body_mode", PhysicsServer2D.BODY_MODE_STATIC)
 
 func _on_player_distance_body_exited(_body: Node2D) -> void:
-	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_RIGID)
-	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_RIGID)
+	call_deferred("_set_body_mode", PhysicsServer2D.BODY_MODE_RIGID)
+	
+func _set_body_mode(mode : PhysicsServer2D.BodyMode):
+	if(object == null):
+		return
+	PhysicsServer2D.body_set_mode(object, mode)
+	

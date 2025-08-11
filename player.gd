@@ -85,19 +85,19 @@ func _physics_process(delta: float) -> void:
 		invincibility_timer = 0
 		
 	if Input.is_action_just_pressed("alt_attack"):
-		#for i in range(0, 10):
-			#var light_enemy := preload("res://light_slime_2.tscn").instantiate()
-			#light_enemy.player = self
-			#light_enemy.active = true
-			#get_parent().add_child(light_enemy)
-			#PlayerState.active_enemies_count += 1
-			#light_enemy.set_enemy_position(get_global_mouse_position())
+		for i in range(0, 10):
 			var light_enemy := preload("res://light_slime_2.tscn").instantiate()
 			light_enemy.player = self
+			light_enemy.active = true
 			get_parent().add_child(light_enemy)
 			PlayerState.active_enemies_count += 1
 			light_enemy.set_enemy_position(get_global_mouse_position())
-			light_enemy._manual_spawn_ready()
+			#var light_enemy := preload("res://light_slime.tscn").instantiate()
+			#light_enemy.player = self
+			#get_parent().add_child(light_enemy)
+			#PlayerState.active_enemies_count += 1
+			#light_enemy.set_enemy_position(get_global_mouse_position())
+			#light_enemy._manual_spawn_ready()
 	if Input.is_action_pressed("attack") and PlayerState.active_enemies_count <= 1000:
 		#for i in range(0, 10):
 			#var light_enemy := preload("res://light_necromancer.tscn").instantiate()
