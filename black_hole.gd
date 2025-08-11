@@ -6,18 +6,19 @@ func _ready() -> void:
 	$Timer.start(lifetime)
 
 func _process(delta: float) -> void:
+	damage = 0
 	$Sprite2D.rotate(.6 * delta)
 	global_position += direction * delta * speed
 
 func _on_gravitation_pull_range_area_entered(area: Area2D) -> void:
-	var slime = (area.owner as Slime)
+	var slime = (area.owner as LightEnemy)
 	if slime.pull_source == null:
-		(area.owner as Slime).is_pulled = true
-		(area.owner as Slime).pull_source = self
+		slime.is_pulled = true
+		slime.pull_source = self
 
 func _on_gravitation_pull_range_area_exited(area: Area2D) -> void:
-	(area.owner as Slime).is_pulled = false
-	(area.owner as Slime).pull_source = null
+	(area.owner as LightEnemy).is_pulled = false
+	(area.owner as LightEnemy).pull_source = null
 
 
 func _on_recast_timer_timeout() -> void:

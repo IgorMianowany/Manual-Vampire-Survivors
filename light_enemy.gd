@@ -6,7 +6,7 @@ var img : RID
 
 
 @export var player : Player
-@export var speed : float = 1000
+@export var speed : float = 10
 #@export var speed : float = 0
 @export var jump_cooldown : float = 1.5
 @export var jump_duration : float = .9
@@ -54,6 +54,7 @@ var direction_update_cooldown = 2
 var next_position : Vector2
 var is_necro_spawn : bool = false
 var col_layer : int = 5
+var debug_name : String = "Light Enemy"
 
 @export var test_name : String
 
@@ -112,9 +113,15 @@ func _physics_process(delta: float) -> void:
 	if hp < 0 or randf_range(0,1) > .1 + Engine.get_frames_per_second() / 100:
 		return
 	var trans : Transform2D = PhysicsServer2D.body_get_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM)
-	if direction_update_cooldown <= 0:
-		## distance_to()
+	if is_pulled:
+		velocity = (pull_source.position - trans.origin).normalized() * speed * delta
+	elif direction_update_cooldown <= 0:
+		direction_update_cooldown = 1.5
 		velocity = (player.position - trans.origin).normalized() * speed * delta
+		#if not is_pulled:
+			#velocity = (player.position - trans.origin).normalized() * speed * delta  ## fancy way of saying .distance_to()
+		#else:
+			#velocity = (pull_source.position - trans.origin).normalized() * speed * speed * delta
 		direction_update_cooldown = 1.5
 	next_position = trans.origin + velocity * delta
 	trans = Transform2D(0, next_position)
@@ -133,13 +140,14 @@ func set_enemy_position(pos : Vector2):
 	PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_TRANSFORM, trans)
 
 func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockback_power : float, _is_poison : bool = false, is_crit : bool = false):
+	incoming_damage = .01
 	incoming_damage = incoming_damage * 150
 	hp -= incoming_damage
 
 	var tween : Tween = create_tween()
 	tween.tween_property(animated_sprite_2d, "modulate:v", 1, 0.1).from(15)
 	
-	DamageNumbers.display_number(int(incoming_damage * 15), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
+	DamageNumbers.display_number(int(incoming_damage), $Position/DamageNumbersOrigin.global_position, is_crit, $Position/Label)
 
 	#$Position/HitParticles.emitting = true
 	#$Position/HitParticles.set_direction(direction)
@@ -268,12 +276,10 @@ func switch_collision(value : bool):
 		PhysicsServer2D.body_set_collision_layer(object, 0)
 
 
-func _on_player_distance_body_entered(body: Node2D) -> void:
+func _on_player_distance_body_entered(_body: Node2D) -> void:
 	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_STATIC)
 	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_STATIC)
-	
-		
 
-func _on_player_distance_body_exited(body: Node2D) -> void:
+func _on_player_distance_body_exited(_body: Node2D) -> void:
 	PhysicsServer2D.call_deferred("body_set_mode", object, PhysicsServer2D.BODY_MODE_RIGID)
 	#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_RIGID)

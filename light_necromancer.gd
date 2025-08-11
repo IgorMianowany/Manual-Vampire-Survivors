@@ -16,14 +16,15 @@ func _ready() -> void:
 	$Position/SummoningCircle.scale = Vector2(.25, .25)
 	$Position/SummoningCircle.set_as_top_level(true)
 	summon_signal.connect(_on_summon_signal)
+	debug_name = "Light Necromancer"
 
 func _physics_process(delta: float) -> void:
 	if hp < 0:
 		return
-	frame_counter -= 1
-	if frame_counter == 0:
-		#calculate_position()
-		frame_counter = 15
+	#frame_counter -= 1
+	#if frame_counter == 0:
+		##calculate_position()
+		#frame_counter = 15
 	attack_check_time -= delta
 	super(delta)
 	

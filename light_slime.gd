@@ -15,7 +15,10 @@ func _process(delta: float) -> void:
 	if not active:
 		return
 	jump_timer -= delta
-	if jump_timer < 0:
+	if is_pulled:
+		speed = 2000
+	elif jump_timer < 0:
+		direction_update_cooldown = 2
 		speed = 3000 if speed == 0 else 0
 		jump_timer = 1.5 + variation
 		velocity = get_pos().direction_to(player.position) * speed * delta
@@ -23,7 +26,6 @@ func _process(delta: float) -> void:
 	super(delta)
 	
 func _physics_process(delta: float) -> void:
-	direction_update_cooldown = 2
 	super(delta)
 	
 func _manual_spawn_ready():
