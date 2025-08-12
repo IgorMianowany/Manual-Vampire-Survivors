@@ -167,6 +167,7 @@ func take_damage(incoming_damage : float, _attack_direction : Vector2, _knockbac
 		handle_chain_lightning_logic()
 	#$Position/Control/Healthbar.health = hp
 	if hp < 0:
+		PhysicsServer2D.body_set_collision_layer(object, 0)
 		$Position/Hitbox.collision_layer = 0
 		animated_sprite_2d.play("die")
 	

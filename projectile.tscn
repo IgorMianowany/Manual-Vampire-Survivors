@@ -17,8 +17,7 @@ radius = 109.165
 script = ExtResource("1_fsspm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-y_sort_enabled = true
+z_index = 4
 scale = Vector2(0.05, 0.1)
 texture = ExtResource("2_aydl7")
 

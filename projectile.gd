@@ -133,4 +133,5 @@ func change_target(is_target_player : bool):
 
 
 func _on_projectile_impact_detector_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print(PhysicsServer2D.body_get_collision_layer(body_rid))
 	_on_projectile_death()
