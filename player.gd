@@ -59,6 +59,7 @@ func _ready() -> void:
 	lightning_strike_timer.autostart = true
 	PlayerState.add_knife.connect(handle_knife_spawn)
 	PlayerState.health = PlayerState.max_health
+	PlayerState.player = self
 
 func _physics_process(delta: float) -> void:
 	PlayerState.player_position = global_position
@@ -86,10 +87,14 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("alt_attack"):
 		for i in range(0, 10):
-			var light_enemy := preload("res://light_slime_2.tscn").instantiate()
+			var light_enemy : LightEnemy
+			if PlayerState.necro_spawn_bench.size() > 0:
+				light_enemy = PlayerState._pop_enemy_bench()
+			else:
+				light_enemy = preload("res://light_slime_2.tscn").instantiate()
 			light_enemy.player = self
 			light_enemy.active = true
-			get_parent().add_child(light_enemy)
+			#get_parent().add_child(light_enemy)
 			PlayerState.active_enemies_count += 1
 			light_enemy.set_enemy_position(get_global_mouse_position())
 			#var light_enemy := preload("res://light_slime.tscn").instantiate()

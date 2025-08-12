@@ -45,9 +45,9 @@ func attack(damage : float, attack_position : Vector2 = Vector2.ZERO, direction 
 				var new_direction = existing_direction.rotated(angle_in_radians)
 
 				#var projectile = PlayerState.projectile_bench.pop_front()
+				#projectile.reparent(self)
 				var projectile = preload("res://fireball_new.tscn").instantiate()
 				add_child(projectile)
-				#projectile.reparent(self)
 				projectile.active = true
 				projectile.position = attack_position + direction * 15
 				projectile.direction = new_direction

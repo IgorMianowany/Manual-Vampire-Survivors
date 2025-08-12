@@ -101,9 +101,10 @@ var holy_explosion_cooldown_base : float = 1
 var holy_beam_cooldown_base : float = 1
 var stats_not_displayable : Array[String] = ["chosen_class", "first_enemy_hit_name", "has_dash", "chain_lightning_current_hits", "chain_lightning_ready",
 "has_homing_projectiles", "has_bubble_shield_upgrade", "mana_regen_blocked", "has_poison_attacks", "stats_not_displayable", "has_chain_lightning", "enemies_hit_by_chain_lightning",
-"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene", "player_position"]
+"debug_value", "max_projectile_speed", "final_score", "health_bonus_per_jim_beam", "enemy_bench", "experience_pickup", "experience_pickup_bench", "slime_scene", "simple_projectile_scene", "player_position", "player"]
 @onready var mana : float = max_mana
 var player_position : Vector2
+var player : Player
 
 
 var frames_sum : float = 0
@@ -196,16 +197,23 @@ func _ready() -> void:
 	#_preload_enemies()
 
 func _preload_enemies():
-	pass
-	#var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
-	#for slime in range(0,500):
-		#var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
-		#necro_spawn_bench.append(slime_instance)
-		#slime_instance.is_necro_spawn = true
-		#slime_instance.active = false
-		#enemy_holder_node.add_child(slime_instance)
-		#slime_instance.set_enemy_position(Vector2(-5000, 5000))
+	#pass
+	var enemy_holder_node := get_parent().get_child(2).get_child(0).find_child("EnemyHolder")
+	for slime in range(0,500):
+		var slime_instance : LightEnemy = necro_spawn_scene.instantiate()
+		necro_spawn_bench.append(slime_instance)
+		slime_instance.is_necro_spawn = true
+		slime_instance.active = false
+		enemy_holder_node.add_child(slime_instance)
+		slime_instance.set_enemy_position(Vector2(-5000, 5000))
 		
+func _pop_enemy_bench() -> LightEnemy:
+	var light_enemy : LightEnemy = necro_spawn_bench.pop_front()
+	light_enemy.player = player
+	light_enemy._manual_spawn_ready()
+	light_enemy.switch_collision(true)
+	return light_enemy
+
 func _process(_delta: float) -> void:
 	frames_count += 1
 	frames_sum += Engine.get_frames_per_second()
@@ -254,12 +262,12 @@ func choose_class(class_number : int):
 		
 	chosen_class = class_number
 	after_class_chosen.emit()
-
-	if class_number == 1:
-		for i in range(0,100):
-			var projectile := arrow_scene.instantiate()
-			projectile_node.add_child(projectile)
-			projectile_bench.append(projectile)
+#
+	#if class_number == 1:
+		#for i in range(0,100):
+			#var projectile := arrow_scene.instantiate()
+			#projectile_node.add_child(projectile)
+			#projectile_bench.append(projectile)
 	#if class_number == 2:
 		#if class_level < 10:
 			#for i in range(0,200):
