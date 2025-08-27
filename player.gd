@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var base_speed : float = 125
+@export var base_speed : float = 1000
 @export var invincibility_time : float = 1
 @export var attack_time : float = .5
 @export var attack_range : float = 15
@@ -85,6 +85,11 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.visible = true
 		invincibility_timer = 0
 		
+	if Input.is_action_just_pressed("spawn_boss"):
+		var boss_manager := preload("res://boss_manager.tscn").instantiate()
+		add_child(boss_manager)
+		#boss_manager.set_as_top_level()
+	
 	if Input.is_action_just_pressed("alt_attack"):
 		for i in range(0, 10):
 			var light_enemy : LightEnemy

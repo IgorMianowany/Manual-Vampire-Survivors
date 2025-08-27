@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbswe227i6af0"]
+
+[ext_resource type="Script" uid="uid://cdx4mnk248w0g" path="res://boss_spawn.gd" id="1_72imt"]
+[ext_resource type="Texture2D" uid="uid://djvbsg465sex4" path="res://assets/sprites/Necro sprites/summoning_curcle.png" id="2_wqmof"]
+
+[node name="BossManager" type="Node2D"]
+script = ExtResource("1_72imt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, 50)
+texture = ExtResource("2_wqmof")
