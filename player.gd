@@ -39,6 +39,7 @@ var current_interact_distance : float = 100
 var holy_bolt_scene := preload("res://holy_bolt.tscn")
 var holy_explosion_scene := preload("res://holy_explosion.tscn")
 var holy_beam_scene := preload("res://holy_beam.tscn")
+var is_zooming_out : bool = false
 
 enum DirectionEnum {UP, DOWN, LEFT, RIGHT}
 var direction : DirectionEnum = DirectionEnum.DOWN
@@ -52,6 +53,7 @@ func _ready() -> void:
 	PlayerState.add_palladin_hammer.connect(add_palladin_hammer)
 	PlayerState.add_bubble_shield.connect(add_bubble_shield)
 	PlayerState.add_lightning_strike.connect(add_lightning_strike)
+	PlayerState.zoom_out_camera.connect(zoom_out)
 	$DashTimer.timeout.connect(reset_can_dash)
 	PlayerState.puke.connect(handle_puke)
 	add_child(lightning_strike_timer)
@@ -252,6 +254,11 @@ func _process(delta: float) -> void:
 	PlayerState.holy_bolt_cooldown_base -= delta
 	PlayerState.holy_explosion_cooldown_base -= delta
 	PlayerState.holy_beam_cooldown_base -= delta
+	if is_zooming_out:
+		print($Camera2D.zoom)
+		if $Camera2D.zoom < Vector2(1.5,1.5):
+			is_zooming_out = false
+		$Camera2D.zoom -= Vector2(.01,.01)
 	
 func handle_animation() -> void:
 	if $Weapon.is_attacking and PlayerState.chosen_class == 0:
@@ -519,5 +526,8 @@ func _on_interact_range_area_exited(area: Area2D) -> void:
 			
 func get_player() -> Player:
 	return self
+	
+func zoom_out():
+	is_zooming_out = true
 			
 	

@@ -5,6 +5,7 @@ var boss_scene := preload("res://boss.tscn")
 
 
 func _ready() -> void:
+	PlayerState.zoom_out_camera.emit()
 	$Sprite2D.visible = true
 	set_as_top_level(true)
 	global_position = Vector2(380, 1650)

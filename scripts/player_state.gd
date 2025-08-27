@@ -128,6 +128,7 @@ signal puke
 signal add_knife
 @warning_ignore("unused_signal")
 signal player_death
+signal zoom_out_camera
 
 func get_max_health() -> float:
 	return max_health_base + max_health_bonus + jim_beam_counter * health_bonus_per_jim_beam
