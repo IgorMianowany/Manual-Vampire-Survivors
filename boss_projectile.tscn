@@ -10,12 +10,14 @@ radius = 5.0
 z_index = 8
 script = ExtResource("1_bnrtf")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Position" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="Position"]
 collision_layer = 32
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_bnrtf")
 metadata/_custom_type_script = "uid://p8h3fxevo1ct"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position/Hitbox"]
 shape = SubResource("CircleShape2D_bnrtf")

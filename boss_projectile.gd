@@ -9,7 +9,6 @@ var start_pos : Vector2
 var texture : Texture2D = preload("res://assets/sprites/projectiles/black_hole.png")
 var rs = RenderingServer
 var current_transform : Transform2D
-var current_rotation : float = 0
 var lifetime : float = 5
 
 func _ready() -> void:
@@ -17,7 +16,7 @@ func _ready() -> void:
 	var ps = PhysicsServer2D
 	body = ps.body_create()
 	ps.body_set_space(body, get_world_2d().space)
-	ps.body_add_shape(body, $Hitbox/CollisionShape2D.shape)
+	ps.body_add_shape(body, $Position/Hitbox/CollisionShape2D.shape)
 	ps.body_set_param(body, PhysicsServer2D.BODY_PARAM_GRAVITY_SCALE, 0)
 	ps.body_set_collision_layer(body, 6)
 		
@@ -39,4 +38,8 @@ func _process(delta: float) -> void:
 	RenderingServer.canvas_item_set_transform(img, current_transform)
 
 func _physics_process(delta: float) -> void:
-	global_position = global_position + direction * speed * delta
+	#current_transform.origin += direction * speed * delta
+	current_transform = current_transform.translated(direction * speed * delta)
+	current_transform = Transform2D(0, current_transform.origin + (current_transform.origin * direction * speed * delta))
+	$Position.global_position = current_transform.origin
+	PhysicsServer2D.body_set_state(body, PhysicsServer2D.BODY_STATE_TRANSFORM, current_transform)
