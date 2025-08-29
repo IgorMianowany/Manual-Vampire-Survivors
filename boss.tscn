@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2rxj2vgamnlo"]
+[gd_scene load_steps=6 format=3 uid="uid://c2rxj2vgamnlo"]
 
 [ext_resource type="Script" uid="uid://bnxam5e1lxmbt" path="res://boss.gd" id="1_0bnu1"]
 [ext_resource type="Texture2D" uid="uid://6tof2bd2ml0w" path="res://assets/sprites/boss/Adobe Express - file.png" id="2_6xxrv"]
+[ext_resource type="Script" uid="uid://p8h3fxevo1ct" path="res://scripts/hitbox.gd" id="3_skx2t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_skx2t"]
 animations = [{
@@ -14,10 +15,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Boss" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_skx2t"]
+radius = 32.0
+
+[node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_0bnu1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 11
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_skx2t")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_skx2t")
+metadata/_custom_type_script = "uid://p8h3fxevo1ct"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(7, 2)
+shape = SubResource("CircleShape2D_skx2t")

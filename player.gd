@@ -89,6 +89,7 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("spawn_boss"):
 		var boss_manager := preload("res://boss_manager.tscn").instantiate()
+		boss_manager.player = self
 		add_child(boss_manager)
 		#boss_manager.set_as_top_level()
 	
@@ -255,7 +256,6 @@ func _process(delta: float) -> void:
 	PlayerState.holy_explosion_cooldown_base -= delta
 	PlayerState.holy_beam_cooldown_base -= delta
 	if is_zooming_out:
-		print($Camera2D.zoom)
 		if $Camera2D.zoom < Vector2(1.5,1.5):
 			is_zooming_out = false
 		$Camera2D.zoom -= Vector2(.01,.01)
