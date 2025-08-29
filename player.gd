@@ -258,7 +258,7 @@ func _process(delta: float) -> void:
 	if is_zooming_out:
 		if $Camera2D.zoom < Vector2(1.5,1.5):
 			is_zooming_out = false
-		$Camera2D.zoom -= Vector2(.01,.01)
+		$Camera2D.zoom -= Vector2(.1,.1)
 	
 func handle_animation() -> void:
 	if $Weapon.is_attacking and PlayerState.chosen_class == 0:
