@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if move_timer < 0 and not is_attacking and not action_cooldown:
 		player_direction = global_position.direction_to(player.global_position)
 		move_timer = move_cooldown
-		if randf() > 1:
+		if randf() > 0.1:
 			move.emit()
 		else:
 			#move.emit()
@@ -55,7 +55,12 @@ func spiral_projectile_attack():
 		var projectile := preload("res://boss_projectile.tscn").instantiate()
 		projectile.global_position = global_position
 		projectile.direction = start_dir
+		projectile.player = player
 		add_child(projectile)
+		var projectile2 := preload("res://boss_projectile.tscn").instantiate()
+		projectile2.global_position = global_position
+		projectile2.direction = start_dir * -1
+		add_child(projectile2)
 		start_dir = start_dir.rotated(.25)
 		await(get_tree().create_timer(0.25).timeout)
 		##for i in range(1,15):
