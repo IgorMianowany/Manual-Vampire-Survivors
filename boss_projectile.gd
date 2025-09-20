@@ -9,7 +9,7 @@ var start_pos : Vector2
 var texture : Texture2D = preload("res://assets/sprites/projectiles/black_hole.png")
 var rs = RenderingServer
 var current_transform : Transform2D
-var lifetime : float = 5
+var lifetime : float = 3
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -34,12 +34,12 @@ func _process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime < 0:
 		queue_free()
-	current_transform = current_transform.rotated(deg_to_rad(2))
+	#current_transform = current_transform.rotated(deg_to_rad(2))
 	RenderingServer.canvas_item_set_transform(img, current_transform)
 
 func _physics_process(delta: float) -> void:
-	#current_transform.origin += direction * speed * delta
-	current_transform = current_transform.translated(direction * speed * delta)
-	current_transform = Transform2D(0, current_transform.origin + (current_transform.origin * direction * speed * delta))
+	current_transform.origin += direction * speed * delta
+	#current_transform = current_transform.translated(direction * speed * delta)
+	current_transform = Transform2D(0, current_transform.origin)
 	$Position.global_position = current_transform.origin
 	PhysicsServer2D.body_set_state(body, PhysicsServer2D.BODY_STATE_TRANSFORM, current_transform)
