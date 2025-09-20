@@ -13,7 +13,9 @@ var lifetime : float = 10
 var player : Player
 
 func _ready() -> void:
+	print(owner)
 	set_as_top_level(true)
+	print(owner)
 	var ps = PhysicsServer2D
 	body = ps.body_create()
 	ps.body_set_space(body, get_world_2d().space)
@@ -22,16 +24,17 @@ func _ready() -> void:
 	ps.body_set_collision_layer(body, 0)
 		
 	#var transform = Transform2D(0, Vector2(250, 250))
-	var trans = Transform2D(0, start_pos)
+	var trans = Transform2D(0, Vector2.ZERO)
 	ps.body_set_state(body, ps.BODY_STATE_TRANSFORM, trans)
 	#if player != null:
 		#ps.body_add_collision_exception(body, player)
-	
+	$Position.global_position = Transform2D(0, start_pos).origin
 	current_transform = trans
 	img = rs.canvas_item_create()
 	rs.canvas_item_set_parent(img, get_canvas_item())
 	rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), texture)
 	rs.canvas_item_set_transform(img, Transform2D(0, Vector2.ZERO))
+	print($Position/Hitbox.collision_layer)
 
 func _process(delta: float) -> void:
 	lifetime -= delta
@@ -45,5 +48,5 @@ func _physics_process(delta: float) -> void:
 	current_transform.origin += direction * speed * delta
 	#current_transform = current_transform.translated(direction * speed * delta)
 	current_transform = Transform2D(0, current_transform.origin)
-	$Position.global_position = current_transform.origin
+	$Position.position = current_transform.origin
 	PhysicsServer2D.body_set_state(body, PhysicsServer2D.BODY_STATE_TRANSFORM, current_transform)

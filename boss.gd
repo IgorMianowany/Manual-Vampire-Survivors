@@ -60,13 +60,12 @@ func spiral_projectile_attack():
 		projectile.direction = start_dir
 		projectile.player = player
 		add_child(projectile)
-		#var projectile2 := preload("res://boss_projectile.tscn").instantiate()
-		#projectile2.global_position = global_position
-		#projectile2.direction = start_dir * -1
-		#add_child(projectile2)
-		#start_dir = start_dir.rotated(.25)
+		var projectile2 := preload("res://boss_projectile.tscn").instantiate()
+		projectile2.global_position = global_position
+		projectile2.direction = start_dir * -1
+		add_child(projectile2)
+		start_dir = start_dir.rotated(.25)
 		await(get_tree().create_timer(0.25).timeout)
-		break
 		##for i in range(1,15):
 
 		#var projectile2 := preload("res://boss_projectile.tscn").instantiate()

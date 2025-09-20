@@ -19,3 +19,4 @@ script = ExtResource("2_bnrtf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position/Hitbox" groups=["Areas"]]
 shape = SubResource("CircleShape2D_bnrtf")
+debug_color = Color(0.517262, 0.575564, 9.62615e-07, 0.42)
