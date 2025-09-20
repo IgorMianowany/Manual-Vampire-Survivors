@@ -34,7 +34,6 @@ func _ready() -> void:
 	rs.canvas_item_set_parent(img, get_canvas_item())
 	rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), texture)
 	rs.canvas_item_set_transform(img, Transform2D(0, Vector2.ZERO))
-	print($Position/Hitbox.collision_layer)
 
 func _process(delta: float) -> void:
 	lifetime -= delta
