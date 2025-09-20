@@ -31,20 +31,19 @@ func _ready() -> void:
 	img = rs.canvas_item_create()
 	rs.canvas_item_set_parent(img, get_canvas_item())
 	rs.canvas_item_add_texture_rect(img, Rect2(Vector2(-8, -8),Vector2(16,16)), texture)
-	rs.canvas_item_set_transform(img, current_transform)
+	rs.canvas_item_set_transform(img, Transform2D(0, Vector2.ZERO))
 
 func _process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime < 0:
 		queue_free()
 	# TODO: make this work somehow, this is doing nothing and rotating current_transform changes the direction of projectile movement
-	var rotated_transform = current_transform.rotated_local(deg_to_rad(15))
-	RenderingServer.canvas_item_set_transform(img, rotated_transform)
+	#var rotated_transform = current_transform.rotated_local(deg_to_rad(15))
+	RenderingServer.canvas_item_set_transform(img, current_transform)
 
 func _physics_process(delta: float) -> void:
 	current_transform.origin += direction * speed * delta
 	#current_transform = current_transform.translated(direction * speed * delta)
 	current_transform = Transform2D(0, current_transform.origin)
-	print(current_transform.origin)
 	$Position.global_position = current_transform.origin
 	PhysicsServer2D.body_set_state(body, PhysicsServer2D.BODY_STATE_TRANSFORM, current_transform)

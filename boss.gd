@@ -11,6 +11,7 @@ var is_attacking : bool = false
 var spawn_position : Vector2
 var attack_duration : float = 10
 var action_cooldown : bool = false
+var chance = 0
 signal move
 signal attack
 
@@ -23,11 +24,12 @@ func _process(delta: float) -> void:
 	if move_timer < 0 and not is_attacking and not action_cooldown:
 		player_direction = global_position.direction_to(player.global_position)
 		move_timer = move_cooldown
-		if randf() > 0.1:
+		if randf() > 1 - chance:
 			move.emit()
 		else:
 			#move.emit()
 			attack.emit()
+			chance = 1
 		
 func _physics_process(delta: float) -> void:
 	velocity = player_direction * speed * delta
@@ -54,15 +56,17 @@ func spiral_projectile_attack():
 	while(is_attacking):
 		var projectile := preload("res://boss_projectile.tscn").instantiate()
 		projectile.global_position = global_position
+		projectile.start_pos = global_position
 		projectile.direction = start_dir
 		projectile.player = player
 		add_child(projectile)
-		var projectile2 := preload("res://boss_projectile.tscn").instantiate()
-		projectile2.global_position = global_position
-		projectile2.direction = start_dir * -1
-		add_child(projectile2)
-		start_dir = start_dir.rotated(.25)
+		#var projectile2 := preload("res://boss_projectile.tscn").instantiate()
+		#projectile2.global_position = global_position
+		#projectile2.direction = start_dir * -1
+		#add_child(projectile2)
+		#start_dir = start_dir.rotated(.25)
 		await(get_tree().create_timer(0.25).timeout)
+		break
 		##for i in range(1,15):
 
 		#var projectile2 := preload("res://boss_projectile.tscn").instantiate()
